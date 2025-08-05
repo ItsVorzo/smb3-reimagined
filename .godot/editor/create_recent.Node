@@ -1,11 +1,5 @@
-AudioStreamPlayer
 Camera2D
-Sprite2D
-TextEdit
-AnimatedSprite2D
-AnimationPlayer
-TextureButton
-Button
 TileMapLayer
 CollisionShape2D
+AnimatedSprite2D
 CharacterBody2D

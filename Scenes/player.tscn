@@ -106,9 +106,3 @@ animation = &"skid"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -7)
 shape = SubResource("RectangleShape2D_8erm5")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -60)
-ignore_rotation = false
-zoom = Vector2(3, 3)
-drag_vertical_enabled = true

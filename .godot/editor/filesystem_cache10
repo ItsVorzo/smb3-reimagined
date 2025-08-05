@@ -1,24 +1,12 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1754359045
-icon.svg::CompressedTexture2D::1276324240769402484::1754353708::1754353723::1::::<><><>0<>0<>4c79cddff27ae2f610d8efea5cb140c3<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://::1754345450
+icon.svg::CompressedTexture2D::1500502622298912357::1754344401::1754344401::1::::<><><>0<>0<>e239bcff18d329de449368297de6b0dc<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile::-1::1754345312::0::1::::<><><>0<>0<><>::
-::res://Audio/::1754358331
-::res://Audio/Music/::1754358326
-::res://Audio/Sfx/::1754358471
-Coin.wav::AudioStreamWAV::2709144628441357949::1754358368::1754358368::1::::<><><>0<>0<>0fd1b72da85ace03da7389e619c932dc<>res://.godot/imported/Coin.wav-d8d523ea3fa2c7d48cf7f83afe02685f.sample::
-M3_MoveMap.wav::AudioStreamWAV::1748054365851065911::1754358468::1754358468::1::::<><><>0<>0<>05c04f38a8398ac2ba42bab4a771335d<>res://.godot/imported/M3_MoveMap.wav-e7d8202dc2a26f35a9312a984c6b5c58.sample::
-M3_PDush.wav::AudioStreamWAV::1718367381708593936::1754358470::1754358471::1::::<><><>0<>0<>63d284adadd7b0a2c6996d8aa51e6509<>res://.godot/imported/M3_PDush.wav-218002f5255e126b8d4080c759127ab6.sample::
-::res://Scenes/::1754358383
-disclaimer.gd::GDScript::1491439788810514188::1754358383::0::1::::<>Node2D<><>0<>0<><>::
-Disclaimer.tscn::PackedScene::6532238731464547696::1754358382::0::1::::<><><>0<>0<><>::uid://vip2brf5doho::::res://Scenes/disclaimer.gd<>uid://cnpenxqkyeo1q::::res://Sprites/Tilesets/Door.png<>uid://bsdrf8j50o035::::res://Sprites/Title Screen/Disclaimer.png<>uid://beulhl7j3gbkv::::res://Audio/Sfx/Coin.wav
-player.tscn::PackedScene::2693516721645282122::1754353965::0::1::::<><><>0<>0<><>::uid://chmdycc5m3wqt::::res://Scripts/player.gd<>uid://d1bhsfevsocq7::::res://Sprites/Characters/Mario/MarioSmall.png
-title_screen.gd::GDScript::6978158317652494468::1754353024::0::1::::<>Node2D<><>0<>0<><>::
-title_screen.tscn::PackedScene::2892506914195189316::1754353068::0::1::::<><><>0<>0<><>::uid://c6ojiowhkhy01::::res://Scenes/title_screen.gd<>uid://b0qrrxm7r1rgc::::res://Sprites/Title Screen/Sky.png<>uid://c63o17p3g26m5::::res://Sprites/Title Screen/Stage.png<>uid://dmegii86ekoeh::::res://Sprites/Title Screen/Title.png<>uid://c4atbwyjpdqp8::::res://Sprites/Title Screen/Curtain.png<>uid://xmxvmam0080x::::res://Sprites/Title Screen/Scroll.png<>uid://cwflgyyhyx31r::::res://Sprites/Characters/Mario/MarioBig.png<>uid://bopml6smfrvys::::res://Sprites/Title Screen/Buttons.png<>uid://5ju034si5ep0::::res://Sprites/Title Screen/ButtonsH.png<>uid://c4ibj5t7sx0vs::::res://Sprites/Title Screen/Button2.png
-::res://Scenes/Backgrounds/::1754354072
-::res://Scenes/Levels/::1754350778
-level.tscn::PackedScene::4081964151146617715::1754350661::0::1::::<><><>0<>0<><>::uid://bdbv4a5fhkdng::::res://Sprites/Tilesets/Overworld/Overworld.png<>uid://bem03d4usrw1w::::res://Scenes/player.tscn
-::res://Scripts/::1754345497
-player.gd::GDScript::5289160925449697387::1754345497::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://Scenes/::1754345181
+level.tscn::PackedScene::4081964151146617715::1754344657::0::1::::<><><>0<>0<><>::uid://bdbv4a5fhkdng::::res://Sprites/Tilesets/Overworld/Overworld.png<>uid://bem03d4usrw1w::::res://Scenes/player.tscn
+player.tscn::PackedScene::2693516721645282122::1754345181::0::1::::<><><>0<>0<><>::uid://chmdycc5m3wqt::::res://Scripts/player.gd<>uid://d1bhsfevsocq7::::res://Sprites/Characters/Mario/MarioSmall.png
+::res://Scripts/::1754345181
+player.gd::GDScript::5289160925449697387::1754345181::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Sprites/::1754344825
 ::res://Sprites/Characters/::1754344403
 ::res://Sprites/Characters/Mario/::1754344656
@@ -43,12 +31,10 @@ UnlockedDoorALT.png::CompressedTexture2D::2236344629351677358::1754344403::17543
 ::res://Sprites/Tilesets/Overworld/::1754344658
 Overworld.png::CompressedTexture2D::2600378483813656620::1754344403::1754344658::1::::<><><>0<>0<>25db0fb38cda728e9a34e030a0080cce<>res://.godot/imported/Overworld.png-4977c08f850e61352a29bdc9140032c7.ctex::
 Semisolid.png::CompressedTexture2D::6275858011713545729::1754344403::1754344658::1::::<><><>0<>0<>7765c657f4eb1acfbef84aacc60b8f7e<>res://.godot/imported/Semisolid.png-290bc400d13cbf1e22978925e3596a72.ctex::
-::res://Sprites/Title Screen/::1754358073
+::res://Sprites/Title Screen/::1754344876
 Button2.png::CompressedTexture2D::6824911250590239448::1754338968::1754344876::1::::<><><>0<>0<>089238ec144a3e59cd72ab02c7f7b0e6<>res://.godot/imported/Button2.png-4e9d43f174ce29cb3fe3f1908b3841bc.ctex::
-Buttons.png::CompressedTexture2D::3400780065165536494::1754352098::1754352100::1::::<><><>0<>0<>e8c880e3a199a9a32a400e7728374c76<>res://.godot/imported/Buttons.png-724f224cbec50e7a7adfa9a4c671a335.ctex::
-ButtonsH.png::CompressedTexture2D::2125505209913305879::1754352078::1754352100::1::::<><><>0<>0<>391d083d1ce6b75b2a0e4b15790a4364<>res://.godot/imported/ButtonsH.png-d33715aaad990574bd5cc3ef2ed3ab1e.ctex::
+Buttons.png::CompressedTexture2D::3400780065165536494::1754341073::1754344876::1::::<><><>0<>0<>e8c880e3a199a9a32a400e7728374c76<>res://.godot/imported/Buttons.png-724f224cbec50e7a7adfa9a4c671a335.ctex::
 Curtain.png::CompressedTexture2D::6809474434563718919::1754339121::1754344876::1::::<><><>0<>0<>6dea35a469b5f3192dfa7804aeb0923c<>res://.godot/imported/Curtain.png-3f5ef86b38a4499b822cfad164f1fbd1.ctex::
-Disclaimer.png::CompressedTexture2D::3657055868857263418::1754358070::1754358073::1::::<><><>0<>0<>4ad81f8bca07f5dddecc5643cbc578e5<>res://.godot/imported/Disclaimer.png-0a7faf66b2e9906914b162ac0800e41a.ctex::
 Mario.png::CompressedTexture2D::4443536097393728535::1754336699::1754344876::1::::<><><>0<>0<>cd1068defbfbfba428c3dd11133b02ca<>res://.godot/imported/Mario.png-6f0f590c0a86c18e5319db4603c23017.ctex::
 Scroll.png::CompressedTexture2D::1640550560088950469::1754338040::1754344876::1::::<><><>0<>0<>e125a3bd757b136ecb4bbeeef28460ef<>res://.godot/imported/Scroll.png-bcef7c413cfc065cf083d474b0317298.ctex::
 Sky.png::CompressedTexture2D::4175235594134679538::1754335818::1754344876::1::::<><><>0<>0<>97369151e4780cbdc7fd78ffe9a59576<>res://.godot/imported/Sky.png-23c9ae01f63599cea6c9d73b0b3ba8e8.ctex::
