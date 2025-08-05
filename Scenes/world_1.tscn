@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b10jr4hfxtdpl"]
+[gd_scene load_steps=10 format=3 uid="uid://b10jr4hfxtdpl"]
 
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="1_brd3p"]
 [ext_resource type="Texture2D" uid="uid://cr7hxangqmp7g" path="res://Sprites/Tilesets/WorldMaps/World1.png" id="2_ax6sa"]
+[ext_resource type="Texture2D" uid="uid://bebjdrx3tex3v" path="res://Sprites/Tilesets/WorldMaps/HUD.png" id="3_ax6sa"]
+[ext_resource type="PackedScene" uid="uid://bqtph6w8yxiqa" path="res://Scenes/OverworldPlayer.tscn" id="4_d4kua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4kua"]
 atlas = ExtResource("2_ax6sa")
@@ -41,12 +43,12 @@ animations = [{
 
 [node name="World1" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BG" type="Sprite2D" parent="."]
 position = Vector2(-4, 0)
 scale = Vector2(25.875002, 13.75)
 texture = ExtResource("1_brd3p")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Map" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -20.155)
 sprite_frames = SubResource("SpriteFrames_mm7mx")
 autoplay = "default"
@@ -54,3 +56,10 @@ frame_progress = 0.77754694
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="HUD" type="Sprite2D" parent="."]
+position = Vector2(0, 85.945)
+texture = ExtResource("3_ax6sa")
+
+[node name="Player" parent="." instance=ExtResource("4_d4kua")]
+position = Vector2(-88, -44)

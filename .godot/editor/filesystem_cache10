@@ -127,7 +127,8 @@ BackgroundTiles.png::CompressedTexture2D::3762854058077087487::1754416071::17544
 ::res://Sprites/Tilesets/Overworld/::1754418539
 Overworld.png::CompressedTexture2D::2600378483813656620::1754416071::1754418539::1::::<><><>0<>0<>25db0fb38cda728e9a34e030a0080cce<>res://.godot/imported/Overworld.png-4977c08f850e61352a29bdc9140032c7.ctex::
 Semisolid.png::CompressedTexture2D::6275858011713545729::1754416071::1754418539::1::::<><><>0<>0<>7765c657f4eb1acfbef84aacc60b8f7e<>res://.godot/imported/Semisolid.png-290bc400d13cbf1e22978925e3596a72.ctex::
-::res://Sprites/Tilesets/WorldMaps/::1754418539
+::res://Sprites/Tilesets/WorldMaps/::1754419213
+HUD.png::CompressedTexture2D::2669793176041124281::1754419213::1754419223::1::::<><><>0<>0<>4ef2944339123e90c3d1a816653ffbac<>res://.godot/imported/HUD.png-c5d0f837d570ef42c8cc98d1974368f5.ctex::
 World1.png::CompressedTexture2D::6032577909948784738::1754418236::1754418539::1::::<><><>0<>0<>6492470437d556bfb0542337c37c66d7<>res://.godot/imported/World1.png-f1900460191fb51e1986f4f2287957ea.ctex::
 ::res://Sprites/Title Screen/::1754418539
 Button2.png::CompressedTexture2D::6824911250590239448::1754416071::1754418539::1::::<><><>0<>0<>089238ec144a3e59cd72ab02c7f7b0e6<>res://.godot/imported/Button2.png-4e9d43f174ce29cb3fe3f1908b3841bc.ctex::
