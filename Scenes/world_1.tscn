@@ -36,7 +36,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [node name="World1" type="Node2D"]
@@ -47,9 +47,10 @@ scale = Vector2(25.875002, 13.75)
 texture = ExtResource("1_brd3p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -25.895)
+position = Vector2(0, -20.155)
 sprite_frames = SubResource("SpriteFrames_mm7mx")
-frame_progress = 0.30874866
+autoplay = "default"
+frame_progress = 0.77754694
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
