@@ -5,7 +5,7 @@ icon.svg::CompressedTexture2D::1500502622298912357::1754416072::1754418539::1:::
 README.md::TextFile::-1::1754416071::0::1::::<><><>0<>0<><>::
 ::res://addons/::1754418825
 ::res://Audio/::1754416071
-::res://Audio/BGM/::1754418538
+::res://Audio/BGM/::1754420570
 Airship.ogg::AudioStreamOggVorbis::8652815126623208132::1754416071::1754418538::1::::<><><>0<>0<>173d83465bbadf2c4839effc72181549<>res://.godot/imported/Airship.ogg-0e2cf01ab2500aaf5ee789d30d2b9daa.oggvorbisstr::
 Athletic.ogg::AudioStreamOggVorbis::560456319774908191::1754416071::1754418538::1::::<><><>0<>0<>9d074573086039e61835b757926a4f2a<>res://.godot/imported/Athletic.ogg-8165d1a945339ef0dfdb2ca5bada9036.oggvorbisstr::
 Battle.ogg::AudioStreamOggVorbis::2835060733519889197::1754416071::1754418538::1::::<><><>0<>0<>1a272e0f0e84f69f3e2df18524a23880<>res://.godot/imported/Battle.ogg-591d3314825276fbd4c33880912bcd10.oggvorbisstr::
@@ -26,6 +26,7 @@ titletheme.mp3::AudioStreamMP3::6993820924943371838::1754416071::1754418538::1::
 ToadHouse.ogg::AudioStreamOggVorbis::8739318734413683165::1754416071::1754418538::1::::<><><>0<>0<>c4503b254c45eb0432eb44c1d36a11c4<>res://.godot/imported/ToadHouse.ogg-e7564413933f3bde20c5a6337f580724.oggvorbisstr::
 Underground.ogg::AudioStreamOggVorbis::5384141361649578255::1754416071::1754418538::1::::<><><>0<>0<>45f39b96bf2e4fcaf58a8f5c98eae5f3<>res://.godot/imported/Underground.ogg-707d9392738455c477949decc32edad1.oggvorbisstr::
 Underwater.ogg::AudioStreamOggVorbis::7394184230161783330::1754416071::1754418538::1::::<><><>0<>0<>06cc3ad92031c83dc8bfb9b937730321<>res://.godot/imported/Underwater.ogg-b37c19e51fadeb09b88fa3488c8ac4ec.oggvorbisstr::
+World 1 Map.mp3::AudioStreamMP3::7721027288529263779::1754420553::1754420572::1::::<><><>0<>0<>d694bc93a02043beed299f347136509c<>res://.godot/imported/World 1 Map.mp3-f84608f12e52b471b591e7d025745872.mp3str::
 ::res://Audio/Sfx/::1754418539
 1UP.wav::AudioStreamWAV::9170316805054505652::1754416071::1754418539::1::::<><><>0<>0<>fb6b723f1c65b14f13fb80de43760b67<>res://.godot/imported/1UP.wav-8d6ee31a75cbe2074cf99637d0cc437e.sample::
 Break.wav::AudioStreamWAV::7911673620571600323::1754416071::1754418539::1::::<><><>0<>0<>375f3ed9a4d6b2f10e372da0f10b6d31<>res://.godot/imported/Break.wav-f3f7aff50e8bf2424847863e43db7e49.sample::
@@ -42,12 +43,13 @@ Pause.wav::AudioStreamWAV::5228473001508278999::1754416071::1754418539::1::::<><
 PowerDown.wav::AudioStreamWAV::6191708959916426261::1754416071::1754418539::1::::<><><>0<>0<>8703afc29286b40667b281de56cefa46<>res://.godot/imported/PowerDown.wav-7396f556af3325c146dfc11bca9e763c.sample::
 PowerUp.wav::AudioStreamWAV::4298303317716480316::1754416071::1754418539::1::::<><><>0<>0<>45ee5f06d209932cbfe0fd694b865b7a<>res://.godot/imported/PowerUp.wav-693e0ed198bf71b8ecfad0f1eceae17d.sample::
 Stomp.wav::AudioStreamWAV::3217112899610969357::1754416071::1754418539::1::::<><><>0<>0<>2010a1523b2d3a3792dd375df99c5bf9<>res://.godot/imported/Stomp.wav-f54b964b82f24c7667bbbd0bd896ea8f.sample::
-::res://Scenes/::1754418864
+::res://Scenes/::1754420449
 coin.tscn::PackedScene::1392081087429441010::1754416071::0::1::::<><><>0<>0<><>::uid://7hj1isu4k7fe::::res://Sprites/Items/Coin.png<>res://Scripts/coin.gd<>uid://wtfevwtnjce::::res://Audio/Sfx/Coin.wav
 Disclaimer.tscn::PackedScene::1785075020639248707::1754416071::0::1::::<><><>0<>0<><>::uid://chmdycc5m3wqt::::res://Scripts/player.gd<>uid://d1bhsfevsocq7::::res://Sprites/Characters/Mario/MarioSmall.png
 player.tscn::PackedScene::2693516721645282122::1754416071::0::1::::<><><>0<>0<><>::uid://chmdycc5m3wqt::::res://Scripts/player.gd<>uid://d1bhsfevsocq7::::res://Sprites/Characters/Mario/MarioSmall.png<>uid://dspdxwok0vq8o::::res://Audio/Sfx/JumpSmall.wav
 question_block.tscn::PackedScene::800292674491577559::1754416071::0::1::::<><><>0<>0<><>::uid://bbd73syl17cd4::::res://Scripts/question_block.gd<>uid://d3558kgmmu4ct::::res://Sprites/Blocks/GeneralOverworld.png<>uid://lfisbsa8gxlh::::res://Audio/Sfx/Hit.wav<>res://Scripts/area_2d_question.gd
-world_1.tscn::PackedScene::4263518407814167549::1754418864::0::1::::<><><>0<>0<><>::uid://b77deruo3mtxx::::res://Sprites/Black.png<>uid://cr7hxangqmp7g::::res://Sprites/Tilesets/WorldMaps/World1.png
+OverworldPlayer.tscn::PackedScene::3549590278419492632::1754420435::0::1::::<><><>0<>0<><>::uid://chmdycc5m3wqt::::res://Scripts/player.gd<>uid://d1bhsfevsocq7::::res://Sprites/Characters/Mario/MarioSmall.png<>uid://dspdxwok0vq8o::::res://Audio/Sfx/JumpSmall.wav
+world_1.tscn::PackedScene::4263518407814167549::1754420449::0::1::::<><><>0<>0<><>::uid://b77deruo3mtxx::::res://Sprites/Black.png<>uid://cr7hxangqmp7g::::res://Sprites/Tilesets/WorldMaps/World1.png<>uid://bebjdrx3tex3v::::res://Sprites/Tilesets/WorldMaps/HUD.png<>uid://bqtph6w8yxiqa::::res://Scenes/OverworldPlayer.tscn
 ::res://Scenes/Backgrounds/::1754416071
 overworld.tscn::PackedScene::1790386661897670309::1754416071::0::1::::<><><>0<>0<><>::uid://blrnhffo7barl::::res://Sprites/Backgrounds/Overworld/Sky.png<>uid://chnwuqcdpgi4p::::res://Sprites/Backgrounds/Overworld/2.png<>uid://pd37js4a85kv::::res://Sprites/Backgrounds/Overworld/1.png
 ::res://Scenes/Blocks/::1754416071
@@ -127,7 +129,7 @@ BackgroundTiles.png::CompressedTexture2D::3762854058077087487::1754416071::17544
 ::res://Sprites/Tilesets/Overworld/::1754418539
 Overworld.png::CompressedTexture2D::2600378483813656620::1754416071::1754418539::1::::<><><>0<>0<>25db0fb38cda728e9a34e030a0080cce<>res://.godot/imported/Overworld.png-4977c08f850e61352a29bdc9140032c7.ctex::
 Semisolid.png::CompressedTexture2D::6275858011713545729::1754416071::1754418539::1::::<><><>0<>0<>7765c657f4eb1acfbef84aacc60b8f7e<>res://.godot/imported/Semisolid.png-290bc400d13cbf1e22978925e3596a72.ctex::
-::res://Sprites/Tilesets/WorldMaps/::1754419213
+::res://Sprites/Tilesets/WorldMaps/::1754419223
 HUD.png::CompressedTexture2D::2669793176041124281::1754419213::1754419223::1::::<><><>0<>0<>4ef2944339123e90c3d1a816653ffbac<>res://.godot/imported/HUD.png-c5d0f837d570ef42c8cc98d1974368f5.ctex::
 World1.png::CompressedTexture2D::6032577909948784738::1754418236::1754418539::1::::<><><>0<>0<>6492470437d556bfb0542337c37c66d7<>res://.godot/imported/World1.png-f1900460191fb51e1986f4f2287957ea.ctex::
 ::res://Sprites/Title Screen/::1754418539

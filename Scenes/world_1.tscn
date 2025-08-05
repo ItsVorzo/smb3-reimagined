@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b10jr4hfxtdpl"]
+[gd_scene load_steps=11 format=3 uid="uid://b10jr4hfxtdpl"]
 
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="1_brd3p"]
 [ext_resource type="Texture2D" uid="uid://cr7hxangqmp7g" path="res://Sprites/Tilesets/WorldMaps/World1.png" id="2_ax6sa"]
 [ext_resource type="Texture2D" uid="uid://bebjdrx3tex3v" path="res://Sprites/Tilesets/WorldMaps/HUD.png" id="3_ax6sa"]
 [ext_resource type="PackedScene" uid="uid://bqtph6w8yxiqa" path="res://Scenes/OverworldPlayer.tscn" id="4_d4kua"]
+[ext_resource type="AudioStream" uid="uid://diaegrih3i8q6" path="res://Audio/BGM/World 1 Map.mp3" id="5_12jk7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4kua"]
 atlas = ExtResource("2_ax6sa")
@@ -63,3 +64,7 @@ texture = ExtResource("3_ax6sa")
 
 [node name="Player" parent="." instance=ExtResource("4_d4kua")]
 position = Vector2(-88, -44)
+
+[node name="AudioStreamer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_12jk7")
+autoplay = true
