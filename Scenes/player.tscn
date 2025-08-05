@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bem03d4usrw1w"]
+[gd_scene load_steps=14 format=3 uid="uid://bem03d4usrw1w"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="2_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/JumpSmall.wav" id="3_6t5aa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("2_6t5aa")
@@ -93,22 +94,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
-size = Vector2(9, 14)
+size = Vector2(10, 13)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_3smsa")
-animation = &"skid"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -7)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_8erm5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -60)
-ignore_rotation = false
+position = Vector2(0, -14)
 zoom = Vector2(3, 3)
 drag_vertical_enabled = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6t5aa")
+bus = &"SFX"

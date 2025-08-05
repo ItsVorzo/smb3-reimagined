@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 # === Tunable Constants ===
 const WALK_SPEED = 80.0
 const RUN_SPEED = 160.0
@@ -21,6 +23,7 @@ const JUMP_BUFFER_TIME = 0.1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jump = $AudioStreamPlayer2D
 
 # === State ===
 var jump_buffer_timer = 0.0
@@ -85,6 +88,7 @@ func _physics_process(delta: float) -> void:
 		jump_held_timer = 0.0
 		jump_buffer_timer = 0.0
 		coyote_timer = 0.0
+		jump.play()
 
 	if is_jump_pressed and Input.is_action_pressed("jump"):
 		jump_held_timer += delta
