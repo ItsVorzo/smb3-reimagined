@@ -1,8 +1,8 @@
+Camera2D
+AnimatedSprite2D
 AudioStreamPlayer2D
 Sprite2D
 Parallax2D
-Camera2D
 TileMapLayer
 CollisionShape2D
-AnimatedSprite2D
 CharacterBody2D
