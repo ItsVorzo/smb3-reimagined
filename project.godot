@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="SMB3-Reimagined"
-run/main_scene="res://Scenes/level.tscn"
+run/main_scene="uid://bhhffwhk6yyqu"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://sgi4yc0g42iq"
 
 [input]
 
