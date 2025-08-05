@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 res://Scenes/Disclaimer.tscn
 res://Scenes/disclaimer.gd
 res://Scenes/title_screen.gd
@@ -9,3 +10,10 @@ res://Scripts/Input.gd
 res://Scenes/coin.tscn
 res://Scenes/question_block.tscn
 res://Scenes/Levels/level.tscn
+=======
+res://Scenes/discord_managerGame.tscn
+res://Scenes/Game Scenes/title_screen.tscn
+res://Scenes/Levels/level.tscn
+res://Scenes/Game Scenes/Disclaimer.tscn
+res://addons/discord-rpc-gd/nodes/discord_autoload.gd
+>>>>>>> Stashed changes

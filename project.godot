@@ -15,9 +15,13 @@ run/main_scene="uid://10y41hjhegda"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ADDON-Discord-RPC-Godot/addons/discord-rpc-gd/plugin.cfg")
+enabled=PackedStringArray("res://addons/ADDON-Discord-RPC-Godot/addons/discord-rpc-gd/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg")
 
 [file_customization]
 

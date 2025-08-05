@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bhhffwhk6yyqu"]
+[gd_scene load_steps=37 format=3 uid="uid://bhhffwhk6yyqu"]
 
 [ext_resource type="Script" uid="uid://c6ojiowhkhy01" path="res://Scripts/title_screen.gd" id="1_wv4sy"]
 [ext_resource type="Texture2D" uid="uid://b0qrrxm7r1rgc" path="res://Sprites/Title Screen/Sky.png" id="2_rh5ap"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://c4atbwyjpdqp8" path="res://Sprites/Title Screen/Curtain.png" id="9_pfj4o"]
 [ext_resource type="Texture2D" uid="uid://c4ibj5t7sx0vs" path="res://Sprites/Title Screen/Button2.png" id="10_6tf26"]
 [ext_resource type="AudioStream" uid="uid://c6v4hdnu0somo" path="res://Audio/BGM/titletheme.mp3" id="11_bnfal"]
-[ext_resource type="PackedScene" uid="uid://b1auoposnytq5" path="res://Scenes/discord_manager.tscn" id="12_rh5ap"]
 
 [sub_resource type="Animation" id="Animation_n82rj"]
 length = 0.001
@@ -305,7 +304,5 @@ zoom = Vector2(3, 3)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_bnfal")
 bus = &"SFX"
-
-[node name="Discord Manager" parent="." instance=ExtResource("12_rh5ap")]
 
 [connection signal="pressed" from="SinglePlayer" to="." method="_on_single_player_pressed"]

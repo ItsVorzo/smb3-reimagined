@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://byflmajwphj6j"]
+[gd_scene load_steps=10 format=4 uid="uid://byflmajwphj6j"]
 
 [ext_resource type="Texture2D" uid="uid://bdbv4a5fhkdng" path="res://Sprites/Tilesets/Overworld/Overworld.png" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="1_tq1so"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bem03d4usrw1w" path="res://Scenes/player.tscn" id="2_6phgx"]
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/question_block.tscn" id="3_lhx7y"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="4_lkqqh"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" path="res://Scenes/discord_managerGame.tscn" id="6_rv5g2"]
+=======
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lkqqh"]
 scenes/1/scene = ExtResource("1_yjxcc")
@@ -67,5 +70,9 @@ position = Vector2(3, 48)
 [node name="AudioStreamer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_lkqqh")
 autoplay = true
+<<<<<<< Updated upstream
 
 [node name="Discord Manager" parent="." instance=ExtResource("6_rv5g2")]
+=======
+bus = &"BGM"
+>>>>>>> Stashed changes
