@@ -1,4 +1,11 @@
-res://Scenes/Levels/level.tscn
+res://Scenes/Disclaimer.tscn
+res://Scenes/disclaimer.gd
+res://Scenes/title_screen.gd
+res://Scripts/player.gd
+res://Scenes/brick.tscn
+res://Scenes/player.tscn
+res://Scenes/CameraScript.gd
+res://Scripts/Input.gd
 res://Scenes/coin.tscn
 res://Scenes/question_block.tscn
-res://Scripts/question_block.gd
+res://Scenes/Levels/level.tscn
