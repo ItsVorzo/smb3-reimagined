@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://10y41hjhegda"]
+
+[ext_resource type="Script" path="res://Scenes/disclaimer.gd" id="1_q6dpt"]
+[ext_resource type="Texture2D" uid="uid://cnpenxqkyeo1q" path="res://Sprites/Tilesets/Door.png" id="1_tmjte"]
+[ext_resource type="Texture2D" uid="uid://bsdrf8j50o035" path="res://Sprites/Title Screen/Disclaimer.png" id="2_tmjte"]
+
+[node name="Disclaimer" type="Node2D"]
+script = ExtResource("1_q6dpt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1386, -414.2)
+scale = Vector2(87.135, 87.135)
+texture = ExtResource("1_tmjte")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -8.85)
+texture = ExtResource("2_tmjte")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
