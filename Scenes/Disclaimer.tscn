@@ -24,3 +24,4 @@ zoom = Vector2(3, 3)
 stream = ExtResource("4_amrdu")
 volume_db = -33.143
 autoplay = true
+bus = &"SFX"
