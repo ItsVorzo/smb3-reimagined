@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://10y41hjhegda"]
+
+[ext_resource type="Script" uid="uid://vip2brf5doho" path="res://Scripts/disclaimer.gd" id="1_udgjn"]
+[ext_resource type="Texture2D" uid="uid://cnpenxqkyeo1q" path="res://Sprites/Gizmos/Door.png" id="2_hv6v3"]
+[ext_resource type="Texture2D" uid="uid://bsdrf8j50o035" path="res://Sprites/Title Screen/Disclaimer.png" id="3_hdxgp"]
+[ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="4_2q725"]
+[ext_resource type="PackedScene" uid="uid://b1auoposnytq5" path="res://Scenes/discord_manager.tscn" id="5_hv6v3"]
+
+[node name="Disclaimer" type="Node2D"]
+script = ExtResource("1_udgjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1386, -414.2)
+scale = Vector2(87.135, 87.135)
+texture = ExtResource("2_hv6v3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -8.85)
+texture = ExtResource("3_hdxgp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2q725")
+volume_db = -33.143
+autoplay = true
+bus = &"SFX"
+
+[node name="Discord Manager" parent="." instance=ExtResource("5_hv6v3")]

@@ -1,0 +1,311 @@
+[gd_scene load_steps=38 format=3 uid="uid://bhhffwhk6yyqu"]
+
+[ext_resource type="Script" uid="uid://c6ojiowhkhy01" path="res://Scripts/title_screen.gd" id="1_wv4sy"]
+[ext_resource type="Texture2D" uid="uid://b0qrrxm7r1rgc" path="res://Sprites/Title Screen/Sky.png" id="2_rh5ap"]
+[ext_resource type="Texture2D" uid="uid://xmxvmam0080x" path="res://Sprites/Title Screen/Scroll.png" id="3_hadxh"]
+[ext_resource type="Texture2D" uid="uid://c63o17p3g26m5" path="res://Sprites/Title Screen/Stage.png" id="4_ld5bx"]
+[ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="5_bvmj1"]
+[ext_resource type="Texture2D" uid="uid://biavto5dup6eu" path="res://Sprites/Characters/Luigi/LuigiBig.png" id="6_hadxh"]
+[ext_resource type="Texture2D" uid="uid://dmegii86ekoeh" path="res://Sprites/Title Screen/Title.png" id="6_s2vxk"]
+[ext_resource type="Texture2D" uid="uid://bopml6smfrvys" path="res://Sprites/Title Screen/Buttons.png" id="7_4aatk"]
+[ext_resource type="Texture2D" uid="uid://5ju034si5ep0" path="res://Sprites/Title Screen/ButtonsH.png" id="8_sq06q"]
+[ext_resource type="Texture2D" uid="uid://c4atbwyjpdqp8" path="res://Sprites/Title Screen/Curtain.png" id="9_pfj4o"]
+[ext_resource type="Texture2D" uid="uid://c4ibj5t7sx0vs" path="res://Sprites/Title Screen/Button2.png" id="10_6tf26"]
+[ext_resource type="AudioStream" uid="uid://c6v4hdnu0somo" path="res://Audio/BGM/titletheme.mp3" id="11_bnfal"]
+[ext_resource type="PackedScene" uid="uid://b1auoposnytq5" path="res://Scenes/discord_manager.tscn" id="12_rh5ap"]
+
+[sub_resource type="Animation" id="Animation_n82rj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, -25)]
+}
+
+[sub_resource type="Animation" id="Animation_6vd4x"]
+resource_name = "scroll"
+length = 15.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(240, -25), Vector2(-240, -25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0061g"]
+_data = {
+&"RESET": SubResource("Animation_n82rj"),
+&"scroll": SubResource("Animation_6vd4x")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld5bx"]
+atlas = ExtResource("5_bvmj1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvmj1"]
+atlas = ExtResource("5_bvmj1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2vxk"]
+atlas = ExtResource("5_bvmj1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1e67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld5bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvmj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2vxk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aatk"]
+atlas = ExtResource("6_hadxh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq06q"]
+atlas = ExtResource("6_hadxh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfj4o"]
+atlas = ExtResource("6_hadxh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tf26"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aatk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq06q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfj4o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_w5sh6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 11.935)]
+}
+
+[sub_resource type="Animation" id="Animation_sqelc"]
+resource_name = "bop"
+length = 10.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 9.966666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 19.15), Vector2(0, 8.055), Vector2(0, 19.15)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o1e67"]
+_data = {
+&"RESET": SubResource("Animation_w5sh6"),
+&"bop": SubResource("Animation_sqelc")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1e67"]
+atlas = ExtResource("7_4aatk")
+region = Rect2(164, 145, 95, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycay6"]
+atlas = ExtResource("8_sq06q")
+region = Rect2(164, 145, 95, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0061g"]
+atlas = ExtResource("7_4aatk")
+region = Rect2(252, 145, 63, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsy20"]
+atlas = ExtResource("8_sq06q")
+region = Rect2(252, 145, 64, 14)
+
+[sub_resource type="Animation" id="Animation_8mikk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0061g"]
+resource_name = "rise"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -233.885)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sqelc"]
+_data = {
+&"RESET": SubResource("Animation_8mikk"),
+&"rise": SubResource("Animation_0061g")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07cxn"]
+atlas = ExtResource("10_6tf26")
+region = Rect2(0, 0, 480, 268)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2pfe"]
+atlas = ExtResource("10_6tf26")
+region = Rect2(0, 0, 480, 134)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1y01"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07cxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2pfe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_wv4sy")
+
+[node name="Sky" type="Sprite2D" parent="."]
+texture = ExtResource("2_rh5ap")
+
+[node name="BGO" type="Sprite2D" parent="Sky"]
+position = Vector2(240, -25)
+texture = ExtResource("3_hadxh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sky/BGO"]
+libraries = {
+&"": SubResource("AnimationLibrary_0061g")
+}
+autoplay = "scroll"
+
+[node name="Stage" type="Sprite2D" parent="Sky"]
+position = Vector2(0, -26)
+texture = ExtResource("4_ld5bx")
+
+[node name="Mario" type="AnimatedSprite2D" parent="."]
+position = Vector2(-19, 61)
+sprite_frames = SubResource("SpriteFrames_o1e67")
+autoplay = "default"
+frame = 1
+frame_progress = 0.815126
+
+[node name="Luigi" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, 61)
+sprite_frames = SubResource("SpriteFrames_6tf26")
+autoplay = "default"
+frame = 1
+frame_progress = 0.745364
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(0, 11.935)
+texture = ExtResource("6_s2vxk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]
+libraries = {
+&"": SubResource("AnimationLibrary_o1e67")
+}
+autoplay = "bop"
+
+[node name="SinglePlayer" type="TextureButton" parent="."]
+offset_left = -82.0
+offset_top = 25.0
+offset_right = 13.0
+offset_bottom = 40.0
+texture_normal = SubResource("AtlasTexture_o1e67")
+texture_hover = SubResource("AtlasTexture_ycay6")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 13.0
+offset_top = 25.0
+offset_right = 76.0
+offset_bottom = 65.0
+texture_normal = SubResource("AtlasTexture_0061g")
+texture_hover = SubResource("AtlasTexture_bsy20")
+
+[node name="Curtain" type="Sprite2D" parent="."]
+texture = ExtResource("9_pfj4o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Curtain"]
+libraries = {
+&"": SubResource("AnimationLibrary_sqelc")
+}
+
+[node name="PressSpace" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -17.23)
+sprite_frames = SubResource("SpriteFrames_k1y01")
+autoplay = "default"
+frame_progress = 0.22889917
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_bnfal")
+bus = &"SFX"
+
+[node name="Discord Manager" parent="." instance=ExtResource("12_rh5ap")]
+
+[connection signal="pressed" from="SinglePlayer" to="." method="_on_single_player_pressed"]

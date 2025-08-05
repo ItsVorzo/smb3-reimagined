@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://byflmajwphj6j"]
+[gd_scene load_steps=7 format=4 uid="uid://bospygadxg25p"]
 
-[ext_resource type="Texture2D" uid="uid://bdbv4a5fhkdng" path="res://Tilesets/Overworld/Overworld.png" id="1_k5f4k"]
+[ext_resource type="Texture2D" uid="uid://bdbv4a5fhkdng" path="res://Sprites/Tilesets/Overworld/Overworld.png" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://bem03d4usrw1w" path="res://Scenes/player.tscn" id="2_6phgx"]
-[ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/brick.tscn" id="3_6phgx"]
+[ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="3_6phgx"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6phgx"]
 scenes/1/scene = ExtResource("3_6phgx")

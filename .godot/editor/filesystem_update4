@@ -1,10 +1,4 @@
-res://Scenes/Disclaimer.tscn
-res://Scenes/brick.tscn
-res://Scripts/brick.gd
-res://default_bus_layout.tres
-res://Scenes/player.tscn
-res://Scripts/player.gd
-res://Scenes/disclaimer.gd
+res://Scenes/discord_managerGame.tscn
+res://Scripts/discord_managerGame.gd
 res://Scenes/Levels/level.tscn
-res://Scenes/title_screen.tscn
-res://Scenes/title_screen.gd
+res://Scenes/Game Scenes/title_screen.tscn

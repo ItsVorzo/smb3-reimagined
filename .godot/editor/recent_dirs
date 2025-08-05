@@ -1,4 +1,6 @@
-res://BGM
-res://Audio
+res://Sprites/Characters/Mario
+res://Sprites/Characters/Luigi
 res://Scenes
+res://Scenes/Backgrounds
+res://Audio
 res://Scripts
