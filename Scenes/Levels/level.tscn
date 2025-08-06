@@ -7,10 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="5_rv5g2"]
 [ext_resource type="PackedScene" uid="uid://citjnab4fdvsq" path="res://Scenes/Enemies/goomba.tscn" id="6_rv5g2"]
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6phgx"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rv5g2"]
 scenes/1/scene = ExtResource("1_yjxcc")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81xng"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhx7y"]
 texture = ExtResource("2_lkqqh")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -47,8 +47,8 @@ texture = ExtResource("2_lkqqh")
 
 [sub_resource type="TileSet" id="TileSet_wqkje"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_81xng")
-sources/0 = SubResource("TileSetScenesCollectionSource_6phgx")
+sources/1 = SubResource("TileSetAtlasSource_lhx7y")
+sources/0 = SubResource("TileSetScenesCollectionSource_rv5g2")
 
 [node name="Level" type="Node2D"]
 
@@ -58,6 +58,12 @@ tile_set = SubResource("TileSet_wqkje")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_tq1so")]
 position = Vector2(0, 1)
+
+[node name="Camera" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, -1)
+offset = Vector2(0, -46)
+zoom = Vector2(3, 3)
+drag_vertical_enabled = true
 
 [node name="Overworld" parent="." instance=ExtResource("4_tq1so")]
 visible = false

@@ -12,6 +12,7 @@ const SLIDE_SPEED = 120
 
 func _ready():
 	target_position = position
+	add_to_group("Overworld")
 
 func _on_animation_timer_timeout():
 	animation.play("down")
