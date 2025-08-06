@@ -53,7 +53,12 @@ func handle_item_block():
 	$CollisionShape2D.disabled = true
 
 func break_block():
-	break_sound.play()
+	var current_time = Time.get_ticks_usec() / 1000000.0
+
+	if current_time - GlobalAudio.last_break_sound_time > GlobalAudio.BREAK_SOUND_COOLDOWN:
+		break_sound.play()
+		GlobalAudio.last_break_sound_time = current_time
+
 	sprite.visible = false
 	$StaticBody2D/CollisionShape2D.disabled = true
 	$CollisionShape2D.disabled = true
@@ -66,3 +71,6 @@ func break_block():
 
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
+
+func _reset_break_sound_flag():
+	GlobalAudio.break_sound_played = false

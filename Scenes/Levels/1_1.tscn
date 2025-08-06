@@ -311,6 +311,15 @@ position = Vector2(616, -56)
 item_scene = ExtResource("7_w4w3d")
 is_item_block = true
 
+[node name="BrickBlock4" parent="." instance=ExtResource("1_o6wq3")]
+position = Vector2(632, -56)
+
+[node name="BrickBlock5" parent="." instance=ExtResource("1_o6wq3")]
+position = Vector2(648, -56)
+
+[node name="BrickBlock6" parent="." instance=ExtResource("1_o6wq3")]
+position = Vector2(664, -56)
+
 [node name="QuestionBlock" parent="." instance=ExtResource("2_w4w3d")]
 position = Vector2(584, -56)
 item_scene = ExtResource("7_w4w3d")
