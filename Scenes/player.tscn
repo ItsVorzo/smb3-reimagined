@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bem03d4usrw1w"]
+[gd_scene load_steps=15 format=3 uid="uid://bem03d4usrw1w"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="2_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/JumpSmall.wav" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="4_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("2_6t5aa")
@@ -111,3 +112,6 @@ shape = SubResource("RectangleShape2D_8erm5")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_6t5aa")
 bus = &"SFX"
+
+[node name="SquishSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vgqql")

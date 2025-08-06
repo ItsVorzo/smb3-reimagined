@@ -38,7 +38,10 @@ func _ready() -> void:
 	add_to_group("Player")
 
 func bounce():
-	velocity.y = -250  # Feel free to tweak
+	velocity.y = -300  # Adjust the value as needed for a nice bounce
+	
+func play_squish_sound():
+	$SquishSoundPlayer.play()
 
 func _physics_process(delta: float) -> void:
 	# === Timers ===
@@ -122,6 +125,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("crouch")
 		else:
 			animated_sprite.play("jump")
-
+			
 	# === Move ===
 	move_and_slide()
