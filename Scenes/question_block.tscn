@@ -3,33 +3,33 @@
 [ext_resource type="Script" uid="uid://bbd73syl17cd4" path="res://Scripts/question_block.gd" id="1_3o4kp"]
 [ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="2_11yax"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="3_11yax"]
-[ext_resource type="Script" path="res://Scripts/area_2d_question.gd" id="3_hjt4u"]
+[ext_resource type="AudioStream" uid="uid://dbjp0jc3b34fs" path="res://Audio/Sfx/ItemPop.wav" id="3_hjt4u"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hjt4u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6yht"]
 atlas = ExtResource("2_11yax")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tb1o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4kp"]
 atlas = ExtResource("2_11yax")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mto7y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_11yax"]
 atlas = ExtResource("2_11yax")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gfg2d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjt4u"]
 atlas = ExtResource("2_11yax")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c1yny"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tb1o"]
 atlas = ExtResource("2_11yax")
 region = Rect2(0, 48, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qweog"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_mto7y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hjt4u")
+"texture": SubResource("AtlasTexture_l6yht")
 }],
 "loop": true,
 "name": &"empty",
@@ -37,65 +37,75 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3o4kp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11yax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjt4u")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0tb1o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mto7y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gfg2d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c1yny")
 }],
 "loop": true,
 "name": &"full",
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_3o4kp"]
-resource_name = "bounce"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_11yax"]
-_data = {
-&"bounce": SubResource("Animation_3o4kp")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjt4u"]
-size = Vector2(16, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6yht"]
+size = Vector2(12, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tb1o"]
-size = Vector2(16, 15)
+size = Vector2(16, 16)
 
-[node name="QuestionBlock" type="Node2D"]
+[sub_resource type="Animation" id="Animation_hjt4u"]
+resource_name = "bounce"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0tb1o"]
+_data = {
+&"bounce": SubResource("Animation_hjt4u")
+}
+
+[node name="QuestionBlock" type="Area2D"]
 script = ExtResource("1_3o4kp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_qweog")
+sprite_frames = SubResource("SpriteFrames_mto7y")
 animation = &"full"
+autoplay = "full"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_11yax")
-}
-
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("3_hjt4u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
-shape = SubResource("RectangleShape2D_hjt4u")
-
-[node name="ItemSpawnPosition" type="Marker2D" parent="."]
-position = Vector2(0, -9)
-
-[node name="Bump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_11yax")
+shape = SubResource("RectangleShape2D_l6yht")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_0tb1o")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_11yax")
+
+[node name="ItemPop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hjt4u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0tb1o")
+}

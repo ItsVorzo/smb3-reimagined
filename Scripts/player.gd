@@ -24,6 +24,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump = $AudioStreamPlayer2D
+@onready var normal_collision_shape := $CollisionShape2D
+@onready var super_collision_shape := $SuperCollisionShape2D
 
 # === State ===
 var jump_buffer_timer = 0.0
@@ -34,14 +36,46 @@ var is_skidding = false
 var is_crouching = false
 var is_running = false
 
-func _ready() -> void:
-	add_to_group("Player")
+var facing_direction := 1  # 1 = right, -1 = left
+
+var is_super := false  # Super Mario state flag
+
+func _process(_delta):
+	if Input.is_action_pressed("move_right"):
+		facing_direction = 1
+	elif Input.is_action_pressed("move_left"):
+		facing_direction = -1
+
+func get_facing_direction() -> int:
+	return facing_direction
+
+func power_up():
+	if is_super:
+		return  # Already powered up, ignore
+
+	is_super = true
+	print("Mario powered up!")
+
+	# Switch collision shapes
+	normal_collision_shape.disabled = true
+	super_collision_shape.disabled = false
+
+	# Play power-up animation or effect
+	animated_sprite.play("power_up")
+
+	# Optionally scale sprite (uncomment if you want)
+	# animated_sprite.scale = Vector2(1.5, 1.5)
 
 func bounce():
-	velocity.y = -300  # Adjust the value as needed for a nice bounce
+	velocity.y = -300  # Adjust as needed
 	
 func play_squish_sound():
 	$SquishSoundPlayer.play()
+
+func _ready() -> void:
+	add_to_group("Player")
+	# Ensure super collision shape disabled by default
+	super_collision_shape.disabled = true
 
 func _physics_process(delta: float) -> void:
 	# === Timers ===
@@ -125,6 +159,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("crouch")
 		else:
 			animated_sprite.play("jump")
-			
+
 	# === Move ===
 	move_and_slide()

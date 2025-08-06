@@ -1,37 +1,43 @@
-extends Node2D
+extends Area2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var bump: AudioStreamPlayer2D = $Bump
-@onready var item_spawn_pos: Marker2D = $ItemSpawnPosition
+@onready var bounce_anim: AnimationPlayer = $AnimationPlayer
+@onready var hit_sound: AudioStreamPlayer2D = $Hit
+@onready var item_pop_sound: AudioStreamPlayer2D = $ItemPop
 
-enum ItemType {NONE, COIN, MUSHROOM, LIFEUP, LEAF, TANOOKI, HAMMER}
+@export var item_scene: PackedScene  # Drag in Coin.tscn, Mushroom.tscn, etc.
 
-@export var item_to_spawn: ItemType = ItemType.COIN
-var is_used = false
+var used := false
 
-func _ready() -> void:
-	if not is_used:
-		sprite.play("full")
+func _ready():
+	sprite.play("full")
+	connect("body_entered", _on_body_entered)
 
-func hit_from_below(body):
-	if is_used:
+func _on_body_entered(body: Node) -> void:
+	if used or not body.is_in_group("Player"):
 		return
-	is_used = true
-	bump.play()
-	anim.play("bounce")
-	spawn_item()
+
+	if body.global_position.y > global_position.y + 5:
+		activate_block()
+
+func activate_block():
+	used = true
+	hit_sound.play()
+	bounce_anim.play("bounce")
+
+	await get_tree().create_timer(0.15).timeout  # Item appears mid-bounce
+
 	sprite.play("empty")
-	
-func spawn_item():
-	print("Spawn point:",item_spawn_pos.global_position)
-	match item_to_spawn:
-		ItemType.COIN:
-			var coin_scene = preload("res://Scenes/coin.tscn")
-			var coin = coin_scene.instantiate()
-			
-			if coin:
-				coin.global_position = item_spawn_pos.global_position + Vector2(0, -8)
-				get_parent().add_child(coin)
-		_:
-			pass # No Item
+
+	if item_scene:
+		var item = item_scene.instantiate()
+		get_tree().current_scene.add_child(item)
+		item.global_position = global_position - Vector2(0, 16)
+
+		# Only play sound if not coin.tscn
+		var scene_path := item_scene.resource_path
+		if not scene_path.ends_with("coin.tscn"):
+			item_pop_sound.play()
+
+	# Disable the bottom hitbox to avoid re-use
+	$CollisionShape2D.disabled = true

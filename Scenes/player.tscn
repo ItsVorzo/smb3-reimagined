@@ -98,6 +98,7 @@ animations = [{
 size = Vector2(10, 13)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(0, 1)
 script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -105,7 +106,11 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_3smsa")
 animation = &"run"
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_8erm5")
+
+[node name="SuperCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_8erm5")
 
