@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://byflmajwphj6j"]
+[gd_scene load_steps=10 format=4 uid="uid://byflmajwphj6j"]
 
 [ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="1_yjxcc"]
 [ext_resource type="Texture2D" uid="uid://bdbv4a5fhkdng" path="res://Sprites/Tilesets/Overworld/Overworld.png" id="2_lkqqh"]
 [ext_resource type="PackedScene" uid="uid://bem03d4usrw1w" path="res://Scenes/player.tscn" id="3_tq1so"]
 [ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="4_tq1so"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="5_rv5g2"]
+[ext_resource type="PackedScene" uid="uid://citjnab4fdvsq" path="res://Scenes/Enemies/goomba.tscn" id="6_rv5g2"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6phgx"]
 scenes/1/scene = ExtResource("1_yjxcc")
@@ -59,8 +60,15 @@ tile_set = SubResource("TileSet_wqkje")
 position = Vector2(0, 1)
 
 [node name="Overworld" parent="." instance=ExtResource("4_tq1so")]
+visible = false
 position = Vector2(0, 167)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_rv5g2")
 autoplay = true
+
+[node name="BrickBlock" parent="." instance=ExtResource("1_yjxcc")]
+position = Vector2(5, -58)
+
+[node name="Goomba" parent="." instance=ExtResource("6_rv5g2")]
+position = Vector2(38, -118)

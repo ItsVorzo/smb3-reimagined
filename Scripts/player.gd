@@ -37,6 +37,9 @@ var is_running = false
 func _ready() -> void:
 	add_to_group("Player")
 
+func bounce():
+	velocity.y = -250  # Feel free to tweak
+
 func _physics_process(delta: float) -> void:
 	# === Timers ===
 	if not is_on_floor():
