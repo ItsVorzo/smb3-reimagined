@@ -40,18 +40,38 @@ func handle_item_block():
 
 	sprite.play("empty")
 
-	var item = item_scene.instantiate()
-	get_tree().current_scene.add_child(item)
-	item.global_position = global_position - Vector2(0, 16)
+	# Create a temporary holder for animation
+	var item_holder := Node2D.new()
+	item_holder.position = global_position
+	item_holder.z_index = z_index - 1
+	get_tree().current_scene.add_child(item_holder)
 
-	# Play item pop sound only if item is not coin.tscn
+	# Instance the item and add to the holder
+	var item = item_scene.instantiate()
+	item_holder.add_child(item)
+	item.position = Vector2.ZERO  # Centered inside the holder
+
+	# Tween the holder upward
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(item_holder, "position", global_position - Vector2(0, 16), 0.5)
+	
+	tween.tween_callback(func():
+		item_holder.remove_child(item)
+		get_tree().current_scene.add_child(item)
+		item.global_position = item_holder.global_position
+		item.z_index = z_index - 1
+		item_holder.queue_free()
+	)
+
+	# Play sound if it's not a coin
 	var scene_path := item_scene.resource_path
 	if not scene_path.ends_with("coin.tscn"):
 		item_pop_sound.play()
 
-	# Disable the bottom hitbox (still solid on top)
+	# Disable the bottom hitbox
 	$CollisionShape2D.disabled = true
-
 func break_block():
 	var current_time = Time.get_ticks_usec() / 1000000.0
 
