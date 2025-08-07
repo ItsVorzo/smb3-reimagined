@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://c527cd07bvyou"]
+
+[ext_resource type="Script" uid="uid://ce8bojmxwdw5a" path="res://Scenes/UI/select_file.gd" id="1_540gs"]
+[ext_resource type="Texture2D" uid="uid://c4mcerk6e0suk" path="res://Sprites/Select File.png" id="1_a0bhp"]
+[ext_resource type="Texture2D" uid="uid://jcbnwn63jwow" path="res://Sprites/Select File Buttons.png" id="2_h0b8o"]
+
+[sub_resource type="Animation" id="Animation_h0b8o"]
+resource_name = "pop"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.099999994, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_540gs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rgp33"]
+resource_name = "close"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgp33"]
+_data = {
+&"RESET": SubResource("Animation_540gs"),
+&"close": SubResource("Animation_rgp33"),
+&"pop": SubResource("Animation_h0b8o")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgp33"]
+atlas = ExtResource("2_h0b8o")
+region = Rect2(162, 125, 109, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_540gs"]
+atlas = ExtResource("2_h0b8o")
+region = Rect2(440, 125, 109, 23)
+
+[node name="Select File" type="Node2D"]
+script = ExtResource("1_540gs")
+
+[node name="BD" type="Sprite2D" parent="."]
+texture = ExtResource("1_a0bhp")
+
+[node name="lo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(138, 0)
+texture = ExtResource("2_h0b8o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rgp33")
+}
+autoplay = "pop"
+
+[node name="Back" type="TextureButton" parent="."]
+offset_left = 24.242424
+offset_top = 47.272724
+offset_right = 133.24243
+offset_bottom = 70.27272
+texture_normal = SubResource("AtlasTexture_rgp33")
+texture_hover = SubResource("AtlasTexture_540gs")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

@@ -4,6 +4,8 @@ extends Node2D
 
 var animation_played := false
 var sprite_deleted := false
+var SelectFileScene = preload("res://Scenes/UI/select_file.tscn")
+var select_file_instance: Node = null
 
 func _input(_event):
 	if Input.is_action_pressed("ui_accept") and not animation_played:
@@ -15,7 +17,10 @@ func _input(_event):
 		if sprite:
 			sprite.queue_free()
 			sprite_deleted = true
-
-
+			
 func _on_single_player_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/world_1.tscn")
+	if select_file_instance == null or not is_instance_valid(select_file_instance):
+		select_file_instance = SelectFileScene.instantiate()
+		add_child(select_file_instance)
+	else:
+		print("Stop spamming u gimp")
