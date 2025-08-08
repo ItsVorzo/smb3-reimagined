@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://dmdwkgij6q2c7"]
+[gd_scene load_steps=65 format=3 uid="uid://dmdwkgij6q2c7"]
 
 [ext_resource type="Script" uid="uid://68y7ixwyagwp" path="res://Scripts/character_select.gd" id="1_apj1b"]
 [ext_resource type="Texture2D" uid="uid://cfe0kum2kd5cx" path="res://Sprites/Title Screen/Character Select/CharSelectBG.png" id="2_pjomi"]
@@ -9,9 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="7_us50r"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="8_us50r"]
 [ext_resource type="Texture2D" uid="uid://dgrxox2ihsd5n" path="res://Sprites/Title Screen/File Select/FileSelectUtil.png" id="9_qsthy"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jjfpe"]
-atlas = ExtResource("2_pjomi")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nefin"]
 atlas = ExtResource("3_dieb8")
@@ -457,9 +454,8 @@ region = Rect2(333, 25, 109, 23)
 script = ExtResource("1_apj1b")
 
 [node name="BG" type="Sprite2D" parent="."]
-position = Vector2(-3.5000033, 0)
-scale = Vector2(0.9217172, 1)
-texture = SubResource("AtlasTexture_jjfpe")
+position = Vector2(-1.9999995, 0)
+texture = ExtResource("2_pjomi")
 
 [node name="CharacterSelectBox" type="HBoxContainer" parent="."]
 offset_left = -24.0

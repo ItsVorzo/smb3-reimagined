@@ -1,39 +1,39 @@
 [gd_scene load_steps=12 format=3 uid="uid://t3lmwf8gtcxe"]
 
-[ext_resource type="Texture2D" uid="uid://7hj1isu4k7fe" path="res://Sprites/Items/Coin.png" id="1_2qo34"]
 [ext_resource type="Script" uid="uid://dx7tvpdhthj2l" path="res://Scripts/coin.gd" id="1_jgi06"]
+[ext_resource type="Texture2D" uid="uid://2a0j5ujcs80w" path="res://Sprites/Effects/CoinCollect.png" id="2_s7ppx"]
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="3_g537i"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jgi06"]
-atlas = ExtResource("1_2qo34")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1be0"]
+atlas = ExtResource("2_s7ppx")
+region = Rect2(0, 0, 8, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g537i"]
-atlas = ExtResource("1_2qo34")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_by1s6"]
+atlas = ExtResource("2_s7ppx")
+region = Rect2(8, 0, 8, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2p6v"]
-atlas = ExtResource("1_2qo34")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgs5s"]
+atlas = ExtResource("2_s7ppx")
+region = Rect2(16, 0, 8, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ffmqm"]
-atlas = ExtResource("1_2qo34")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0fnp"]
+atlas = ExtResource("2_s7ppx")
+region = Rect2(24, 0, 8, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_81h6x"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jgi06")
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_t1be0")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g537i")
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_by1s6")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h2p6v")
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_qgs5s")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ffmqm")
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_h0fnp")
 }],
 "loop": true,
 "name": &"idle",
@@ -84,7 +84,7 @@ script = ExtResource("1_jgi06")
 sprite_frames = SubResource("SpriteFrames_81h6x")
 animation = &"idle"
 frame = 2
-frame_progress = 0.19787987
+frame_progress = 0.86466974
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g537i")
