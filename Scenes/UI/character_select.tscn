@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://dmdwkgij6q2c7"]
+[gd_scene load_steps=78 format=3 uid="uid://dmdwkgij6q2c7"]
 
 [ext_resource type="Script" uid="uid://68y7ixwyagwp" path="res://Scripts/character_select.gd" id="1_apj1b"]
 [ext_resource type="Texture2D" uid="uid://cfe0kum2kd5cx" path="res://Sprites/Title Screen/Character Select/CharSelectBG.png" id="2_pjomi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://pqlkrx304ngv" path="res://Sprites/Title Screen/Character Select/CharSelectConnect.png" id="5_jjfpe"]
 [ext_resource type="Texture2D" uid="uid://ceesn87wpdmpi" path="res://Sprites/Title Screen/Character Select/CharSelectCharacters.png" id="5_qsthy"]
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="6_dieb8"]
+[ext_resource type="Texture2D" uid="uid://e2sbapd0qyvf" path="res://Sprites/Title Screen/Character Select/CharSelectNoInput.png" id="6_yn15k"]
 [ext_resource type="Texture2D" uid="uid://3sgc8q74pyqt" path="res://Sprites/Title Screen/Character Select/CharSelectNameplates.png" id="7_nefin"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="7_us50r"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="8_us50r"]
@@ -383,6 +384,10 @@ region = Rect2(0, 0, 31, 30)
 atlas = ExtResource("5_jjfpe")
 region = Rect2(0, 0, 7, 6)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7b8g"]
+atlas = ExtResource("6_yn15k")
+region = Rect2(0, 0, 28, 30)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0kja"]
 atlas = ExtResource("5_qsthy")
 region = Rect2(0, 32, 32, 32)
@@ -426,6 +431,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"connect",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7b8g")
+}],
+"loop": true,
+"name": &"no_input",
 "speed": 5.0
 }, {
 "frames": [{
@@ -596,6 +609,21 @@ animation = &"none"
 position = Vector2(-137, 0)
 sprite_frames = SubResource("SpriteFrames_uqqas")
 animation = &"connect"
+
+[node name="Player2" type="AnimatedSprite2D" parent="Characters"]
+position = Vector2(-50, 0)
+sprite_frames = SubResource("SpriteFrames_uqqas")
+animation = &"no_input"
+
+[node name="Player3" type="AnimatedSprite2D" parent="Characters"]
+position = Vector2(38, 0)
+sprite_frames = SubResource("SpriteFrames_uqqas")
+animation = &"no_input"
+
+[node name="Player4" type="AnimatedSprite2D" parent="Characters"]
+position = Vector2(132, 1)
+sprite_frames = SubResource("SpriteFrames_uqqas")
+animation = &"no_input"
 
 [node name="NamePlates" type="HBoxContainer" parent="."]
 
