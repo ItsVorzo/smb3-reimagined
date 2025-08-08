@@ -280,7 +280,7 @@ texture_hover = SubResource("AtlasTexture_ycay6")
 offset_left = 13.0
 offset_top = 25.0
 offset_right = 76.0
-offset_bottom = 65.0
+offset_bottom = 39.0
 texture_normal = SubResource("AtlasTexture_0061g")
 texture_hover = SubResource("AtlasTexture_bsy20")
 

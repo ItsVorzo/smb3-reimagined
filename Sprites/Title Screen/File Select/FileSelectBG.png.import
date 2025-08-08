@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr7hxangqmp7g"
-path="res://.godot/imported/World1.png-f1900460191fb51e1986f4f2287957ea.ctex"
+uid="uid://b03ujnxbm0bfh"
+path="res://.godot/imported/FileSelectBG.png-2e18c98604cfbe52019128c0ea668c23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tilesets/WorldMaps/World1.png"
-dest_files=["res://.godot/imported/World1.png-f1900460191fb51e1986f4f2287957ea.ctex"]
+source_file="res://Sprites/Title Screen/File Select/FileSelectBG.png"
+dest_files=["res://.godot/imported/FileSelectBG.png-2e18c98604cfbe52019128c0ea668c23.ctex"]
 
 [params]
 

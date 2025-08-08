@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jcbnwn63jwow"
-path="res://.godot/imported/Select File Buttons.png-58f33a762c2c56bd4ab4267fc437d290.ctex"
+uid="uid://v1rlu7awemdu"
+path="res://.godot/imported/CharSelectPlusPlayers.png-f0b1634a42e407ac06322628f2009b35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Select File Buttons.png"
-dest_files=["res://.godot/imported/Select File Buttons.png-58f33a762c2c56bd4ab4267fc437d290.ctex"]
+source_file="res://Sprites/Title Screen/Character Select/CharSelectPlusPlayers.png"
+dest_files=["res://.godot/imported/CharSelectPlusPlayers.png-f0b1634a42e407ac06322628f2009b35.ctex"]
 
 [params]
 

@@ -1,24 +1,54 @@
-[gd_scene load_steps=10 format=3 uid="uid://c527cd07bvyou"]
+[gd_scene load_steps=34 format=3 uid="uid://c527cd07bvyou"]
 
 [ext_resource type="Script" uid="uid://ce8bojmxwdw5a" path="res://Scenes/UI/select_file.gd" id="1_540gs"]
-[ext_resource type="Texture2D" uid="uid://c4mcerk6e0suk" path="res://Sprites/Select File.png" id="1_a0bhp"]
-[ext_resource type="Texture2D" uid="uid://jcbnwn63jwow" path="res://Sprites/Select File Buttons.png" id="2_h0b8o"]
+[ext_resource type="Texture2D" uid="uid://b03ujnxbm0bfh" path="res://Sprites/Title Screen/File Select/FileSelectBG.png" id="2_540gs"]
+[ext_resource type="Texture2D" uid="uid://di7a05t6ol7g4" path="res://Sprites/Title Screen/File Select/FileSelectCopyBG.png" id="2_kd0yg"]
+[ext_resource type="Texture2D" uid="uid://covcgj6t8p4oe" path="res://Sprites/Title Screen/File Select/FileSelectDeleteBG.png" id="3_bmqk6"]
+[ext_resource type="Texture2D" uid="uid://dgrxox2ihsd5n" path="res://Sprites/Title Screen/File Select/FileSelectUtil.png" id="4_xyy3j"]
+[ext_resource type="Texture2D" uid="uid://bdt8r8oeesf2d" path="res://Sprites/Title Screen/File Select/FileSelectSaves.png" id="5_kd0yg"]
+[ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="7_b8c4b"]
+[ext_resource type="Texture2D" uid="uid://js85vkejxaxq" path="res://Sprites/Title Screen/File Select/FileSelectCharIcon.png" id="7_jm7um"]
+[ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="8_jm7um"]
+[ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="9_6h78b"]
 
-[sub_resource type="Animation" id="Animation_h0b8o"]
-resource_name = "pop"
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.033333335, 0.099999994, 0.16666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.7, 0.7), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tdue"]
+atlas = ExtResource("2_kd0yg")
+region = Rect2(0, 0, 278, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtv62"]
+atlas = ExtResource("3_bmqk6")
+region = Rect2(0, 0, 278, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mcbo"]
+atlas = ExtResource("2_540gs")
+region = Rect2(0, 0, 278, 155)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nayml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tdue")
+}],
+"loop": true,
+"name": &"copy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtv62")
+}],
+"loop": true,
+"name": &"delete",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mcbo")
+}],
+"loop": true,
+"name": &"select",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_540gs"]
 length = 0.001
@@ -51,6 +81,22 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0.7, 0.7)]
 }
 
+[sub_resource type="Animation" id="Animation_h0b8o"]
+resource_name = "pop"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.099999994, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgp33"]
 _data = {
 &"RESET": SubResource("Animation_540gs"),
@@ -58,24 +104,89 @@ _data = {
 &"pop": SubResource("Animation_h0b8o")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgp33"]
-atlas = ExtResource("2_h0b8o")
-region = Rect2(162, 125, 109, 23)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmqk6"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(333, 0, 109, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_540gs"]
-atlas = ExtResource("2_h0b8o")
-region = Rect2(440, 125, 109, 23)
+[sub_resource type="AtlasTexture" id="AtlasTexture_58o1k"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(333, 25, 109, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8c4b"]
+atlas = ExtResource("5_kd0yg")
+region = Rect2(153, 0, 151, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm7um"]
+atlas = ExtResource("5_kd0yg")
+region = Rect2(153, 24, 151, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nayml"]
+atlas = ExtResource("7_jm7um")
+region = Rect2(0, 0, 16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i82v3"]
+atlas = ExtResource("7_jm7um")
+region = Rect2(0, 7, 16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcld2"]
+atlas = ExtResource("7_jm7um")
+region = Rect2(0, 14, 16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opcre"]
+atlas = ExtResource("7_jm7um")
+region = Rect2(0, 21, 16, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0vawd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nayml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i82v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcld2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opcre")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyy3j"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(222, 0, 109, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd0yg"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(222, 25, 109, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h78b"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(111, 0, 109, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bqu0"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(111, 25, 109, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycb62"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(0, 0, 109, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd3mk"]
+atlas = ExtResource("4_xyy3j")
+region = Rect2(0, 25, 109, 23)
 
 [node name="Select File" type="Node2D"]
 script = ExtResource("1_540gs")
 
-[node name="BD" type="Sprite2D" parent="."]
-texture = ExtResource("1_a0bhp")
-
-[node name="lo" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(138, 0)
-texture = ExtResource("2_h0b8o")
+[node name="BD" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_nayml")
+animation = &"delete"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -84,11 +195,94 @@ libraries = {
 autoplay = "pop"
 
 [node name="Back" type="TextureButton" parent="."]
-offset_left = 24.242424
-offset_top = 47.272724
-offset_right = 133.24243
-offset_bottom = 70.27272
-texture_normal = SubResource("AtlasTexture_rgp33")
-texture_hover = SubResource("AtlasTexture_540gs")
+offset_left = 22.0
+offset_top = 48.0
+offset_right = 131.0
+offset_bottom = 71.0
+texture_normal = SubResource("AtlasTexture_bmqk6")
+texture_hover = SubResource("AtlasTexture_58o1k")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -131.0
+offset_top = -56.0
+offset_right = 20.0
+offset_bottom = 75.0
+theme_override_constants/separation = 3
+
+[node name="SaveSlot0" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_b8c4b")
+texture_hover = SubResource("AtlasTexture_jm7um")
+
+[node name="CharacterIcon" type="AnimatedSprite2D" parent="HBoxContainer/SaveSlot0"]
+position = Vector2(92, 11)
+sprite_frames = SubResource("SpriteFrames_0vawd")
+
+[node name="SaveSlot1" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_b8c4b")
+texture_hover = SubResource("AtlasTexture_jm7um")
+
+[node name="CharacterIcon" type="AnimatedSprite2D" parent="HBoxContainer/SaveSlot1"]
+position = Vector2(92, 11)
+sprite_frames = SubResource("SpriteFrames_0vawd")
+
+[node name="SaveSlot2" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_b8c4b")
+texture_hover = SubResource("AtlasTexture_jm7um")
+
+[node name="CharacterIcon" type="AnimatedSprite2D" parent="HBoxContainer/SaveSlot2"]
+position = Vector2(92, 11)
+sprite_frames = SubResource("SpriteFrames_0vawd")
+
+[node name="SaveSlot3" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_b8c4b")
+texture_hover = SubResource("AtlasTexture_jm7um")
+
+[node name="CharacterIcon" type="AnimatedSprite2D" parent="HBoxContainer/SaveSlot3"]
+position = Vector2(92, 11)
+sprite_frames = SubResource("SpriteFrames_0vawd")
+
+[node name="SaveSlot4" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_b8c4b")
+texture_hover = SubResource("AtlasTexture_jm7um")
+
+[node name="CharacterIcon" type="AnimatedSprite2D" parent="HBoxContainer/SaveSlot4"]
+position = Vector2(92, 11)
+sprite_frames = SubResource("SpriteFrames_0vawd")
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="."]
+offset_left = 23.0
+offset_top = -56.0
+offset_right = 132.0
+offset_bottom = 21.0
+theme_override_constants/separation = 3
+
+[node name="CopyButton" type="TextureButton" parent="HBoxContainer2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_xyy3j")
+texture_hover = SubResource("AtlasTexture_kd0yg")
+
+[node name="DeleteButton" type="TextureButton" parent="HBoxContainer2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_6h78b")
+texture_hover = SubResource("AtlasTexture_8bqu0")
+
+[node name="NewGamePlusButton" type="TextureButton" parent="HBoxContainer2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ycb62")
+texture_hover = SubResource("AtlasTexture_wd3mk")
+
+[node name="Select" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_b8c4b")
+
+[node name="Move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jm7um")
+
+[node name="BackSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_6h78b")
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
