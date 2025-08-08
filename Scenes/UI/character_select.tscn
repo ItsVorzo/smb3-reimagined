@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://dmdwkgij6q2c7"]
+[gd_scene load_steps=83 format=3 uid="uid://dmdwkgij6q2c7"]
 
 [ext_resource type="Script" uid="uid://68y7ixwyagwp" path="res://Scripts/character_select.gd" id="1_apj1b"]
 [ext_resource type="Texture2D" uid="uid://cfe0kum2kd5cx" path="res://Sprites/Title Screen/Character Select/CharSelectBG.png" id="2_pjomi"]
@@ -378,11 +378,15 @@ animations = [{
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_srob4"]
 atlas = ExtResource("5_jjfpe")
-region = Rect2(0, 0, 31, 30)
+region = Rect2(0, 0, 31, 31)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ojhj"]
 atlas = ExtResource("5_jjfpe")
 region = Rect2(0, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v12m"]
+atlas = ExtResource("5_jjfpe")
+region = Rect2(31, 0, 31, 31)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7b8g"]
 atlas = ExtResource("6_yn15k")
@@ -431,6 +435,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"connect",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0v12m")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0ojhj")
+}],
+"loop": true,
+"name": &"connect_controller",
 "speed": 5.0
 }, {
 "frames": [{
@@ -543,6 +558,60 @@ region = Rect2(333, 0, 109, 23)
 [sub_resource type="AtlasTexture" id="AtlasTexture_seryr"]
 atlas = ExtResource("9_qsthy")
 region = Rect2(333, 25, 109, 23)
+
+[sub_resource type="Animation" id="Animation_540gs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rgp33"]
+resource_name = "close"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="Animation" id="Animation_h0b8o"]
+resource_name = "pop"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.099999994, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgp33"]
+_data = {
+&"RESET": SubResource("Animation_540gs"),
+&"close": SubResource("Animation_rgp33"),
+&"pop": SubResource("Animation_h0b8o")
+}
 
 [node name="Character Select" type="Node2D"]
 script = ExtResource("1_apj1b")
@@ -663,5 +732,11 @@ offset_right = 171.0
 offset_bottom = 70.0
 texture_normal = SubResource("AtlasTexture_rf0vt")
 texture_hover = SubResource("AtlasTexture_seryr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rgp33")
+}
+autoplay = "pop"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

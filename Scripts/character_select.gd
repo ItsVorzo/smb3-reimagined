@@ -3,6 +3,7 @@ extends Node2D
 @onready var select_char_sound = $Select
 @onready var move_char_sound = $Move
 @onready var cancel_char_sound = $Back
+@onready var animation_player = $AnimationPlayer
 
 @onready var select_boxes := {
 	1: $CharacterSelectBox/CharSelectBoxP1,
@@ -177,4 +178,7 @@ func start_transition_to_world():
 	queue_free()
 
 func _on_back_button_pressed() -> void:
+	animation_player.play("close")
+	await get_tree().create_timer(0.2).timeout
+	cancel_char_sound.play()
 	queue_free()
