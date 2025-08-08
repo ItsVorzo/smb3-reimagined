@@ -18,6 +18,10 @@ extends Node2D
 	4: $PlayerIndicator/CharPlayerBoxP4
 }
 
+@onready var nameplate_boxes := {
+	1: $NamePlates/CharNameplateP1
+}
+
 @onready var player1_sprite: AnimatedSprite2D = $Characters/Player1
 
 # --- State ---
@@ -32,17 +36,21 @@ var timer_cancelled: bool = false
 
 # --- Setup ---
 func _ready() -> void:
-	# Set all boxes and indicators to "none"
 	for i in select_boxes:
 		select_boxes[i].play("none")
 	for i in player_boxes:
 		player_boxes[i].play("none")
 		player_boxes[i].frame = 0
+	for i in nameplate_boxes:
+		nameplate_boxes[i].play("none")
 
-	player1_sprite.visible = false
-	player1_sprite.animation = "selecting"
+	player1_sprite.visible = true
+	player1_sprite.animation = "connect"
 	player1_sprite.frame = 0
-	player1_sprite.pause()
+	player1_sprite.play()
+
+	nameplate_boxes[1].animation = "connect"
+	nameplate_boxes[1].play()
 
 # --- Input Handling ---
 func _process(_delta: float) -> void:
@@ -74,10 +82,15 @@ func _process(_delta: float) -> void:
 func activate_player1():
 	is_player1_active = true
 	select_boxes[1].play("selecting")
+	
 	player_boxes[1].animation = "selecting_p1"
 	player_boxes[1].frame = player1_character_index
 	player_boxes[1].pause()
-	player1_sprite.visible = true
+	
+	nameplate_boxes[1].animation = "selecting"
+	nameplate_boxes[1].frame = player1_character_index
+	nameplate_boxes[1].pause()
+	
 	update_character_sprite()
 
 # --- Character Update ---
@@ -90,6 +103,11 @@ func update_character_sprite():
 	box.play("selecting_p1")
 	box.frame = player1_character_index
 	box.pause()
+	
+	var nameplate = nameplate_boxes[1]
+	nameplate.animation = "selecting"
+	nameplate.frame = player1_character_index
+	nameplate.pause()
 
 func confirm_character():
 	character_select_timer = null

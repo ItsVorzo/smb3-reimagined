@@ -1,11 +1,13 @@
-[gd_scene load_steps=65 format=3 uid="uid://dmdwkgij6q2c7"]
+[gd_scene load_steps=76 format=3 uid="uid://dmdwkgij6q2c7"]
 
 [ext_resource type="Script" uid="uid://68y7ixwyagwp" path="res://Scripts/character_select.gd" id="1_apj1b"]
 [ext_resource type="Texture2D" uid="uid://cfe0kum2kd5cx" path="res://Sprites/Title Screen/Character Select/CharSelectBG.png" id="2_pjomi"]
 [ext_resource type="Texture2D" uid="uid://byak1iwko3vot" path="res://Sprites/Title Screen/Character Select/CharSelectCharacterBox.png" id="3_dieb8"]
 [ext_resource type="Texture2D" uid="uid://ht0cirmiqnkh" path="res://Sprites/Title Screen/Character Select/CharSelectPlayerBox.png" id="4_us50r"]
+[ext_resource type="Texture2D" uid="uid://pqlkrx304ngv" path="res://Sprites/Title Screen/Character Select/CharSelectConnect.png" id="5_jjfpe"]
 [ext_resource type="Texture2D" uid="uid://ceesn87wpdmpi" path="res://Sprites/Title Screen/Character Select/CharSelectCharacters.png" id="5_qsthy"]
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="6_dieb8"]
+[ext_resource type="Texture2D" uid="uid://3sgc8q74pyqt" path="res://Sprites/Title Screen/Character Select/CharSelectNameplates.png" id="7_nefin"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="7_us50r"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="8_us50r"]
 [ext_resource type="Texture2D" uid="uid://dgrxox2ihsd5n" path="res://Sprites/Title Screen/File Select/FileSelectUtil.png" id="9_qsthy"]
@@ -373,6 +375,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_srob4"]
+atlas = ExtResource("5_jjfpe")
+region = Rect2(0, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ojhj"]
+atlas = ExtResource("5_jjfpe")
+region = Rect2(0, 0, 7, 6)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0kja"]
 atlas = ExtResource("5_qsthy")
 region = Rect2(0, 32, 32, 32)
@@ -408,6 +418,17 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_uqqas"]
 animations = [{
 "frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_srob4")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0ojhj")
+}],
+"loop": true,
+"name": &"connect",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e0kja")
 }, {
@@ -436,6 +457,66 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_omkvh")
+}],
+"loop": false,
+"name": &"selecting",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qggnr"]
+atlas = ExtResource("7_nefin")
+region = Rect2(0, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqqas"]
+atlas = ExtResource("7_nefin")
+region = Rect2(0, 16, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r354"]
+atlas = ExtResource("7_nefin")
+region = Rect2(0, 32, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmff8"]
+atlas = ExtResource("7_nefin")
+region = Rect2(0, 48, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fswch"]
+atlas = ExtResource("7_nefin")
+region = Rect2(0, 64, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s7ta"]
+atlas = ExtResource("7_nefin")
+region = Rect2(0, 80, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2s7ta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qggnr")
+}],
+"loop": true,
+"name": &"connect",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqqas")
+}],
+"loop": true,
+"name": &"no_input",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r354")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmff8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fswch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s7ta")
 }],
 "loop": false,
 "name": &"selecting",
@@ -514,7 +595,29 @@ animation = &"none"
 [node name="Player1" type="AnimatedSprite2D" parent="Characters"]
 position = Vector2(-137, 0)
 sprite_frames = SubResource("SpriteFrames_uqqas")
+animation = &"connect"
+
+[node name="NamePlates" type="HBoxContainer" parent="."]
+
+[node name="CharNameplateP1" type="AnimatedSprite2D" parent="NamePlates"]
+position = Vector2(-137, 29)
+sprite_frames = SubResource("SpriteFrames_2s7ta")
 animation = &"selecting"
+
+[node name="CharNameplateP2" type="AnimatedSprite2D" parent="NamePlates"]
+position = Vector2(-50, 29)
+sprite_frames = SubResource("SpriteFrames_2s7ta")
+animation = &"no_input"
+
+[node name="CharNameplateP3" type="AnimatedSprite2D" parent="NamePlates"]
+position = Vector2(38, 29)
+sprite_frames = SubResource("SpriteFrames_2s7ta")
+animation = &"no_input"
+
+[node name="CharNameplateP4" type="AnimatedSprite2D" parent="NamePlates"]
+position = Vector2(132, 29)
+sprite_frames = SubResource("SpriteFrames_2s7ta")
+animation = &"no_input"
 
 [node name="Select" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_dieb8")

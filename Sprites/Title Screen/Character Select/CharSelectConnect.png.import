@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bugan2kin1tap"
-path="res://.godot/imported/CharSelectPlusNameplates.png-c6972c261d863e5a566501d605fd152a.ctex"
+uid="uid://pqlkrx304ngv"
+path="res://.godot/imported/CharSelectConnect.png-2ec2f462688a54fec3820a9fcf7215e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Title Screen/Character Select/CharSelectPlusNameplates.png"
-dest_files=["res://.godot/imported/CharSelectPlusNameplates.png-c6972c261d863e5a566501d605fd152a.ctex"]
+source_file="res://Sprites/Title Screen/Character Select/CharSelectConnect.png"
+dest_files=["res://.godot/imported/CharSelectConnect.png-2ec2f462688a54fec3820a9fcf7215e5.ctex"]
 
 [params]
 
