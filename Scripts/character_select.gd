@@ -37,6 +37,7 @@ var timer_cancelled: bool = false
 
 # --- Setup ---
 func _ready() -> void:
+	select_char_sound.play()
 	for i in select_boxes:
 		select_boxes[i].play("none")
 	for i in player_boxes:
@@ -178,7 +179,7 @@ func start_transition_to_world():
 	queue_free()
 
 func _on_back_button_pressed() -> void:
+	cancel_char_sound.play()
 	animation_player.play("close")
 	await get_tree().create_timer(0.2).timeout
-	cancel_char_sound.play()
 	queue_free()

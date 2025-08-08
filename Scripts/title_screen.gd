@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var music = $AudioStreamPlayer2D
+@onready var music = $TitleMusic
+@onready var select = $Select
 
 var animation_played := false
 var sprite_deleted := false
@@ -19,6 +20,7 @@ func _input(_event):
 			sprite_deleted = true
 			
 func _on_single_player_pressed() -> void:
+	select.play()
 	if select_file_instance == null or not is_instance_valid(select_file_instance):
 		select_file_instance = SelectFileScene.instantiate()
 		add_child(select_file_instance)

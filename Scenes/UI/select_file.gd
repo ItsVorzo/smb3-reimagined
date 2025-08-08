@@ -5,6 +5,7 @@ extends Node2D
 @onready var select_sound = $Select
 @onready var move_sound = $Move
 @onready var back_sound = $BackSound
+@onready var delete_save_sound = $DeleteSave
 
 @onready var save_buttons := [
 	$HBoxContainer/SaveSlot0,
@@ -88,6 +89,7 @@ func handle_slot_select(index: int):
 
 func handle_delete(index: int):
 	SaveManager.delete_save(index)
+	delete_save_sound.play()
 	update_save_buttons()
 	save_mode = "select"
 	bd_sprite.play("select")
@@ -108,9 +110,9 @@ func _on_delete_pressed():
 	bd_sprite.play("delete")
 
 func _on_back_pressed() -> void:
+	back_sound.play()
 	animation_player.play("close")
 	await get_tree().create_timer(0.2).timeout
-	back_sound.play()
 	queue_free()
 
 # --- New function to load Character Select screen ---
