@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalAudio="*res://Scripts/GlobalAudio.gd"
 SaveManager="*res://Scripts/SaveManager.gd"
+ThemeManager="*res://Scripts/ThemeManager.gd"
 
 [file_customization]
 

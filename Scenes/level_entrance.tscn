@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpt12tgpm70ys"]
+[gd_scene load_steps=17 format=3 uid="uid://bpt12tgpm70ys"]
 
 [ext_resource type="Script" uid="uid://bh6akojg55un8" path="res://Scripts/level_entrance.gd" id="1_ry522"]
 [ext_resource type="Texture2D" uid="uid://ce5dirnc4lclh" path="res://Sprites/Tilesets/WorldMaps/Levels.png" id="2_fg5sb"]
@@ -41,6 +41,10 @@ region = Rect2(192, 48, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1eyl"]
 atlas = ExtResource("2_fg5sb")
 region = Rect2(176, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cbrt"]
+atlas = ExtResource("2_fg5sb")
+region = Rect2(208, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucptm"]
 atlas = ExtResource("2_fg5sb")
@@ -122,6 +126,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"peach_castle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cbrt")
+}],
+"loop": true,
+"name": &"pipe",
 "speed": 5.0
 }, {
 "frames": [{

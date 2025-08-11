@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cce8k7ckg1ps2"
-path="res://.godot/imported/1UPMushroomALT.png-d81a30d07ae9da762fd58ac6fceb35f6.ctex"
+uid="uid://dls67oldb11gr"
+path="res://.godot/imported/HUDWorldMap.png-172b3a9a8e7c3491d02393577daf1a04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/1UPMushroomALT.png"
-dest_files=["res://.godot/imported/1UPMushroomALT.png-d81a30d07ae9da762fd58ac6fceb35f6.ctex"]
+source_file="res://Sprites/HUD/HUDWorldMap.png"
+dest_files=["res://.godot/imported/HUDWorldMap.png-172b3a9a8e7c3491d02393577daf1a04.ctex"]
 
 [params]
 

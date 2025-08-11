@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh3vwgic8336c"
-path="res://.godot/imported/GoalOrbClassic.png-ad6dc651c83a64873af6502a378678ad.ctex"
+uid="uid://bxoy0w7deusa1"
+path="res://.godot/imported/HUD.png-44a2150b3fd18be850d1d2d831b77baf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/GoalOrbClassic.png"
-dest_files=["res://.godot/imported/GoalOrbClassic.png-ad6dc651c83a64873af6502a378678ad.ctex"]
+source_file="res://Sprites/HUD/HUD.png"
+dest_files=["res://.godot/imported/HUD.png-44a2150b3fd18be850d1d2d831b77baf.ctex"]
 
 [params]
 
