@@ -132,7 +132,8 @@ func confirm_character():
 		save_data = {
 			"character_index": player1_character_index,
 			"has_started_game": true,
-			"world_number": 1
+			"world_number": 1,
+			"lives": 3
 		}
 	else:
 		save_data = existing_data.duplicate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c527cd07bvyou"]
+[gd_scene load_steps=36 format=3 uid="uid://c527cd07bvyou"]
 
 [ext_resource type="Script" uid="uid://ce8bojmxwdw5a" path="res://Scenes/UI/select_file.gd" id="1_540gs"]
 [ext_resource type="Texture2D" uid="uid://b03ujnxbm0bfh" path="res://Sprites/Title Screen/File Select/FileSelectBG.png" id="2_540gs"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bdt8r8oeesf2d" path="res://Sprites/Title Screen/File Select/FileSelectSaves.png" id="5_kd0yg"]
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="7_b8c4b"]
 [ext_resource type="Texture2D" uid="uid://js85vkejxaxq" path="res://Sprites/Title Screen/File Select/FileSelectCharIcon.png" id="7_jm7um"]
+[ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="8_8bqu0"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="8_jm7um"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="9_6h78b"]
 [ext_resource type="AudioStream" uid="uid://dkyqdxth6tb52" path="res://Audio/Sfx/Break.wav" id="11_6h78b"]
@@ -219,6 +220,26 @@ texture_hover = SubResource("AtlasTexture_jm7um")
 position = Vector2(92, 11)
 sprite_frames = SubResource("SpriteFrames_0vawd")
 
+[node name="World" type="Label" parent="HBoxContainer/SaveSlot0"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 92.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="Lives" type="Label" parent="HBoxContainer/SaveSlot0"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 7.0
+offset_right = 141.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
 [node name="SaveSlot1" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_b8c4b")
@@ -227,6 +248,26 @@ texture_hover = SubResource("AtlasTexture_jm7um")
 [node name="CharacterIcon" type="AnimatedSprite2D" parent="HBoxContainer/SaveSlot1"]
 position = Vector2(92, 11)
 sprite_frames = SubResource("SpriteFrames_0vawd")
+
+[node name="World" type="Label" parent="HBoxContainer/SaveSlot1"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 92.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="Lives" type="Label" parent="HBoxContainer/SaveSlot1"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 7.0
+offset_right = 141.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
 
 [node name="SaveSlot2" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
@@ -237,6 +278,26 @@ texture_hover = SubResource("AtlasTexture_jm7um")
 position = Vector2(92, 11)
 sprite_frames = SubResource("SpriteFrames_0vawd")
 
+[node name="World" type="Label" parent="HBoxContainer/SaveSlot2"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 92.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="Lives" type="Label" parent="HBoxContainer/SaveSlot2"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 7.0
+offset_right = 141.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
 [node name="SaveSlot3" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_b8c4b")
@@ -246,6 +307,26 @@ texture_hover = SubResource("AtlasTexture_jm7um")
 position = Vector2(92, 11)
 sprite_frames = SubResource("SpriteFrames_0vawd")
 
+[node name="World" type="Label" parent="HBoxContainer/SaveSlot3"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 92.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="Lives" type="Label" parent="HBoxContainer/SaveSlot3"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 7.0
+offset_right = 141.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
 [node name="SaveSlot4" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_b8c4b")
@@ -254,6 +335,26 @@ texture_hover = SubResource("AtlasTexture_jm7um")
 [node name="CharacterIcon" type="AnimatedSprite2D" parent="HBoxContainer/SaveSlot4"]
 position = Vector2(92, 11)
 sprite_frames = SubResource("SpriteFrames_0vawd")
+
+[node name="World" type="Label" parent="HBoxContainer/SaveSlot4"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 92.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="Lives" type="Label" parent="HBoxContainer/SaveSlot4"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 7.0
+offset_right = 141.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("8_8bqu0")
+theme_override_font_sizes/font_size = 8
+text = "1"
 
 [node name="HBoxContainer2" type="VBoxContainer" parent="."]
 offset_left = 23.0

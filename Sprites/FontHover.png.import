@@ -2,13 +2,13 @@
 
 importer="font_data_image"
 type="FontFile"
-uid="uid://dw3bs4aaneafm"
-path="res://.godot/imported/Font.png-c4eee76afa8df913990f3363f764b462.fontdata"
+uid="uid://dkcc731tltu05"
+path="res://.godot/imported/FontHover.png-e811279327b9ce812d2c203d46fecb13.fontdata"
 
 [deps]
 
-source_file="res://Sprites/Font.png"
-dest_files=["res://.godot/imported/Font.png-c4eee76afa8df913990f3363f764b462.fontdata"]
+source_file="res://Sprites/FontHover.png"
+dest_files=["res://.godot/imported/FontHover.png-e811279327b9ce812d2c203d46fecb13.fontdata"]
 
 [params]
 

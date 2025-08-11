@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://htc1l7bob76"]
+
+[ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="1_kifyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6yht"]
+atlas = ExtResource("1_kifyd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4kp"]
+atlas = ExtResource("1_kifyd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11yax"]
+atlas = ExtResource("1_kifyd")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjt4u"]
+atlas = ExtResource("1_kifyd")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tb1o"]
+atlas = ExtResource("1_kifyd")
+region = Rect2(0, 48, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6yht")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o4kp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11yax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjt4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tb1o")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]

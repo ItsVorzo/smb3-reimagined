@@ -94,3 +94,15 @@ func break_block():
 
 func _reset_break_sound_flag():
 	GlobalAudio.break_sound_played = false
+
+func apply_theme(theme: String):
+	var new_texture_path = "res://Sprites/Blocks/General%s.png" % theme
+	var new_texture = load(new_texture_path)
+
+	var frames = sprite.sprite_frames
+	for animation_name in frames.get_animation_names():
+		var frame_count = frames.get_frame_count(animation_name)
+		for i in range(frame_count):
+			var frame_tex = frames.get_frame(animation_name, i)
+			if frame_tex is AtlasTexture:
+				frame_tex.atlas = new_texture

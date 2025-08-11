@@ -41,6 +41,7 @@ func update_save_buttons():
 		var save_data = SaveManager.load_game(i)
 		var button = save_buttons[i]
 		
+		# Set texture depending on save empty/full
 		if save_data.is_empty():
 			button.texture_normal = get_file_slot_texture(1, 0)
 			button.texture_hover = get_file_slot_texture(1, 1)
@@ -48,14 +49,30 @@ func update_save_buttons():
 			button.texture_normal = get_file_slot_texture(0, 0)
 			button.texture_hover = get_file_slot_texture(0, 1)
 
+		# Character icon
 		var char_icon = button.get_node_or_null("CharacterIcon")
 		if char_icon:
-			if save_data.is_empty():
-				char_icon.visible = false
-			else:
-				char_icon.visible = true
+			char_icon.visible = not save_data.is_empty()
+			if not save_data.is_empty():
 				char_icon.frame = int(save_data.get("character_index", 0))
 				char_icon.pause()
+
+		# World label
+		var world_label = button.get_node_or_null("World")
+		if world_label:
+			if save_data.is_empty():
+				world_label.text = ""
+			else:
+				world_label.text = str(int(save_data.get("world_number", 1)))
+
+		# Lives label
+		var lives_label = button.get_node_or_null("Lives")
+		if lives_label:
+			if save_data.is_empty():
+				lives_label.text = ""
+			else:
+				var lives = int(save_data.get("lives", 3))
+				lives_label.text = str(lives).pad_zeros(3)
 
 func get_file_slot_texture(col: int, row: int) -> AtlasTexture:
 	var atlas := AtlasTexture.new()

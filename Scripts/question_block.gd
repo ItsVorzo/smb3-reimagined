@@ -13,6 +13,11 @@ func _ready():
 	sprite.play("full")
 	connect("body_entered", _on_body_entered)
 
+	var theme_manager = get_tree().get_first_node_in_group("ThemeManager")
+	if theme_manager:
+		theme_manager.theme_changed.connect(apply_theme)
+		apply_theme(theme_manager.theme)
+
 func _on_body_entered(body: Node) -> void:
 	if used or not body.is_in_group("Player"):
 		return
@@ -57,3 +62,17 @@ func activate_block():
 			item_pop_sound.play()
 
 	$CollisionShape2D.disabled = true
+
+
+func apply_theme(theme: String):
+	var theme_path = "res://Sprites/Blocks/qb_%s.tres" % theme.to_lower()
+	var new_texture = load(theme_path)
+
+	if not new_texture:
+		push_warning("Theme texture not found at %s" % theme_path)
+		return
+
+	for anim_name in sprite.sprite_frames.get_animation_names():
+		var frame_count = sprite.sprite_frames.get_frame_count(anim_name)
+		for i in range(frame_count):
+			sprite.sprite_frames.set_frame(anim_name, i, new_texture)
