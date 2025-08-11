@@ -56,27 +56,27 @@ func _ready() -> void:
 
 # --- Input Handling ---
 func _process(_delta: float) -> void:
-	if !is_player1_active and Input.is_action_just_pressed("jump"):
+	if !is_player1_active and InputManager.Apress:
 		select_char_sound.play()
 		activate_player1()
 
 	elif is_player1_active and !is_player1_selected:
-		if Input.is_action_just_pressed("move_left"):
+		if InputManager.left_press:
 			move_char_sound.play()
 			player1_character_index = (player1_character_index - 1 + total_characters) % total_characters
 			update_character_sprite()
 
-		elif Input.is_action_just_pressed("move_right"):
+		elif InputManager.right_press:
 			move_char_sound.play()
 			player1_character_index = (player1_character_index + 1) % total_characters
 			update_character_sprite()
 
-		elif Input.is_action_just_pressed("jump"):
+		elif InputManager.Apress:
 			select_char_sound.play()
 			confirm_character()
 
 	elif is_player1_selected:
-		if Input.is_action_just_pressed("run"):
+		if InputManager.Bpress:
 			cancel_char_sound.play()
 			cancel_selection()
 

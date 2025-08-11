@@ -15,7 +15,7 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body.is_in_group("Overworld"):
 		player_inside = false
-func _process(delta):
-	if player_inside and Input.is_action_just_pressed("jump"):
+func _process(_delta):
+	if player_inside and InputManager.Apress:
 		if level_scene_path != "":
 			get_tree().change_scene_to_file(level_scene_path)

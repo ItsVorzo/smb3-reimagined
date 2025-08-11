@@ -22,18 +22,18 @@ func _process(delta):
 		animation.play("down")
 		var input_direction = Vector2.ZERO
 
-		if Input.is_action_just_pressed("ui_right"):
+		if InputManager.right_press:
 			input_direction.x = 1
 			animation.play("side")
 			animation.flip_h = true
-		elif Input.is_action_just_pressed("ui_left"):
+		elif InputManager.left_press:
 			input_direction.x = -1
 			animation.play("side")
 			animation.flip_h = false
-		elif Input.is_action_just_pressed("ui_up"):
+		elif InputManager.up_press:
 			input_direction.y = -1
 			animation.play("up")
-		elif Input.is_action_just_pressed("ui_down"):
+		elif InputManager.down_press:
 			input_direction.y = 1
 			animation.play("down")
 
