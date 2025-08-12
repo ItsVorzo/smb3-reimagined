@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="1_o6wq3"]
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
-[ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
+[ext_resource type="Script" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/question_block.tscn" id="2_w4w3d"]
 [ext_resource type="TileSet" uid="uid://d2d88m0rb8jmc" path="res://Sprites/Tilesets/Overworld/Overworld.tres" id="3_q0pi4"]
 [ext_resource type="TileSet" uid="uid://bxmp0vsvcclhb" path="res://Sprites/Gizmos/Pipes.tres" id="4_noyq2"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://citjnab4fdvsq" path="res://Scenes/Enemies/goomba.tscn" id="10_o6wq3"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
 [ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/level_entrance.tscn" id="12_6ywuv"]
-[ext_resource type="PackedScene" uid="uid://dgrkg4fljhhtx" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 
 [node name="1-1" type="Node2D"]
 script = ExtResource("1_q0pi4")
