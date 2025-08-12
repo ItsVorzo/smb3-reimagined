@@ -42,4 +42,4 @@ func _process(_delta: float) -> void:
 		up_press = Input.is_action_just_pressed("up")
 		down_press = Input.is_action_just_pressed("down")
 		right_press = Input.is_action_just_pressed("right")
-		direction = Input.get_axis("left", "right")
+		direction = sign(Input.get_axis("left", "right"))
