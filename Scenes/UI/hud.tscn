@@ -1,0 +1,117 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgrkg4fljhhtx"]
+
+[ext_resource type="Script" uid="uid://dlgo7p71eleis" path="res://Scripts/hud.gd" id="1_fdl0h"]
+[ext_resource type="Texture2D" uid="uid://bxoy0w7deusa1" path="res://Sprites/HUD/HUD.png" id="1_sprlj"]
+[ext_resource type="Texture2D" uid="uid://js85vkejxaxq" path="res://Sprites/Title Screen/File Select/FileSelectCharIcon.png" id="3_8glcj"]
+[ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="4_8glcj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny26j"]
+atlas = ExtResource("1_sprlj")
+region = Rect2(0, 0, 383, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nayml"]
+atlas = ExtResource("3_8glcj")
+region = Rect2(0, 0, 16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i82v3"]
+atlas = ExtResource("3_8glcj")
+region = Rect2(0, 7, 16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcld2"]
+atlas = ExtResource("3_8glcj")
+region = Rect2(0, 14, 16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opcre"]
+atlas = ExtResource("3_8glcj")
+region = Rect2(0, 21, 16, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vsu76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nayml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i82v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcld2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opcre")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_fdl0h")
+
+[node name="HUD_BG" type="TextureRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -114.0
+offset_right = -768.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_ny26j")
+stretch_mode = 3
+
+[node name="PlayerIcon" type="AnimatedSprite2D" parent="HUD_BG"]
+position = Vector2(80.66667, 23.666672)
+sprite_frames = SubResource("SpriteFrames_vsu76")
+
+[node name="WorldLabel" type="Label" parent="HUD_BG"]
+layout_mode = 0
+offset_left = 105.66667
+offset_top = 11.0
+offset_right = 129.66667
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("4_8glcj")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="ScoreLabel" type="Label" parent="HUD_BG"]
+layout_mode = 0
+offset_left = 120.66667
+offset_top = 19.0
+offset_right = 288.6667
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("4_8glcj")
+theme_override_font_sizes/font_size = 8
+text = "0000000"
+
+[node name="CoinLabel" type="Label" parent="HUD_BG"]
+layout_mode = 0
+offset_left = 200.66667
+offset_top = 11.0
+offset_right = 248.66667
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("4_8glcj")
+theme_override_font_sizes/font_size = 8
+text = "00"
+
+[node name="TimeLabel" type="Label" parent="HUD_BG"]
+layout_mode = 0
+offset_left = 192.66667
+offset_top = 19.0
+offset_right = 264.6667
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("4_8glcj")
+theme_override_font_sizes/font_size = 8
+text = "000"
+
+[node name="LivesLabel" type="Label" parent="HUD_BG"]
+layout_mode = 0
+offset_left = 97.33333
+offset_top = 18.666668
+offset_right = 121.33333
+offset_bottom = 26.666668
+theme_override_fonts/font = ExtResource("4_8glcj")
+theme_override_font_sizes/font_size = 8
+text = "05"

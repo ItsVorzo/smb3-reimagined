@@ -1,18 +1,19 @@
-[gd_scene load_steps=14 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=15 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="1_o6wq3"]
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/question_block.tscn" id="2_w4w3d"]
-[ext_resource type="TileSet" uid="uid://db5fod1eppjlo" path="res://Sprites/Tilesets/Overworld/Overworld.tres" id="3_q0pi4"]
-[ext_resource type="TileSet" uid="uid://u461colbehxa" path="res://Sprites/Gizmos/Pipes.tres" id="4_noyq2"]
-[ext_resource type="TileSet" uid="uid://dnxgfndslplga" path="res://Sprites/Tilesets/Overworld/Semisolid.tres" id="5_saxwf"]
+[ext_resource type="TileSet" uid="uid://d2d88m0rb8jmc" path="res://Sprites/Tilesets/Overworld/Overworld.tres" id="3_q0pi4"]
+[ext_resource type="TileSet" uid="uid://bxmp0vsvcclhb" path="res://Sprites/Gizmos/Pipes.tres" id="4_noyq2"]
+[ext_resource type="TileSet" uid="uid://chak12uhpm0q1" path="res://Sprites/Tilesets/Overworld/Semisolid.tres" id="5_saxwf"]
 [ext_resource type="PackedScene" uid="uid://bem03d4usrw1w" path="res://Scenes/player.tscn" id="7_ftxpn"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="7_w4w3d"]
 [ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
 [ext_resource type="PackedScene" uid="uid://citjnab4fdvsq" path="res://Scenes/Enemies/goomba.tscn" id="10_o6wq3"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
 [ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/level_entrance.tscn" id="12_6ywuv"]
+[ext_resource type="PackedScene" uid="uid://dgrkg4fljhhtx" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 
 [node name="1-1" type="Node2D"]
 script = ExtResource("1_q0pi4")
@@ -34,24 +35,24 @@ tile_map_data = PackedByteArray("AAAVAPv/AAAAAAAAAAAcAPv/AAACAAAAAAAWAPv/AAABAAA
 tile_set = ExtResource("5_saxwf")
 
 [node name="BrickBlock2" parent="." instance=ExtResource("1_o6wq3")]
-position = Vector2(600, -38)
+position = Vector2(600, -39)
 
 [node name="BrickBlock3" parent="." instance=ExtResource("1_o6wq3")]
-position = Vector2(616, -38)
+position = Vector2(616, -39)
 item_scene = ExtResource("7_w4w3d")
 is_item_block = true
 
 [node name="BrickBlock4" parent="." instance=ExtResource("1_o6wq3")]
-position = Vector2(632, -38)
+position = Vector2(632, -39)
 
 [node name="BrickBlock5" parent="." instance=ExtResource("1_o6wq3")]
-position = Vector2(648, -38)
+position = Vector2(648, -39)
 
 [node name="BrickBlock6" parent="." instance=ExtResource("1_o6wq3")]
-position = Vector2(664, -38)
+position = Vector2(664, -39)
 
 [node name="QuestionBlock" parent="." instance=ExtResource("2_w4w3d")]
-position = Vector2(584, -38)
+position = Vector2(584, -39)
 item_scene = ExtResource("7_w4w3d")
 
 [node name="Player" parent="." instance=ExtResource("7_ftxpn")]
@@ -63,7 +64,7 @@ stream = ExtResource("10_x1pt7")
 autoplay = true
 
 [node name="Camera" type="Camera2D" parent="Player"]
-position = Vector2(0, -1)
+position = Vector2(-1, 41)
 offset = Vector2(0, -46)
 zoom = Vector2(3, 3)
 drag_vertical_enabled = true
@@ -76,9 +77,11 @@ position = Vector2(809, -10)
 floor_stop_on_slope = false
 
 [node name="QuestionBlock2" parent="." instance=ExtResource("2_w4w3d")]
-position = Vector2(568, -38)
+position = Vector2(568, -39)
 item_scene = ExtResource("7_w4w3d")
 
 [node name="QuestionBlock3" parent="." instance=ExtResource("2_w4w3d")]
-position = Vector2(552, -38)
+position = Vector2(552, -39)
 item_scene = ExtResource("12_6ywuv")
+
+[node name="HUD" parent="." instance=ExtResource("14_noyq2")]

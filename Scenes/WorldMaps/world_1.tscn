@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://b10jr4hfxtdpl"]
+[gd_scene load_steps=13 format=4 uid="uid://b10jr4hfxtdpl"]
 
 [ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/world_1.gd" id="1_cig1c"]
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="1_ha7v5"]
 [ext_resource type="Texture2D" uid="uid://bx001a8qontap" path="res://Sprites/Tilesets/WorldMaps/Paths.png" id="2_cig1c"]
 [ext_resource type="Texture2D" uid="uid://qvonhnepubv7" path="res://Sprites/Tilesets/WorldMaps/Decoration.png" id="3_ops3f"]
 [ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/level_entrance.tscn" id="4_432jv"]
-[ext_resource type="Texture2D" uid="uid://bebjdrx3tex3v" path="res://Sprites/Tilesets/WorldMaps/HUD.png" id="5_bk7il"]
+[ext_resource type="Texture2D" uid="uid://bxoy0w7deusa1" path="res://Sprites/HUD/HUD.png" id="6_cig1c"]
 [ext_resource type="PackedScene" uid="uid://bqtph6w8yxiqa" path="res://Scenes/OverworldPlayer.tscn" id="6_gmbsn"]
 [ext_resource type="AudioStream" uid="uid://diaegrih3i8q6" path="res://Audio/BGM/World 1 Map.mp3" id="7_5pv3o"]
 
@@ -87,6 +87,10 @@ physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_h3pls")
 sources/2 = SubResource("TileSetAtlasSource_mm7mx")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ops3f"]
+atlas = ExtResource("6_cig1c")
+region = Rect2(0, 39, 383, 31)
+
 [node name="World1" type="Node2D"]
 script = ExtResource("1_cig1c")
 
@@ -162,8 +166,8 @@ animation_name = "toad_house"
 zoom = Vector2(3, 3)
 
 [node name="HUD" type="Sprite2D" parent="."]
-position = Vector2(0, 85.945)
-texture = ExtResource("5_bk7il")
+position = Vector2(0, 93)
+texture = SubResource("AtlasTexture_ops3f")
 
 [node name="Player" parent="." instance=ExtResource("6_gmbsn")]
 position = Vector2(-88, -48)

@@ -72,7 +72,7 @@ func update_save_buttons():
 				lives_label.text = ""
 			else:
 				var lives = int(save_data.get("lives", 3))
-				lives_label.text = str(lives).pad_zeros(3)
+				lives_label.text = str(lives).pad_zeros(2)
 
 func get_file_slot_texture(col: int, row: int) -> AtlasTexture:
 	var atlas := AtlasTexture.new()

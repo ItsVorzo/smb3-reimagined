@@ -131,14 +131,14 @@ func confirm_character():
 	if existing_data.is_empty():
 		save_data = {
 			"character_index": player1_character_index,
-			"has_started_game": true,
 			"world_number": 1,
-			"lives": 3
+			"lives": 3,
+			"coins": 0,
+			"powerup_state": "small",
 		}
 	else:
 		save_data = existing_data.duplicate()
 		save_data["character_index"] = player1_character_index
-		save_data["has_started_game"] = true
 
 	SaveManager.save_game(save_index, save_data)
 

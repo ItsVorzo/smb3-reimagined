@@ -1,5 +1,8 @@
 extends Node
 
+var runtime_data: Dictionary = {}
+var hud: Node = null  # Stores reference to HUD for fast access
+
 func _ready() -> void:
 	print("Save path: ", get_save_path(0))
 
@@ -20,7 +23,6 @@ func save_game(index: int, data: Dictionary) -> void:
 	else:
 		push_error("Failed to open save file for writing: %s" % get_save_path(index))
 
-# Loads game data from disk
 func load_game(index: int) -> Dictionary:
 	var path = get_save_path(index)
 	if not FileAccess.file_exists(path):
@@ -37,17 +39,32 @@ func load_game(index: int) -> Dictionary:
 
 	return {}
 
-# Deletes a save file
 func delete_save(index: int) -> void:
 	var path = get_save_path(index)
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
 
-# Copies one save slot to another
 func copy_save(from_index: int, to_index: int) -> void:
-	var from_path = get_save_path(from_index)
-	var to_path = get_save_path(to_index)
+	var data = load_game(from_index)
+	save_game(to_index, data)
 
-	if FileAccess.file_exists(from_path):
-		var data = load_game(from_index)
-		save_game(to_index, data)
+# --- RUNTIME SAVE HANDLING ---
+func start_runtime_from_save(save_index: int) -> void:
+	var permanent = load_game(save_index)
+	if permanent.is_empty():
+		permanent = {
+			"character_index": 0,
+			"world_number": 1,
+			"score": 0,
+			"coins": 0,
+			"lives": 3,
+			"time": 400,
+			"powerup_state": "small"
+		}
+	runtime_data = permanent.duplicate(true)
+
+func commit_runtime_to_save(save_index: int) -> void:
+	save_game(save_index, runtime_data)
+
+func clear_runtime() -> void:
+	runtime_data.clear()

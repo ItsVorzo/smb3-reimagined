@@ -54,6 +54,16 @@ func _on_head_stomp_area_body_entered(body: Node) -> void:
 	if body.has_method("play_squish_sound"):
 		body.play_squish_sound()
 
+	# Add score
+	if "score" in SaveManager.runtime_data:
+		SaveManager.runtime_data["score"] += 100
+	else:
+		SaveManager.runtime_data["score"] = 100
+
+	# Update HUD instantly (no searching)
+	if SaveManager.hud and SaveManager.hud.has_method("update_labels"):
+		SaveManager.hud.update_labels()
+
 	stomped = true
 	velocity = Vector2.ZERO
 	set_physics_process(false)
