@@ -49,7 +49,10 @@ var is_super := false  # Super Mario state flag
 
 func _process(_delta):
 	# === Set the sprite x scale ===
-	if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
+	if is_on_floor():
+		if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
+			facing_direction = InputManager.direction
+	elif InputManager.direction != 0:
 		facing_direction = InputManager.direction
 	animated_sprite.scale.x = facing_direction
 
@@ -70,9 +73,6 @@ func _process(_delta):
 		p_meter -= 1
 	if p_meter < 0:
 		p_meter = 0
-
-func get_facing_direction() -> int:
-	return facing_direction
 
 func power_up():
 	if is_super:
