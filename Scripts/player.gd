@@ -3,12 +3,14 @@ extends CharacterBody2D
 class_name Player
 
 # === Tunable Constants ===
-const walk_speed = 80.0
-const run_speed = 160.0
-const acc_speed = 800.0
-const grav_speed = 400.0
-const fric_speed = 1000.0
-const air_fric_speed = 200.0
+const walk_speed = 90.0
+const run_speed = 150.0
+const p_speed = 210.0
+const acc_speed = 3.75
+const air_acc_speed = 400.0
+const frc_speed = 3.75
+const skid_speed = 10.0
+const air_frc_speed = 200.0
 
 const base_jump = -420.0
 const WALK_JUMP_VELOCITY = -300.0
@@ -21,7 +23,11 @@ const JUMP_CUTOFF_MULTIPLIER = 2.0
 const COYOTE_TIME = 0.12  # seconds
 const JUMP_BUFFER_TIME = 0.1
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var p_meter = 0.0
+var p_meter_max = 70.0
+var max_speed = 0.0
+var grav_speed = 800.0
+var velocity_direction = sign(velocity.x)
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump = $AudioStreamPlayer2D
@@ -42,10 +48,28 @@ var facing_direction := 1  # 1 = right, -1 = left
 var is_super := false  # Super Mario state flag
 
 func _process(_delta):
-	if InputManager.right:
-		facing_direction = 1
-	elif InputManager.left:
-		facing_direction = -1
+	# === Set the sprite x scale ===
+	if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
+		facing_direction = InputManager.direction
+	animated_sprite.scale.x = facing_direction
+
+	# === Set max speeds ===
+	#if p_meter < p_meter_max:
+	if InputManager.B:
+		max_speed = run_speed
+	else:
+		max_speed = walk_speed
+	#else:
+	#	max_speed = p_speed
+
+	# === P meter ===
+	p_meter = clamp(p_meter, 0, p_meter_max)
+	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor():
+		p_meter += 1
+	else:
+		p_meter -= 1
+	if p_meter < 0:
+		p_meter = 0
 
 func get_facing_direction() -> int:
 	return facing_direction
@@ -63,9 +87,6 @@ func power_up():
 
 	# Play power-up animation or effect
 	animated_sprite.play("power_up")
-
-	# Optionally scale sprite (uncomment if you want)
-	# animated_sprite.scale = Vector2(1.5, 1.5)
 
 func bounce():
 	velocity.y = -300  # Adjust as needed
@@ -91,33 +112,42 @@ func _physics_process(delta: float) -> void:
 		jump_buffer_timer -= delta
 
 	# === Move ===
-	var direction := Input.get_axis("left", "right")
-	is_running = InputManager.B and direction != 0
-	var speed := run_speed if is_running else walk_speed
-	var target_speed := speed * direction
-	var accel := acc_speed if is_on_floor() else grav_speed
-	var friction := fric_speed if is_on_floor() else air_fric_speed
-
-	# === Crouching ===
-	is_crouching = InputManager.down and is_on_floor()
-	if is_crouching and is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
-	elif direction != 0:
-		velocity.x = move_toward(velocity.x, target_speed, accel * delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
+	if InputManager.direction == 1:
+		if velocity.x < 0:
+			velocity.x += skid_speed
+			is_skidding = true
+		else:
+			is_skidding = false
+			if velocity.x < max_speed:
+				velocity.x += acc_speed
+			else:
+				velocity.x -= frc_speed
+	elif InputManager.direction == -1:
+		if velocity.x > 0:
+			velocity.x -= skid_speed
+			is_skidding = true
+		else:
+			is_skidding = false
+			if velocity.x > -max_speed:
+				velocity.x -= acc_speed
+			else:
+				velocity.x += frc_speed
+	
+	elif (InputManager.direction == 0):
+		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
+	print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 
 	# === Skid Detection ===
-	is_skidding = is_on_floor() and direction != 0 and sign(velocity.x) != sign(direction) and abs(velocity.x) > 20 and Input.is_action_pressed("skid") #skid input???
+	#is_skidding = is_on_floor() and direction != 0 and sign(velocity.x) != sign(direction) and abs(velocity.x) > 20
 
 	# === Gravity and Jumping ===
 	if not is_on_floor():
 		if velocity.y < 0 and not InputManager.A:
-			velocity.y += gravity * JUMP_CUTOFF_MULTIPLIER * delta
+			velocity.y += grav_speed * JUMP_CUTOFF_MULTIPLIER * delta
 		elif velocity.y > 0:
-			velocity.y += gravity * FALL_GRAVITY_MULTIPLIER * delta
+			velocity.y += grav_speed * FALL_GRAVITY_MULTIPLIER * delta
 		else:
-			velocity.y += gravity * delta
+			velocity.y += grav_speed * delta
 	else:
 		velocity.y = 0.0
 
@@ -139,24 +169,20 @@ func _physics_process(delta: float) -> void:
 		is_jump_pressed = false
 
 	# === Animation ===
-	if direction > 0:
-		animated_sprite.flip_h = false
-	elif direction < 0:
-		animated_sprite.flip_h = true
 
 	if is_on_floor():
-		if is_crouching:
+		if InputManager.down:
 			animated_sprite.play("crouch")
 		elif is_skidding:
 			animated_sprite.play("skid")
-		elif direction == 0:
+		elif velocity.x == 0:
 			animated_sprite.play("idle")
-		elif is_running:
-			animated_sprite.play("run")
-		else:
-			animated_sprite.play("walk")
+		elif abs(velocity.x) > 0 and max_speed != p_speed:
+			animated_sprite.play("walk", max(1, 0.03 * abs(velocity.x)))
+		elif max_speed == p_speed:
+			animated_sprite.play("run", 1)
 	else:
-		if is_crouching:
+		if InputManager.down:
 			animated_sprite.play("crouch")
 		else:
 			animated_sprite.play("jump")
