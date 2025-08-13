@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://citjnab4fdvsq" path="res://Scenes/Enemies/goomba.tscn" id="10_o6wq3"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
 [ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/level_entrance.tscn" id="12_6ywuv"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
+[ext_resource type="PackedScene" uid="uid://dgrkg4fljhhtx" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 
 [node name="1-1" type="Node2D"]
 script = ExtResource("1_q0pi4")
