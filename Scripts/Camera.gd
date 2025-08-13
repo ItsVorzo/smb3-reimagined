@@ -9,13 +9,12 @@ func _ready() -> void:
 	position.x = Plr.position.x
 	position.y = Plr.position.y+70
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 
-	if Plr.velocity.y >= 180:
+	if Plr.velocity.y >= 320:
 		shift_y = MathFunc.approach(shift_y, 80.0, 1.5)
-	elif Plr.velocity.y < 180:
+	elif Plr.velocity.y <= 0:
 		shift_y = MathFunc.approach(shift_y, 0.0, 1)
 
 	#if GameOptions.camera_pan != 0:

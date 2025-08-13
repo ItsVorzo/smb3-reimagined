@@ -72,7 +72,7 @@ drag_vertical_enabled = true
 script = ExtResource("11_saxwf")
 
 [node name="Overworld" parent="." instance=ExtResource("8_28jxv")]
-position = Vector2(0, 167)
+position = Vector2(251, 122)
 
 [node name="Goomba" parent="." instance=ExtResource("10_o6wq3")]
 position = Vector2(809, -10)
