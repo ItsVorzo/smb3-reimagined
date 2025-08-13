@@ -1,6 +1,7 @@
 extends Camera2D
 
 var shift_x: float = 0.0
+var shift_y: float = 0.0
 @onready var Plr = get_parent()
 
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +12,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+
+	if Plr.velocity.y >= 180:
+		shift_y = MathFunc.approach(shift_y, 80.0, 1.5)
+	elif Plr.velocity.y < 180:
+		shift_y = MathFunc.approach(shift_y, 0.0, 1)
+
 	#if GameOptions.camera_pan != 0:
 	#match(GameOptions.camera_pan):
 	#case 1: #fixed panning
@@ -30,3 +37,4 @@ func _process(_delta: float) -> void:
 	#	shift_x = lerp(shift_x, 0.0, 0.1)
 
 	position.x = shift_x
+	position.y = shift_y
