@@ -12,7 +12,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 
-	if Plr.velocity.y >= 320:
+	if Plr.velocity.y >= 270:
 		shift_y = MathFunc.approach(shift_y, 80.0, 1.5)
 	elif Plr.velocity.y <= 0:
 		shift_y = MathFunc.approach(shift_y, 0.0, 1)
