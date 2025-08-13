@@ -112,30 +112,43 @@ func _physics_process(delta: float) -> void:
 		jump_buffer_timer -= delta
 
 	# === Move ===
-	if InputManager.direction == 1:
-		if velocity.x < 0:
-			velocity.x += skid_speed
-			is_skidding = true
-		else:
-			is_skidding = false
-			if velocity.x < max_speed:
-				velocity.x += acc_speed
+	# I will make this whole section shorter lmao
+	if !InputManager.input_disabled or !InputManager.direction_disabled or !InputManager.x_direction_disabled:
+		if InputManager.direction == 1:
+			if velocity.x < 0:
+				velocity.x += skid_speed
+				is_skidding = true
 			else:
-				velocity.x -= frc_speed
-	elif InputManager.direction == -1:
-		if velocity.x > 0:
-			velocity.x -= skid_speed
-			is_skidding = true
-		else:
-			is_skidding = false
-			if velocity.x > -max_speed:
-				velocity.x -= acc_speed
+				is_skidding = false
+				if velocity.x < max_speed:
+					velocity.x += acc_speed
+				else:
+					velocity.x -= frc_speed
+		elif InputManager.direction == -1:
+			if velocity.x > 0:
+				velocity.x -= skid_speed
+				is_skidding = true
 			else:
-				velocity.x += frc_speed
-	
-	elif (InputManager.direction == 0):
+				is_skidding = false
+				if velocity.x > -max_speed:
+					velocity.x -= acc_speed
+				else:
+					velocity.x += frc_speed
+
+	if InputManager.direction == 0 or InputManager.input_disabled or InputManager.direction_disabled or InputManager.x_direction_disabled:
 		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
 	print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
+
+	if is_on_floor():
+		if InputManager.down:
+			InputManager.x_direction_disabled = true
+			velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
+		else: InputManager.x_direction_disabled = false
+	else:
+		InputManager.x_direction_disabled = false
+
+	if velocity.x == 0:
+		is_skidding = false
 
 	# === Skid Detection ===
 	#is_skidding = is_on_floor() and direction != 0 and sign(velocity.x) != sign(direction) and abs(velocity.x) > 20
@@ -150,6 +163,9 @@ func _physics_process(delta: float) -> void:
 			velocity.y += grav_speed * delta
 	else:
 		velocity.y = 0.0
+
+	if velocity.y > 470:
+		velocity.y = 470
 
 	# === Jumping ===
 	if jump_buffer_timer > 0.0 and coyote_timer > 0.0:

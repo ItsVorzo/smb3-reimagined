@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=16 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="1_o6wq3"]
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
 [ext_resource type="PackedScene" uid="uid://citjnab4fdvsq" path="res://Scenes/Enemies/goomba.tscn" id="10_o6wq3"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
+[ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Camera.gd" id="11_saxwf"]
 [ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/level_entrance.tscn" id="12_6ywuv"]
 [ext_resource type="PackedScene" uid="uid://dgrkg4fljhhtx" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 
@@ -64,10 +65,11 @@ stream = ExtResource("10_x1pt7")
 autoplay = true
 
 [node name="Camera" type="Camera2D" parent="Player"]
-position = Vector2(-1, 41)
+position = Vector2(174, 20)
 offset = Vector2(0, -46)
 zoom = Vector2(3, 3)
 drag_vertical_enabled = true
+script = ExtResource("11_saxwf")
 
 [node name="Overworld" parent="." instance=ExtResource("8_28jxv")]
 position = Vector2(0, 167)
