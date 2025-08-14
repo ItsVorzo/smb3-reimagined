@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bhhffwhk6yyqu"]
+[gd_scene load_steps=41 format=3 uid="uid://bhhffwhk6yyqu"]
 
 [ext_resource type="Script" uid="uid://c6ojiowhkhy01" path="res://Scripts/title_screen.gd" id="1_3txao"]
 [ext_resource type="Texture2D" uid="uid://b0qrrxm7r1rgc" path="res://Sprites/Title Screen/Sky.png" id="2_28uqs"]
@@ -7,12 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="5_iwqp0"]
 [ext_resource type="Texture2D" uid="uid://biavto5dup6eu" path="res://Sprites/Characters/Luigi/LuigiBig.png" id="6_fw2l0"]
 [ext_resource type="Texture2D" uid="uid://dmegii86ekoeh" path="res://Sprites/Title Screen/Title.png" id="7_c5u5f"]
+[ext_resource type="Texture2D" uid="uid://i72bn023shol" path="res://Sprites/Title Screen/select_square.png" id="8_5b5vi"]
+[ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="8_bvwvd"]
 [ext_resource type="Texture2D" uid="uid://bopml6smfrvys" path="res://Sprites/Title Screen/Buttons.png" id="8_pa44j"]
 [ext_resource type="Texture2D" uid="uid://5ju034si5ep0" path="res://Sprites/Title Screen/ButtonsH.png" id="9_503er"]
 [ext_resource type="Texture2D" uid="uid://c4atbwyjpdqp8" path="res://Sprites/Title Screen/Curtain.png" id="10_vk2b7"]
 [ext_resource type="Texture2D" uid="uid://c4ibj5t7sx0vs" path="res://Sprites/Title Screen/Button2.png" id="11_kyt38"]
 [ext_resource type="AudioStream" uid="uid://c6v4hdnu0somo" path="res://Audio/BGM/titletheme.mp3" id="12_2lcr0"]
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="13_28uqs"]
+[ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="16_iwqp0"]
 
 [sub_resource type="Animation" id="Animation_n82rj"]
 length = 0.001
@@ -269,7 +272,35 @@ libraries = {
 }
 autoplay = "bop"
 
+[node name="LeftSquare" type="Sprite2D" parent="."]
+position = Vector2(0, -17.229998)
+texture = ExtResource("8_5b5vi")
+
+[node name="RightSquare" type="Sprite2D" parent="."]
+position = Vector2(0, -17.229998)
+texture = ExtResource("8_5b5vi")
+
+[node name="StoryMode" type="Label" parent="."]
+offset_left = -97.0
+offset_top = 28.0
+offset_right = -17.0
+offset_bottom = 37.0
+theme_override_fonts/font = ExtResource("8_bvwvd")
+theme_override_font_sizes/font_size = 8
+text = "story mode"
+
+[node name="Options" type="Label" parent="."]
+offset_left = 57.0
+offset_top = 28.0
+offset_right = 113.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("8_bvwvd")
+theme_override_font_sizes/font_size = 8
+text = "options
+"
+
 [node name="SinglePlayer" type="TextureButton" parent="."]
+visible = false
 offset_left = -82.0
 offset_top = 25.0
 offset_right = 13.0
@@ -278,6 +309,7 @@ texture_normal = SubResource("AtlasTexture_3txao")
 texture_hover = SubResource("AtlasTexture_28uqs")
 
 [node name="TextureButton" type="TextureButton" parent="."]
+visible = false
 offset_left = 13.0
 offset_top = 25.0
 offset_right = 76.0
@@ -297,7 +329,7 @@ libraries = {
 position = Vector2(0, -17.23)
 sprite_frames = SubResource("SpriteFrames_k1y01")
 autoplay = "default"
-frame_progress = 0.22889917
+frame_progress = 0.5831602
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -308,5 +340,8 @@ bus = &"SFX"
 
 [node name="Select" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_28uqs")
+
+[node name="Move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_iwqp0")
 
 [connection signal="pressed" from="SinglePlayer" to="." method="_on_single_player_pressed"]

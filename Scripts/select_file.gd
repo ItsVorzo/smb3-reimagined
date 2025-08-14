@@ -126,6 +126,9 @@ func _on_delete_pressed():
 	select_sound.play()
 	bd_sprite.play("delete")
 
+func _process(_delta: float) -> void:
+	if InputManager.Bpress: _on_back_pressed()
+
 func _on_back_pressed() -> void:
 	back_sound.play()
 	animation_player.play("close")
