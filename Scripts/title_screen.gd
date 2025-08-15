@@ -15,20 +15,35 @@ var highlight_c = Color("#ffaa47")
 var normal_c = Color.WHITE
 var animation_played := false
 var sprite_deleted := false
-var SelectFileScene = preload("res://Scenes/UI/select_file.tscn")
-var select_file_instance: Node = null
 
+# Scenes
+var SelectFileScene = preload("res://Scenes/UI/select_file.tscn")
+var OptionsScene = preload("res://Scenes/UI/options.tscn")
+var CharacterSelectScene = preload("res://Scenes/UI/character_select.tscn") # Only if needed
+
+# Instances
+var select_file_instance: Node = null
+var options_instance: Node = null
+var char_select_instance: Node = null
+
+# Selection
 var h_select := 1
 
 func _ready() -> void:
 	labels = [opt1, opt2]
+	update_selection()
 
 func _process(_delta):
+	# Block title screen input if any sub-menu is open
+	if _is_submenu_open():
+		return
+
 	if InputManager.Apress and not animation_played:
 		$Curtain/AnimationPlayer.play("rise")
 		music.play()
 		animation_played = true
 		update_selection()
+
 	if InputManager.Apress and not sprite_deleted:
 		var sprite = get_node_or_null("PressSpace")
 		if sprite:
@@ -43,23 +58,33 @@ func _process(_delta):
 			h_select = wrap(h_select + 1, 1, labels.size() + 1)
 			update_selection()
 
-	if !$Curtain/AnimationPlayer.is_playing():
-		match(h_select):
-			1:
-				if InputManager.Apress:
-					story_mode()
+		if !$Curtain/AnimationPlayer.is_playing():
+			match h_select:
+				1:
+					if InputManager.Apress:
+						story_mode()
+				2:
+					if InputManager.Apress:
+						open_options()
+
+func _is_submenu_open() -> bool:
+	return (
+		(select_file_instance != null and is_instance_valid(select_file_instance)) or
+		(options_instance != null and is_instance_valid(options_instance)) or
+		(char_select_instance != null and is_instance_valid(char_select_instance))
+	)
 
 func update_selection():
-	# Change the text color
 	for i in range(labels.size()):
-		labels[i].add_theme_color_override("font_color", highlight_c if h_select == i + 1 else normal_c)
+		labels[i].add_theme_color_override(
+			"font_color", 
+			highlight_c if h_select == i + 1 else normal_c
+		)
 
-	# Square thingieees
-	var selected_opt = labels[h_select - 1] # Which option is currently selected
-	var select_pos = selected_opt.global_position # The position of the selected option
+	var selected_opt = labels[h_select - 1]
+	var select_pos = selected_opt.global_position
 	leftsqr.show()
 	rightsqr.show()
-
 	leftsqr.global_position = select_pos + Vector2(-selected_opt.size.x / 6, 4)
 	rightsqr.global_position = select_pos + Vector2(selected_opt.size.x / 0.86, 4)
 
@@ -72,3 +97,11 @@ func story_mode() -> void:
 		add_child(select_file_instance)
 	else:
 		print("Stop spamming u gimp")
+
+func open_options() -> void:
+	select.play()
+	if options_instance == null or not is_instance_valid(options_instance):
+		options_instance = OptionsScene.instantiate()
+		add_child(options_instance)
+	else:
+		print("poopyhead")
