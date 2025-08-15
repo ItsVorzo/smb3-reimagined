@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqqvmdxu25lu6"]
+[gd_scene load_steps=25 format=3 uid="uid://dqqvmdxu25lu6"]
 
 [ext_resource type="Script" uid="uid://b2spl8qenv44c" path="res://Scripts/options.gd" id="1_35y0k"]
 [ext_resource type="Texture2D" uid="uid://bxx3h2tm25hre" path="res://Sprites/Title Screen/Options/OptionsBG.png" id="1_jt3no"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://vosaei014mpv" path="res://Sprites/Title Screen/Options/OptionsBack.png" id="5_jme0m"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="6_qamcq"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="7_qamcq"]
+[ext_resource type="AudioStream" uid="uid://dhrkcose1nf4s" path="res://Audio/Sfx/HammerBroMove.wav" id="8_lb2cc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ww8vx"]
 atlas = ExtResource("2_j6lap")
@@ -163,13 +164,20 @@ theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
 text = "vsync:"
 
-[node name="VSyncValue" type="Label" parent="Options/Display"]
-offset_left = 77.0
+[node name="VSyncValueButton" type="Button" parent="Options/Display"]
+offset_left = 112.0
 offset_top = -34.0
 offset_right = 136.0
 offset_bottom = -26.0
+flat = true
+
+[node name="VSyncValue" type="Label" parent="Options/Display/VSyncValueButton"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
+text = "off"
 horizontal_alignment = 2
 
 [node name="SizeLabel" type="Label" parent="Options/Display"]
@@ -181,13 +189,20 @@ theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
 text = "size:"
 
-[node name="SizeValue" type="Label" parent="Options/Display"]
-offset_left = 96.0
+[node name="SizeValueButton" type="Button" parent="Options/Display"]
+offset_left = 72.0
 offset_top = -19.0
 offset_right = 136.0
 offset_bottom = -11.0
+flat = true
+
+[node name="SizeValue" type="Label" parent="Options/Display/SizeValueButton"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
+text = "extended"
 horizontal_alignment = 2
 
 [node name="ModeLabel" type="Label" parent="Options/Display"]
@@ -199,13 +214,20 @@ theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
 text = "mode:"
 
-[node name="ModeValue" type="Label" parent="Options/Display"]
+[node name="ModeValueButton" type="Button" parent="Options/Display"]
 offset_left = 16.0
 offset_top = -49.0
 offset_right = 136.0
 offset_bottom = -41.0
+flat = true
+
+[node name="ModeValue" type="Label" parent="Options/Display/ModeValueButton"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
+text = "borderless full"
 horizontal_alignment = 2
 
 [node name="DropShadowLabel" type="Label" parent="Options/Display"]
@@ -217,13 +239,20 @@ theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
 text = "drop shadows:"
 
-[node name="DropShadowValue" type="Label" parent="Options/Display"]
-offset_left = 16.0
+[node name="DropShadowValueButton" type="Button" parent="Options/Display"]
+offset_left = 112.0
 offset_top = -4.0
 offset_right = 136.0
 offset_bottom = 4.0
+flat = true
+
+[node name="DropShadowValue" type="Label" parent="Options/Display/DropShadowValueButton"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
+text = "off"
 horizontal_alignment = 2
 
 [node name="Audio" type="Node2D" parent="Options"]
@@ -253,5 +282,9 @@ stream = ExtResource("6_qamcq")
 
 [node name="SwitchTabs" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_qamcq")
+
+[node name="ChangeOption" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_lb2cc")
+volume_db = 5.0
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
