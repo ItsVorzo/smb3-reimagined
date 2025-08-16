@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ju034si5ep0"
-path="res://.godot/imported/ButtonsH.png-d33715aaad990574bd5cc3ef2ed3ab1e.ctex"
+uid="uid://ccssra2jcnjls"
+path="res://.godot/imported/Border.png-5c83eed8b9f816fb5c38573a1f5f8e06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Title Screen/ButtonsH.png"
-dest_files=["res://.godot/imported/ButtonsH.png-d33715aaad990574bd5cc3ef2ed3ab1e.ctex"]
+source_file="res://Sprites/Title Screen/Language Select/Border.png"
+dest_files=["res://.godot/imported/Border.png-5c83eed8b9f816fb5c38573a1f5f8e06.ctex"]
 
 [params]
 

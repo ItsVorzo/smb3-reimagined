@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dawpvf3shdiyn"
-path="res://.godot/imported/FileSelectPlusBG.png-9a9090d7cca117f0e440eaeec190f1f9.ctex"
+uid="uid://d1fblsspn8v1w"
+path="res://.godot/imported/Goombrat.png-b6d7a1d920031fd8469ec04605aa8593.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Title Screen/File Select/FileSelectPlusBG.png"
-dest_files=["res://.godot/imported/FileSelectPlusBG.png-9a9090d7cca117f0e440eaeec190f1f9.ctex"]
+source_file="res://Sprites/Enemies/Goombrat.png"
+dest_files=["res://.godot/imported/Goombrat.png-b6d7a1d920031fd8469ec04605aa8593.ctex"]
 
 [params]
 

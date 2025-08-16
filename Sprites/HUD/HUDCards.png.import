@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwr5wnkq7hrwa"
-path="res://.godot/imported/FileSelectPlusSaves.png-61762c01f308fe581588f3573fc386f7.ctex"
+uid="uid://brlsmf08iwmx"
+path="res://.godot/imported/HUDCards.png-41dea95fc330c3ae01b0f4e99b1587da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Title Screen/File Select/FileSelectPlusSaves.png"
-dest_files=["res://.godot/imported/FileSelectPlusSaves.png-61762c01f308fe581588f3573fc386f7.ctex"]
+source_file="res://Sprites/HUD/HUDCards.png"
+dest_files=["res://.godot/imported/HUDCards.png-41dea95fc330c3ae01b0f4e99b1587da.ctex"]
 
 [params]
 

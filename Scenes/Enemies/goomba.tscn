@@ -1,47 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://citjnab4fdvsq"]
+[gd_scene load_steps=6 format=3 uid="uid://citjnab4fdvsq"]
 
 [ext_resource type="Script" uid="uid://daoo0xupkg4p4" path="res://goomba.gd" id="1_kh66b"]
-[ext_resource type="Texture2D" uid="uid://4edc0hcou80l" path="res://Sprites/Enemies/Goomba.png" id="2_87vcy"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kh66b"]
-atlas = ExtResource("2_87vcy")
-region = Rect2(96, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ei57l"]
-atlas = ExtResource("2_87vcy")
-region = Rect2(0, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gb1sd"]
-atlas = ExtResource("2_87vcy")
-region = Rect2(16, 0, 16, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_k2lpc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kh66b")
-}],
-"loop": true,
-"name": &"squish",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei57l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gb1sd")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://lobjog7nfli0" path="res://Sprites/Enemies/goomba.tres" id="2_kh66b"]
+[ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_87vcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtl1w"]
-size = Vector2(16, 16)
+size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2u2c"]
-size = Vector2(16, 3)
+size = Vector2(14, 6.375)
 
 [node name="Goomba" type="CharacterBody2D"]
 collision_layer = 3
@@ -50,28 +17,29 @@ script = ExtResource("1_kh66b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
-sprite_frames = SubResource("SpriteFrames_k2lpc")
+sprite_frames = ExtResource("2_kh66b")
 animation = &"walk"
 autoplay = "walk"
-frame = 1
-frame_progress = 0.56877166
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_vtl1w")
-
-[node name="RayCast2D_Left" type="RayCast2D" parent="."]
-target_position = Vector2(-3, 31)
-
-[node name="RayCast2D_Right" type="RayCast2D" parent="."]
-target_position = Vector2(3, 31)
-
-[node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
-target_position = Vector2(14, 0)
-collide_with_areas = true
 
 [node name="HeadStompArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadStompArea"]
-position = Vector2(0, -8.5)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_o2u2c")
+
+[node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
+position = Vector2(-8, 6)
+target_position = Vector2(-1, 0)
+collide_with_areas = true
+
+[node name="RayCast2D_LedgeCheck" type="RayCast2D" parent="."]
+position = Vector2(-8, 10)
+target_position = Vector2(0, 16)
+collide_with_areas = true
+
+[node name="Stomp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_87vcy")

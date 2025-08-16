@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceo6q588iyc0g"
-path="res://.godot/imported/FileSelectPlusUtil.png-9639ed4b15bc60dbcf490615650f25bb.ctex"
+uid="uid://bq6ccvr140i8a"
+path="res://.godot/imported/Languages.png-530918c9f7dd9bc2b3d2f6a75047fcb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Title Screen/File Select/FileSelectPlusUtil.png"
-dest_files=["res://.godot/imported/FileSelectPlusUtil.png-9639ed4b15bc60dbcf490615650f25bb.ctex"]
+source_file="res://Sprites/Title Screen/Language Select/Languages.png"
+dest_files=["res://.godot/imported/Languages.png-530918c9f7dd9bc2b3d2f6a75047fcb1.ctex"]
 
 [params]
 

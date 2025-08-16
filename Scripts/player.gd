@@ -15,12 +15,12 @@ const air_frc_speed = 200.0
 const base_jump = -420.0
 const WALK_JUMP_VELOCITY = -300.0
 const RUN_JUMP_VELOCITY = -420.0
-const MAX_JUMP_HOLD_TIME = 0.2  # Max duration jump can be held (in seconds)
+const MAX_JUMP_HOLD_TIME = 0.2
 
 const FALL_GRAVITY_MULTIPLIER = 1.5
 const JUMP_CUTOFF_MULTIPLIER = 2.0
 
-const COYOTE_TIME = 0.12  # seconds
+const COYOTE_TIME = 0.12
 const JUMP_BUFFER_TIME = 0.1
 
 var p_meter = 0.0
@@ -43,9 +43,8 @@ var is_skidding = false
 var is_crouching = false
 var is_running = false
 
-var facing_direction := 1  # 1 = right, -1 = left
-
-var is_super := false  # Super Mario state flag
+var facing_direction := 1
+var is_super := false
 
 func _process(_delta):
 	# === Set the sprite x scale ===
@@ -57,13 +56,10 @@ func _process(_delta):
 	animated_sprite.scale.x = facing_direction
 
 	# === Set max speeds ===
-	#if p_meter < p_meter_max:
 	if InputManager.B:
 		max_speed = run_speed
 	else:
 		max_speed = walk_speed
-	#else:
-	#	max_speed = p_speed
 
 	# === P meter ===
 	p_meter = clamp(p_meter, 0, p_meter_max)
@@ -76,27 +72,23 @@ func _process(_delta):
 
 func power_up():
 	if is_super:
-		return  # Already powered up, ignore
-
+		return
 	is_super = true
 	print("Mario powered up!")
 
-	# Switch collision shapes
 	normal_collision_shape.disabled = true
 	super_collision_shape.disabled = false
 
-	# Play power-up animation or effect
 	animated_sprite.play("power_up")
 
-func bounce():
-	velocity.y = -300  # Adjust as needed
-	
-func play_squish_sound():
-	$SquishSoundPlayer.play()
+func bounce_on_enemy() -> void:
+	if Input.is_action_pressed("A"):
+		velocity.y = -400.0
+	else:
+		velocity.y = -300.0
 
 func _ready() -> void:
-	add_to_group("Player")
-	# Ensure super collision shape disabled by default
+	add_to_group("Player")  # <-- fixed group name
 	super_collision_shape.disabled = true
 
 func _physics_process(delta: float) -> void:
@@ -111,8 +103,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		jump_buffer_timer -= delta
 
-	# === Move ===
-	# I will make this whole section shorter lmao
+	# === Horizontal Movement ===
 	if !InputManager.input_disabled or !InputManager.direction_disabled or !InputManager.x_direction_disabled:
 		if InputManager.direction == 1:
 			if velocity.x < 0:
@@ -143,15 +134,13 @@ func _physics_process(delta: float) -> void:
 		if InputManager.down:
 			InputManager.x_direction_disabled = true
 			velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
-		else: InputManager.x_direction_disabled = false
+		else:
+			InputManager.x_direction_disabled = false
 	else:
 		InputManager.x_direction_disabled = false
 
 	if velocity.x == 0:
 		is_skidding = false
-
-	# === Skid Detection ===
-	#is_skidding = is_on_floor() and direction != 0 and sign(velocity.x) != sign(direction) and abs(velocity.x) > 20
 
 	# === Gravity and Jumping ===
 	if not is_on_floor():
@@ -185,7 +174,6 @@ func _physics_process(delta: float) -> void:
 		is_jump_pressed = false
 
 	# === Animation ===
-
 	if is_on_floor():
 		if InputManager.down:
 			animated_sprite.play("crouch")
@@ -203,5 +191,4 @@ func _physics_process(delta: float) -> void:
 		else:
 			animated_sprite.play("jump")
 
-	# === Move ===
 	move_and_slide()

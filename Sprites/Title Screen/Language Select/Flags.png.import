@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1q0honvsy7qh"
-path="res://.godot/imported/CharSelectPlayers.png-46c0d40b9849ec973cb74300de6a94fd.ctex"
+uid="uid://h63e0ise6tn7"
+path="res://.godot/imported/Flags.png-3f26cecdb2601e63c82e667722c88091.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Title Screen/Character Select/CharSelectPlayers.png"
-dest_files=["res://.godot/imported/CharSelectPlayers.png-46c0d40b9849ec973cb74300de6a94fd.ctex"]
+source_file="res://Sprites/Title Screen/Language Select/Flags.png"
+dest_files=["res://.godot/imported/Flags.png-3f26cecdb2601e63c82e667722c88091.ctex"]
 
 [params]
 

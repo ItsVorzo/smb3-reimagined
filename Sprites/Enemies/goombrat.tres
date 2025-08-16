@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dy2qwm66khivm"]
+
+[ext_resource type="Texture2D" uid="uid://d1fblsspn8v1w" path="res://Sprites/Enemies/Goombrat.png" id="1_hd5c7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhf6q"]
+atlas = ExtResource("1_hd5c7")
+region = Rect2(96, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jixy"]
+atlas = ExtResource("1_hd5c7")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oljou"]
+atlas = ExtResource("1_hd5c7")
+region = Rect2(16, 0, 16, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhf6q")
+}],
+"loop": true,
+"name": &"squish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jixy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oljou")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
