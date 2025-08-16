@@ -117,6 +117,16 @@ script = ExtResource("1_35y0k")
 [node name="BG" type="Sprite2D" parent="."]
 texture = ExtResource("1_jt3no")
 
+[node name="CurrentTab" type="Label" parent="."]
+offset_left = -39.0
+offset_top = -70.0
+offset_right = 140.0
+offset_bottom = -62.0
+theme_override_fonts/font = ExtResource("3_j6lap")
+theme_override_font_sizes/font_size = 8
+text = "tab"
+horizontal_alignment = 1
+
 [node name="Tabs" type="VBoxContainer" parent="."]
 offset_left = -136.0
 offset_top = -49.0
@@ -173,11 +183,12 @@ flat = true
 
 [node name="VSyncValue" type="Label" parent="Options/Display/VSyncValueButton"]
 layout_mode = 0
+offset_left = -85.0
 offset_right = 24.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
-text = "off"
+text = "maybe"
 horizontal_alignment = 2
 
 [node name="SizeLabel" type="Label" parent="Options/Display"]
@@ -202,7 +213,7 @@ offset_right = 64.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
-text = "extended"
+text = "probably"
 horizontal_alignment = 2
 
 [node name="ModeLabel" type="Label" parent="Options/Display"]
@@ -227,7 +238,7 @@ offset_right = 120.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("3_j6lap")
 theme_override_font_sizes/font_size = 8
-text = "borderless full"
+text = "no game"
 horizontal_alignment = 2
 
 [node name="DropShadowLabel" type="Label" parent="Options/Display"]
@@ -258,6 +269,33 @@ horizontal_alignment = 2
 [node name="Audio" type="Node2D" parent="Options"]
 
 [node name="Gameplay" type="Node2D" parent="Options"]
+visible = false
+
+[node name="CameraModeLabel" type="Label" parent="Options/Gameplay"]
+offset_left = -35.0
+offset_top = -49.0
+offset_right = 13.0
+offset_bottom = -41.0
+theme_override_fonts/font = ExtResource("3_j6lap")
+theme_override_font_sizes/font_size = 8
+text = "camera mode:"
+
+[node name="CameraModeValueButton" type="Button" parent="Options/Gameplay"]
+offset_left = 60.0
+offset_top = -49.0
+offset_right = 136.0
+offset_bottom = -41.0
+flat = true
+
+[node name="CameraModeValue" type="Label" parent="Options/Gameplay/CameraModeValueButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 76.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("3_j6lap")
+theme_override_font_sizes/font_size = 8
+text = "smooth"
+horizontal_alignment = 2
 
 [node name="Moveset" type="Node2D" parent="Options"]
 

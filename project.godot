@@ -22,6 +22,7 @@ SaveManager="*res://Scripts/SaveManager.gd"
 InputManager="*res://Scripts/InputManager.gd"
 ThemeManager="*res://Scripts/ThemeManager.gd"
 MathFunc="*res://Scripts/MathFunc.gd"
+ConfigManager="*res://Scripts/ConfigManager.gd"
 
 [display]
 
