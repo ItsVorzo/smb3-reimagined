@@ -1,10 +1,10 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://esrq6tiij1y1"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://hen0ae01qfr7"]
 
-[ext_resource type="Texture2D" uid="uid://do2ut3e4a8owx" path="res://Sprites/Tilesets/Underground/Underground.png" id="1_rde3g"]
-[ext_resource type="Texture2D" uid="uid://cplp855jxy8to" path="res://Sprites/Blocks/GeneralUnderground.png" id="2_3lj6t"]
+[ext_resource type="Texture2D" uid="uid://rnopmmr0kmdl" path="res://Sprites/Tilesets/Snow/Snow.png" id="1_yln72"]
+[ext_resource type="Texture2D" uid="uid://ct80id47lue80" path="res://Sprites/Blocks/GeneralSnow.png" id="2_5loxc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ywuv"]
-texture = ExtResource("1_rde3g")
+texture = ExtResource("1_yln72")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -39,7 +39,7 @@ texture = ExtResource("1_rde3g")
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b5n32"]
-texture = ExtResource("2_3lj6t")
+texture = ExtResource("2_5loxc")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0

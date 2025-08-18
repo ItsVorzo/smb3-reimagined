@@ -96,13 +96,21 @@ func _reset_break_sound_flag():
 	GlobalAudio.break_sound_played = false
 
 func apply_theme(theme: String):
-	var new_texture_path = "res://Sprites/Blocks/General%s.png" % theme
-	var new_texture = load(new_texture_path)
+	var tex_path = "res://Sprites/Blocks/General%s.png" % theme
+	var new_texture = load(tex_path)
+	if not new_texture:
+		push_warning("Theme texture not found at %s" % tex_path)
+		return
 
 	var frames = sprite.sprite_frames
-	for animation_name in frames.get_animation_names():
-		var frame_count = frames.get_frame_count(animation_name)
+	for anim_name in frames.get_animation_names():
+		var frame_count = frames.get_frame_count(anim_name)
 		for i in range(frame_count):
-			var frame_tex = frames.get_frame(animation_name, i)
+			var frame_tex = frames.get_frame_texture(anim_name, i)
 			if frame_tex is AtlasTexture:
-				frame_tex.atlas = new_texture
+				# Keep same rect, swap atlas
+				var rect = frame_tex.region
+				var atlas = AtlasTexture.new()
+				atlas.atlas = new_texture
+				atlas.region = rect
+				frames.set_frame(anim_name, i, atlas)

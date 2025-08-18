@@ -18,6 +18,7 @@
 
 [node name="1-1" type="Node2D"]
 script = ExtResource("1_q0pi4")
+theme = "Underground"
 
 [node name="ThemeManager" type="Node2D" parent="."]
 script = ExtResource("2_q0pi4")
@@ -69,6 +70,7 @@ position = Vector2(174, 20)
 offset = Vector2(0, -46)
 zoom = Vector2(3, 3)
 drag_vertical_enabled = true
+drag_top_margin = 1.0
 drag_bottom_margin = 0.0
 script = ExtResource("11_saxwf")
 

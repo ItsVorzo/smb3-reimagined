@@ -132,7 +132,7 @@ func confirm_character():
 		save_data = {
 			"character_index": player1_character_index,
 			"world_number": 1,
-			"lives": 3,
+			"lives": 5,
 			"coins": 0,
 			"powerup_state": "small",
 		}

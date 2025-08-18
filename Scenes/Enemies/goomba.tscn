@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://citjnab4fdvsq"]
+[gd_scene load_steps=7 format=3 uid="uid://citjnab4fdvsq"]
 
 [ext_resource type="Script" uid="uid://daoo0xupkg4p4" path="res://goomba.gd" id="1_kh66b"]
 [ext_resource type="SpriteFrames" uid="uid://lobjog7nfli0" path="res://Sprites/Enemies/goomba.tres" id="2_kh66b"]
@@ -9,6 +9,9 @@ size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2u2c"]
 size = Vector2(14, 6.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87vcy"]
+size = Vector2(20, 12)
 
 [node name="Goomba" type="CharacterBody2D"]
 collision_layer = 3
@@ -30,6 +33,12 @@ shape = SubResource("RectangleShape2D_vtl1w")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadStompArea"]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_o2u2c")
+
+[node name="DeathArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_87vcy")
 
 [node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
 position = Vector2(-8, 6)

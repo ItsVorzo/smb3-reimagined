@@ -65,14 +65,21 @@ func activate_block():
 
 
 func apply_theme(theme: String):
-	var theme_path = "res://Sprites/Blocks/qb_%s.tres" % theme.to_lower()
-	var new_texture = load(theme_path)
-
+	var tex_path = "res://Sprites/Blocks/General%s.png" % theme
+	var new_texture = load(tex_path)
 	if not new_texture:
-		push_warning("Theme texture not found at %s" % theme_path)
+		push_warning("Theme texture not found at %s" % tex_path)
 		return
 
-	for anim_name in sprite.sprite_frames.get_animation_names():
-		var frame_count = sprite.sprite_frames.get_frame_count(anim_name)
+	var frames = sprite.sprite_frames
+	for anim_name in frames.get_animation_names():
+		var frame_count = frames.get_frame_count(anim_name)
 		for i in range(frame_count):
-			sprite.sprite_frames.set_frame(anim_name, i, new_texture)
+			var frame_tex = frames.get_frame_texture(anim_name, i)
+			if frame_tex is AtlasTexture:
+				# Keep same rect, swap atlas
+				var rect = frame_tex.region
+				var atlas = AtlasTexture.new()
+				atlas.atlas = new_texture
+				atlas.region = rect
+				frames.set_frame(anim_name, i, atlas)

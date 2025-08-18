@@ -1,13 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://bem03d4usrw1w"]
+[gd_scene load_steps=17 format=3 uid="uid://bem03d4usrw1w"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="2_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/JumpSmall.wav" id="3_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://d1xtkpmqyle5h" path="res://Audio/Sfx/Die.wav" id="5_fkybt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("2_6t5aa")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(288, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
 atlas = ExtResource("2_6t5aa")
@@ -45,6 +50,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}],
+"loop": true,
+"name": &"dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -104,7 +117,7 @@ script = ExtResource("1_cvnsp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_3smsa")
-animation = &"run"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
@@ -120,3 +133,7 @@ bus = &"SFX"
 
 [node name="SquishSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_vgqql")
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fkybt")
+max_distance = 4096.0
