@@ -70,10 +70,6 @@ func on_player_death(player: Player) -> void:
 	# (Your Camera is a child of Level; it has freeze_here())
 	if camera and camera.has_method("freeze_here"):
 		camera.freeze_here()
-	else:
-		# fallback: lock the camera in place
-		if camera:
-			camera.position = player.global_position
 
 	# === Pause the HUD time counter (no 'has()' call) ===
 	if SaveManager.hud:
@@ -99,6 +95,7 @@ func on_player_death(player: Player) -> void:
 
 	# When death sound finishes → decrement life and go to the correct world map
 	player.death_sound.finished.connect(func():
+		get_tree().paused = false
 		var lives = int(SaveManager.runtime_data.get("lives", 3))
 		SaveManager.runtime_data["lives"] = max(0, lives - 1)
 		SaveManager.commit_runtime_to_save(save_index)

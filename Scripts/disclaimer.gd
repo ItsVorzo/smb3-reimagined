@@ -26,6 +26,6 @@ func _ready() -> void:
 		can_skip = true
 	)
 
-func _input(event: InputEvent) -> void:
-	if can_skip and InputManager.any:
+func _process(_delta) -> void:
+	if can_skip and InputManager.Apress:
 		get_tree().change_scene_to_file("res://Scenes/UI/title_screen.tscn")

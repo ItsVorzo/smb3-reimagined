@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="1_o6wq3"]
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
-[ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
+[ext_resource type="Script" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/question_block.tscn" id="2_w4w3d"]
 [ext_resource type="TileSet" uid="uid://d2d88m0rb8jmc" path="res://Sprites/Tilesets/Overworld/Overworld.tres" id="3_q0pi4"]
 [ext_resource type="TileSet" uid="uid://bxmp0vsvcclhb" path="res://Sprites/Gizmos/Pipes.tres" id="4_noyq2"]
@@ -21,6 +21,7 @@ script = ExtResource("1_q0pi4")
 theme = "Underground"
 
 [node name="ThemeManager" type="Node2D" parent="."]
+process_mode = 3
 script = ExtResource("2_q0pi4")
 
 [node name="TerrainTileMap" type="TileMapLayer" parent="."]
@@ -57,22 +58,22 @@ position = Vector2(664, -39)
 position = Vector2(584, -39)
 item_scene = ExtResource("7_w4w3d")
 
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(1085, -6)
+offset = Vector2(0, -46)
+zoom = Vector2(3, 3)
+drag_top_margin = 1.0
+drag_bottom_margin = 0.0
+script = ExtResource("11_saxwf")
+
 [node name="Player" parent="." instance=ExtResource("7_ftxpn")]
 position = Vector2(911, -26)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Player"]
+process_mode = 3
 position = Vector2(0, -1)
 stream = ExtResource("10_x1pt7")
 autoplay = true
-
-[node name="Camera" type="Camera2D" parent="Player"]
-position = Vector2(174, 20)
-offset = Vector2(0, -46)
-zoom = Vector2(3, 3)
-drag_vertical_enabled = true
-drag_top_margin = 1.0
-drag_bottom_margin = 0.0
-script = ExtResource("11_saxwf")
 
 [node name="Overworld" parent="." instance=ExtResource("8_28jxv")]
 position = Vector2(251, 342)

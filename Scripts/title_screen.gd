@@ -59,12 +59,11 @@ func _process(_delta):
 			update_selection()
 
 		if !$Curtain/AnimationPlayer.is_playing():
-			match h_select:
-				1:
-					if InputManager.Apress:
+			if InputManager.Apress:
+				match h_select:
+					1:
 						story_mode()
-				2:
-					if InputManager.Apress:
+					2:
 						open_options()
 
 func _is_submenu_open() -> bool:

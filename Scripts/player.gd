@@ -100,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		match death_state:
 			"pause":
-				velocity = Vector2.ZERO
+				velocity.x = 0
 				animated_sprite.play("dead")
 				# wait for Level.gd to push us to "jump"
 			"jump", "fall":
@@ -216,8 +216,12 @@ func _physics_process(delta: float) -> void:
 func die() -> void:
 	if is_dead:
 		return
+	velocity.x = 0
 	is_dead = true
 	InputManager.input_disabled = true
+
+	# Freeze the game
+	get_tree().paused = true
 
 	# Play death animation immediately
 	animated_sprite.play("dead")

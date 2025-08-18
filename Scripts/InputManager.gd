@@ -14,7 +14,6 @@ var up_press
 var down_press
 var right_press
 var direction
-var any
 
 # === Flags ===
 var input_disabled = false
@@ -47,4 +46,3 @@ func _process(_delta: float) -> void:
 				right = Input.is_action_pressed("up")
 				left_press = Input.is_action_just_pressed("left")
 				right_press = Input.is_action_just_pressed("right")
-		any = Apress or Bpress or left_press or up_press or down_press or right_press

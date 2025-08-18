@@ -111,6 +111,7 @@ animations = [{
 size = Vector2(10, 13)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+process_mode = 3
 position = Vector2(0, 1)
 script = ExtResource("1_cvnsp")
 
