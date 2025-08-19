@@ -8,7 +8,7 @@
 size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2u2c"]
-size = Vector2(14, 6.375)
+size = Vector2(14, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87vcy"]
 size = Vector2(20, 12)
@@ -21,7 +21,7 @@ script = ExtResource("1_kh66b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = ExtResource("2_kh66b")
-animation = &"walk"
+animation = &"stuck"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,7 +31,7 @@ shape = SubResource("RectangleShape2D_vtl1w")
 [node name="HeadStompArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadStompArea"]
-position = Vector2(0, -3)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_o2u2c")
 
 [node name="DeathArea" type="Area2D" parent="."]
