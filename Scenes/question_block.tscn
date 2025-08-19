@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bbd73syl17cd4" path="res://Scripts/question_block.gd" id="1_3o4kp"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/ThemeManager.gd" id="2_0tb1o"]
-[ext_resource type="SpriteFrames" uid="uid://htc1l7bob76" path="res://Sprites/Blocks/qb_overworld.tres" id="3_0tb1o"]
+[ext_resource type="SpriteFrames" uid="uid://dfkoja8mtllgv" path="res://Sprites/Blocks/qb_overworld.tres" id="3_0tb1o"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="3_11yax"]
 [ext_resource type="AudioStream" uid="uid://dbjp0jc3b34fs" path="res://Audio/Sfx/ItemPop.wav" id="3_hjt4u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6yht"]
-size = Vector2(12, 2)
+size = Vector2(16, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tb1o"]
 size = Vector2(16, 16)

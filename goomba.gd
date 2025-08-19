@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 var direction: int = -1
 var stomped: bool = false
+var stuck: bool = false   # NEW: track if Goomba is stuck
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
@@ -31,18 +32,26 @@ func _ready() -> void:
 	ray_ledge.enabled = is_goombrat
 	_update_rays()
 
+	# Start checking if Goomba gets stuck
+	_check_stuck_loop()
+
 func _physics_process(delta: float) -> void:
 	if stomped:
 		return
 
 	velocity.y += gravity * delta
-	velocity.x = speed * direction
 
-	if ray_wall.is_colliding():
-		_flip_direction()
+	# If stuck, don't move
+	if not stuck:
+		velocity.x = speed * direction
+	else:
+		velocity.x = 0
 
-	if is_goombrat and not ray_ledge.is_colliding():
-		_flip_direction()
+	if not stuck: # Only flip directions if not stuck
+		if ray_wall.is_colliding():
+			_flip_direction()
+		if is_goombrat and not ray_ledge.is_colliding():
+			_flip_direction()
 
 	move_and_slide()
 
@@ -89,3 +98,43 @@ func _die() -> void:
 
 	var timer := get_tree().create_timer(death_time)
 	timer.timeout.connect(queue_free)
+
+# ======================
+# NEW: Stuck Detection
+# ======================
+
+# ======================
+# NEW: Stuck Detection
+# ======================
+
+func _check_stuck_loop() -> void:
+	_check_stuck()
+	var timer = get_tree().create_timer(0.5)
+	timer.timeout.connect(_check_stuck_loop)
+
+func _check_stuck() -> void:
+	var space_state = get_world_2d().direct_space_state
+
+	# Ray to the left
+	var left_params = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(-10, 0))
+	left_params.exclude = [self]
+	var left_result = space_state.intersect_ray(left_params)
+
+	# Ray to the right
+	var right_params = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(10, 0))
+	right_params.exclude = [self]
+	var right_result = space_state.intersect_ray(right_params)
+
+	# Stuck only if both sides blocked
+	if left_result and right_result:
+		if not stuck:
+			stuck = true
+			sprite.play("stuck")
+		# freeze only horizontal movement
+		velocity.x = 0
+	else:
+		if stuck:
+			stuck = false
+			sprite.play("walk")
+		# restore horizontal movement
+		velocity.x = speed * direction

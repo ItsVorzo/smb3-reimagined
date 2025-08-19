@@ -30,35 +30,48 @@ func activate_block():
 	hit_sound.play()
 	bounce_anim.play("bounce")
 
+	# Short delay for bounce animation
 	await get_tree().create_timer(0.15).timeout
 
 	sprite.play("empty")
 
 	if item_scene:
 		var item_holder := Node2D.new()
-		item_holder.position = global_position
+		# Place holder slightly above the block
+		item_holder.position = global_position - Vector2(0, 16)
 		item_holder.z_index = z_index - 1
 		get_tree().current_scene.add_child(item_holder)
 
 		var item = item_scene.instantiate()
-		item_holder.add_child(item)
-		item.position = Vector2.ZERO
+		# Mark coin as from block if it supports it
+		if "from_block" in item:
+			item.from_block = true
 
-		var tween = create_tween()
-		tween.set_trans(Tween.TRANS_LINEAR)
-		tween.set_ease(Tween.EASE_IN)
-		tween.tween_property(item_holder, "position", global_position - Vector2(0, 16), 0.5)
-		
-		tween.tween_callback(func():
+		item_holder.add_child(item)
+
+		var scene_path := item_scene.resource_path
+
+		if scene_path.ends_with("coin.tscn"):
+			# For coins: no tween, just place above the block
 			item_holder.remove_child(item)
 			get_tree().current_scene.add_child(item)
 			item.global_position = item_holder.global_position
 			item.z_index = z_index - 1
 			item_holder.queue_free()
-		)
-
-		var scene_path := item_scene.resource_path
-		if not scene_path.ends_with("coin.tscn"):
+			item_pop_sound.play()  # optional for coin pop sound
+		else:
+			# For other items: upward pop animation
+			var tween = create_tween()
+			tween.set_trans(Tween.TRANS_LINEAR)
+			tween.set_ease(Tween.EASE_IN)
+			tween.tween_property(item_holder, "position", global_position - Vector2(0, 24), 0.5)
+			tween.tween_callback(func():
+				item_holder.remove_child(item)
+				get_tree().current_scene.add_child(item)
+				item.global_position = item_holder.global_position
+				item.z_index = z_index - 1
+				item_holder.queue_free()
+			)
 			item_pop_sound.play()
 
 	$CollisionShape2D.disabled = true
