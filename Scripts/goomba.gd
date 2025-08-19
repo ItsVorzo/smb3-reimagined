@@ -103,10 +103,6 @@ func _die() -> void:
 # NEW: Stuck Detection
 # ======================
 
-# ======================
-# NEW: Stuck Detection
-# ======================
-
 func _check_stuck_loop() -> void:
 	_check_stuck()
 	var timer = get_tree().create_timer(0.5)

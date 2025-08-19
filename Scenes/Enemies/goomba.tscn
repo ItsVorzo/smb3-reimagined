@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://citjnab4fdvsq"]
 
-[ext_resource type="Script" uid="uid://daoo0xupkg4p4" path="res://goomba.gd" id="1_kh66b"]
+[ext_resource type="Script" uid="uid://daoo0xupkg4p4" path="res://Scripts/goomba.gd" id="1_kh66b"]
 [ext_resource type="SpriteFrames" uid="uid://lobjog7nfli0" path="res://Sprites/Enemies/goomba.tres" id="2_kh66b"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_87vcy"]
 
@@ -14,6 +14,7 @@ size = Vector2(14, 5)
 size = Vector2(20, 12)
 
 [node name="Goomba" type="CharacterBody2D"]
+process_mode = 1
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_kh66b")
