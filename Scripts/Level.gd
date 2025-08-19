@@ -7,8 +7,9 @@ extends Node2D
 @onready var pipe_tilemap = $PipeTileMap
 @onready var bgm = $Player/BGM
 @onready var hud = $HUD
-@onready var camera: Camera2D = $Camera2D
+@onready var camera: Camera2D = $Camera
 @onready var player: Player = $Player
+@onready var bottom_pit: Area2D = $CameraGroundLimit
 
 var save_index := 0
 const BLOCK_SIZE := 16
@@ -84,14 +85,15 @@ func on_player_death(player: Player) -> void:
 	# Play death sound
 	player.death_sound.play()
 
-	# After 0.36 sec → short hop up (≈3.5 blocks)
-	var pause_timer := get_tree().create_timer(0.36)
-	pause_timer.timeout.connect(func():
-		var jump_blocks := 3.5
-		player.velocity = Vector2.ZERO
-		player.velocity.y = -sqrt(2 * player.grav_speed * BLOCK_SIZE * jump_blocks)
-		player.death_state = "jump"
-	)
+	# After 0.36 sec → short hop up (≈3.5 blocks) if you didn't die from a pit
+	if player.global_position.y < bottom_pit.global_position.y + 48:
+		var pause_timer := get_tree().create_timer(0.36)
+		pause_timer.timeout.connect(func():
+			var jump_blocks := 3.5
+			player.velocity = Vector2.ZERO
+			player.velocity.y = -sqrt(2 * player.grav_speed * BLOCK_SIZE * jump_blocks)
+			player.death_state = "jump"
+		)
 
 	# When death sound finishes → decrement life and go to the correct world map
 	player.death_sound.finished.connect(func():

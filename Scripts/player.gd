@@ -33,6 +33,7 @@ var velocity_direction = sign(velocity.x)
 @onready var normal_collision_shape := $CollisionShape2D
 @onready var super_collision_shape := $SuperCollisionShape2D
 @onready var death_sound: AudioStreamPlayer2D = $DeathSoundPlayer
+@onready var bottom_pit := $"../CameraGroundLimit"
 
 # === State ===
 var jump_buffer_timer = 0.0
@@ -147,7 +148,7 @@ func _physics_process(delta: float) -> void:
 
 	if InputManager.direction == 0 or InputManager.input_disabled or InputManager.direction_disabled or InputManager.x_direction_disabled:
 		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
-	print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
+	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 
 	if is_on_floor():
 		if InputManager.down:
@@ -210,7 +211,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			animated_sprite.play("jump")
 
-	
+	# Player dies when you fall in a pit
+	if !is_dead:
+		if global_position.y > bottom_pit.global_position.y + 48: die()
 
 	move_and_slide()
 

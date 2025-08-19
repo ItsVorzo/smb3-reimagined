@@ -4,11 +4,12 @@ var center_x = 0.0
 var center_y = 0.0
 var shift_x: float = 0.0
 var shift_y: float = 0.0
-var top_margin: float = 70.0
-var bottom_margin: float = -48.0
+var top_margin: float = 84.0
+var bottom_margin: float = -40.0
 @onready var Plr: CharacterBody2D = $"../Player"
 @onready var camlimit_left := $"../CameraLimitLeft"
 @onready var camlimit_right := $"../CameraLimitRight"
+@onready var camlimit_ground := $"../CameraGroundLimit"
 
 
 var frozen := false
@@ -46,15 +47,16 @@ func _process(_delta: float) -> void:
 	# Move the camera vertically
 	var final_y_pos = global_position.y
 	# When we will have tanooki this will work
-	# Vertical camera moving
-	if Plr.global_position.y < global_position.y - top_margin:
-		final_y_pos = Plr.position.y + top_margin
+	#if Plr.global_position.y < global_position.y - top_margin:
+	#	final_y_pos = Plr.position.y + top_margin
 	if Plr.global_position.y > global_position.y + bottom_margin:
 		final_y_pos = Plr.global_position.y - bottom_margin
 
+	var camera_y = min(final_y_pos + shift_y, camlimit_ground.global_position.y)
+
 	# Apply position if not frozen
 	global_position.x = camera_x
-	global_position.y = final_y_pos + shift_y
+	global_position.y = camera_y
 
 	# Don't let the player go offscreen
 	Plr.global_position.x = clamp(Plr.global_position.x, camlimit_left.global_position.x + 16, camlimit_right.global_position.x - 16)

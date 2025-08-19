@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://htr458mvxcyt"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yu3pj"]
+
+[node name="CameraGroundLimit" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("SegmentShape2D_yu3pj")
+debug_color = Color(0.5647059, 0.39215687, 1, 0.5529412)
