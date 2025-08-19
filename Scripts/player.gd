@@ -210,6 +210,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			animated_sprite.play("jump")
 
+	
+
 	move_and_slide()
 
 # ======= Death entry point (added) =======

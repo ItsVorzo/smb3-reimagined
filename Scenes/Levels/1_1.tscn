@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=18 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="1_o6wq3"]
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bem03d4usrw1w" path="res://Scenes/player.tscn" id="7_ftxpn"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="7_w4w3d"]
 [ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
+[ext_resource type="PackedScene" uid="uid://cxkafas67lmod" path="res://Scenes/cameralimitright.tscn" id="10_28jxv"]
+[ext_resource type="PackedScene" uid="uid://bfjxybinsknj5" path="res://Scenes/cameralimitleft.tscn" id="10_ftxpn"]
 [ext_resource type="PackedScene" uid="uid://citjnab4fdvsq" path="res://Scenes/Enemies/goomba.tscn" id="10_o6wq3"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Camera.gd" id="11_saxwf"]
@@ -57,6 +59,12 @@ position = Vector2(664, -39)
 [node name="QuestionBlock" parent="." instance=ExtResource("2_w4w3d")]
 position = Vector2(584, -39)
 item_scene = ExtResource("7_w4w3d")
+
+[node name="CameraLimitLeft" parent="." instance=ExtResource("10_ftxpn")]
+position = Vector2(256, -10)
+
+[node name="CameraLimitRight" parent="." instance=ExtResource("10_28jxv")]
+position = Vector2(1680, 214)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(1085, -6)

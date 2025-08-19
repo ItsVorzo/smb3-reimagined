@@ -23,6 +23,7 @@ InputManager="*res://Scripts/InputManager.gd"
 ThemeManager="*res://Scripts/ThemeManager.gd"
 MathFunc="*res://Scripts/MathFunc.gd"
 ConfigManager="*res://Scripts/ConfigManager.gd"
+GameManager="*res://Scripts/GameManager.gd"
 
 [display]
 
