@@ -21,6 +21,7 @@ func _on_body_exited(body):
 
 func _process(_delta):
 	if player_inside and InputManager.Apress and not level_transition_started:
+		InputManager.input_disabled = true
 		level_transition_started = true
 
 		# Get the root of the current scene
@@ -38,5 +39,6 @@ func _process(_delta):
 			await enter_level_sound.finished  # wait until sound finishes
 
 		# Change scene after sound finishes
+		InputManager.input_disabled = false
 		if level_scene_path != "":
 			get_tree().change_scene_to_file(level_scene_path)
