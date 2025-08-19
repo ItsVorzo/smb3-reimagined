@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bpt12tgpm70ys"]
+[gd_scene load_steps=18 format=3 uid="uid://bpt12tgpm70ys"]
 
 [ext_resource type="Script" uid="uid://bh6akojg55un8" path="res://Scripts/level_entrance.gd" id="1_ry522"]
 [ext_resource type="Texture2D" uid="uid://ce5dirnc4lclh" path="res://Sprites/Tilesets/WorldMaps/Levels.png" id="2_fg5sb"]
+[ext_resource type="AudioStream" uid="uid://d8nt0fqqkekh" path="res://Audio/Sfx/MapStart.mp3" id="3_fg5sb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fy40d"]
 size = Vector2(16, 16)
@@ -162,6 +163,9 @@ shape = SubResource("RectangleShape2D_fy40d")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2i11j")
 animation = &"start"
+
+[node name="EnterLevelSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fg5sb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
