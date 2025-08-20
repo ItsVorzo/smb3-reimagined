@@ -9,7 +9,7 @@ const acc_speed = 3.28125
 const frc_speed = 3.28125
 const skid_speed = 7.5
 
-const jump_force = [-217.5, -225.0, -240, -258.75]
+const jump_speeds = [-217.5, -225.0, -240, -258.75]
 
 const coyote_time = 0.1
 const jump_buffer_time = 0.1
@@ -76,10 +76,11 @@ func _process(delta):
 
 	# === P meter ===
 	p_meter = clamp(p_meter, 0, p_meter_max)
-	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
-		p_meter += 1
-	elif p_meter > 0:
-		p_meter -= 0.583
+	if p_meter < p_meter_max:
+		if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
+			p_meter += 1
+		elif p_meter > 0:
+			p_meter -= 0.583
 
 func power_up():
 	if is_super:
@@ -173,8 +174,8 @@ func _physics_process(delta: float) -> void:
 
 	# === Jumping ===
 	if InputManager.Apress and jump_buffer_timer > 0.0 and coyote_timer > 0.0 or InputManager.Apress and is_on_floor():
-		var dx = floor(abs(velocity.x)/60)
-		velocity.y = jump_force[dx]
+		var final_jump_speed = floor(abs(velocity.x)/60)
+		velocity.y = jump_speeds[final_jump_speed]
 		jump_buffer_timer = 0.0
 		coyote_timer = 0.0
 		jump.play()
