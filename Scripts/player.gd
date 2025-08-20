@@ -16,7 +16,9 @@ var run_speed = PhysicsVal.run_speed[character_index]
 var p_speed = PhysicsVal.p_speed[character_index]
 var acc_speed = PhysicsVal.acc_speed[character_index]
 var frc_speed = PhysicsVal.frc_speed[character_index]
+var ice_frc_speed = PhysicsVal.ice_frc_speed[character_index]
 var skid_speed = PhysicsVal.skid_speed[character_index]
+var ice_skid_speed = PhysicsVal.ice_skid_speed[character_index]
 var end_level_walk = PhysicsVal.end_level_walk
 var airship_cutscene_walk = PhysicsVal.airship_cutscene_walk
 

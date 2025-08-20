@@ -4,7 +4,9 @@ class_name PhysicsVal
 # === Flat ground ===
 const acc_speed = [3.28125, 3.28125, 3.28125, 3.28125]
 const frc_speed = [3.28125, 3.28125, 3.28125, 3.28125]
+const ice_frc_speed = [0.703125, 0.703125, 0.703125, 0.703125]
 const skid_speed = [7.5, 7.5, 7.5, 7.5]
+const ice_skid_speed = [2.8125, 2.8125, 2.8125, 2.8125]
 const walk_speed = [90.0, 90.0, 90.0, 90.0]
 const run_speed = [150.0, 150.0, 150.0, 150.0]
 const p_speed = [210.0, 210.0, 210.0, 210.0]
