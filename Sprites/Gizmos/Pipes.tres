@@ -103,4 +103,4 @@ texture = ExtResource("1_ty4qm")
 
 [resource]
 physics_layer_0/collision_layer = 1
-sources/5 = SubResource("TileSetAtlasSource_noyq2")
+sources/0 = SubResource("TileSetAtlasSource_noyq2")
