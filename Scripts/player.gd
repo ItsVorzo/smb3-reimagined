@@ -147,7 +147,7 @@ func _physics_process(delta: float) -> void:
 
 	if InputManager.direction == 0 and is_on_floor() or InputManager.down and is_on_floor():
 		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
-	print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
+	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 	#print(previous_max_speed > max_speed)
 	#print(previous_max_speed, " + ", max_speed, " current speed: ", velocity.x)
 

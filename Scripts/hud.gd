@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var coins_label: Label = $HUD_BG/CoinLabel
 @onready var time_label: Label = $HUD_BG/TimeLabel
 @onready var lives_label: Label = $HUD_BG/LivesLabel
+@onready var Plr = $"../Player"
 
 var time_timer: Timer
 var time_running := true   # <--- NEW FLAG
@@ -14,6 +15,7 @@ func update_labels():
 	var save_data = SaveManager.runtime_data
 	var temp_data = SaveManager.temp_level_data
 
+	
 	player_icon.frame = int(save_data.get("character_index", 0))
 	world_label.text = str(int(save_data.get("world_number", 1)))
 	coins_label.text = str(int(save_data.get("coins", 0))).pad_zeros(2)

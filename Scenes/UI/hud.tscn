@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgrkg4fljhhtx"]
+[gd_scene load_steps=12 format=3 uid="uid://dgrkg4fljhhtx"]
 
 [ext_resource type="Script" uid="uid://dlgo7p71eleis" path="res://Scripts/hud.gd" id="1_fdl0h"]
 [ext_resource type="Texture2D" uid="uid://bxoy0w7deusa1" path="res://Sprites/HUD/HUD.png" id="1_sprlj"]
 [ext_resource type="Texture2D" uid="uid://js85vkejxaxq" path="res://Sprites/Title Screen/File Select/FileSelectCharIcon.png" id="3_8glcj"]
+[ext_resource type="Script" uid="uid://ch7nd6k6smqft" path="res://Scripts/HUDElements.gd" id="3_vsu76"]
 [ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="4_8glcj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ny26j"]
@@ -60,6 +61,7 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_ny26j")
+script = ExtResource("3_vsu76")
 
 [node name="PlayerIcon" type="AnimatedSprite2D" parent="HUD_BG"]
 position = Vector2(17.333334, 23.666672)
