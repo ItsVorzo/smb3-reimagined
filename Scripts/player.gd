@@ -5,26 +5,19 @@ class_name Player
 const walk_speed = 90.0
 const run_speed = 150.0
 const p_speed = 210.0
-const acc_speed = 3.75
-const air_acc_speed = 400.0
-const frc_speed = 3.75
-const skid_speed = 10.0
-const air_frc_speed = 200.0
+const acc_speed = 3.28125
+const frc_speed = 3.28125
+const skid_speed = 7.5
 
-const base_jump = -420.0
-const WALK_JUMP_VELOCITY = -300.0
-const RUN_JUMP_VELOCITY = -420.0
-const MAX_JUMP_HOLD_TIME = 0.2
+const jump_force = [-217.5, -225.0, -240, -258.75]
 
-const FALL_GRAVITY_MULTIPLIER = 1.5
-const JUMP_CUTOFF_MULTIPLIER = 2.0
-
-const COYOTE_TIME = 0.12
-const JUMP_BUFFER_TIME = 0.1
+const coyote_time = 0.1
+const jump_buffer_time = 0.1
 
 var p_meter = 0.0
 var p_meter_max = 70.0
-var max_speed = 0.0
+var previous_max_speed = walk_speed
+var max_speed = walk_speed
 var grav_speed = 800.0
 var velocity_direction = sign(velocity.x)
 
@@ -38,11 +31,7 @@ var velocity_direction = sign(velocity.x)
 # === State ===
 var jump_buffer_timer = 0.0
 var coyote_timer = 0.0
-var jump_held_timer = 0.0
-var is_jump_pressed = false
 var is_skidding = false
-var is_crouching = false
-var is_running = false
 
 var facing_direction := 1
 var is_super := false
@@ -51,7 +40,7 @@ var is_super := false
 var is_dead := false
 var death_state := "idle"   # "idle", "pause", "jump", "fall"
 
-func _process(_delta):
+func _process(delta):
 	# === Set the sprite x scale ===
 	if is_on_floor():
 		if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
@@ -60,20 +49,37 @@ func _process(_delta):
 		facing_direction = InputManager.direction
 	animated_sprite.scale.x = facing_direction
 
-	# === Set max speeds ===
-	if InputManager.B:
-		max_speed = run_speed
+	# === Timers ===
+	if not is_on_floor():
+		coyote_timer -= delta
 	else:
-		max_speed = walk_speed
+		coyote_timer = coyote_time
+
+	if InputManager.Apress:
+		jump_buffer_timer = jump_buffer_time
+	else:
+		jump_buffer_timer -= delta
+
+	# === Set max speeds ===
+	if p_meter < p_meter_max:
+		if InputManager.B:
+			max_speed = run_speed
+			if abs(velocity.x) < run_speed: previous_max_speed = walk_speed
+			else: previous_max_speed = run_speed
+		else:
+			max_speed = walk_speed
+			if abs(velocity.x) > walk_speed + 3: previous_max_speed = run_speed
+	else:
+		max_speed = p_speed
+		previous_max_speed = run_speed
+	if is_skidding or abs(velocity.x) < walk_speed: previous_max_speed = walk_speed
 
 	# === P meter ===
 	p_meter = clamp(p_meter, 0, p_meter_max)
-	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor():
+	if abs(velocity.x) >= run_speed and InputManager.B:
 		p_meter += 1
-	else:
-		p_meter -= 1
-	if p_meter < 0:
-		p_meter = 0
+	elif p_meter > 0 or (not is_on_floor() and p_meter >= p_meter_max):
+		p_meter -= 0.583
 
 func power_up():
 	if is_super:
@@ -87,10 +93,10 @@ func power_up():
 	animated_sprite.play("power_up")
 
 func bounce_on_enemy() -> void:
-	if Input.is_action_pressed("A"):
-		velocity.y = -400.0
+	if InputManager.A:
+		velocity.y = -240.0
 	else:
-		velocity.y = -300.0
+		velocity.y = -180.0
 
 func _ready() -> void:
 	add_to_group("Player")  # <-- fixed group name
@@ -112,17 +118,6 @@ func _physics_process(delta: float) -> void:
 		return
 	# ======= END DEATH OVERRIDE =======
 
-	# === Timers ===
-	if not is_on_floor():
-		coyote_timer -= delta
-	else:
-		coyote_timer = COYOTE_TIME
-
-	if InputManager.Apress:
-		jump_buffer_timer = JUMP_BUFFER_TIME
-	else:
-		jump_buffer_timer -= delta
-
 	# === Horizontal Movement ===
 	if !InputManager.input_disabled or !InputManager.direction_disabled or !InputManager.x_direction_disabled:
 		if InputManager.direction == 1:
@@ -133,8 +128,10 @@ func _physics_process(delta: float) -> void:
 				is_skidding = false
 				if velocity.x < max_speed:
 					velocity.x += acc_speed
-				else:
+				elif previous_max_speed > max_speed:
 					velocity.x -= frc_speed
+				else:
+					velocity.x = max_speed
 		elif InputManager.direction == -1:
 			if velocity.x > 0:
 				velocity.x -= skid_speed
@@ -143,12 +140,16 @@ func _physics_process(delta: float) -> void:
 				is_skidding = false
 				if velocity.x > -max_speed:
 					velocity.x -= acc_speed
-				else:
+				elif -previous_max_speed < -max_speed:
 					velocity.x += frc_speed
+				else:
+					velocity.x = -max_speed
 
-	if InputManager.direction == 0 or InputManager.input_disabled or InputManager.direction_disabled or InputManager.x_direction_disabled:
+	if InputManager.direction == 0 and is_on_floor() or InputManager.down and is_on_floor():
 		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
-	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
+	print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
+	#print(previous_max_speed > max_speed)
+	#print(previous_max_speed, " + ", max_speed, " current speed: ", velocity.x)
 
 	if is_on_floor():
 		if InputManager.down:
@@ -163,35 +164,20 @@ func _physics_process(delta: float) -> void:
 		is_skidding = false
 
 	# === Gravity and Jumping ===
+	var final_grav_speed: float
 	if not is_on_floor():
-		if velocity.y < 0 and not InputManager.A:
-			velocity.y += grav_speed * JUMP_CUTOFF_MULTIPLIER * delta
-		elif velocity.y > 0:
-			velocity.y += grav_speed * FALL_GRAVITY_MULTIPLIER * delta
-		else:
-			velocity.y += grav_speed * delta
-	else:
-		velocity.y = 0.0
-
-	if velocity.y > 470:
-		velocity.y = 470
+		if velocity.y < -120 and InputManager.A: final_grav_speed = 256.0
+		else: final_grav_speed = 1280.0
+	if not is_on_floor(): velocity.y += final_grav_speed * delta
+	velocity.y = min(velocity.y, 240)
 
 	# === Jumping ===
-	if jump_buffer_timer > 0.0 and coyote_timer > 0.0:
-		var jump_velocity = RUN_JUMP_VELOCITY if is_running else WALK_JUMP_VELOCITY
-		velocity.y = jump_velocity
-		is_jump_pressed = true
-		jump_held_timer = 0.0
+	if InputManager.Apress and jump_buffer_timer > 0.0 and coyote_timer > 0.0 or InputManager.Apress and is_on_floor():
+		var dx = floor(abs(velocity.x)/60)
+		velocity.y = jump_force[dx]
 		jump_buffer_timer = 0.0
 		coyote_timer = 0.0
 		jump.play()
-
-	if is_jump_pressed and InputManager.A:
-		jump_held_timer += delta
-		if jump_held_timer > MAX_JUMP_HOLD_TIME:
-			is_jump_pressed = false
-	else:
-		is_jump_pressed = false
 
 	# === Animation ===
 	if is_on_floor():
@@ -204,15 +190,17 @@ func _physics_process(delta: float) -> void:
 		elif abs(velocity.x) > 0 and max_speed != p_speed:
 			animated_sprite.play("walk", max(1, 0.03 * abs(velocity.x)))
 		elif max_speed == p_speed:
-			animated_sprite.play("run", 1)
+			animated_sprite.play("run", 6)
 	else:
 		if InputManager.down:
 			animated_sprite.play("crouch")
-		else:
+		elif max_speed != p_speed:
 			animated_sprite.play("jump")
+		else:
+			animated_sprite.play("fly")
 
 	# Player dies when you fall in a pit
-	if !is_dead:
+	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 48: die()
 
 	move_and_slide()
