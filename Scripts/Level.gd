@@ -91,7 +91,7 @@ func on_player_death(player: Player) -> void:
 		pause_timer.timeout.connect(func():
 			var jump_blocks := 3.5
 			player.velocity = Vector2.ZERO
-			player.velocity.y = -sqrt(2 * player.grav_speed * BLOCK_SIZE * jump_blocks)
+			player.velocity.y = -sqrt(2 * player.death_gravity * BLOCK_SIZE * jump_blocks)
 			player.death_state = "jump"
 		)
 

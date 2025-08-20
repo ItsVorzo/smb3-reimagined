@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
-[ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
+[ext_resource type="Script" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
 [ext_resource type="Texture2D" uid="uid://d2ukxwymwh44b" path="res://Sprites/152106.png" id="3_noyq2"]
 [ext_resource type="TileSet" uid="uid://d2d88m0rb8jmc" path="res://Sprites/Tilesets/Overworld/Overworld.tres" id="3_q0pi4"]
 [ext_resource type="TileSet" uid="uid://bxmp0vsvcclhb" path="res://Sprites/Gizmos/Pipes.tres" id="4_noyq2"]
