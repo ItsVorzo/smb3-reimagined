@@ -76,9 +76,9 @@ func _process(delta):
 
 	# === P meter ===
 	p_meter = clamp(p_meter, 0, p_meter_max)
-	if abs(velocity.x) >= run_speed and InputManager.B:
+	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
 		p_meter += 1
-	elif p_meter > 0 or (not is_on_floor() and p_meter >= p_meter_max):
+	elif p_meter > 0:
 		p_meter -= 0.583
 
 func power_up():
@@ -187,9 +187,9 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("skid")
 		elif velocity.x == 0:
 			animated_sprite.play("idle")
-		elif abs(velocity.x) > 0 and max_speed != p_speed:
+		elif abs(velocity.x) > 0 and abs(velocity.x) <= run_speed:
 			animated_sprite.play("walk", max(1, 0.03 * abs(velocity.x)))
-		elif max_speed == p_speed:
+		elif abs(velocity.x) > run_speed:
 			animated_sprite.play("run", 6)
 	else:
 		if InputManager.down:
