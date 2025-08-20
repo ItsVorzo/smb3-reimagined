@@ -76,11 +76,10 @@ func _process(delta):
 
 	# === P meter ===
 	p_meter = clamp(p_meter, 0, p_meter_max)
-	if p_meter < p_meter_max:
-		if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
-			p_meter += 1
-		elif p_meter > 0:
-			p_meter -= 0.583
+	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
+		p_meter += 1
+	elif p_meter > 0:
+		p_meter -= 0.583
 
 func power_up():
 	if is_super:
