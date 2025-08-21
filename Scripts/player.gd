@@ -53,7 +53,8 @@ var max_speed = 0.0
 @onready var state_machine: StateMachine = $States
 var jump_buffer_timer = 0.12
 var coyote_timer = 0.12
-var is_skidding = false
+var crouching
+var skidding = false
 var is_super := false
 var is_dead := false
 
@@ -87,31 +88,12 @@ func _physics_process(delta: float) -> void:
 
 	if is_dead:
 		return
-
-	# === Horizontal Movement ===
-	if InputManager.direction == 1:
-		if velocity.x < 0:
-			is_skidding = true
-			velocity.x += skid_speed
-		else:
-			is_skidding = false
-			velocity.x = move_toward(velocity.x, final_max_speed(), acc_speed)
-	elif InputManager.direction == -1:
-		if velocity.x > 0:
-			is_skidding = true
-			velocity.x -= skid_speed
-		else:
-			is_skidding = false
-			velocity.x = move_toward(velocity.x, -final_max_speed(), acc_speed)
-
-	# If you aren't holding a direction, slow down
-	if InputManager.direction == 0 and is_on_floor() or InputManager.down and is_on_floor():
-		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
+	print(state_machine.state.name)
 	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 
 	# Reset skidding
 	if InputManager.direction == 0:
-		is_skidding = false
+		skidding = false
 
 	# === Gravity and Jumping ===
 	if not is_on_floor():
@@ -128,7 +110,6 @@ func _physics_process(delta: float) -> void:
 	# Player dies when you fall in a pit
 	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 48: die()
-	print(state_machine.state.name)
 
 	move_and_slide()
 
