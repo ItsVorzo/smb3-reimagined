@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bem03d4usrw1w"]
+[gd_scene load_steps=24 format=3 uid="uid://bem03d4usrw1w"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="2_6t5aa"]
@@ -42,6 +42,10 @@ region = Rect2(224, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
 atlas = ExtResource("2_6t5aa")
 region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(256, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
 atlas = ExtResource("2_6t5aa")
@@ -114,6 +118,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fkybt")
 }, {
 "duration": 1.0,
@@ -154,7 +166,7 @@ script = ExtResource("6_tx1dd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_3smsa")
-animation = &"fly"
+animation = &"slide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
