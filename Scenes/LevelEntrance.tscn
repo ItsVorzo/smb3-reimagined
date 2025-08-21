@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bpt12tgpm70ys"]
 
-[ext_resource type="Script" uid="uid://bh6akojg55un8" path="res://Scripts/level_entrance.gd" id="1_ry522"]
+[ext_resource type="Script" uid="uid://bh6akojg55un8" path="res://Scripts/LevelEntrance.gd" id="1_ry522"]
 [ext_resource type="Texture2D" uid="uid://ce5dirnc4lclh" path="res://Sprites/Tilesets/WorldMaps/Levels.png" id="2_fg5sb"]
 [ext_resource type="AudioStream" uid="uid://d8nt0fqqkekh" path="res://Audio/Sfx/MapStart.mp3" id="3_fg5sb"]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://ocfk1qjcqtc4"]
 
-[ext_resource type="Script" uid="uid://dn0ysut3gti54" path="res://Scripts/brick.gd" id="1_hqb1c"]
+[ext_resource type="Script" uid="uid://dn0ysut3gti54" path="res://Scripts/Brick.gd" id="1_hqb1c"]
 [ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="1_lvh1d"]
-[ext_resource type="PackedScene" uid="uid://gbrdjg6531bw" path="res://Scenes/brick_debris.tscn" id="2_elass"]
+[ext_resource type="PackedScene" uid="uid://gbrdjg6531bw" path="res://Scenes/BrickDebris.tscn" id="2_elass"]
 [ext_resource type="AudioStream" uid="uid://dkyqdxth6tb52" path="res://Audio/Sfx/Break.wav" id="4_dr3dw"]
 [ext_resource type="AudioStream" uid="uid://dbjp0jc3b34fs" path="res://Audio/Sfx/ItemPop.wav" id="5_nhr6u"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="6_81w1a"]

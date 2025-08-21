@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=4 uid="uid://xwhpthdlc61v"]
 
-[ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/brick.tscn" id="1_v71h5"]
+[ext_resource type="PackedScene" uid="uid://ocfk1qjcqtc4" path="res://Scenes/Blocks/Brick.tscn" id="1_v71h5"]
 [ext_resource type="Texture2D" uid="uid://bm3j8e8nrjl6d" path="res://Sprites/Tilesets/ToadHouse.png" id="2_thvwr"]
-[ext_resource type="PackedScene" uid="uid://bem03d4usrw1w" path="res://Scenes/player.tscn" id="3_tgpjf"]
-[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="4_nw5wf"]
+[ext_resource type="PackedScene" uid="uid://bem03d4usrw1w" path="res://Scenes/Player.tscn" id="3_tgpjf"]
+[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/Overworld.tscn" id="4_nw5wf"]
 [ext_resource type="AudioStream" uid="uid://dwrnkj7k1qpq8" path="res://Audio/BGM/ToadHouse.ogg" id="5_u7nwc"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_yediy"]

@@ -1,9 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://bqtph6w8yxiqa"]
 
-[ext_resource type="Script" uid="uid://dafy3wdeopgp6" path="res://Scripts/overworld_player.gd" id="1_w8f4d"]
+[ext_resource type="Script" uid="uid://dafy3wdeopgp6" path="res://Scripts/OverworldPlayer.gd" id="1_w8f4d"]
 [ext_resource type="Texture2D" uid="uid://clyslwbvgmrbs" path="res://Sprites/Characters/Mario/MarioWorldMap.png" id="2_w8f4d"]
 [ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/JumpSmall.wav" id="3_ghqbo"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="4_64nex"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_64nex"]
 atlas = ExtResource("2_w8f4d")

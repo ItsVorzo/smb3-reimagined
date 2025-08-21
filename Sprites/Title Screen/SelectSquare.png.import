@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4wqr565iby1h"
-path="res://.godot/imported/OnOff_Blocks.png-29b38930484cb64ad73ae3892d68cfa0.ctex"
+uid="uid://i72bn023shol"
+path="res://.godot/imported/SelectSquare.png-e1f5e4537bc3ab4616ecdf493160b0a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Blocks/OnOff_Blocks.png"
-dest_files=["res://.godot/imported/OnOff_Blocks.png-29b38930484cb64ad73ae3892d68cfa0.ctex"]
+source_file="res://Sprites/Title Screen/SelectSquare.png"
+dest_files=["res://.godot/imported/SelectSquare.png-e1f5e4537bc3ab4616ecdf493160b0a9.ctex"]
 
 [params]
 

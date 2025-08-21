@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://bem03d4usrw1w"]
 
-[ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/Player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="2_6t5aa"]
 [ext_resource type="Script" uid="uid://r2jyvocfl4bl" path="res://Scripts/StateMachine/States/Normal.gd" id="3_3smsa"]
 [ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/JumpSmall.wav" id="3_6t5aa"]
