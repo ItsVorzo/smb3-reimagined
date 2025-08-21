@@ -63,40 +63,12 @@ func apply_theme_to_blocks(node: Node) -> void:
 		apply_theme_to_blocks(child)
 
 func on_player_death(player: Player) -> void:
-	# Stop background music
-	if bgm.playing:
-		bgm.stop()
-
-	# === Freeze the camera using the camera script's API ===
-	# (Your Camera is a child of Level; it has freeze_here())
-	if camera and camera.has_method("freeze_here"):
-		camera.freeze_here()
-
-	# === Pause the HUD time counter (no 'has()' call) ===
-	if SaveManager.hud:
-		if SaveManager.hud.has_method("pause_time"):
-			SaveManager.hud.pause_time()
-		elif SaveManager.hud.has_method("set_time_running"):
-			SaveManager.hud.set_time_running(false)
-		else:
-			# fallback for HUDs that read runtime_data
-			SaveManager.runtime_data["timer_paused"] = true
-
-	# Play death sound
-	player.death_sound.play()
-
-	# After 0.36 sec → short hop up (≈3.5 blocks) if you didn't die from a pit
-	if player.global_position.y < bottom_pit.global_position.y + 48:
-		var pause_timer := get_tree().create_timer(0.36)
-		pause_timer.timeout.connect(func():
-			var jump_blocks := 3.5
-			player.velocity = Vector2.ZERO
-			player.velocity.y = -sqrt(2 * player.death_gravity * BLOCK_SIZE * jump_blocks)
-			player.death_state = "jump"
-		)
+	if bgm.playing: bgm.stop() # Stop background music
+	player.death_sound.play() # Play death sound
 
 	# When death sound finishes → decrement life and go to the correct world map
 	player.death_sound.finished.connect(func():
+		InputManager.input_disabled = false
 		get_tree().paused = false
 		var lives = int(SaveManager.runtime_data.get("lives", 3))
 		SaveManager.runtime_data["lives"] = max(0, lives - 1)
@@ -111,7 +83,4 @@ func on_player_death(player: Player) -> void:
 			get_tree().change_scene_to_file(map_path)
 		else:
 			push_error("World map not found: %s" % map_path)
-
-		InputManager.input_disabled = false
 	)
-	

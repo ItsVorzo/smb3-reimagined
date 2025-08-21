@@ -33,9 +33,12 @@ var jump_speeds = PhysicsVal.jump_speeds.slice(character_index * 4, 4)
 
 var low_gravity = PhysicsVal.low_gravity[character_index]
 var high_gravity = PhysicsVal.high_gravity[character_index]
-const death_gravity = 800.0
+const death_gravity = 420.0
 
 # === Other stuff ===
+var final_grav_speed: float
+var facing_direction := 1
+var velocity_direction: int
 const coyote_time = 0.1
 const jump_buffer_time = 0.1
 
@@ -43,21 +46,21 @@ var p_meter = 0.0
 var p_meter_max = 70.0
 var extra_p_frames = 16.0
 var max_speed = 0.0
-var velocity_direction: int
 
 # === States ===
-var jump_buffer_timer = 0.0
-var coyote_timer = 0.0
+@onready var state_machine: StateMachine = $States
+var jump_buffer_timer = 0.12
+var coyote_timer = 0.12
 var is_skidding = false
-
-var facing_direction := 1
 var is_super := false
-
-# === Death state (adds on top of old script, doesn't affect normal physics) ===
 var is_dead := false
-var death_state := "idle"   # "idle", "pause", "jump", "fall"
+
+func _ready() -> void:
+	add_to_group("Player")  # <-- fixed group name
+	super_collision_shape.disabled = true
 
 func _process(delta):
+	print(jump_buffer_time)
 	# === Set the sprite x scale ===
 	if is_on_floor():
 		if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
@@ -66,7 +69,7 @@ func _process(delta):
 		facing_direction = InputManager.direction
 	animated_sprite.scale.x = facing_direction
 
-	velocity_direction = sign(velocity.x)
+	velocity_direction = sign(velocity.x) # Get the velocity.x direction
 
 	# === Timers ===
 	if not is_on_floor():
@@ -77,66 +80,33 @@ func _process(delta):
 	if InputManager.Apress:
 		jump_buffer_timer = jump_buffer_time
 	else:
-		jump_buffer_timer -= delta
+		jump_buffer_timer -= 1
 
-	# === Set max speeds ===
+	# === Set variables ===
 	max_speed = final_max_speed()
+	p_meter = handle_p_meter()
 
-	# === P meter ===
-	p_meter = clamp(p_meter, 0, p_meter_max)
-	if p_meter > p_meter_max: p_meter = p_meter_max
-	if p_meter >= p_meter_max and InputManager.B and InputManager.direction == velocity_direction and abs(velocity.x) >= run_speed: 
-		extra_p_frames = 16.0
-	elif extra_p_frames > 0 && is_on_floor(): extra_p_frames -= 1
-	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
-		p_meter += 1
-	elif p_meter > 0 and extra_p_frames <= 0:
-		p_meter -= 0.583
-
-func _ready() -> void:
-	add_to_group("Player")  # <-- fixed group name
-	super_collision_shape.disabled = true
 
 func _physics_process(delta: float) -> void:
-	# ======= DEATH OVERRIDE (added) =======
+
 	if is_dead:
-		match death_state:
-			"pause":
-				velocity.x = 0
-				animated_sprite.play("dead")
-				# wait for Level.gd to push us to "jump"
-			"jump", "fall":
-				animated_sprite.play("dead")
-				# custom gravity; no normal physics while dead
-				velocity.y += death_gravity * delta
-				move_and_slide()
 		return
-	# ======= END DEATH OVERRIDE =======
 
 	# === Horizontal Movement ===
-	#if InputManager.direction != 0 and velocity.x == velocity_direction and abs(velocity.x) < max_speed:
-	#	velocity.x = move_toward(velocity.x, final_max_speed(), acc_speed)
-
 	if InputManager.direction == 1:
 		if velocity.x < 0:
 			velocity.x += skid_speed
-			is_skidding = true
 		else:
-			is_skidding = false
 			velocity.x = move_toward(velocity.x, final_max_speed(), acc_speed)
 	elif InputManager.direction == -1:
 		if velocity.x > 0:
 			velocity.x -= skid_speed
-			is_skidding = true
 		else:
-			is_skidding = false
 			velocity.x = move_toward(velocity.x, -final_max_speed(), acc_speed)
 
 	if InputManager.direction == 0 and is_on_floor() or InputManager.down and is_on_floor():
 		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
 	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
-	#print(previous_max_speed > max_speed)
-	#print(previous_max_speed, " + ", max_speed, " current speed: ", velocity.x)
 
 	if is_on_floor():
 		if InputManager.down:
@@ -151,7 +121,6 @@ func _physics_process(delta: float) -> void:
 		is_skidding = false
 
 	# === Gravity and Jumping ===
-	var final_grav_speed: float
 	if not is_on_floor():
 		if velocity.y < -120 and InputManager.A: final_grav_speed = low_gravity
 		else: final_grav_speed = high_gravity
@@ -166,42 +135,13 @@ func _physics_process(delta: float) -> void:
 		coyote_timer = 0.0
 		jump.play()
 
-	# === Slopes ===
-	#if get_slope_angle() < 27:
-	
-
-	# === Animation ===
-	if is_on_floor():
-		if InputManager.down:
-			animated_sprite.play("crouch")
-		elif is_skidding:
-			animated_sprite.play("skid")
-		elif velocity.x == 0:
-			animated_sprite.play("idle")
-		elif abs(velocity.x) > 0 and abs(velocity.x) <= run_speed + downhill_speed_modifier():
-			animated_sprite.play("walk", walk_anim_speed())
-		elif max_speed == p_speed:
-			animated_sprite.play("run", 6)
-	else:
-		if InputManager.down:
-			animated_sprite.play("crouch")
-		elif max_speed != p_speed:
-			animated_sprite.play("jump")
-		else:
-			animated_sprite.play("fly")
-
 	# Player dies when you fall in a pit
 	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 48: die()
-	print(velocity.x, " || ", downhill_speed_modifier(), is_on_floor())
 
 	move_and_slide()
 
-func walk_anim_speed():
-	if get_slope_angle() == 0: return max(1, 0.03 * abs(velocity.x))
-	elif get_slope_direction() == velocity_direction: return 3
-	else: return 4
-
+# === Power up! ===
 func power_up():
 	if is_super:
 		return
@@ -213,45 +153,32 @@ func power_up():
 
 	animated_sprite.play("power_up")
 
+# === Bounce on koopalings ===
 func bounce_on_enemy() -> void:
 	if InputManager.A:
 		velocity.y = -240.0
 	else:
 		velocity.y = -180.0
 
-# ======= Death entry point (added) =======
+# === DIE! ===
 func die() -> void:
-	if is_dead:
+	if state_machine.state.name == "Die":
 		return
-	velocity.x = 0
-	is_dead = true
-	InputManager.input_disabled = true
+	state_machine.change_state("Die")
 
-	# Freeze the game
-	get_tree().paused = true
+# === P meter ===
+func handle_p_meter():
+	p_meter = clamp(p_meter, 0, p_meter_max)
+	if p_meter > p_meter_max: p_meter = p_meter_max
+	if p_meter >= p_meter_max and InputManager.B and InputManager.direction == velocity_direction and abs(velocity.x) >= run_speed: 
+		extra_p_frames = 16.0
+	elif extra_p_frames > 0 && is_on_floor(): extra_p_frames -= 1
+	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
+		p_meter += 1
+	elif p_meter > 0 and extra_p_frames <= 0:
+		p_meter -= 0.583
 
-	# Play death animation immediately
-	animated_sprite.play("dead")
-
-	# Disable collisions so Mario phases through everything
-	normal_collision_shape.disabled = true
-	super_collision_shape.disabled = true
-	set_collision_layer(0)
-	set_collision_mask(0)
-
-	# Freeze the active camera exactly here (works no matter where the camera node lives)
-	var cam := get_viewport().get_camera_2d()
-	if cam and cam.has_method("freeze_here"):
-		cam.freeze_here()
-
-	# Stop all motion until Level.gd starts the death jump
-	velocity = Vector2.ZERO
-	death_state = "pause"
-
-	# Notify level
-	if get_tree().current_scene.has_method("on_player_death"):
-		get_tree().current_scene.on_player_death(self)
-# ======= End death entry point =======
+	return p_meter
 
 # === Get slopes info ===
 func get_slope_angle():
