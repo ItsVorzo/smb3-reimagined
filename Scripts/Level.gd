@@ -8,7 +8,7 @@ extends Node2D
 @onready var bgm = $Player/BGM
 @onready var hud = $HUD
 @onready var camera: Camera2D = $Camera
-@onready var player: Player = $Player
+@onready var plr: Player = $Player
 @onready var bottom_pit: Area2D = $CameraGroundLimit
 
 var save_index := 0

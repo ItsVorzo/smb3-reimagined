@@ -14,8 +14,12 @@ const end_level_walk = 75.0
 const airship_cutscene_walk = 120.0
 
 # === Slopes ===
+const added_gentle_slope_speed = [7.5, 7.5, 7.5, 7.5]
+const added_steep_slope_speed = [11.25, 11.25, 11.25, 11.25]
 const uphill_max_walk = [48.75, 48.75, 48.75, 48.75]
 const uphill_max_run = [82.5, 82.5, 82.5, 82.5]
+const gentle_sliding_acc = [3.75, 3.75, 3.75, 3.75]
+const steep_sliding_acc = [7.5, 7.5, 7.5, 7.5]
 const sliding_max_speed = 236.25
 
 # === Mid-air ===

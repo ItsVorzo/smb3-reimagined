@@ -1,15 +1,15 @@
 extends Camera2D
 
+@onready var Plr: CharacterBody2D = $"../Player"
+@onready var camlimit_left := $"../CameraLimitLeft"
+@onready var camlimit_right := $"../CameraLimitRight"
+@onready var camlimit_ground := $"../CameraGroundLimit"
 var center_x = 0.0
 var center_y = 0.0
 var shift_x: float = 0.0
 var shift_y: float = 0.0
 var top_margin: float = 84.0
 var bottom_margin: float = -40.0
-@onready var Plr: CharacterBody2D = $"../Player"
-@onready var camlimit_left := $"../CameraLimitLeft"
-@onready var camlimit_right := $"../CameraLimitRight"
-@onready var camlimit_ground := $"../CameraGroundLimit"
 
 
 var frozen := false
@@ -32,9 +32,9 @@ func _process(_delta: float) -> void:
 			shift_x = 0
 		1: # fixed panning
 			if abs(Plr.velocity.x) > 0:
-				shift_x = MathFunc.approach(shift_x, 30.0 * Plr.facing_direction, 0.8)
+				shift_x = move_toward(shift_x, 30.0 * Plr.facing_direction, 0.8)
 			elif Plr.velocity.x == 0:
-				shift_x = MathFunc.approach(shift_x, 0, 0.5)
+				shift_x = move_toward(shift_x, 0, 0.5)
 		2: # smooth panning
 			if abs(Plr.velocity.x) > 0:
 				shift_x = lerp(shift_x, Plr.velocity.x / 5.0, 0.1)
@@ -46,9 +46,9 @@ func _process(_delta: float) -> void:
 
 	# Move the camera vertically
 	var final_y_pos = global_position.y
-	# When we will have tanooki this will work
-	#if Plr.global_position.y < global_position.y - top_margin:
-	#	final_y_pos = Plr.position.y + top_margin
+	if Plr.p_meter >= Plr.p_meter_max:
+		if Plr.global_position.y < global_position.y - top_margin:
+			final_y_pos = Plr.position.y + top_margin
 	if Plr.global_position.y > global_position.y + bottom_margin:
 		final_y_pos = Plr.global_position.y - bottom_margin
 

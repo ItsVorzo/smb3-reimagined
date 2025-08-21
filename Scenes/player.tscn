@@ -125,6 +125,9 @@ size = Vector2(10, 13)
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 process_mode = 3
 position = Vector2(0, 1)
+floor_constant_speed = true
+floor_max_angle = 0.80285144
+floor_snap_length = 12.0
 script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
