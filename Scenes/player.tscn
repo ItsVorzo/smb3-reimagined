@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bem03d4usrw1w"]
+[gd_scene load_steps=23 format=3 uid="uid://bem03d4usrw1w"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="2_6t5aa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dvnwqitv57aee" path="res://Scripts/StateMachine/States/Die.gd" id="5_f1ek2"]
 [ext_resource type="AudioStream" uid="uid://d1xtkpmqyle5h" path="res://Audio/Sfx/Die.wav" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://d15vunn8fttm1" path="res://Scripts/StateMachine/States/Crouch.gd" id="5_tx1dd"]
+[ext_resource type="Script" uid="uid://dku66u6sy4t54" path="res://Scripts/StateMachine/States/Slide.gd" id="6_tx1dd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("2_6t5aa")
@@ -146,6 +147,9 @@ script = ExtResource("5_f1ek2")
 
 [node name="Crouch" type="Node" parent="States"]
 script = ExtResource("5_tx1dd")
+
+[node name="Slide" type="Node" parent="States"]
+script = ExtResource("6_tx1dd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)

@@ -9,7 +9,9 @@ func physics_process_update(_delta: float) -> void:
 	if player.is_dead:
 		state_machine.change_state("Die")
 	if InputManager.down && player.is_on_floor():
-		state_machine.change_state("Crouch")
+		if player.get_slope_angle() == 0:
+			state_machine.change_state("Crouch")
+		else: state_machine.change_state("Slide")
 
 func handle_animation():
 	# === Animation ===

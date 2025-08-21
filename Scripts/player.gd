@@ -62,18 +62,14 @@ func _ready() -> void:
 	add_to_group("Player")  # <-- fixed group name
 	super_collision_shape.disabled = true
 
+# === Logic ===
 func _process(delta):
 
-	# === Set the sprite x scale ===
-	if is_on_floor():
-		if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
-			facing_direction = InputManager.direction
-	elif InputManager.direction != 0:
-		facing_direction = InputManager.direction
-	animated_sprite.scale.x = facing_direction
-
-	velocity_direction = sign(velocity.x) # Get the velocity.x direction
-	print(velocity_direction, " + ", InputManager.direction, " + ", animated_sprite.animation)
+	# === Set variables ===
+	max_speed = final_max_speed()
+	p_meter = handle_p_meter()
+	animated_sprite.scale.x = sprite_direction()
+	velocity_direction = sign(velocity.x)
 
 	# === Timers ===
 	if not is_on_floor():
@@ -86,11 +82,7 @@ func _process(delta):
 	else:
 		jump_buffer_timer -= 1
 
-	# === Set variables ===
-	max_speed = final_max_speed()
-	p_meter = handle_p_meter()
-
-
+# === Physics ===
 func _physics_process(delta: float) -> void:
 
 	if is_dead:
@@ -112,10 +104,12 @@ func _physics_process(delta: float) -> void:
 			is_skidding = false
 			velocity.x = move_toward(velocity.x, -final_max_speed(), acc_speed)
 
+	# If you aren't holding a direction, slow down
 	if InputManager.direction == 0 and is_on_floor() or InputManager.down and is_on_floor():
 		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
 	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 
+	# Reset skidding
 	if InputManager.direction == 0:
 		is_skidding = false
 
@@ -125,7 +119,7 @@ func _physics_process(delta: float) -> void:
 		else: final_grav_speed = high_gravity
 		velocity.y += final_grav_speed * delta
 		velocity.y = min(velocity.y, 258.75)
-
+	# Jumping
 	if InputManager.Apress and is_on_floor():
 		var final_jump_speed = floor(abs(velocity.x)/60)
 		velocity.y = jump_speeds[final_jump_speed]
@@ -134,8 +128,18 @@ func _physics_process(delta: float) -> void:
 	# Player dies when you fall in a pit
 	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 48: die()
+	print(state_machine.state.name)
 
 	move_and_slide()
+
+func sprite_direction():
+	# === Set the sprite x scale ===
+	if is_on_floor():
+		if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
+			facing_direction = InputManager.direction
+	elif InputManager.direction != 0:
+		facing_direction = InputManager.direction
+	return facing_direction
 
 # === Power up! ===
 func power_up():
@@ -182,12 +186,24 @@ func get_slope_angle():
 func get_slope_direction():
 	return sign(get_floor_normal().x)
 
+# === Set final acceleration (this function is currently only used for sliding) ===
+func final_acc_speed():
+	if get_slope_angle() == 0:
+		return acc_speed
+	elif get_slope_angle() <= 27 && state_machine.state.name == "Slide":
+		return gentle_sliding_acc
+	else:
+		return steep_sliding_acc
+
 # === Set max speeds ===
 func final_max_speed():
 	var is_going_uphill = get_slope_direction() == -1 and InputManager.direction == 1 or get_slope_direction() == 1 and InputManager.direction == -1
 
+	# Uphill slope
 	if get_slope_angle() > 0 && is_going_uphill:
 			return uphill_max_run if InputManager.B else uphill_max_walk
+	elif state_machine.state.name == "Slide":
+		return sliding_max_speed if get_slope_angle() > 0 else 0.0
 	else:
 		if p_meter < p_meter_max:
 			if InputManager.B: return run_speed + downhill_speed_modifier()
@@ -197,6 +213,6 @@ func final_max_speed():
 # === Add speed downhill ===
 func downhill_speed_modifier():
 	if get_slope_angle() > 0 and get_slope_direction() == InputManager.direction:
-		if get_slope_angle() < 28: return added_gentle_slope_speed
+		if get_slope_angle() <= 27: return added_gentle_slope_speed
 		else: return added_steep_slope_speed
 	else: return 0
