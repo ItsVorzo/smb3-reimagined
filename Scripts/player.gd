@@ -155,6 +155,8 @@ func power_up():
 
 # === Bounce on koopalings ===
 func bounce_on_enemy() -> void:
+	if state_machine.state.name != "Normal":
+		state_machine.change_state("Normal")
 	if InputManager.A:
 		velocity.y = -240.0
 	else:
@@ -173,7 +175,7 @@ func handle_p_meter():
 	if p_meter >= p_meter_max and InputManager.B and InputManager.direction == velocity_direction and abs(velocity.x) >= run_speed: 
 		extra_p_frames = 16.0
 	elif extra_p_frames > 0 && is_on_floor(): extra_p_frames -= 1
-	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() or not is_on_floor() and p_meter >= p_meter_max:
+	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() and InputManager.direction == velocity_direction or not is_on_floor() and p_meter >= p_meter_max:
 		p_meter += 1
 	elif p_meter > 0 and extra_p_frames <= 0:
 		p_meter -= 0.583

@@ -7,5 +7,7 @@ func enter() -> void:
 func physics_process_update(_delta: float) -> void:
 	if player.is_on_floor():
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.frc_speed)
+		if player.get_slope_angle() > 0:
+			state_machine.change_state("Slide")
 		if !InputManager.down:
 			state_machine.change_state("Normal")
