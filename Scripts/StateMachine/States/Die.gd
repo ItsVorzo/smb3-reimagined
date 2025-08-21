@@ -13,12 +13,6 @@ func enter() -> void:
 	get_tree().paused = true # Freeze the game
 	player.animated_sprite.play("dead") # Play death animation
 
-	# Disable collisions so Mario phases through everything
-	player.normal_collision_shape.disabled = true
-	player.super_collision_shape.disabled = true
-	player.set_collision_layer(0)
-	player.set_collision_mask(0)
-
 	# Freeze the active camera exactly here (works no matter where the camera node lives)
 	var cam := get_viewport().get_camera_2d()
 	if cam and cam.has_method("freeze_here"):
@@ -33,6 +27,12 @@ func enter() -> void:
 
 
 func process_update(delta: float) -> void:
+	# Disable collisions so Mario phases through everything
+	player.normal_collision_shape.disabled = true
+	player.super_collision_shape.disabled = true
+	player.set_collision_layer(0)
+	player.set_collision_mask(0)
+
 	if can_fall:
 		player.velocity.y += player.death_gravity * delta
 	player.move_and_slide()

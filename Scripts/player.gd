@@ -30,6 +30,8 @@ var steep_sliding_acc = PhysicsVal.steep_sliding_acc[character_index]
 var sliding_max_speed = PhysicsVal.sliding_max_speed
 
 var jump_speeds = PhysicsVal.jump_speeds.slice(character_index * 4, 4)
+var strong_bounce = PhysicsVal.strong_bounce[character_index]
+var weak_bounce = PhysicsVal.weak_bounce[character_index]
 
 var low_gravity = PhysicsVal.low_gravity[character_index]
 var high_gravity = PhysicsVal.high_gravity[character_index]
@@ -38,7 +40,7 @@ const death_gravity = 420.0
 # === Other stuff ===
 var final_grav_speed: float
 var facing_direction := 1
-var velocity_direction: int
+var velocity_direction := 0.0
 const coyote_time = 0.1
 const jump_buffer_time = 0.1
 
@@ -56,11 +58,12 @@ var is_super := false
 var is_dead := false
 
 func _ready() -> void:
+
 	add_to_group("Player")  # <-- fixed group name
 	super_collision_shape.disabled = true
 
 func _process(delta):
-	print(jump_buffer_time)
+
 	# === Set the sprite x scale ===
 	if is_on_floor():
 		if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
@@ -70,6 +73,7 @@ func _process(delta):
 	animated_sprite.scale.x = facing_direction
 
 	velocity_direction = sign(velocity.x) # Get the velocity.x direction
+	print(velocity_direction, " + ", InputManager.direction, " + ", animated_sprite.animation)
 
 	# === Timers ===
 	if not is_on_floor():
@@ -95,44 +99,36 @@ func _physics_process(delta: float) -> void:
 	# === Horizontal Movement ===
 	if InputManager.direction == 1:
 		if velocity.x < 0:
+			is_skidding = true
 			velocity.x += skid_speed
 		else:
+			is_skidding = false
 			velocity.x = move_toward(velocity.x, final_max_speed(), acc_speed)
 	elif InputManager.direction == -1:
 		if velocity.x > 0:
+			is_skidding = true
 			velocity.x -= skid_speed
 		else:
+			is_skidding = false
 			velocity.x = move_toward(velocity.x, -final_max_speed(), acc_speed)
 
 	if InputManager.direction == 0 and is_on_floor() or InputManager.down and is_on_floor():
 		velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
 	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 
-	if is_on_floor():
-		if InputManager.down:
-			InputManager.x_direction_disabled = true
-			velocity.x -= min(abs(velocity.x), frc_speed) * sign(velocity.x)
-		else:
-			InputManager.x_direction_disabled = false
-	else:
-		InputManager.x_direction_disabled = false
-
-	if velocity.x == 0:
+	if InputManager.direction == 0:
 		is_skidding = false
 
 	# === Gravity and Jumping ===
 	if not is_on_floor():
 		if velocity.y < -120 and InputManager.A: final_grav_speed = low_gravity
 		else: final_grav_speed = high_gravity
-	if not is_on_floor(): velocity.y += final_grav_speed * delta
-	velocity.y = min(velocity.y, 258.75)
+		velocity.y += final_grav_speed * delta
+		velocity.y = min(velocity.y, 258.75)
 
-	# === Jumping ===
-	if InputManager.Apress and jump_buffer_timer > 0.0 and coyote_timer > 0.0 or InputManager.Apress and is_on_floor():
+	if InputManager.Apress and is_on_floor():
 		var final_jump_speed = floor(abs(velocity.x)/60)
 		velocity.y = jump_speeds[final_jump_speed]
-		jump_buffer_timer = 0.0
-		coyote_timer = 0.0
 		jump.play()
 
 	# Player dies when you fall in a pit
