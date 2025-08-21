@@ -78,7 +78,7 @@ func on_player_death(player: Player) -> void:
 			SaveManager.hud.update_labels()
 
 		var world_number = int(SaveManager.runtime_data.get("world_number", 1))
-		var map_path = "res://Scenes/WorldMaps/world_%d.tscn" % world_number
+		var map_path = "res://Scenes/WorldMaps/World%d.tscn" % world_number
 		if ResourceLoader.exists(map_path):
 			get_tree().change_scene_to_file(map_path)
 		else:

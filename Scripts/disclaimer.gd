@@ -28,4 +28,4 @@ func _ready() -> void:
 
 func _process(_delta) -> void:
 	if can_skip and InputManager.Apress:
-		get_tree().change_scene_to_file("res://Scenes/UI/title_screen.tscn")
+		get_tree().change_scene_to_file("res://Scenes/UI/TitleScreen.tscn")

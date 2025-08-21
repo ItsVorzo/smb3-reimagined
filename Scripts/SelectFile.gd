@@ -137,7 +137,7 @@ func _on_back_pressed() -> void:
 
 # --- New function to load Character Select screen ---
 func show_character_select(save_index: int):
-	var character_select_scene = preload("res://Scenes/UI/character_select.tscn").instantiate()
+	var character_select_scene = preload("res://Scenes/UI/CharacterSelect.tscn").instantiate()
 	character_select_scene.save_index = save_index
 	get_tree().root.add_child(character_select_scene)
 	queue_free()  # Close this screen

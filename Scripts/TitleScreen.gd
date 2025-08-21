@@ -3,8 +3,6 @@ extends Node2D
 @onready var music = $TitleMusic
 @onready var select = $Select
 @onready var movesfx = $Move
-@onready var option1 = $SinglePlayer
-@onready var option2 = $TextureButton
 @onready var opt1 = $StoryMode
 @onready var opt2 = $Options
 @onready var leftsqr = $LeftSquare
@@ -17,9 +15,9 @@ var animation_played := false
 var sprite_deleted := false
 
 # Scenes
-var SelectFileScene = preload("res://Scenes/UI/select_file.tscn")
+var SelectFileScene = preload("res://Scenes/UI/SelectFile.tscn")
 var OptionsScene = preload("res://Scenes/UI/options.tscn")
-var CharacterSelectScene = preload("res://Scenes/UI/character_select.tscn") # Only if needed
+var CharacterSelectScene = preload("res://Scenes/UI/CharacterSelect.tscn") # Only if needed
 
 # Instances
 var select_file_instance: Node = null

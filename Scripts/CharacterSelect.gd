@@ -175,7 +175,7 @@ func start_transition_to_world():
 	var save_data := SaveManager.load_game(save_index)
 	var world_number: int = int(save_data.get("world_number", 1))  # Ensure int type
 
-	var world_scene_path := "res://Scenes/WorldMaps/world_%d.tscn" % world_number
+	var world_scene_path := "res://Scenes/WorldMaps/World%d.tscn" % world_number
 	get_tree().change_scene_to_file(world_scene_path)
 	queue_free()
 

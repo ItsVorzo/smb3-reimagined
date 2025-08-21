@@ -39,7 +39,7 @@ const death_gravity = 420.0
 
 # === Other stuff ===
 var final_grav_speed: float
-var facing_direction := 1
+var facing_direction := 1.0
 var velocity_direction := 0.0
 const coyote_time = 0.1
 const jump_buffer_time = 0.1
