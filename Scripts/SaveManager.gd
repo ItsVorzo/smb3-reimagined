@@ -61,7 +61,7 @@ func start_runtime_from_save(save_index: int) -> void:
 			"coins": 0,
 			"lives": 3,
 			"time": 400,
-			"powerup_state": "small"
+			"powerup_state": "Small"
 		}
 	runtime_data = permanent.duplicate(true)
 	

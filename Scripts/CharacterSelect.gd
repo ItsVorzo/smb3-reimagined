@@ -134,7 +134,7 @@ func confirm_character():
 			"world_number": 1,
 			"lives": 5,
 			"coins": 0,
-			"powerup_state": "small",
+			"powerup_state": "Small",
 		}
 	else:
 		save_data = existing_data.duplicate()

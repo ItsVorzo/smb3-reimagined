@@ -191,13 +191,12 @@ func powerup_animation(powerup := "") -> void:
 	get_tree().paused = false
 	return
 
-# === Change powerup state
+# === Change powerup state ===
 func set_power_state(powerup: String) -> void:
 	if powerup in PowerUps.power_ups:
-		#pwrup.exit()
+		pwrup.exit()
 		pwrup = get_node("PowerUpStates/" + powerup)
-		#pwrup.enter()
-		
+		pwrup.enter()
 	else:
 		push_error("Invalid powerup name! %s" % powerup)
 
