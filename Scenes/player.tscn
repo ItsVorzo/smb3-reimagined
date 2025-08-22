@@ -14,13 +14,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
 size = Vector2(10, 13)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("pwrup") groups=["Player"]]
+z_index = 3
 position = Vector2(0, 1)
 collision_layer = 2
 floor_constant_speed = true
 floor_max_angle = 0.80285144
 floor_snap_length = 12.0
 script = ExtResource("1_cvnsp")
+pwrup = NodePath("PowerUpStates/Small")
 
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_x3wgy")

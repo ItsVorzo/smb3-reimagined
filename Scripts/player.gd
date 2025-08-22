@@ -53,7 +53,7 @@ var max_speed = 0.0
 
 # === States ===
 @onready var state_machine: StateMachine = $States
-var pwrup: PowerUps = null
+@export var pwrup: PowerUps = null
 var current_powerup: int = 0
 var jump_buffer_timer = 0.12
 var coyote_timer = 0.12
@@ -88,6 +88,7 @@ func _process(delta):
 	else:
 		jump_buffer_timer -= 1
 
+	is_super = pwrup.tier >= 1
 	normal_collision_shape.disabled = is_super
 	super_collision_shape.disabled = not is_super
 
@@ -164,7 +165,18 @@ func damage() -> void:
 	i_frames()
 	return
 
-# === That's what i needed! ===
+# === That's what I needed! ===
+func get_powerup(powerup := "") -> void:
+	var new_powerup: PowerUps = get_node("PowerUpStates/" + powerup)
+	if pwrup.tier > new_powerup.tier or pwrup == new_powerup:
+		SaveManager.runtime_data["score"] = SaveManager.runtime_data.get("score", 0) + 100
+		if SaveManager.hud and SaveManager.hud.has_method("update_labels"):
+			SaveManager.hud.update_labels()
+		return
+	await powerup_animation(powerup) # Wait for the animation
+	set_power_state(powerup) # Set new powerup
+
+# === Powerup transformation ===
 func powerup_animation(powerup := "") -> void:
 	# Get the sprite frames for the powerup animation
 	var old_sprite = animated_sprite.sprite_frames
@@ -177,7 +189,6 @@ func powerup_animation(powerup := "") -> void:
 		animated_sprite.sprite_frames = new_sprite
 		await get_tree().create_timer(0.07).timeout
 	get_tree().paused = false
-	set_power_state(powerup) # Set the new powerup
 	return
 
 # === Change powerup state

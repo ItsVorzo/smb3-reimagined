@@ -8,15 +8,16 @@ var gravity := 500.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	update_rays()
 	velocity.x = xspd * direction
 	if not is_on_floor(): velocity.y += gravity * delta
 	if ray_wall.is_colliding():
 		flip_direction()
 	if from_block:
 		await get_tree().create_timer(0.5).timeout
+		update_rays()
 		move_and_slide()
 	else:
+		update_rays()
 		move_and_slide()
 
 func flip_direction() -> void:

@@ -8,10 +8,13 @@ var direction := 1
 var from_block := false
 
 func _ready() -> void:
-	if pick_up_area: 
+	if from_block:
+		await get_tree().create_timer(0.5).timeout 
+		pick_up_area.body_entered.connect(body_entered)
+	else:
 		pick_up_area.body_entered.connect(body_entered)
 
 func body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
-		body.powerup_animation(powerup)
+		body.get_powerup(powerup)
 		queue_free()

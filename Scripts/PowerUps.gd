@@ -1,7 +1,7 @@
 class_name PowerUps
 extends Node
 
-@export var tier: int
+@export var tier := 0
 enum power_ups {Small, Big, Fire, Raccoon, Frog, Tanooki}
 
 @onready var player: Player = owner
