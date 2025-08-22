@@ -70,6 +70,7 @@ func on_player_death(player: Player) -> void:
 	player.death_sound.finished.connect(func():
 		InputManager.input_disabled = false
 		get_tree().paused = false
+		player.process_mode = player.PROCESS_MODE_INHERIT
 		var lives = int(SaveManager.runtime_data.get("lives", 3))
 		SaveManager.runtime_data["lives"] = max(0, lives - 1)
 		SaveManager.commit_runtime_to_save(save_index)

@@ -6,6 +6,7 @@ extends Area2D
 @onready var item_pop_sound: AudioStreamPlayer2D = $ItemPop
 
 @export var item_scene: PackedScene
+var temp_z_index
 
 var used := false
 
@@ -38,8 +39,7 @@ func activate_block():
 	if item_scene:
 		var item_holder := Node2D.new()
 		# Place holder slightly above the block
-		item_holder.position = global_position - Vector2(0, 16)
-		item_holder.z_index = z_index - 1
+		item_holder.position = global_position - Vector2(0, 0)
 		get_tree().current_scene.add_child(item_holder)
 
 		var item = item_scene.instantiate()
@@ -56,7 +56,6 @@ func activate_block():
 			item_holder.remove_child(item)
 			get_tree().current_scene.add_child(item)
 			item.global_position = item_holder.global_position
-			item.z_index = z_index - 1
 			item_holder.queue_free()
 			item_pop_sound.play()  # optional for coin pop sound
 		else:
@@ -64,12 +63,11 @@ func activate_block():
 			var tween = create_tween()
 			tween.set_trans(Tween.TRANS_LINEAR)
 			tween.set_ease(Tween.EASE_IN)
-			tween.tween_property(item_holder, "position", global_position - Vector2(0, 24), 0.5)
+			tween.tween_property(item_holder, "position", global_position - Vector2(0, 16), 0.5)
 			tween.tween_callback(func():
 				item_holder.remove_child(item)
 				get_tree().current_scene.add_child(item)
 				item.global_position = item_holder.global_position
-				item.z_index = z_index - 1
 				item_holder.queue_free()
 			)
 			item_pop_sound.play()

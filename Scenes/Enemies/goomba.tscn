@@ -15,8 +15,10 @@ size = Vector2(20, 12)
 
 [node name="Goomba" type="CharacterBody2D"]
 process_mode = 1
-collision_layer = 3
-collision_mask = 3
+z_index = 1
+collision_layer = 8
+collision_mask = 9
+floor_max_angle = 0.80285144
 script = ExtResource("1_kh66b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -30,12 +32,16 @@ position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_vtl1w")
 
 [node name="HeadStompArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadStompArea"]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_o2u2c")
 
 [node name="DeathArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
 position = Vector2(0, 6)
@@ -44,6 +50,7 @@ shape = SubResource("RectangleShape2D_87vcy")
 [node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
 position = Vector2(-8, 6)
 target_position = Vector2(-1, 0)
+collision_mask = 9
 collide_with_areas = true
 
 [node name="RayCast2D_LedgeCheck" type="RayCast2D" parent="."]

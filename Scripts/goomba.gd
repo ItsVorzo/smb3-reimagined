@@ -79,8 +79,8 @@ func _on_head_stomp(body: Node) -> void:
 		_die()
 
 func _on_death_touch(body: Node) -> void:
-	if body.is_in_group("Player") and body.has_method("die"):
-		body.die()
+	if body.is_in_group("Player") and body.has_method("damage") and body.can_take_damage:
+		body.damage()
 
 func _die() -> void:
 	stomped = true

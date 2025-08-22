@@ -50,6 +50,8 @@ _data = {
 }
 
 [node name="QuestionBlock" type="Area2D"]
+z_index = 1
+collision_mask = 3
 script = ExtResource("1_3o4kp")
 
 [node name="ThemeManager" type="Node2D" parent="."]

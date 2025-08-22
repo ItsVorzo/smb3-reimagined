@@ -2,7 +2,6 @@ class_name State
 extends Node
 
 # === You basically get basic state machine functions here ===
-
 @onready var state_machine: StateMachine = get_parent()
 
 # Basically _ready() but for states

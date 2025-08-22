@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SMB3 Reimagined"
-run/main_scene="uid://10y41hjhegda"
+run/main_scene="uid://br3rgvvyyv5n6"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -84,6 +84,17 @@ B={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Tiles"
+2d_navigation/layer_1="Tiles"
+2d_physics/layer_2="Player"
+2d_navigation/layer_2="Player"
+2d_physics/layer_3="Items"
+2d_navigation/layer_3="Items"
+2d_physics/layer_4="Enemies"
+2d_navigation/layer_4="Enemies"
 
 [rendering]
 

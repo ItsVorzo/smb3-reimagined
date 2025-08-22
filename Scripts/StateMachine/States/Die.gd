@@ -3,6 +3,7 @@ extends PlayerState
 var can_fall := false
 
 func enter() -> void:
+	player.process_mode = player.PROCESS_MODE_ALWAYS
 	can_fall = false
 	player.z_index = 99 # Draw the player above all
 	player.is_dead = true
@@ -11,7 +12,6 @@ func enter() -> void:
 		get_tree().current_scene.on_player_death(player)
 	InputManager.input_disabled = true # Disable input
 	get_tree().paused = true # Freeze the game
-	player.animated_sprite.play("dead") # Play death animation
 
 	# Freeze the active camera exactly here (works no matter where the camera node lives)
 	var cam := get_viewport().get_camera_2d()
@@ -21,6 +21,7 @@ func enter() -> void:
 	player.velocity = Vector2.ZERO # Freeze the player
 	# After 0.5 sec → short hop up if you didn't die from a pit
 	if player.global_position.y < player.bottom_pit.global_position.y + 48:
+		player.animated_sprite.play("dead") # Play death animation
 		await get_tree().create_timer(0.5).timeout
 		can_fall = true
 		player.velocity.y = -224.0

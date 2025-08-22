@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var death_sound: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var bottom_pit := $"../CameraGroundLimit"
 var character_index = SaveManager.runtime_data.get("character_index", 0)
+var character = ["Mario", "Luigi", "Toad", "Toadette"]
 
 # === Physics values ===
 var walk_speed = PhysicsVal.walk_speed[character_index]
@@ -39,6 +40,7 @@ const death_gravity = 420.0
 
 # === Other stuff ===
 var final_grav_speed: float
+var direction_allow := true
 var facing_direction := 1.0
 var velocity_direction := 0.0
 const coyote_time = 0.1
@@ -51,17 +53,19 @@ var max_speed = 0.0
 
 # === States ===
 @onready var state_machine: StateMachine = $States
+var pwrup: PowerUps = null
+var current_powerup: int = 0
 var jump_buffer_timer = 0.12
 var coyote_timer = 0.12
 var crouching
 var skidding = false
 var is_super := false
+var can_take_damage := true
 var is_dead := false
 
 func _ready() -> void:
 
 	add_to_group("Player")  # <-- fixed group name
-	super_collision_shape.disabled = true
 
 # === Logic ===
 func _process(delta):
@@ -69,6 +73,7 @@ func _process(delta):
 	# === Set variables ===
 	max_speed = final_max_speed()
 	p_meter = handle_p_meter()
+	skidding = InputManager.direction != 0 and velocity_direction != 0 and InputManager.direction != velocity_direction
 	animated_sprite.scale.x = sprite_direction()
 	velocity_direction = sign(velocity.x)
 
@@ -83,12 +88,14 @@ func _process(delta):
 	else:
 		jump_buffer_timer -= 1
 
+	normal_collision_shape.disabled = is_super
+	super_collision_shape.disabled = not is_super
+
 # === Physics ===
 func _physics_process(delta: float) -> void:
 
 	if is_dead:
 		return
-	print(state_machine.state.name)
 	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 
 	# Reset skidding
@@ -109,30 +116,15 @@ func _physics_process(delta: float) -> void:
 
 	# Player dies when you fall in a pit
 	if !is_dead && is_instance_valid(bottom_pit):
-		if global_position.y > bottom_pit.global_position.y + 48: die()
+		if global_position.y > bottom_pit.global_position.y + 50: die()
 
 	move_and_slide()
 
-func sprite_direction():
 	# === Set the sprite x scale ===
-	if is_on_floor():
-		if InputManager.direction != 0 and sign(velocity.x) == InputManager.direction:
-			facing_direction = InputManager.direction
-	elif InputManager.direction != 0:
+func sprite_direction():
+	if direction_allow && InputManager.direction != 0:
 		facing_direction = InputManager.direction
 	return facing_direction
-
-# === Power up! ===
-func power_up():
-	if is_super:
-		return
-	is_super = true
-	print("Mario powered up!")
-
-	normal_collision_shape.disabled = true
-	super_collision_shape.disabled = false
-
-	animated_sprite.play("power_up")
 
 # === Bounce on koopalings ===
 func bounce_on_enemy() -> void:
@@ -148,6 +140,71 @@ func die() -> void:
 	if state_machine.state.name == "Die":
 		return
 	state_machine.change_state("Die")
+
+# === Deal damage ===
+func damage() -> void:
+	# If you're small DIE
+	if pwrup.tier == 0:
+		return die()
+
+	# Become either small or big
+	var new_power_state := "Small" if pwrup.tier == 1 else "Big"
+	set_power_state(new_power_state) # Change the power state
+	# Get the sprite frames for the damage animation
+	var old_sprite = animated_sprite.sprite_frames
+	var new_sprite := load("res://Sprites/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+	# Damage animation
+	get_tree().paused = true
+	for i in 4:
+		animated_sprite.sprite_frames = old_sprite
+		await get_tree().create_timer(0.07).timeout
+		animated_sprite.sprite_frames = new_sprite
+		await get_tree().create_timer(0.07).timeout
+	get_tree().paused = false
+	i_frames()
+	return
+
+# === That's what i needed! ===
+func powerup_animation(powerup := "") -> void:
+	if pwrup != null and pwrup.tier:
+		SaveManager.runtime_data["score"] = SaveManager.runtime_data.get("score", 0) + 100
+		if SaveManager.hud and SaveManager.hud.has_method("update_labels"):
+			SaveManager.hud.update_labels()
+		return
+	# Get the sprite frames for the powerup animation
+	var old_sprite = animated_sprite.sprite_frames
+	var new_sprite := load("res://Sprites/Characters/" + character[character_index] + "/" + powerup + ".tres")
+	get_tree().paused = true
+	# Powerup animation
+	for i in 4:
+		animated_sprite.sprite_frames = old_sprite
+		await get_tree().create_timer(0.07).timeout
+		animated_sprite.sprite_frames = new_sprite
+		await get_tree().create_timer(0.07).timeout
+	get_tree().paused = false
+	set_power_state(powerup) # Set the new powerup
+	return
+
+# === Change powerup state
+func set_power_state(powerup: String) -> void:
+	if powerup in PowerUps.power_ups:
+		#pwrup.exit()
+		pwrup = get_node("PowerUpStates/" + powerup)
+		#pwrup.enter()
+		
+	else:
+		push_error("Invalid powerup name! %s" % powerup)
+
+# === i frames ===
+func i_frames() -> void:
+	can_take_damage = false
+	for i in 16:
+		animated_sprite.visible = false
+		await get_tree().create_timer(0.05).timeout
+		animated_sprite.visible = true
+		await get_tree().create_timer(0.05).timeout
+	can_take_damage = true
+	return
 
 # === P meter ===
 func handle_p_meter():
