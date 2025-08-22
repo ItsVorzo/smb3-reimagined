@@ -28,6 +28,7 @@ GameManager="*res://Scripts/GameManager.gd"
 [display]
 
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=3
 
 [file_customization]
 
