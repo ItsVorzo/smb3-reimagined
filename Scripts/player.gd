@@ -166,11 +166,6 @@ func damage() -> void:
 
 # === That's what i needed! ===
 func powerup_animation(powerup := "") -> void:
-	if pwrup != null and pwrup.tier:
-		SaveManager.runtime_data["score"] = SaveManager.runtime_data.get("score", 0) + 100
-		if SaveManager.hud and SaveManager.hud.has_method("update_labels"):
-			SaveManager.hud.update_labels()
-		return
 	# Get the sprite frames for the powerup animation
 	var old_sprite = animated_sprite.sprite_frames
 	var new_sprite := load("res://Sprites/Characters/" + character[character_index] + "/" + powerup + ".tres")
