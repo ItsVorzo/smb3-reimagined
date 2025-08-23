@@ -22,8 +22,12 @@
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/QuestionBlock.tscn" id="20_5tb3e"]
 [ext_resource type="PackedScene" uid="uid://ck1ooqc5elweo" path="res://Scenes/Items/1UpMushroom.tscn" id="21_n5am2"]
 [ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="22_x62f6"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://bnu5xsbyjtxmb" path="res://Scenes/Enemies/thwomp.tscn" id="23_gw30q"]
 [ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="24_okb1e"]
+=======
+[ext_resource type="PackedScene" uid="uid://dnvr2py3qrf72" path="res://Scenes/moving_platform.tscn" id="23_gw30q"]
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -151,8 +155,13 @@ position = Vector2(968, -56)
 [node name="QuestionBlock4" parent="." instance=ExtResource("20_5tb3e")]
 position = Vector2(1736, -40)
 
+<<<<<<< Updated upstream
 [node name="Thwomp" parent="." instance=ExtResource("23_gw30q")]
 position = Vector2(398, -72)
 
 [node name="FireFlower" parent="." instance=ExtResource("24_okb1e")]
 position = Vector2(549, -113)
+=======
+[node name="MovingPlatform" parent="." instance=ExtResource("23_gw30q")]
+position = Vector2(393, -69)
+>>>>>>> Stashed changes
