@@ -1,5 +1,7 @@
 extends PowerUpItem
 
+@export var is_one_up: bool = false
+
 @onready var sprite := $Sprite2D
 @onready var collision := $Collision
 @onready var ray_wall := $RayCast2D_WallCheck
@@ -28,12 +30,20 @@ func update_rays() -> void:
 	ray_wall.position.x = 8 * direction
 	ray_wall.target_position.x = 1 * direction
 
-#func _on_body_entered(body: Node) -> void:
-#	if not body.is_in_group("Player"):
-#		return
+func _on_body_entered(body: Node) -> void:
+	if not body.is_in_group("Player"):
+		return
 
-#	body.is_super = true
-#	body.power_up_animation("Big")
+	if is_one_up:
+		body.is_super = false
+		SaveManager.add_life(1)
+		if SaveManager.hud:
+			SaveManager.hud.update_labels()
+		queue_free()
+		return
 
-#	# Vanish
-#	queue_free()
+	if body.has_method("power_up_animation"):
+		body.is_super = true
+		body.power_up_animation("Big")
+
+	queue_free()
