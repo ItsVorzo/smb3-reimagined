@@ -16,7 +16,7 @@ var sprite_deleted := false
 
 # Scenes
 var SelectFileScene = preload("res://Scenes/UI/gamemode_select.tscn")
-var OptionsScene = preload("res://Scenes/UI/options.tscn")
+var OptionsScene = preload("res://Scenes/UI/Options.tscn")
 var CharacterSelectScene = preload("res://Scenes/UI/CharacterSelect.tscn") # Only if needed
 
 # Instances
