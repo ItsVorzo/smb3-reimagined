@@ -6,10 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se6lb"]
 size = Vector2(16, 16)
 
-[node name="Mushroom" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area")]
+[node name="1UpMushroom" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area")]
 collision_layer = 4
 floor_max_angle = 0.80285144
 script = ExtResource("1_0akqb")
+is_one_up = true
 pick_up_area = NodePath("Area2D")
 powerup = "Big"
 
@@ -32,3 +33,5 @@ shape = SubResource("RectangleShape2D_se6lb")
 [node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
 position = Vector2(-8, 6)
 target_position = Vector2(-1, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

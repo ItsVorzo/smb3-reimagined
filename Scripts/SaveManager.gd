@@ -89,3 +89,8 @@ func commit_runtime_to_save(save_index: int) -> void:
 func clear_runtime() -> void:
 	runtime_data.clear()
 	temp_level_data.clear()
+
+func add_life(amount: int) -> void:
+	var lives = runtime_data.get("lives", 3) + amount
+	runtime_data["lives"] = lives
+	commit_runtime_to_save(0)
