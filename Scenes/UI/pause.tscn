@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjm6aujw8bj5r"]
+
+[ext_resource type="Script" uid="uid://bysblspc4tv32" path="res://Scenes/UI/pause.gd" id="1_2ceew"]
+[ext_resource type="Texture2D" uid="uid://dru84b6f6maih" path="res://Sprites/Title Screen/Pause.png" id="1_a111y"]
+[ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="2_2ceew"]
+
+[node name="Pause" type="Node2D"]
+script = ExtResource("1_2ceew")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_a111y")
+
+[node name="Resume" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -13.0
+offset_right = 24.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("2_2ceew")
+theme_override_font_sizes/font_size = 8
+text = "resume
+"
+
+[node name="Options" type="Label" parent="."]
+offset_left = -28.0
+offset_right = 28.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("2_2ceew")
+theme_override_font_sizes/font_size = 8
+text = "options
+"
+
+[node name="Save&Quit" type="Label" parent="."]
+offset_left = -36.0
+offset_top = 13.0
+offset_right = 36.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("2_2ceew")
+theme_override_font_sizes/font_size = 8
+text = "save/quit"
