@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=26 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="19_x1pt7"]
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/QuestionBlock.tscn" id="20_5tb3e"]
 [ext_resource type="PackedScene" uid="uid://ck1ooqc5elweo" path="res://Scenes/Items/1UpMushroom.tscn" id="21_n5am2"]
+[ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="22_x62f6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -131,14 +132,6 @@ floor_constant_speed = true
 position = Vector2(792, -10)
 floor_constant_speed = true
 
-[node name="Goomba3" parent="." instance=ExtResource("15_saxwf")]
-position = Vector2(1085, -28)
-floor_constant_speed = true
-
-[node name="Goomba4" parent="." instance=ExtResource("15_saxwf")]
-position = Vector2(1024, -34)
-floor_constant_speed = true
-
 [node name="Mushroom" parent="." instance=ExtResource("18_xecmd")]
 position = Vector2(828, -13)
 
@@ -147,3 +140,15 @@ position = Vector2(900, -60)
 
 [node name="Mushroom2" parent="." instance=ExtResource("21_n5am2")]
 position = Vector2(751, -48)
+
+[node name="Spiny" parent="." instance=ExtResource("22_x62f6")]
+position = Vector2(989, -23)
+
+[node name="QuestionBlock2" parent="." instance=ExtResource("20_5tb3e")]
+position = Vector2(920, -24)
+
+[node name="QuestionBlock3" parent="." instance=ExtResource("20_5tb3e")]
+position = Vector2(968, -56)
+
+[node name="QuestionBlock4" parent="." instance=ExtResource("20_5tb3e")]
+position = Vector2(1736, -40)

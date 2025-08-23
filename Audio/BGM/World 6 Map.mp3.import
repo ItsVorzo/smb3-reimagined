@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ploq1dsidy0a"
+path="res://.godot/imported/World 6 Map.mp3-034028242aa856894eef66a105c8e9ac.mp3str"
+
+[deps]
+
+source_file="res://Audio/BGM/World 6 Map.mp3"
+dest_files=["res://.godot/imported/World 6 Map.mp3-034028242aa856894eef66a105c8e9ac.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

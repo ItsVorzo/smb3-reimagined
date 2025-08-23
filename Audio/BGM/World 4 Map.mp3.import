@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7pls2sj6ubky"
+path="res://.godot/imported/World 4 Map.mp3-6902ef16e9d41107d3bd8c845f6a3dc6.mp3str"
+
+[deps]
+
+source_file="res://Audio/BGM/World 4 Map.mp3"
+dest_files=["res://.godot/imported/World 4 Map.mp3-6902ef16e9d41107d3bd8c845f6a3dc6.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

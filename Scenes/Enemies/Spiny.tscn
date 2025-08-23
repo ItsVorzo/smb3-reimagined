@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bik6sni4rqmu"]
+
+[ext_resource type="Script" uid="uid://bnp14qyglm1fx" path="res://Scenes/Enemies/spiny.gd" id="1_xbjnn"]
+[ext_resource type="SpriteFrames" uid="uid://dakosf25hvmeo" path="res://Sprites/Enemies/Spiny.tres" id="2_uatgh"]
+[ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_xunch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtl1w"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87vcy"]
+size = Vector2(14, 12)
+
+[node name="Spiny" type="CharacterBody2D"]
+process_mode = 1
+z_index = 1
+collision_layer = 8
+collision_mask = 9
+floor_max_angle = 0.80285144
+script = ExtResource("1_xbjnn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+sprite_frames = ExtResource("2_uatgh")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.545)
+shape = SubResource("RectangleShape2D_vtl1w")
+
+[node name="DeathArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+shape = SubResource("RectangleShape2D_87vcy")
+
+[node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
+position = Vector2(-8, 6)
+target_position = Vector2(-1, 0)
+collision_mask = 9
+collide_with_areas = true
+
+[node name="RayCast2D_LedgeCheck" type="RayCast2D" parent="."]
+position = Vector2(-8, 6)
+target_position = Vector2(0, 16)
+collide_with_areas = true
+
+[node name="Stomp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xunch")
