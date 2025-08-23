@@ -37,7 +37,7 @@ var timer_cancelled: bool = false
 
 # --- Setup ---
 func _ready() -> void:
-	select_char_sound.play()
+	SoundManager.play_sfx("Coin", global_position)
 	for i in select_boxes:
 		select_boxes[i].play("none")
 	for i in player_boxes:
@@ -57,27 +57,27 @@ func _ready() -> void:
 # --- Input Handling ---
 func _process(_delta: float) -> void:
 	if !is_player1_active and InputManager.Apress:
-		select_char_sound.play()
+		SoundManager.play_sfx("Coin", global_position)
 		activate_player1()
 
 	elif is_player1_active and !is_player1_selected:
 		if InputManager.left_press:
-			move_char_sound.play()
+			SoundManager.play_sfx("MapMove", global_position)
 			player1_character_index = (player1_character_index - 1 + total_characters) % total_characters
 			update_character_sprite()
 
 		elif InputManager.right_press:
-			move_char_sound.play()
+			SoundManager.play_sfx("MapMove", global_position)
 			player1_character_index = (player1_character_index + 1) % total_characters
 			update_character_sprite()
 
 		elif InputManager.Apress:
-			select_char_sound.play()
+			SoundManager.play_sfx("Coin", global_position)
 			confirm_character()
 
 	elif is_player1_selected:
 		if InputManager.Bpress:
-			cancel_char_sound.play()
+			SoundManager.play_sfx("Hit", global_position)
 			cancel_selection()
 
 # --- Activation ---
@@ -180,7 +180,7 @@ func start_transition_to_world():
 	queue_free()
 
 func _on_back_button_pressed() -> void:
-	cancel_char_sound.play()
+	SoundManager.play_sfx("Hit", global_position)
 	animation_player.play("close")
 	await get_tree().create_timer(0.2).timeout
 	queue_free()

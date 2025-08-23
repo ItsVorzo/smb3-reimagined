@@ -42,7 +42,7 @@ func _process(delta):
 			is_moving = true
 
 			if not move_sound.playing:
-				move_sound.play()  # 🔊 Play movement sound
+				SoundManager.play_sfx("MapMove", global_position)  # 🔊 Play movement sound
 	else:
 		position = position.move_toward(target_position, SLIDE_SPEED * delta)
 		if position.is_equal_approx(target_position):

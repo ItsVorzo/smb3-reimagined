@@ -34,9 +34,8 @@ func _process(_delta):
 				audio_streamer.stop()
 
 		# Play level enter sound
-		if enter_level_sound:
-			enter_level_sound.play()
-			await enter_level_sound.finished  # wait until sound finishes
+		SoundManager.play_sfx("MapStart")
+		await get_tree().create_timer(1.11).timeout  # wait until sound finishes
 
 		# Change scene after sound finishes
 		InputManager.input_disabled = false

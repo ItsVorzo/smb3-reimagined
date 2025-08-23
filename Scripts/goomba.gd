@@ -94,7 +94,7 @@ func _die() -> void:
 	set_collision_mask(0)
 
 	sprite.play("squish")
-	stomp_sound.play()
+	SoundManager.play_sfx("Stomp", global_position)
 
 	var timer := get_tree().create_timer(death_time)
 	timer.timeout.connect(queue_free)

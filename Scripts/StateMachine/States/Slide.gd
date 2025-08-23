@@ -7,6 +7,8 @@ func enter() -> void:
 
 
 func physics_process_update(_delta: float) -> void:
+	if not player.is_on_floor():
+		state_machine.change_state("Normal")
 	if player.get_slope_angle() == 0:
 		if abs(player.velocity.x) < 10:
 			state_machine.change_state("Normal")

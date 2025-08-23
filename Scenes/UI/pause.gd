@@ -15,7 +15,7 @@ var savequit_instance: Node = null
 var OptionsScene = preload("res://Scenes/UI/Options.tscn")
 
 func open_options() -> void:
-	select.play()
+	SoundManager.play_sfx("Pause")
 	if options_instance == null or not is_instance_valid(options_instance):
 		options_instance = OptionsScene.instantiate()
 		add_child(options_instance)

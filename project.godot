@@ -21,9 +21,9 @@ GlobalAudio="*res://Scripts/GlobalAudio.gd"
 SaveManager="*res://Scripts/SaveManager.gd"
 InputManager="*res://Scripts/InputManager.gd"
 ThemeManager="*res://Scripts/ThemeManager.gd"
-MathFunc="*res://Scripts/MathFunc.gd"
 ConfigManager="*res://Scripts/ConfigManager.gd"
 GameManager="*res://Scripts/GameManager.gd"
+SoundManager="*res://Scripts/SoundManager.gd"
 
 [display]
 
@@ -96,6 +96,8 @@ B={
 2d_navigation/layer_3="Items"
 2d_physics/layer_4="Enemies"
 2d_navigation/layer_4="Enemies"
+2d_physics/layer_5="Decorations"
+2d_navigation/layer_5="Decorations"
 
 [rendering]
 

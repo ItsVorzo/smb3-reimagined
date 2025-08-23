@@ -68,7 +68,7 @@ func handle_item_block():
 	# Play sound if it's not a coin
 	var scene_path := item_scene.resource_path
 	if not scene_path.ends_with("coin.tscn"):
-		item_pop_sound.play()
+		SoundManager.play_sfx("ItemPop")
 
 	# Disable the bottom hitbox
 	$CollisionShape2D.disabled = true
@@ -76,7 +76,7 @@ func break_block():
 	var current_time = Time.get_ticks_usec() / 1000000.0
 
 	if current_time - GlobalAudio.last_break_sound_time > GlobalAudio.BREAK_SOUND_COOLDOWN:
-		break_sound.play()
+		SoundManager.play_sfx("Break")
 		GlobalAudio.last_break_sound_time = current_time
 
 	sprite.visible = false

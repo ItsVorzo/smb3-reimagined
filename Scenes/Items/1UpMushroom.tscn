@@ -1,17 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck1ooqc5elweo"]
+[gd_scene load_steps=5 format=3 uid="uid://ck1ooqc5elweo"]
 
-[ext_resource type="Script" uid="uid://fu5iktk3b7yd" path="res://Scripts/Mushroom.gd" id="1_0akqb"]
+[ext_resource type="Script" uid="uid://cnueigak6kvgb" path="res://Scenes/Items/OneUp.gd" id="1_s5ljj"]
 [ext_resource type="Texture2D" uid="uid://ohro0jkr0x04" path="res://Sprites/Items/1UPMushroom.png" id="2_0akqb"]
+[ext_resource type="AudioStream" uid="uid://d3wf1plxut2y7" path="res://Audio/Sfx/1UP.wav" id="3_s5ljj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se6lb"]
 size = Vector2(16, 16)
 
-[node name="Mushroom" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area")]
+[node name="1Up" type="CharacterBody2D"]
 collision_layer = 4
 floor_max_angle = 0.80285144
-script = ExtResource("1_0akqb")
-pick_up_area = NodePath("Area2D")
-powerup = "Big"
+script = ExtResource("1_s5ljj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_0akqb")
@@ -32,3 +31,7 @@ shape = SubResource("RectangleShape2D_se6lb")
 [node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
 position = Vector2(-8, 6)
 target_position = Vector2(-1, 0)
+
+[node name="OneUpSfx" type="AudioStreamPlayer2D" parent="."]
+process_mode = 1
+stream = ExtResource("3_s5ljj")

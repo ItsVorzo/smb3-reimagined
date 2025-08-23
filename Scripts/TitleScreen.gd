@@ -85,18 +85,18 @@ func update_selection():
 	leftsqr.global_position = select_pos + Vector2(-selected_opt.size.x / 6, 4)
 	rightsqr.global_position = select_pos + Vector2(selected_opt.size.x / 0.86, 4)
 
-	movesfx.play()
+	SoundManager.play_sfx("MapMove", global_position)
 
 func story_mode() -> void:
 	if select_file_instance == null or not is_instance_valid(select_file_instance):
-		select.play()
+		SoundManager.play_sfx("Inventory", global_position)
 		select_file_instance = SelectFileScene.instantiate()
 		add_child(select_file_instance)
 	else:
 		print("Stop spamming u gimp")
 
 func open_options() -> void:
-	select.play()
+	SoundManager.play_sfx("Inventory", global_position)
 	if options_instance == null or not is_instance_valid(options_instance):
 		options_instance = OptionsScene.instantiate()
 		add_child(options_instance)

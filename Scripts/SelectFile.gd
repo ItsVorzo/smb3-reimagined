@@ -106,7 +106,7 @@ func handle_slot_select(index: int):
 
 func handle_delete(index: int):
 	SaveManager.delete_save(index)
-	delete_save_sound.play()
+	SoundManager.play_sfx("Break")
 	update_save_buttons()
 	save_mode = "select"
 	bd_sprite.play("select")
@@ -118,19 +118,19 @@ func handle_copy(from_index: int, to_index: int):
 
 func _on_copy_pressed():
 	save_mode = "copy"
-	select_sound.play()
+	SoundManager.play_sfx("Coin")
 	bd_sprite.play("copy")
 
 func _on_delete_pressed():
 	save_mode = "delete"
-	select_sound.play()
+	SoundManager.play_sfx("Coin")
 	bd_sprite.play("delete")
 
 func _process(_delta: float) -> void:
 	if InputManager.Bpress: _on_back_pressed()
 
 func _on_back_pressed() -> void:
-	back_sound.play()
+	SoundManager.play_sfx("Hit")
 	animation_player.play("close")
 	await get_tree().create_timer(0.2).timeout
 	queue_free()

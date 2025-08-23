@@ -28,7 +28,7 @@ func _on_body_entered(body: Node) -> void:
 
 	collected = true
 	_add_coin_to_hud()
-	coin_sound.play()
+	SoundManager.play_sfx("Coin", global_position)
 
 	# Hide immediately (so player can't touch again)
 	anim_sprite.visible = false

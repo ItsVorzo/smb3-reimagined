@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5iv6rg1q266m"]
+[gd_scene load_steps=13 format=3 uid="uid://5iv6rg1q266m"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/Player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://r2jyvocfl4bl" path="res://Scripts/StateMachine/States/Normal.gd" id="3_3smsa"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dku66u6sy4t54" path="res://Scripts/StateMachine/States/Slide.gd" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/PowerUps.gd" id="6_yoq75"]
 [ext_resource type="SpriteFrames" uid="uid://b4y7uk0wcicdb" path="res://Sprites/Characters/Mario/Small.tres" id="7_yoq75"]
+[ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="13_miouo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
 size = Vector2(10, 13)
@@ -77,12 +78,18 @@ scale = Vector2(1, 1.6)
 shape = SubResource("RectangleShape2D_8erm5")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("3_6t5aa")
 bus = &"SFX"
 
 [node name="SquishSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("4_vgqql")
 
 [node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("5_fkybt")
 max_distance = 4096.0
+
+[node name="Skid" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_miouo")

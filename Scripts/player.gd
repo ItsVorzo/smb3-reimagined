@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 # === Shortcuts ===
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var jump = $AudioStreamPlayer2D
+@onready var skid_sfx = $Skid
 @onready var normal_collision_shape := $CollisionShape2D
 @onready var super_collision_shape := $SuperCollisionShape2D
 @onready var death_sound: AudioStreamPlayer2D = $DeathSoundPlayer
@@ -73,7 +73,12 @@ func _process(delta):
 	# === Set variables ===
 	max_speed = final_max_speed()
 	p_meter = handle_p_meter()
-	skidding = InputManager.direction != 0 and velocity_direction != 0 and InputManager.direction != velocity_direction
+	skidding = InputManager.direction != 0 and velocity_direction != 0 and InputManager.direction != velocity_direction and is_on_floor() and !crouching
+	if skidding:
+		if skid_sfx.is_playing() == false:
+			skid_sfx.play()
+	else:
+		skid_sfx.stop()
 	animated_sprite.scale.x = sprite_direction()
 	velocity_direction = sign(velocity.x)
 
@@ -113,11 +118,13 @@ func _physics_process(delta: float) -> void:
 	if InputManager.Apress and is_on_floor():
 		var final_jump_speed = floor(abs(velocity.x)/60)
 		velocity.y = jump_speeds[final_jump_speed]
-		jump.play()
+		SoundManager.play_sfx("JumpSmall", global_position)
 
 	# Player dies when you fall in a pit
 	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 50: die()
+
+	print(state_machine.state.name)
 
 	move_and_slide()
 
@@ -148,6 +155,7 @@ func damage() -> void:
 	if pwrup.tier == 0:
 		return die()
 
+	SoundManager.play_sfx("Pipe", global_position)
 	# Become either small or big
 	var new_power_state := "Small" if pwrup.tier == 1 else "Big"
 	set_power_state(new_power_state) # Change the power state
@@ -172,12 +180,14 @@ func get_powerup(powerup := "") -> void:
 		SaveManager.runtime_data["score"] = SaveManager.runtime_data.get("score", 0) + 100
 		if SaveManager.hud and SaveManager.hud.has_method("update_labels"):
 			SaveManager.hud.update_labels()
+		SoundManager.play_sfx("PowerUp", global_position)
 		return
 	await powerup_animation(powerup) # Wait for the animation
 	set_power_state(powerup) # Set new powerup
 
 # === Powerup transformation ===
 func powerup_animation(powerup := "") -> void:
+	SoundManager.play_sfx("PowerUp", global_position)
 	# Get the sprite frames for the powerup animation
 	var old_sprite = animated_sprite.sprite_frames
 	var new_sprite := load("res://Sprites/Characters/" + character[character_index] + "/" + powerup + ".tres")
@@ -218,7 +228,7 @@ func handle_p_meter():
 	if p_meter >= p_meter_max and InputManager.B and InputManager.direction == velocity_direction and abs(velocity.x) >= run_speed: 
 		extra_p_frames = 16.0
 	elif extra_p_frames > 0 && is_on_floor(): extra_p_frames -= 1
-	if abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() and InputManager.direction == velocity_direction or not is_on_floor() and p_meter >= p_meter_max:
+	if state_machine.state.name == "Normal" and abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() and InputManager.direction == velocity_direction or not is_on_floor() and p_meter >= p_meter_max:
 		p_meter += 1
 	elif p_meter > 0 and extra_p_frames <= 0:
 		p_meter -= 0.583

@@ -28,7 +28,7 @@ func _on_body_entered(body: Node) -> void:
 
 func activate_block():
 	used = true
-	hit_sound.play()
+	SoundManager.play_sfx("Hit", global_position)
 	bounce_anim.play("bounce")
 
 	# Short delay for bounce animation
@@ -57,7 +57,7 @@ func activate_block():
 			get_tree().current_scene.add_child(item)
 			item.global_position = item_holder.global_position
 			item_holder.queue_free()
-			item_pop_sound.play()  # optional for coin pop sound
+			SoundManager.play_sfx("ItemPop", global_position)  # optional for coin pop sound
 		else:
 			# For other items: upward pop animation
 			var tween = create_tween()
@@ -70,7 +70,7 @@ func activate_block():
 				item.global_position = item_holder.global_position
 				item_holder.queue_free()
 			)
-			item_pop_sound.play()
+			SoundManager.play_sfx("ItemPop", global_position)
 
 	$CollisionShape2D.disabled = true
 

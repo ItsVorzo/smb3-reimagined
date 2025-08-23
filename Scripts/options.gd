@@ -63,7 +63,7 @@ func _connect_value_button(button: Button, option_name: String) -> void:
 
 func _on_tab_selected(tab_name: String, play_sound := true) -> void:
 	if not first_tab_open and play_sound:
-		switch_tab_sound.play()
+		SoundManager.play_sfx("MapMove", global_position)
 	first_tab_open = false
 
 	for panel in panels.values():
@@ -75,7 +75,7 @@ func _on_tab_selected(tab_name: String, play_sound := true) -> void:
 
 
 func _on_option_clicked(option_name: String) -> void:
-	change_option_sound.play()
+	SoundManager.play_sfx("HammerBroMove", global_position)
 	var values: Array = ConfigManager.option_values[option_name]
 	var idx: int = (ConfigManager.option_indices[option_name] + 1) % values.size()
 	
@@ -106,7 +106,7 @@ func _set_option_text(option_name: String, text: String) -> void:
 
 
 func _on_back_pressed() -> void:
-	back_sound.play()
+	SoundManager.play_sfx("Hit", global_position)
 	animation_player.play("close")
 	await get_tree().create_timer(0.2).timeout
 	queue_free()
