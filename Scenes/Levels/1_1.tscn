@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=27 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/ThemeManager.gd" id="2_q0pi4"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/QuestionBlock.tscn" id="20_5tb3e"]
 [ext_resource type="PackedScene" uid="uid://ck1ooqc5elweo" path="res://Scenes/Items/1UpMushroom.tscn" id="21_n5am2"]
 [ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="22_x62f6"]
+[ext_resource type="PackedScene" uid="uid://bnu5xsbyjtxmb" path="res://Scenes/Enemies/thwomp.tscn" id="23_gw30q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -111,7 +112,7 @@ position = Vector2(465, -40)
 item_scene = ExtResource("18_xecmd")
 
 [node name="Player" parent="." instance=ExtResource("7_ftxpn")]
-position = Vector2(896, -16)
+position = Vector2(337, -14)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Player"]
 process_mode = 3
@@ -123,10 +124,6 @@ autoplay = true
 position = Vector2(251, 150)
 
 [node name="HUD" parent="." instance=ExtResource("14_noyq2")]
-
-[node name="Goomba" parent="." instance=ExtResource("15_saxwf")]
-position = Vector2(480, -12)
-floor_constant_speed = true
 
 [node name="Goomba2" parent="." instance=ExtResource("15_saxwf")]
 position = Vector2(792, -10)
@@ -152,3 +149,6 @@ position = Vector2(968, -56)
 
 [node name="QuestionBlock4" parent="." instance=ExtResource("20_5tb3e")]
 position = Vector2(1736, -40)
+
+[node name="Thwomp" parent="." instance=ExtResource("23_gw30q")]
+position = Vector2(398, -72)
