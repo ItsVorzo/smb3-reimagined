@@ -47,12 +47,20 @@ script = ExtResource("6_yoq75")
 tier = 1
 
 [node name="Fire" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
 
 [node name="Raccoon" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
 
 [node name="Frog" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
 
 [node name="Tanooki" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
