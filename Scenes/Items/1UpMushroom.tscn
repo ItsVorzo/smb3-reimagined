@@ -35,3 +35,4 @@ target_position = Vector2(-1, 0)
 [node name="OneUpSfx" type="AudioStreamPlayer2D" parent="."]
 process_mode = 1
 stream = ExtResource("3_s5ljj")
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

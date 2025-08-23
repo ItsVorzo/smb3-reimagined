@@ -32,3 +32,5 @@ shape = SubResource("RectangleShape2D_se6lb")
 [node name="RayCast2D_WallCheck" type="RayCast2D" parent="."]
 position = Vector2(-8, 6)
 target_position = Vector2(-1, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
