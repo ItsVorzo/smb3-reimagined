@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://btu0wladbptrj" path="res://Sprites/Tilesets/BackgroundTiles.png" id="7_28jxv"]
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
 [ext_resource type="TileSet" uid="uid://08ekcyit34ot" path="res://SpriteFrames/Overworld/Semisolid.tres" id="7_gw30q"]
-[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
+[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/Overworld.tscn" id="8_28jxv"]
 [ext_resource type="Texture2D" uid="uid://c1n8cgqsfvhww" path="res://Sprites/Tilesets/EndTiles.png" id="8_xecmd"]
 [ext_resource type="Texture2D" uid="uid://d2ql7fwugawh7" path="res://Sprites/Gizmos/Pipes.png" id="9_73wy6"]
 [ext_resource type="PackedScene" uid="uid://cxkafas67lmod" path="res://Scenes/Player/cameralimitright.tscn" id="10_28jxv"]
