@@ -28,8 +28,8 @@ func apply_theme():
 	var semisolid_path = "res://SpriteFrames/%s/Semisolid.tres" % theme
 	semisolid_tilemap.tile_set = load(semisolid_path)
 
-	var pipe_path = "res://Sprites/Gizmos/Pipes.tres" if theme == "Overworld" \
-		else "res://Sprites/Gizmos/Variants/%s/Pipes.tres" % theme
+	var pipe_path = "res://SpriteFrames/Gizmos/Pipes.tres" if theme == "Overworld" \
+		else "res://SpriteFrames/Gizmos/Variants/%s/Pipes.tres" % theme
 	pipe_tilemap.tile_set = load(pipe_path)
 
 	# === Music ===

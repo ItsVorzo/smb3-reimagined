@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bhhffwhk6yyqu"]
+[gd_scene load_steps=40 format=3 uid="uid://bhhffwhk6yyqu"]
 
 [ext_resource type="Script" uid="uid://cjy2wenueykb6" path="res://Scripts/UI/TitleScreen.gd" id="1_3txao"]
 [ext_resource type="Texture2D" uid="uid://b0qrrxm7r1rgc" path="res://Sprites/UI/Title Screen/Sky.png" id="2_28uqs"]
@@ -112,6 +112,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_84xpj"]
+atlas = ExtResource("7_c5u5f")
+region = Rect2(0, 0, 256, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ft70"]
+atlas = ExtResource("7_c5u5f")
+region = Rect2(0, 96, 256, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdsak"]
+atlas = ExtResource("7_c5u5f")
+region = Rect2(0, 192, 256, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs1xq"]
+atlas = ExtResource("7_c5u5f")
+region = Rect2(0, 288, 256, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbv52"]
+animations = [{
+"frames": [{
+"duration": 20.0,
+"texture": SubResource("AtlasTexture_84xpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ft70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdsak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs1xq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
 [sub_resource type="Animation" id="Animation_w5sh6"]
 length = 0.001
 tracks/0/type = "value"
@@ -142,7 +178,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 5, 9.966666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 19.15), Vector2(0, 8.055), Vector2(0, 19.15)]
+"values": [Vector2(0, -35), Vector2(0, -23), Vector2(0, -35)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o1e67"]
@@ -179,7 +215,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -233.885)]
+"values": [Vector2(0, 0), Vector2(0, -231)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sqelc"]
@@ -244,9 +280,11 @@ autoplay = "default"
 frame = 1
 frame_progress = 0.745364
 
-[node name="Title" type="Sprite2D" parent="."]
+[node name="Title" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 11.935)
-texture = ExtResource("7_c5u5f")
+sprite_frames = SubResource("SpriteFrames_mbv52")
+autoplay = "default"
+frame_progress = 0.7844461
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]
 libraries = {

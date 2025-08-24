@@ -161,7 +161,7 @@ func damage() -> void:
 	set_power_state(new_power_state) # Change the power state
 	# Get the sprite frames for the damage animation
 	var old_sprite = animated_sprite.sprite_frames
-	var new_sprite := load("res://Sprites/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+	var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 	# Damage animation
 	get_tree().paused = true
 	for i in 4:
@@ -190,7 +190,7 @@ func powerup_animation(powerup := "") -> void:
 	SoundManager.play_sfx("PowerUp", global_position)
 	# Get the sprite frames for the powerup animation
 	var old_sprite = animated_sprite.sprite_frames
-	var new_sprite := load("res://Sprites/Characters/" + character[character_index] + "/" + powerup + ".tres")
+	var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + powerup + ".tres")
 	get_tree().paused = true
 	# Powerup animation
 	for i in 4:

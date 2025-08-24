@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dru84b6f6maih"
-path="res://.godot/imported/Pause.png-feaf76dfd219dff2197f89977dbeef2a.ctex"
+uid="uid://oc05el8f2b7l"
+path="res://.godot/imported/SingleplayerBHover.png-98e567104dd35e7b20965da6b5a9126b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/Title Screen/Pause.png"
-dest_files=["res://.godot/imported/Pause.png-feaf76dfd219dff2197f89977dbeef2a.ctex"]
+source_file="res://Sprites/UI/Gamemode Select/SingleplayerBHover.png"
+dest_files=["res://.godot/imported/SingleplayerBHover.png-98e567104dd35e7b20965da6b5a9126b.ctex"]
 
 [params]
 

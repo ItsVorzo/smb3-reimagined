@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bvsv7fj4d5ti7"]
 
-[ext_resource type="Texture2D" uid="uid://c4vsfftjf48ne" path="res://SpriteFrames/Snow/Snow.png" id="1_57yhg"]
+[ext_resource type="Texture2D" uid="uid://rnopmmr0kmdl" path="res://Sprites/Tilesets/Snow/Snow.png" id="1_57yhg"]
 [ext_resource type="Texture2D" uid="uid://ct80id47lue80" path="res://Sprites/Blocks/GeneralSnow.png" id="2_p1bxk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ywuv"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4kqnjg7oljut"
-path="res://.godot/imported/Mario.png-ffc5a726e40c3d1ef0bc1a6eb87d6691.ctex"
+uid="uid://dru84b6f6maih"
+path="res://.godot/imported/Pause.png-ea6aef157df878de5e2ed3f4a704f3da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/Title Screen/Mario.png"
-dest_files=["res://.godot/imported/Mario.png-ffc5a726e40c3d1ef0bc1a6eb87d6691.ctex"]
+source_file="res://Sprites/UI/Pause.png"
+dest_files=["res://.godot/imported/Pause.png-ea6aef157df878de5e2ed3f4a704f3da.ctex"]
 
 [params]
 
