@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjm6aujw8bj5r"]
 
-[ext_resource type="Script" uid="uid://bysblspc4tv32" path="res://Scenes/UI/pause.gd" id="1_2ceew"]
-[ext_resource type="Texture2D" uid="uid://dru84b6f6maih" path="res://Sprites/Title Screen/Pause.png" id="1_a111y"]
+[ext_resource type="Script" uid="uid://bysblspc4tv32" path="res://Scripts/Player/pause.gd" id="1_2ceew"]
+[ext_resource type="Texture2D" uid="uid://dru84b6f6maih" path="res://Sprites/UI/Title Screen/Pause.png" id="1_a111y"]
 [ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="2_2ceew"]
 
 [node name="Pause" type="Node2D"]

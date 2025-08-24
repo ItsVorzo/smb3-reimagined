@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwuk3bqvrnqav"]
 
-[ext_resource type="Script" uid="uid://cbq4drnt5gogw" path="res://Scripts/FireFlower.gd" id="1_i48h3"]
+[ext_resource type="Script" uid="uid://cbq4drnt5gogw" path="res://Scripts/Items/FireFlower.gd" id="1_i48h3"]
 [ext_resource type="Texture2D" uid="uid://w4xys6kc7n4d" path="res://Sprites/Items/FireFlower.png" id="2_i48h3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se6lb"]

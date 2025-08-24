@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bik6sni4rqmu"]
 
-[ext_resource type="Script" uid="uid://bnp14qyglm1fx" path="res://Scenes/Enemies/spiny.gd" id="1_xbjnn"]
-[ext_resource type="SpriteFrames" uid="uid://dakosf25hvmeo" path="res://Sprites/Enemies/Spiny.tres" id="2_uatgh"]
+[ext_resource type="Script" uid="uid://bnp14qyglm1fx" path="res://Scripts/Enemies/spiny.gd" id="1_xbjnn"]
+[ext_resource type="SpriteFrames" uid="uid://dakosf25hvmeo" path="res://SpriteFrames/Enemies/Spiny.tres" id="2_uatgh"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_xunch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtl1w"]

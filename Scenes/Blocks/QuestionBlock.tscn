@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://lnwx6fnxmvvj"]
+
+[ext_resource type="Script" uid="uid://bbd73syl17cd4" path="res://Scripts/Blocks/QuestionBlock.gd" id="1_3o4kp"]
+[ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_0tb1o"]
+[ext_resource type="SpriteFrames" uid="uid://dfkoja8mtllgv" path="res://Sprites/Blocks/qb_overworld.tres" id="3_0tb1o"]
+[ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="3_11yax"]
+[ext_resource type="AudioStream" uid="uid://dbjp0jc3b34fs" path="res://Audio/Sfx/ItemPop.wav" id="3_hjt4u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6yht"]
+size = Vector2(16, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tb1o"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_0tb1o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hjt4u"]
+resource_name = "bounce"
+length = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -12), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0tb1o"]
+_data = {
+&"RESET": SubResource("Animation_0tb1o"),
+&"bounce": SubResource("Animation_hjt4u")
+}
+
+[node name="QuestionBlock" type="Area2D"]
+z_index = 1
+collision_mask = 3
+script = ExtResource("1_3o4kp")
+
+[node name="ThemeManager" type="Node2D" parent="."]
+script = ExtResource("2_0tb1o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_0tb1o")
+animation = &"empty"
+autoplay = "full"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_l6yht")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_0tb1o")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_11yax")
+
+[node name="ItemPop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hjt4u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0tb1o")
+}

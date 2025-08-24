@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="1_wjuif"]
 [ext_resource type="Texture2D" uid="uid://bx001a8qontap" path="res://Sprites/Tilesets/WorldMaps/Paths.png" id="2_cdmyr"]
 [ext_resource type="Texture2D" uid="uid://qvonhnepubv7" path="res://Sprites/Tilesets/WorldMaps/Decoration.png" id="3_ehv8l"]
-[ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/LevelEntrance.tscn" id="4_xh746"]
+[ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/WorldMaps/Entrances/LevelEntrance.tscn" id="4_xh746"]
 [ext_resource type="Texture2D" uid="uid://bxoy0w7deusa1" path="res://Sprites/HUD/HUD.png" id="6_cdmyr"]
-[ext_resource type="PackedScene" uid="uid://bqtph6w8yxiqa" path="res://Scenes/OverworldPlayer.tscn" id="6_dhy6a"]
+[ext_resource type="PackedScene" uid="uid://bqtph6w8yxiqa" path="res://Scenes/Player/OverworldPlayer.tscn" id="6_dhy6a"]
 [ext_resource type="AudioStream" uid="uid://4vdlj2nggloh" path="res://Audio/BGM/World 2 Map.mp3" id="8_lj2c6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mm7mx"]

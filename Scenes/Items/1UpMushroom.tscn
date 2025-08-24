@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ck1ooqc5elweo"]
 
-[ext_resource type="Script" uid="uid://cnueigak6kvgb" path="res://Scenes/Items/OneUp.gd" id="1_s5ljj"]
+[ext_resource type="Script" uid="uid://cnueigak6kvgb" path="res://Scripts/Items/OneUp.gd" id="1_s5ljj"]
 [ext_resource type="Texture2D" uid="uid://ohro0jkr0x04" path="res://Sprites/Items/1UPMushroom.png" id="2_0akqb"]
 [ext_resource type="AudioStream" uid="uid://d3wf1plxut2y7" path="res://Audio/Sfx/1UP.wav" id="3_s5ljj"]
 

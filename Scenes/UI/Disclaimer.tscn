@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://10y41hjhegda"]
 
-[ext_resource type="Script" uid="uid://vip2brf5doho" path="res://Scripts/Disclaimer.gd" id="1_udgjn"]
+[ext_resource type="Script" uid="uid://vip2brf5doho" path="res://Scripts/UI/disclaimer.gd" id="1_udgjn"]
 [ext_resource type="Texture2D" uid="uid://cnpenxqkyeo1q" path="res://Sprites/Gizmos/Door.png" id="2_hv6v3"]
 [ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="3_pnt3a"]
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="4_2q725"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bnu5xsbyjtxmb"]
 
-[ext_resource type="Script" uid="uid://ravxn6ignpsf" path="res://thwomp.gd" id="1_4tvdw"]
+[ext_resource type="Script" uid="uid://ravxn6ignpsf" path="res://Scripts/Enemies/thwomp.gd" id="1_4tvdw"]
 [ext_resource type="Texture2D" uid="uid://b8taurmj122" path="res://Sprites/Enemies/Thwomp.png" id="2_5k5eg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77v86"]

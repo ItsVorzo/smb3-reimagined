@@ -17,13 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalAudio="*res://Scripts/GlobalAudio.gd"
-SaveManager="*res://Scripts/SaveManager.gd"
-InputManager="*res://Scripts/InputManager.gd"
-ThemeManager="*res://Scripts/ThemeManager.gd"
-ConfigManager="*res://Scripts/ConfigManager.gd"
-GameManager="*res://Scripts/GameManager.gd"
-SoundManager="*res://Scripts/SoundManager.gd"
+GlobalAudio="*res://Scripts/Game/GlobalAudio.gd"
+SaveManager="*res://Scripts/Game/SaveManager.gd"
+InputManager="*res://Scripts/Game/InputManager.gd"
+ThemeManager="*res://Scripts/Game/ThemeManager.gd"
+ConfigManager="*res://Scripts/Game/ConfigManager.gd"
+GameManager="*res://Scripts/Game/GameManager.gd"
+SoundManager="*res://Scripts/Game/SoundManager.gd"
 
 [display]
 
@@ -36,6 +36,7 @@ folder_colors={
 "res://Audio/": "blue",
 "res://Scenes/": "red",
 "res://Scripts/": "yellow",
+"res://SpriteFrames/": "purple",
 "res://Sprites/": "green"
 }
 

@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://5iv6rg1q266m"]
+
+[ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://r2jyvocfl4bl" path="res://Scripts/StateMachine/States/Normal.gd" id="3_3smsa"]
+[ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/JumpSmall.wav" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://bawyvb0qnj1tk" path="res://Scripts/StateMachine/StateMachine.gd" id="3_x3wgy"]
+[ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://dvnwqitv57aee" path="res://Scripts/StateMachine/States/Die.gd" id="5_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://d1xtkpmqyle5h" path="res://Audio/Sfx/Die.wav" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://dku66u6sy4t54" path="res://Scripts/StateMachine/States/Slide.gd" id="6_tx1dd"]
+[ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/Player/PowerUps.gd" id="6_yoq75"]
+[ext_resource type="SpriteFrames" uid="uid://b4y7uk0wcicdb" path="res://Sprites/Characters/Mario/Small.tres" id="7_yoq75"]
+[ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="13_miouo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
+size = Vector2(10, 13)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("pwrup") groups=["Player"]]
+z_index = 3
+position = Vector2(0, 1)
+collision_layer = 2
+floor_constant_speed = true
+floor_max_angle = 0.80285144
+floor_snap_length = 12.0
+script = ExtResource("1_cvnsp")
+pwrup = NodePath("PowerUpStates/Small")
+
+[node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_x3wgy")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="States"]
+script = ExtResource("3_3smsa")
+
+[node name="Die" type="Node" parent="States"]
+script = ExtResource("5_f1ek2")
+
+[node name="Slide" type="Node" parent="States"]
+script = ExtResource("6_tx1dd")
+
+[node name="PowerUpStates" type="Node" parent="."]
+
+[node name="Small" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+
+[node name="Big" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 1
+
+[node name="Fire" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
+
+[node name="Raccoon" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
+
+[node name="Frog" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
+
+[node name="Tanooki" type="Node" parent="PowerUpStates"]
+script = ExtResource("6_yoq75")
+tier = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("7_yoq75")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_8erm5")
+
+[node name="SuperCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11.5)
+scale = Vector2(1, 1.6)
+shape = SubResource("RectangleShape2D_8erm5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("3_6t5aa")
+bus = &"SFX"
+
+[node name="SquishSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("4_vgqql")
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("5_fkybt")
+max_distance = 4096.0
+
+[node name="Skid" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_miouo")
