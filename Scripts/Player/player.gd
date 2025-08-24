@@ -120,7 +120,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_speeds[final_jump_speed]
 		SoundManager.play_sfx("JumpSmall", global_position)
 
-	# Player dies when you fall in a pit
+	# Player dies when you fall in a pitS
 	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 50: die()
 
