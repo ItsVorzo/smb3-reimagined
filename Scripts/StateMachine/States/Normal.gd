@@ -43,9 +43,9 @@ func handle_animation():
 			player.animated_sprite.play("skid")
 		elif player.velocity.x == 0:
 			player.animated_sprite.play("idle")
-		elif abs(player.velocity.x) > 0 and player.max_speed != player.p_speed:
+		elif abs(player.velocity.x) > 0 and abs(player.velocity.x) < player.p_speed:
 			player.animated_sprite.play("walk", walk_anim_speed())
-		elif player.max_speed == player.p_speed:
+		else:
 			player.animated_sprite.play("run", 7)
 	else:
 		if player.max_speed != player.p_speed:

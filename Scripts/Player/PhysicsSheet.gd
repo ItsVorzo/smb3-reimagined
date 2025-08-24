@@ -1,6 +1,12 @@
 extends Node
 class_name PhysicsVal
 
+# Each character has its own physics
+# The game will choose the physics values by the character index
+# For example: acc_speed = PhysicsVal.acc_speed[character_index]
+# There's only 4 characters in the game so the character index will return a value of 0-3
+# Each value corresponds to a physics value
+
 # === Flat ground ===
 const acc_speed = [3.28125, 3.28125, 3.28125, 3.28125]
 const frc_speed = [3.28125, 3.28125, 3.28125, 3.28125]
@@ -23,11 +29,12 @@ const steep_sliding_acc = [7.5, 7.5, 7.5, 7.5]
 const sliding_max_speed = 236.25
 
 # === Mid-air ===
-const jump_speeds = [-217.5, -225.0, -240, -258.75,
-					-217.5, -225.0, -240, -258.75,
-					-217.5, -225.0, -240, -258.75,
-					-217.5, -225.0, -240, -258.75
-					]
+const jump_speeds = [
+		[-217.5, -225.0, -240, -258.75],
+		[-217.5, -225.0, -240, -258.75],
+		[-217.5, -225.0, -240, -258.75],
+		[-217.5, -225.0, -240, -258.75]
+]
 const strong_bounce = [-240.0, -240.0, -240.0, -240.0]
 const weak_bounce = [-180.0, -180.0, -180.0, -180.0]
 

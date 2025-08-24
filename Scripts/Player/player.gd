@@ -8,35 +8,38 @@ extends CharacterBody2D
 @onready var super_collision_shape := $SuperCollisionShape2D
 @onready var death_sound: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var bottom_pit := $"../CameraGroundLimit"
-var character_index = SaveManager.runtime_data.get("character_index", 0)
+@export var input_device := -1
+var character_index := 0
 var character = ["Mario", "Luigi", "Toad", "Toadette"]
 
 # === Physics values ===
-var walk_speed = PhysicsVal.walk_speed[character_index]
-var run_speed = PhysicsVal.run_speed[character_index]
-var p_speed = PhysicsVal.p_speed[character_index]
-var acc_speed = PhysicsVal.acc_speed[character_index]
-var frc_speed = PhysicsVal.frc_speed[character_index]
-var ice_frc_speed = PhysicsVal.ice_frc_speed[character_index]
-var skid_speed = PhysicsVal.skid_speed[character_index]
-var ice_skid_speed = PhysicsVal.ice_skid_speed[character_index]
-var end_level_walk = PhysicsVal.end_level_walk
-var airship_cutscene_walk = PhysicsVal.airship_cutscene_walk
-var added_gentle_slope_speed = PhysicsVal.added_gentle_slope_speed[character_index]
-var added_steep_slope_speed = PhysicsVal.added_steep_slope_speed[character_index]
-var uphill_max_walk = PhysicsVal.uphill_max_walk[character_index]
-var uphill_max_run = PhysicsVal.uphill_max_run[character_index]
-var gentle_sliding_acc = PhysicsVal.gentle_sliding_acc[character_index]
-var steep_sliding_acc = PhysicsVal.steep_sliding_acc[character_index]
-var sliding_max_speed = PhysicsVal.sliding_max_speed
+#region
+var walk_speed = 0#PhysicsVal.walk_speed[character_index]
+var run_speed = 0#PhysicsVal.run_speed[character_index]
+var p_speed = 0#PhysicsVal.p_speed[character_index]
+var acc_speed = 0#PhysicsVal.acc_speed[character_index]
+var frc_speed = 0#PhysicsVal.frc_speed[character_index]
+var ice_frc_speed = 0#PhysicsVal.ice_frc_speed[character_index]
+var skid_speed = 0#PhysicsVal.skid_speed[character_index]
+var ice_skid_speed = 0#PhysicsVal.ice_skid_speed[character_index]
+var end_level_walk = 0#PhysicsVal.end_level_walk
+var airship_cutscene_walk = 0#PhysicsVal.airship_cutscene_walk
+var added_gentle_slope_speed = 0#PhysicsVal.added_gentle_slope_speed[character_index]
+var added_steep_slope_speed = 0#PhysicsVal.added_steep_slope_speed[character_index]
+var uphill_max_walk = 0#PhysicsVal.uphill_max_walk[character_index]
+var uphill_max_run = 0#PhysicsVal.uphill_max_run[character_index]
+var gentle_sliding_acc = 0#PhysicsVal.gentle_sliding_acc[character_index]
+var steep_sliding_acc = 0#PhysicsVal.steep_sliding_acc[character_index]
+var sliding_max_speed = 0#PhysicsVal.sliding_max_speed
 
-var jump_speeds = PhysicsVal.jump_speeds.slice(character_index * 4, 4)
-var strong_bounce = PhysicsVal.strong_bounce[character_index]
-var weak_bounce = PhysicsVal.weak_bounce[character_index]
+var jump_speeds = 0#PhysicsVal.jump_speeds.slice(character_index * 4, 4)
+var strong_bounce = 0#PhysicsVal.strong_bounce[character_index]
+var weak_bounce = 0#PhysicsVal.weak_bounce[character_index]
 
-var low_gravity = PhysicsVal.low_gravity[character_index]
-var high_gravity = PhysicsVal.high_gravity[character_index]
+var low_gravity = 0#PhysicsVal.low_gravity[character_index]
+var high_gravity = 0#PhysicsVal.high_gravity[character_index]
 const death_gravity = 420.0
+#endregion
 
 # === Other stuff ===
 var final_grav_speed: float
@@ -63,13 +66,50 @@ var is_super := false
 var can_take_damage := true
 var is_dead := false
 
+# === Update the character index ===
+func char_idx() -> int:
+	return int(SaveManager.runtime_data.get("character_index", 0))
+
+# === Apply unique physics ===
+func apply_physics(i:int) -> void:
+	walk_speed = PhysicsVal.walk_speed[i]
+	run_speed = PhysicsVal.run_speed[i]
+	p_speed = PhysicsVal.p_speed[i]
+	acc_speed = PhysicsVal.acc_speed[i]
+	frc_speed = PhysicsVal.frc_speed[i]
+	ice_frc_speed = PhysicsVal.ice_frc_speed[i]
+	skid_speed = PhysicsVal.skid_speed[i]
+	ice_skid_speed = PhysicsVal.ice_skid_speed[i]
+	end_level_walk = PhysicsVal.end_level_walk
+	airship_cutscene_walk = PhysicsVal.airship_cutscene_walk
+	added_gentle_slope_speed = PhysicsVal.added_gentle_slope_speed[i]
+	added_steep_slope_speed = PhysicsVal.added_steep_slope_speed[i]
+	uphill_max_walk = PhysicsVal.uphill_max_walk[i]
+	uphill_max_run = PhysicsVal.uphill_max_run[i]
+	gentle_sliding_acc = PhysicsVal.gentle_sliding_acc[i]
+	steep_sliding_acc = PhysicsVal.steep_sliding_acc[i]
+	sliding_max_speed = PhysicsVal.sliding_max_speed
+
+	jump_speeds = PhysicsVal.jump_speeds[i]
+	strong_bounce = PhysicsVal.strong_bounce[i]
+	weak_bounce = PhysicsVal.weak_bounce[i]
+
+	low_gravity = PhysicsVal.low_gravity[i]
+	high_gravity = PhysicsVal.high_gravity[i]
+
 func _ready() -> void:
 
-	add_to_group("Player")  # <-- fixed group name
+	#InputManager.device = self
+	SaveManager.start_runtime_from_save(0)
+	character_index = char_idx() # Get the current character index
+	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+	apply_physics(character_index) # Apply unique physics (will be a toggle in the future)
+	add_to_group("Player") # Add to the correct group
 
 # === Logic ===
 func _process(delta):
 
+	print(input_device)
 	# === Set variables ===
 	max_speed = final_max_speed()
 	p_meter = handle_p_meter()
@@ -123,8 +163,6 @@ func _physics_process(delta: float) -> void:
 	# Player dies when you fall in a pitS
 	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 50: die()
-
-	print(state_machine.state.name)
 
 	move_and_slide()
 
