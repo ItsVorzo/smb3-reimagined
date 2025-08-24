@@ -22,10 +22,10 @@ func _ready() -> void:
 
 func apply_theme():
 	# === TileMaps ===
-	var terrain_path = "res://Sprites/Tilesets/%s/%s.tres" % [theme, theme]
+	var terrain_path = "res://SpriteFrames/%s/%s.tres" % [theme, theme]
 	terrain_tilemap.tile_set = load(terrain_path)
 
-	var semisolid_path = "res://Sprites/Tilesets/%s/Semisolid.tres" % theme
+	var semisolid_path = "res://SpriteFrames/%s/Semisolid.tres" % theme
 	semisolid_tilemap.tile_set = load(semisolid_path)
 
 	var pipe_path = "res://Sprites/Gizmos/Pipes.tres" if theme == "Overworld" \

@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://chak12uhpm0q1"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dxx7b30gflnik"]
 
-[ext_resource type="Texture2D" uid="uid://cvocp2ahv4nqv" path="res://Sprites/Tilesets/Overworld/Semisolid.png" id="1_mqk6n"]
+[ext_resource type="Texture2D" uid="uid://brqnj3rlvwcy8" path="res://SpriteFrames/Underground/Semisolid.png" id="1_h2kqv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_saxwf"]
-texture = ExtResource("1_mqk6n")
+texture = ExtResource("1_h2kqv")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -6.2089996, 8, -6.1250944, 8, -8)
 0:0/0/physics_layer_0/polygon_0/one_way = true

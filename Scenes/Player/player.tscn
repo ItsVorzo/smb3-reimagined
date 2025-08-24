@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://d1xtkpmqyle5h" path="res://Audio/Sfx/Die.wav" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://dku66u6sy4t54" path="res://Scripts/StateMachine/States/Slide.gd" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/Player/PowerUps.gd" id="6_yoq75"]
-[ext_resource type="SpriteFrames" uid="uid://b4y7uk0wcicdb" path="res://Sprites/Characters/Mario/Small.tres" id="7_yoq75"]
+[ext_resource type="SpriteFrames" uid="uid://b4y7uk0wcicdb" path="res://SpriteFrames/Characters/Mario/Small.tres" id="7_yoq75"]
 [ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="13_miouo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
