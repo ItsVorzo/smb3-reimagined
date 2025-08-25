@@ -56,7 +56,7 @@ func _process(_delta):
 			h_select = wrap(h_select + 1, 1, labels.size() + 1)
 			update_selection()
 
-		if !$Curtain/AnimationPlayer.is_playing():
+		if not $Curtain/AnimationPlayer.is_playing() and not _is_submenu_open():
 			if InputManager.Apress:
 				match h_select:
 					1:

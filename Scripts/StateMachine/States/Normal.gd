@@ -10,27 +10,27 @@ func physics_process_update(_delta: float) -> void:
 		state_machine.change_state("Die")
 	if player.is_on_floor():
 		if not state_machine.state.name == "Slide":
-			if InputManager.down and InputManager.direction == 0 and player.get_slope_angle() > 0:
+			if player.input.is_action_pressed("down") and player.input_direction() == 0 and player.get_slope_angle() > 0:
 				state_machine.change_state("Slide")
 			elif player.get_slope_angle() == 0:
-				player.crouching = InputManager.down
+				player.crouching = player.input.is_action_pressed("down")
 		if player.get_slope_angle() > 0 and player.crouching: player.crouching = false
 
 	# === Horizontal Movement ===
 	if not (player.crouching and player.is_on_floor()):
-		if InputManager.direction == 1:
+		if player.input_direction() == 1:
 			if player.velocity.x < 0:
 				player.velocity.x += player.skid_speed
 			else:
 				player.velocity.x = move_toward(player.velocity.x, player.final_max_speed(), player.acc_speed)
-		elif InputManager.direction == -1:
+		elif player.input_direction() == -1:
 			if player.velocity.x > 0:
 				player.velocity.x -= player.skid_speed
 			else:
 				player.velocity.x = move_toward(player.velocity.x, -player.final_max_speed(), player.acc_speed)
 
 	# If you aren't holding a direction, slow down
-	if InputManager.direction == 0 and player.is_on_floor() or player.crouching and player.is_on_floor():
+	if player.input_direction() == 0 and player.is_on_floor() or player.crouching and player.is_on_floor():
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.frc_speed)
 
 func handle_animation():

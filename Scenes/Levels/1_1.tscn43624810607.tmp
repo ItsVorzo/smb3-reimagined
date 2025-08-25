@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="11_saxwf"]
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="11_xecmd"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
+[ext_resource type="PackedScene" uid="uid://dgrkg4fljhhtx" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 [ext_resource type="PackedScene" path="res://Scenes/Enemies/goomba.tscn" id="15_saxwf"]
 [ext_resource type="PackedScene" uid="uid://e4embafexpde" path="res://Scenes/Items/Mushroom.tscn" id="18_xecmd"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="19_x1pt7"]

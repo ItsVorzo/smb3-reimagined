@@ -13,7 +13,8 @@ var flash_timer: int
 
 func _process(_delta: float) -> void:
 	# Get the p meter
-	if is_instance_valid(hudplr.Plr): p_meter = hudplr.Plr.p_meter
+	if hudplr.Plr.player_id == 0:
+		if is_instance_valid(hudplr.Plr): p_meter = hudplr.Plr.p_meter
 	# This is the timer used to flash the p icon
 	if p_meter >= hudplr.Plr.p_meter_max: flash_timer += 1
 	else: flash_timer = 0
