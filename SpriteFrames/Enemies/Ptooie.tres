@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://ded4vv7suf57g"]
+
+[ext_resource type="Texture2D" uid="uid://brxjytb8l6qlc" path="res://Sprites/Enemies/Ptooie.png" id="1_7qivq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qivq"]
+atlas = ExtResource("1_7qivq")
+region = Rect2(0, 16, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhrcr"]
+atlas = ExtResource("1_7qivq")
+region = Rect2(16, 16, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufdsa"]
+atlas = ExtResource("1_7qivq")
+region = Rect2(32, 16, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyc07"]
+atlas = ExtResource("1_7qivq")
+region = Rect2(48, 16, 16, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qivq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhrcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufdsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyc07")
+}],
+"loop": true,
+"name": &"Chomp",
+"speed": 5.0
+}]

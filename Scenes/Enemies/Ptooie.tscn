@@ -1,31 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://n1dmcslm2rj1"]
+[gd_scene load_steps=6 format=3 uid="uid://dyhqqm7qv7alh"]
 
-[ext_resource type="Script" uid="uid://cj1fstopemjv7" path="res://Scripts/Enemies/Dummy.gd" id="1_opypx"]
-[ext_resource type="Texture2D" uid="uid://ct8wukgabvc7v" path="res://Sprites/Characters/Toad/ToadSmall.png" id="2_sswme"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_057ka"]
-atlas = ExtResource("2_sswme")
-region = Rect2(295, 47.006, 18, 17.994)
+[ext_resource type="Script" uid="uid://bad6yto4jb2da" path="res://Scripts/Enemies/ptooie.gd" id="1_p0b8k"]
+[ext_resource type="SpriteFrames" uid="uid://ded4vv7suf57g" path="res://SpriteFrames/Enemies/Ptooie.tres" id="2_p0b8k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
 size = Vector2(10, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7role"]
-size = Vector2(16, 4)
+size = Vector2(8, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
-size = Vector2(16, 16)
+size = Vector2(12, 12)
 
-[node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "stompbox")]
+[node name="Ptooie" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
 collision_layer = 8
 collision_mask = 9
-script = ExtResource("1_opypx")
+script = ExtResource("1_p0b8k")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
-stompbox = NodePath("StompBox")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_057ka")
+[node name="Sprite2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("2_p0b8k")
+animation = &"Chomp"
+autoplay = "Chomp"
+frame_progress = 0.6479109
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sswme")
@@ -35,7 +34,7 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompBox"]
-position = Vector2(0, -8)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_7role")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -44,5 +43,5 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -26)
+position = Vector2(0, -27.5)
 shape = SubResource("RectangleShape2D_057ka")

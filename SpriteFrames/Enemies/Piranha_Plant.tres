@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://c13vlfydrqp7p"]
+
+[ext_resource type="Texture2D" uid="uid://dk5ncgkkahgtf" path="res://Sprites/Enemies/PiranhaPlant.png" id="1_wgspo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci2x8"]
+atlas = ExtResource("1_wgspo")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsdpa"]
+atlas = ExtResource("1_wgspo")
+region = Rect2(16, 0, 16, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci2x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsdpa")
+}],
+"loop": true,
+"name": &"Chomp",
+"speed": 5.0
+}]

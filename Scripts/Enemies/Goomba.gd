@@ -11,6 +11,7 @@ func _physics_process(delta: float) -> void:
 	process()
 
 	if stomped:
+		$Sprite.play("squish")
 		return
 
 	# Apply gravity
