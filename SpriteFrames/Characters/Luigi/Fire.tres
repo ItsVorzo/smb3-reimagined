@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://crqy4vabxufvk"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://crqy4vabxufvk"]
 
 [ext_resource type="Texture2D" uid="uid://12stfwoyqdyc" path="res://Sprites/Characters/Luigi/LuigiFire.png" id="1_ybijj"]
 
@@ -17,6 +17,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3h8g"]
 atlas = ExtResource("1_ybijj")
 region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybijj"]
+atlas = ExtResource("1_ybijj")
+region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1e7my"]
 atlas = ExtResource("1_ybijj")
@@ -79,6 +83,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o3h8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybijj")
 }],
 "loop": true,
 "name": &"jump",

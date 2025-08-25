@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://1qht8mtuxx64"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://1qht8mtuxx64"]
 
 [ext_resource type="Texture2D" uid="uid://biavto5dup6eu" path="res://Sprites/Characters/Luigi/LuigiBig.png" id="1_uu0m3"]
 
@@ -17,6 +17,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vwqhh"]
 atlas = ExtResource("1_uu0m3")
 region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu0m3"]
+atlas = ExtResource("1_uu0m3")
+region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xgvbs"]
 atlas = ExtResource("1_uu0m3")
@@ -84,6 +88,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vwqhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu0m3")
 }],
 "loop": true,
 "name": &"jump",

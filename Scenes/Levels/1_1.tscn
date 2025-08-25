@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=28 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://btu0wladbptrj" path="res://Sprites/Tilesets/BackgroundTiles.png" id="7_28jxv"]
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
 [ext_resource type="TileSet" uid="uid://08ekcyit34ot" path="res://SpriteFrames/Overworld/Semisolid.tres" id="7_gw30q"]
-[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/Overworld.tscn" id="8_28jxv"]
+[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
 [ext_resource type="Texture2D" uid="uid://c1n8cgqsfvhww" path="res://Sprites/Tilesets/EndTiles.png" id="8_xecmd"]
 [ext_resource type="Texture2D" uid="uid://d2ql7fwugawh7" path="res://Sprites/Gizmos/Pipes.png" id="9_73wy6"]
 [ext_resource type="PackedScene" uid="uid://cxkafas67lmod" path="res://Scenes/Player/cameralimitright.tscn" id="10_28jxv"]
@@ -15,14 +15,12 @@
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="11_saxwf"]
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="11_xecmd"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/HUD.tscn" id="14_noyq2"]
-[ext_resource type="PackedScene" uid="uid://6plhlk5ana8q" path="res://Scenes/Enemies/Goomba.tscn" id="15_saxwf"]
+[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 [ext_resource type="PackedScene" uid="uid://e4embafexpde" path="res://Scenes/Items/Mushroom.tscn" id="18_xecmd"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="19_x1pt7"]
 [ext_resource type="PackedScene" uid="uid://lnwx6fnxmvvj" path="res://Scenes/Blocks/QuestionBlock.tscn" id="20_5tb3e"]
 [ext_resource type="PackedScene" uid="uid://ck1ooqc5elweo" path="res://Scenes/Items/1UpMushroom.tscn" id="21_n5am2"]
-[ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="22_x62f6"]
-[ext_resource type="PackedScene" uid="uid://n1dmcslm2rj1" path="res://Scenes/Enemies/Dummy.tscn" id="24_nbrqo"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/Dummy.tscn" id="24_nbrqo"]
 [ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="24_okb1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
@@ -242,10 +240,6 @@ position = Vector2(251, 150)
 
 [node name="HUD" parent="." instance=ExtResource("14_noyq2")]
 
-[node name="Goomba2" parent="." instance=ExtResource("15_saxwf")]
-position = Vector2(792, -10)
-floor_constant_speed = true
-
 [node name="Mushroom" parent="." instance=ExtResource("18_xecmd")]
 position = Vector2(828, -13)
 
@@ -254,9 +248,6 @@ position = Vector2(900, -60)
 
 [node name="Mushroom2" parent="." instance=ExtResource("21_n5am2")]
 position = Vector2(751, -48)
-
-[node name="Spiny" parent="." instance=ExtResource("22_x62f6")]
-position = Vector2(1060, -34)
 
 [node name="QuestionBlock2" parent="." instance=ExtResource("20_5tb3e")]
 position = Vector2(920, -24)
