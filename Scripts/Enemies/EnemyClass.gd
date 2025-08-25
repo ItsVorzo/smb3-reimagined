@@ -11,7 +11,7 @@ var score_value = 100
 # Called when the node enters the scene tree for the first time.
 func set_signals() -> void:
 	hurtbox.body_entered.connect(_on_hurtbox_touch)
-	stompbox.body_entered.connect(_on_head_stomp)
+	if stompbox != null: stompbox.body_entered.connect(_on_head_stomp)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

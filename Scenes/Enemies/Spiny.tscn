@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://n1dmcslm2rj1"]
+[gd_scene load_steps=6 format=3 uid="uid://bik6sni4rqmu"]
 
-[ext_resource type="Script" uid="uid://cj1fstopemjv7" path="res://Scripts/Enemies/Dummy.gd" id="1_opypx"]
-[ext_resource type="Texture2D" uid="uid://ct8wukgabvc7v" path="res://Sprites/Characters/Toad/ToadSmall.png" id="2_sswme"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_057ka"]
-atlas = ExtResource("2_sswme")
-region = Rect2(295, 47.006, 18, 17.994)
+[ext_resource type="Script" uid="uid://bnp14qyglm1fx" path="res://Scenes/Enemies/spiny.gd" id="1_3y5nv"]
+[ext_resource type="SpriteFrames" uid="uid://dakosf25hvmeo" path="res://SpriteFrames/Enemies/Spiny.tres" id="2_uatgh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
 size = Vector2(10, 16)
@@ -16,16 +12,19 @@ size = Vector2(16, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(16, 16)
 
-[node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "stompbox")]
+[node name="Spiny" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
 collision_layer = 8
 collision_mask = 9
-script = ExtResource("1_opypx")
+script = ExtResource("1_3y5nv")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
-stompbox = NodePath("StompBox")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_057ka")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_uatgh")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.16002601
+flip_h = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sswme")
