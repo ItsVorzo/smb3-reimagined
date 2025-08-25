@@ -24,11 +24,17 @@ ThemeManager="*res://Scripts/Game/ThemeManager.gd"
 ConfigManager="*res://Scripts/Game/ConfigManager.gd"
 GameManager="*res://Scripts/Game/GameManager.gd"
 SoundManager="*res://Scripts/Game/SoundManager.gd"
+MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
+PlayerManager="*res://Scripts/Player/PlayerManager.gd"
 
 [display]
 
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=3
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg")
 
 [file_customization]
 

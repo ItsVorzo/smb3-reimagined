@@ -1,53 +1,49 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://clgqlvqrb21vm"]
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://w8a0wcbf1cyn"]
 
-[ext_resource type="Texture2D" uid="uid://c68rgoirnvukf" path="res://Sprites/Characters/Luigi/LuigiSmall.png" id="1_oq51l"]
+[ext_resource type="Texture2D" uid="uid://ct8wukgabvc7v" path="res://Sprites/Characters/Toad/ToadSmall.png" id="1_foxpx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(288, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(320, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oq51l"]
-atlas = ExtResource("1_oq51l")
-region = Rect2(352, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(256, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
-atlas = ExtResource("1_oq51l")
+atlas = ExtResource("1_foxpx")
 region = Rect2(96, 0, 32, 32)
 
 [resource]
@@ -87,9 +83,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cvnsp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oq51l")
 }],
 "loop": true,
 "name": &"jump",

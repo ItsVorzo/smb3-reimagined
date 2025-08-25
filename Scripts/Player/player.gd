@@ -8,7 +8,8 @@ extends CharacterBody2D
 @onready var super_collision_shape := $SuperCollisionShape2D
 @onready var death_sound: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var bottom_pit := $"../CameraGroundLimit"
-@export var input_device := -1
+var input_device := -1
+@export var player_id := 0
 var character_index := 0
 var character = ["Mario", "Luigi", "Toad", "Toadette"]
 
@@ -66,9 +67,28 @@ var is_super := false
 var can_take_damage := true
 var is_dead := false
 
+# === Input shit ===
+var input
+
+# === Udate the input devices ===
+func update_input_device(player_num: int):
+	var device
+	if not PlayerManager.get_unjoined_devices().is_empty():
+		device = PlayerManager.get_unjoined_devices()[0]
+		PlayerManager.join(device)
+	else:
+		device = PlayerManager.get_player_device(player_num)
+	input = DeviceInput.new(device)
+
 # === Update the character index ===
 func char_idx() -> int:
 	return int(SaveManager.runtime_data.get("character_index", 0))
+
+func player_instance_exists(id: int) -> bool:
+	for player in get_tree().get_nodes_in_group("Player"):
+		if player.player_id == id:
+			return true
+	return false
 
 # === Apply unique physics ===
 func apply_physics(i:int) -> void:
@@ -99,21 +119,37 @@ func apply_physics(i:int) -> void:
 
 func _ready() -> void:
 
-	#InputManager.device = self
+	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+
+	InputManager.player = self
 	SaveManager.start_runtime_from_save(0)
 	character_index = char_idx() # Get the current character index
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 	apply_physics(character_index) # Apply unique physics (will be a toggle in the future)
 	add_to_group("Player") # Add to the correct group
 
+func _on_joy_connection_changed(device: int, connected: bool):
+	if not connected:
+		PlayerManager.leave_device(device)
+
 # === Logic ===
 func _process(delta):
 
-	print(input_device)
+	# === Remove unused players ===
+	var device = PlayerManager.get_player_device(player_id)
+	if device == null:
+		PlayerManager.leave(device)
+		queue_free()
+		return
+
+	# === Update input devices for local multiplayer ===
+	if PlayerManager.player_data:
+		update_input_device(player_id) 
+
 	# === Set variables ===
 	max_speed = final_max_speed()
 	p_meter = handle_p_meter()
-	skidding = InputManager.direction != 0 and velocity_direction != 0 and InputManager.direction != velocity_direction and is_on_floor() and !crouching
+	skidding = input_direction() != 0 and velocity_direction != 0 and input_direction() != velocity_direction and is_on_floor() and !crouching
 	if skidding:
 		if skid_sfx.is_playing() == false:
 			skid_sfx.play()
@@ -128,7 +164,7 @@ func _process(delta):
 	else:
 		coyote_timer = coyote_time
 
-	if InputManager.Apress:
+	if input.is_action_just_pressed("A"):
 		jump_buffer_timer = jump_buffer_time
 	else:
 		jump_buffer_timer -= 1
@@ -140,43 +176,50 @@ func _process(delta):
 # === Physics ===
 func _physics_process(delta: float) -> void:
 
-	if is_dead:
+	# If you're dead or no input device is detected return
+	if is_dead or not input:
 		return
-	#print(InputManager.direction, " + ", velocity.x, " + ", max_speed, " + ", p_meter)
 
 	# Reset skidding
-	if InputManager.direction == 0:
+	if input_direction() == 0:
 		skidding = false
 
 	# === Gravity and Jumping ===
 	if not is_on_floor():
-		if velocity.y < -120 and InputManager.A: final_grav_speed = low_gravity
+		if velocity.y < -120 and input.is_action_pressed("A"): final_grav_speed = low_gravity
 		else: final_grav_speed = high_gravity
 		velocity.y += final_grav_speed * delta
 		velocity.y = min(velocity.y, 258.75)
 	# Jumping
-	if InputManager.Apress and is_on_floor():
+	if input.is_action_just_pressed("A") and is_on_floor():
 		var final_jump_speed = floor(abs(velocity.x)/60)
 		velocity.y = jump_speeds[final_jump_speed]
 		SoundManager.play_sfx("JumpSmall", global_position)
 
 	# Player dies when you fall in a pitS
 	if !is_dead && is_instance_valid(bottom_pit):
-		if global_position.y > bottom_pit.global_position.y + 50: die()
+		if global_position.y > bottom_pit.global_position.y + 54: die()
 
 	move_and_slide()
 
-	# === Set the sprite x scale ===
+# === Get the input direction ===
+func input_direction() -> int:
+	if input:
+		return input.get_axis("left", "right")
+	else:
+		return 0
+
+# === Set the sprite x scale ===
 func sprite_direction():
-	if direction_allow && InputManager.direction != 0:
-		facing_direction = InputManager.direction
+	if direction_allow && input_direction() != 0:
+		facing_direction = input_direction()
 	return facing_direction
 
 # === Bounce on koopalings ===
 func bounce_on_enemy() -> void:
 	if state_machine.state.name != "Normal":
 		state_machine.change_state("Normal")
-	if InputManager.A:
+	if input.is_action_pressed("A"):
 		velocity.y = -240.0
 	else:
 		velocity.y = -180.0
@@ -250,8 +293,8 @@ func set_power_state(powerup: String) -> void:
 
 # === i frames ===
 func i_frames() -> void:
-	can_take_damage = false
 	for i in 16:
+		can_take_damage = false
 		animated_sprite.visible = false
 		await get_tree().create_timer(0.05).timeout
 		animated_sprite.visible = true
@@ -263,10 +306,10 @@ func i_frames() -> void:
 func handle_p_meter():
 	p_meter = clamp(p_meter, 0, p_meter_max)
 	if p_meter > p_meter_max: p_meter = p_meter_max
-	if p_meter >= p_meter_max and InputManager.B and InputManager.direction == velocity_direction and abs(velocity.x) >= run_speed: 
+	if p_meter >= p_meter_max and input.is_action_pressed("B") and input_direction() == velocity_direction and abs(velocity.x) >= run_speed: 
 		extra_p_frames = 16.0
 	elif extra_p_frames > 0 && is_on_floor(): extra_p_frames -= 1
-	if state_machine.state.name == "Normal" and abs(velocity.x) >= run_speed and InputManager.B and is_on_floor() and InputManager.direction == velocity_direction or not is_on_floor() and p_meter >= p_meter_max:
+	if state_machine.state.name == "Normal" and abs(velocity.x) >= run_speed and input.is_action_pressed("B") and is_on_floor() and input_direction() == velocity_direction or not is_on_floor() and p_meter >= p_meter_max:
 		p_meter += 1
 	elif p_meter > 0 and extra_p_frames <= 0:
 		p_meter -= 0.583
@@ -290,22 +333,22 @@ func final_acc_speed():
 
 # === Set max speeds ===
 func final_max_speed():
-	var is_going_uphill = get_slope_direction() == -1 and InputManager.direction == 1 or get_slope_direction() == 1 and InputManager.direction == -1
+	var is_going_uphill = get_slope_direction() == -1 and input_direction() == 1 or get_slope_direction() == 1 and input_direction() == -1
 
 	# Uphill slope
 	if get_slope_angle() > 0 && is_going_uphill:
-			return uphill_max_run if InputManager.B else uphill_max_walk
+			return uphill_max_run if input.is_action_pressed("B") else uphill_max_walk
 	elif state_machine.state.name == "Slide":
 		return sliding_max_speed if get_slope_angle() > 0 else 0.0
 	else:
 		if p_meter < p_meter_max:
-			if InputManager.B: return run_speed + downhill_speed_modifier()
+			if input.is_action_pressed("B"): return run_speed + downhill_speed_modifier()
 			else: return walk_speed + downhill_speed_modifier()
 		else: return p_speed + downhill_speed_modifier()
 
 # === Add speed downhill ===
 func downhill_speed_modifier():
-	if get_slope_angle() > 0 and get_slope_direction() == InputManager.direction:
+	if get_slope_angle() > 0 and get_slope_direction() == input_direction():
 		if get_slope_angle() <= 27: return added_gentle_slope_speed
 		else: return added_steep_slope_speed
 	else: return 0

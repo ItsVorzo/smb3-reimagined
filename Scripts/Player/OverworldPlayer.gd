@@ -11,6 +11,10 @@ var target_position = Vector2.ZERO
 @onready var move_sound = $MoveSound  # 🔊 Reference to your sound node
 
 func _ready():
+	if PlayerManager.player_data:
+		PlayerManager.player_data.erase(1)
+		PlayerManager.player_data.erase(2)
+		PlayerManager.player_data.erase(3)
 	target_position = position
 	add_to_group("Overworld")
 

@@ -12,9 +12,9 @@ func physics_process_update(_delta: float) -> void:
 	if player.get_slope_angle() == 0:
 		if abs(player.velocity.x) < 10:
 			state_machine.change_state("Normal")
-		elif InputManager.direction != 0:
+		elif player.input_direction() != 0:
 			state_machine.change_state("Normal")
-	elif InputManager.direction != player.velocity_direction and InputManager.direction != 0 or not player.is_on_floor():
+	elif player.input_direction() != player.velocity_direction and player.input_direction() != 0 or not player.is_on_floor():
 		state_machine.change_state("Normal")
 	if player.velocity_direction != 0: 
 		player.facing_direction = player.velocity_direction
