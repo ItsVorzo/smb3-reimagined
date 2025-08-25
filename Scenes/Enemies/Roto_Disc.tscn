@@ -131,7 +131,7 @@ collision = NodePath("Disc/Area2D/Collision")
 hurtbox = NodePath("Disc/Area2D/HurtBox")
 
 [node name="Disc" type="Sprite2D" parent="."]
-position = Vector2(0, -64)
+position = Vector2(0, -48)
 texture = SubResource("AtlasTexture_dnano")
 
 [node name="Area2D" type="Area2D" parent="Disc"]
@@ -159,7 +159,7 @@ texture = SubResource("AtlasTexture_fl2rw")
 [node name="RotationJoint" type="Node2D" parent="."]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="RotationJoint"]
-position = Vector2(0, -64)
+position = Vector2(0, -48)
 remote_path = NodePath("../../Disc")
 update_rotation = false
 update_scale = false

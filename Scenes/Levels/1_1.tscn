@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=42 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://dptrn021waygr" path="res://Scenes/Enemies/Pipe_Piranha_Plant.tscn" id="23_gw30q"]
 [ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="24_okb1e"]
+[ext_resource type="PackedScene" uid="uid://c8de7iughnt8b" path="res://Scenes/Enemies/ParaGoomba.tscn" id="26_330ea"]
 [ext_resource type="PackedScene" uid="uid://dxipgbg180h01" path="res://Scenes/Enemies/Roto_Disc.tscn" id="30_x8ai0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
@@ -162,7 +163,7 @@ position = Vector2(465, -40)
 item_scene = ExtResource("24_okb1e")
 
 [node name="Player" parent="." instance=ExtResource("7_ftxpn")]
-position = Vector2(734, -131)
+position = Vector2(2201, -59)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Player"]
 process_mode = 3
@@ -207,3 +208,6 @@ position = Vector2(1736, -40)
 
 [node name="RotoDisc" parent="." instance=ExtResource("30_x8ai0")]
 position = Vector2(776, -120)
+
+[node name="Goomba" parent="." instance=ExtResource("26_330ea")]
+position = Vector2(2303, -8)
