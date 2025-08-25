@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=3 uid="uid://dntim7d7cantk"]
+
+[ext_resource type="Texture2D" uid="uid://b4nruqqn53ef7" path="res://Sprites/UI/Level Transition.png" id="1_lkfjp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkfjp"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 0, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50l8p"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 208, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftdjc"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 416, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwtx6"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 624, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyvus"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 832, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd8x6"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 1040, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng4al"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 1248, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_002g0"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 1456, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfpq0"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 1664, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db057"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 1872, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqxw0"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 2080, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlt2y"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 2288, 383, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74ku1"]
+atlas = ExtResource("1_lkfjp")
+region = Rect2(0, 2496, 383, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ng4al"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkfjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50l8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftdjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwtx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyvus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd8x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng4al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_002g0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfpq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db057")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqxw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlt2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74ku1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 13.0
+}]
+
+[node name="Level Transition" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ng4al")
+autoplay = "default"
+frame_progress = 0.46876928

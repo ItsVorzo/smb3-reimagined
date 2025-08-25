@@ -1,9 +1,12 @@
 extends Area2D
 
 @export var level_scene_path: String
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var animation_name: String = "start"
+@export var ball_offset_y := -40.0  # Optional offset if needed
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var enter_level_sound: AudioStreamPlayer2D = $EnterLevelSound
+@onready var level_transition_scene := preload("res://Scenes/UI/level_transition.tscn")
 
 var player_inside := false
 var level_transition_started := false
@@ -24,20 +27,26 @@ func _process(_delta):
 		InputManager.input_disabled = true
 		level_transition_started = true
 
-		# Get the root of the current scene
 		var world_root = get_tree().current_scene
 
-		# If AudioStreamer exists directly under root, pause it
+		# Stop overworld music if it's playing
 		if world_root.has_node("AudioStreamer"):
-			var audio_streamer: AudioStreamPlayer2D = world_root.get_node("AudioStreamer") as AudioStreamPlayer2D
+			var audio_streamer: AudioStreamPlayer2D = world_root.get_node("AudioStreamer")
 			if audio_streamer.playing:
 				audio_streamer.stop()
 
-		# Play level enter sound
+		# Play the level enter sound
 		SoundManager.play_sfx("MapStart")
-		await get_tree().create_timer(1.11).timeout  # wait until sound finishes
 
-		# Change scene after sound finishes
+		# Spawn the level transition scene (like a fade)
+		var transition_instance = level_transition_scene.instantiate()
+		world_root.add_child(transition_instance)
+
+		# Wait for sound to finish (adjust time to match your audio)
+		await get_tree().create_timer(1.11).timeout
+
 		InputManager.input_disabled = false
+
+		# Load the new level
 		if level_scene_path != "":
 			get_tree().change_scene_to_file(level_scene_path)
