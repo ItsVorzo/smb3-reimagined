@@ -1,0 +1,174 @@
+[gd_scene load_steps=20 format=3 uid="uid://dxipgbg180h01"]
+
+[ext_resource type="Script" uid="uid://beckswfpojmq8" path="res://Scripts/Enemies/roto_disc.gd" id="1_dnano"]
+[ext_resource type="Texture2D" uid="uid://c5wb7xsd8xgoj" path="res://Sprites/Gizmos/RotoDisc.png" id="1_otjvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnano"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iogqw"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s1hj"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bryk5"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n0on"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfaht"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs0u4"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xgoe"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raja7"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_njg65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iogqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7s1hj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bryk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n0on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfaht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs0u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xgoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raja7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
+size = Vector2(10, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl2rw"]
+atlas = ExtResource("1_otjvs")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="Animation" id="Animation_iogqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dnano"]
+resource_name = "disc"
+length = 5.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7s1hj"]
+_data = {
+&"RESET": SubResource("Animation_iogqw"),
+&"disc": SubResource("Animation_dnano")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnano"]
+size = Vector2(16, 16)
+
+[node name="RotoDisc" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+collision_layer = 15
+collision_mask = 11
+script = ExtResource("1_dnano")
+collision = NodePath("Disc/Area2D/Collision")
+hurtbox = NodePath("Disc/Area2D/HurtBox")
+
+[node name="Disc" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
+texture = SubResource("AtlasTexture_dnano")
+
+[node name="Area2D" type="Area2D" parent="Disc"]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Disc/Area2D"]
+sprite_frames = SubResource("SpriteFrames_njg65")
+autoplay = "default"
+frame_progress = 0.37425238
+
+[node name="Collision" type="CollisionShape2D" parent="Disc/Area2D"]
+shape = SubResource("RectangleShape2D_sswme")
+
+[node name="HurtBox" type="Area2D" parent="Disc/Area2D"]
+position = Vector2(0, 26)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Disc/Area2D/HurtBox"]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_057ka")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_fl2rw")
+
+[node name="RotationJoint" type="Node2D" parent="."]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RotationJoint"]
+position = Vector2(0, -64)
+remote_path = NodePath("../../Disc")
+update_rotation = false
+update_scale = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RotationJoint"]
+libraries = {
+&"": SubResource("AnimationLibrary_7s1hj")
+}
+autoplay = "disc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dnano")
