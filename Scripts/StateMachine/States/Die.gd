@@ -49,5 +49,5 @@ func exit() -> void:
 	player.process_mode = player.PROCESS_MODE_INHERIT
 	player.normal_collision_shape.disabled = false
 	player.super_collision_shape.disabled = false
-	player.global_position = Vector2(player.global_position.x, -48)
+	player.global_position = Vector2(randf_range(player.global_position.x - 64, player.global_position.x + 64), -48)
 	player.velocity.y = 0.0

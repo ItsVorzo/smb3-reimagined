@@ -70,7 +70,7 @@ func _on_head_stomp(body: Node) -> void:
 		return
 	if not body.is_in_group("Player"):
 		return
-	if body.velocity.y >= 0:
+	if body.velocity.y > 0:
 		if body.has_method("bounce_on_enemy"):
 			body.bounce_on_enemy()
 		SaveManager.runtime_data["score"] = SaveManager.runtime_data.get("score", 0) + score_value

@@ -135,8 +135,6 @@ func _on_joy_connection_changed(device: int, connected: bool):
 # === Logic ===
 func _process(delta):
 
-	print(PlayerManager.player_data, "                 ", player_instance_exists(1))
-
 	# === Remove unused players ===
 	var device = PlayerManager.get_player_device(player_id)
 	if device == null:
@@ -295,8 +293,8 @@ func set_power_state(powerup: String) -> void:
 
 # === i frames ===
 func i_frames() -> void:
-	can_take_damage = false
 	for i in 16:
+		can_take_damage = false
 		animated_sprite.visible = false
 		await get_tree().create_timer(0.05).timeout
 		animated_sprite.visible = true
