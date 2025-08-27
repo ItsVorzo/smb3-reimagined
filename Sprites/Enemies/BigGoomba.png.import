@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clyslwbvgmrbs"
-path="res://.godot/imported/MarioWorldMap.png-f3f9775d7d6bcb24c7f31accaa4ba54a.ctex"
+uid="uid://be80rxvtcrs7b"
+path="res://.godot/imported/BigGoomba.png-a03de8372c9ff6456d7838c25ef601ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/Mario/MarioWorldMap.png"
-dest_files=["res://.godot/imported/MarioWorldMap.png-f3f9775d7d6bcb24c7f31accaa4ba54a.ctex"]
+source_file="res://Sprites/Enemies/BigGoomba.png"
+dest_files=["res://.godot/imported/BigGoomba.png-a03de8372c9ff6456d7838c25ef601ff.ctex"]
 
 [params]
 

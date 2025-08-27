@@ -1,29 +1,29 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://lobjog7nfli0"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://mt824ajsxhjc"]
 
-[ext_resource type="Texture2D" uid="uid://4edc0hcou80l" path="res://Sprites/Enemies/Goomba.png" id="1_qa0oo"]
+[ext_resource type="Texture2D" uid="uid://4edc0hcou80l" path="res://Sprites/Enemies/Goomba.png" id="1_kcgjc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kh66b"]
-atlas = ExtResource("1_qa0oo")
+atlas = ExtResource("1_kcgjc")
 region = Rect2(96, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qa0oo"]
-atlas = ExtResource("1_qa0oo")
+atlas = ExtResource("1_kcgjc")
 region = Rect2(112, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u12k7"]
-atlas = ExtResource("1_qa0oo")
+atlas = ExtResource("1_kcgjc")
 region = Rect2(128, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uctm7"]
-atlas = ExtResource("1_qa0oo")
+atlas = ExtResource("1_kcgjc")
 region = Rect2(144, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ei57l"]
-atlas = ExtResource("1_qa0oo")
+atlas = ExtResource("1_kcgjc")
 region = Rect2(0, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gb1sd"]
-atlas = ExtResource("1_qa0oo")
+atlas = ExtResource("1_kcgjc")
 region = Rect2(16, 0, 16, 24)
 
 [resource]

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://clgqlvqrb21vm"]
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://clgqlvqrb21vm"]
 
 [ext_resource type="Texture2D" uid="uid://c68rgoirnvukf" path="res://Sprites/Characters/Luigi/LuigiSmall.png" id="1_oq51l"]
 
@@ -25,6 +25,14 @@ region = Rect2(320, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oq51l"]
 atlas = ExtResource("1_oq51l")
 region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26uw3"]
+atlas = ExtResource("1_oq51l")
+region = Rect2(416, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj2l6"]
+atlas = ExtResource("1_oq51l")
+region = Rect2(448, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
 atlas = ExtResource("1_oq51l")
@@ -93,6 +101,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26uw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj2l6")
+}],
+"loop": true,
+"name": &"map",
 "speed": 5.0
 }, {
 "frames": [],

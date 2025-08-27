@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dht1m4maqublw"]
+
+[ext_resource type="Texture2D" uid="uid://cim14k6o0vhbx" path="res://Sprites/Enemies/Muncher.png" id="1_adnmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8jvj"]
+atlas = ExtResource("1_adnmx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr1lg"]
+atlas = ExtResource("1_adnmx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp0rd"]
+atlas = ExtResource("1_adnmx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xg45"]
+atlas = ExtResource("1_adnmx")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8jvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr1lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp0rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xg45")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

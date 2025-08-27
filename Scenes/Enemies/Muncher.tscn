@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn14tyievo5qd"]
+
+[ext_resource type="Script" uid="uid://dc0ldeaimqmy7" path="res://Scenes/Enemies/muncher.gd" id="1_3bqq8"]
+[ext_resource type="SpriteFrames" uid="uid://dht1m4maqublw" path="res://SpriteFrames/Enemies/Muncher.tres" id="2_3bqq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
+size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
+size = Vector2(16, 15)
+
+[node name="Muncher" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_3bqq8")
+collision = NodePath("Area2D/Collision")
+hurtbox = NodePath("Area2D/HurtBox")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = ExtResource("2_3bqq8")
+autoplay = "default"
+frame_progress = 0.04785904
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_sswme")
+
+[node name="HurtBox" type="Area2D" parent="Area2D"]
+position = Vector2(0, 26)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/HurtBox"]
+position = Vector2(0, -25.5)
+shape = SubResource("RectangleShape2D_057ka")

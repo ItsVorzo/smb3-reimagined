@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://dsq57hjqffjbo"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://dsq57hjqffjbo"]
 
 [ext_resource type="Texture2D" uid="uid://pd1ngec7auas" path="res://Sprites/Characters/Mario/MarioRacoon.png" id="1_q0f7x"]
 
@@ -25,6 +25,14 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_06tpx"]
 atlas = ExtResource("1_q0f7x")
 region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0f7x"]
+atlas = ExtResource("1_q0f7x")
+region = Rect2(352, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddwg2"]
+atlas = ExtResource("1_q0f7x")
+region = Rect2(384, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74mp2"]
 atlas = ExtResource("1_q0f7x")
@@ -96,6 +104,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0f7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddwg2")
+}],
+"loop": true,
+"name": &"map",
 "speed": 5.0
 }, {
 "frames": [{

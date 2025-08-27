@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://d4aeombn3v4f2"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://d4aeombn3v4f2"]
 
 [ext_resource type="Texture2D" uid="uid://b1kgkpwhum30s" path="res://Sprites/Characters/Toadette/ToadetteSmall.png" id="1_8g4a6"]
 
@@ -21,6 +21,14 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_8g4a6")
 region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g4a6"]
+atlas = ExtResource("1_8g4a6")
+region = Rect2(416, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbeof"]
+atlas = ExtResource("1_8g4a6")
+region = Rect2(448, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
 atlas = ExtResource("1_8g4a6")
@@ -86,6 +94,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g4a6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbeof")
+}],
+"loop": true,
+"name": &"map",
 "speed": 5.0
 }, {
 "frames": [],

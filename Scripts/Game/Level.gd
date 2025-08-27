@@ -1,6 +1,6 @@
 extends Node2D
 
-@export_enum("Overworld", "Underground", "Desert", "Snow") var theme: String = "Overworld"
+@export_enum("Overworld", "Underground", "Desert", "Snow", "Athletic") var theme: String = "Overworld"
 
 @onready var terrain_tilemap = $TerrainTileMap
 @onready var semisolid_tilemap = $SemisolidTileMap
@@ -28,8 +28,7 @@ func apply_theme():
 	var semisolid_path = "res://SpriteFrames/%s/Semisolid.tres" % theme
 	semisolid_tilemap.tile_set = load(semisolid_path)
 
-	var pipe_path = "res://SpriteFrames/Gizmos/Pipes.tres" if theme == "Overworld" \
-		else "res://SpriteFrames/Gizmos/Variants/%s/Pipes.tres" % theme
+	var pipe_path = "res://SpriteFrames/Gizmos/Variants/%s/Pipes.tres" % theme
 	pipe_tilemap.tile_set = load(pipe_path)
 
 	# === Music ===

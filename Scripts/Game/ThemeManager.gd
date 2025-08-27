@@ -2,7 +2,7 @@ extends Node2D
 
 signal theme_changed(new_theme: String)
 
-@export_enum("Overworld", "Underground", "Desert", "Snow")
+@export_enum("Overworld", "Underground", "Desert", "Snow", "Athletic")
 var theme: String = "Overworld":
 	set(value):
 		if theme != value:

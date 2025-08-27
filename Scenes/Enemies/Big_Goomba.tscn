@@ -1,33 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://c688u7qw55eff"]
+[gd_scene load_steps=7 format=3 uid="uid://dejhtq47ffem4"]
 
-[ext_resource type="Script" uid="uid://bquc1mx5ttqg0" path="res://Scripts/Enemies/Goomba.gd" id="1_apkb4"]
-[ext_resource type="SpriteFrames" uid="uid://mt824ajsxhjc" path="res://SpriteFrames/Enemies/Goomba.tres" id="2_d1rwa"]
-[ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_d1rwa"]
+[ext_resource type="Script" uid="uid://bquc1mx5ttqg0" path="res://Scripts/Enemies/Goomba.gd" id="1_wbgd1"]
+[ext_resource type="SpriteFrames" uid="uid://lobjog7nfli0" path="res://SpriteFrames/Enemies/BigGoomba.tres" id="2_grwuy"]
+[ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_a8cbn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
-size = Vector2(10, 16)
+size = Vector2(20, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7role"]
-size = Vector2(20, 6)
+size = Vector2(24, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
-size = Vector2(16, 13)
+size = Vector2(20, 18)
 
 [node name="BigGoomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "stompbox")]
 collision_layer = 8
 collision_mask = 9
-script = ExtResource("1_apkb4")
+script = ExtResource("1_wbgd1")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
 stompbox = NodePath("StompBox")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
-sprite_frames = ExtResource("2_d1rwa")
+sprite_frames = ExtResource("2_grwuy")
 animation = &"walk"
 autoplay = "walk"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_sswme")
 
 [node name="StompBox" type="Area2D" parent="."]
@@ -44,8 +45,8 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -24.5)
+position = Vector2(0, -25)
 shape = SubResource("RectangleShape2D_057ka")
 
 [node name="StompSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_d1rwa")
+stream = ExtResource("3_a8cbn")
