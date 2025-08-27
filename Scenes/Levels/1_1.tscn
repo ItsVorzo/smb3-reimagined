@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=39 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://ck1ooqc5elweo" path="res://Scenes/Items/1UpMushroom.tscn" id="21_n5am2"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://dptrn021waygr" path="res://Scenes/Enemies/Pipe_Piranha_Plant.tscn" id="23_gw30q"]
+[ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="28_xv8io"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -188,3 +189,6 @@ position = Vector2(900, -60)
 
 [node name="Mushroom2" parent="." instance=ExtResource("21_n5am2")]
 position = Vector2(751, -48)
+
+[node name="FireFlower" parent="." instance=ExtResource("28_xv8io")]
+position = Vector2(457, -15)

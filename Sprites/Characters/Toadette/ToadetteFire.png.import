@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkmot352xbmit"
-path="res://.godot/imported/MarioIce.png-d270e4f24e339e08ba51bb1c6148a185.ctex"
+uid="uid://c8ch5kcg6h1gp"
+path="res://.godot/imported/ToadetteFire.png-d66a3a9ce05fb75b4c4e99299060735d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/Mario/MarioIce.png"
-dest_files=["res://.godot/imported/MarioIce.png-d270e4f24e339e08ba51bb1c6148a185.ctex"]
+source_file="res://Sprites/Characters/Toadette/ToadetteFire.png"
+dest_files=["res://.godot/imported/ToadetteFire.png-d66a3a9ce05fb75b4c4e99299060735d.ctex"]
 
 [params]
 

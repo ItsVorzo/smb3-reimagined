@@ -1,10 +1,14 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://crqy4vabxufvk"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://crqy4vabxufvk"]
 
 [ext_resource type="Texture2D" uid="uid://12stfwoyqdyc" path="res://Sprites/Characters/Luigi/LuigiFire.png" id="1_ybijj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ksbbd"]
 atlas = ExtResource("1_ybijj")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcq2y"]
+atlas = ExtResource("1_ybijj")
+region = Rect2(352, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_glx4g"]
 atlas = ExtResource("1_ybijj")
@@ -50,6 +54,10 @@ region = Rect2(288, 0, 32, 32)
 atlas = ExtResource("1_ybijj")
 region = Rect2(256, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0x7a"]
+atlas = ExtResource("1_ybijj")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v66d"]
 atlas = ExtResource("1_ybijj")
 region = Rect2(96, 0, 32, 32)
@@ -57,10 +65,6 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x63xi"]
 atlas = ExtResource("1_ybijj")
 region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m0x7a"]
-atlas = ExtResource("1_ybijj")
-region = Rect2(160, 0, 32, 32)
 
 [resource]
 animations = [{
@@ -70,6 +74,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcq2y")
+}],
+"loop": true,
+"name": &"dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -145,6 +157,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m0x7a")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5v66d")
 }, {
 "duration": 1.0,
@@ -152,9 +167,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5v66d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m0x7a")
 }],
 "loop": true,
 "name": &"walk",

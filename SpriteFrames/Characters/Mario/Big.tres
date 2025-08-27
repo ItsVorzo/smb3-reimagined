@@ -1,10 +1,14 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://dqfhw1wm7bnsa"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://dqfhw1wm7bnsa"]
 
 [ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="1_scpvm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpk6l"]
 atlas = ExtResource("1_scpvm")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyx2g"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(288, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5aaad"]
 atlas = ExtResource("1_scpvm")
@@ -38,6 +42,10 @@ region = Rect2(192, 0, 32, 32)
 atlas = ExtResource("1_scpvm")
 region = Rect2(224, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_myhqk"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(192, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_h251i"]
 atlas = ExtResource("1_scpvm")
 region = Rect2(288, 0, 32, 32)
@@ -46,6 +54,10 @@ region = Rect2(288, 0, 32, 32)
 atlas = ExtResource("1_scpvm")
 region = Rect2(256, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_druic"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_uro1n"]
 atlas = ExtResource("1_scpvm")
 region = Rect2(96, 0, 32, 32)
@@ -53,10 +65,6 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cnkym"]
 atlas = ExtResource("1_scpvm")
 region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_druic"]
-atlas = ExtResource("1_scpvm")
-region = Rect2(160, 0, 32, 32)
 
 [resource]
 animations = [{
@@ -68,7 +76,10 @@ animations = [{
 "name": &"crouch",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyx2g")
+}],
 "loop": true,
 "name": &"dead",
 "speed": 5.0
@@ -117,6 +128,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4x77r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myhqk")
 }],
 "loop": true,
 "name": &"run",
@@ -140,6 +154,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_druic")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_uro1n")
 }, {
 "duration": 1.0,
@@ -147,9 +164,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uro1n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_druic")
 }],
 "loop": true,
 "name": &"walk",
