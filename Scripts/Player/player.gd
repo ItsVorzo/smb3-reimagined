@@ -122,8 +122,8 @@ func _ready() -> void:
 
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 
-	InputManager.player = self
-	SaveManager.start_runtime_from_save(0)
+	InputManager.player = self 
+	SaveManager.start_runtime_from_save(0) # 1st step to getting the character index
 	character_index = char_idx() # Get the current character index
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 	apply_physics(character_index) # Apply unique physics (will be a toggle in the future)
@@ -176,8 +176,6 @@ func _process(delta):
 
 # === Physics ===
 func _physics_process(delta: float) -> void:
-
-	print(is_holding)
 
 	# If you're dead or no input device is detected return
 	if is_dead or not input:

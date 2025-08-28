@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://mpuy3cvca2ln"]
+
+[ext_resource type="Script" uid="uid://bgu24fd1hxx8x" path="res://Scripts/Enemies/Koopa.gd" id="1_215k6"]
+[ext_resource type="Texture2D" uid="uid://0munl4vjm1p6" path="res://Sprites/Enemies/Koopa.png" id="2_cd2u8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q77e"]
+atlas = ExtResource("2_cd2u8")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1h1qm"]
+atlas = ExtResource("2_cd2u8")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oq3vd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q77e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1h1qm")
+}],
+"loop": true,
+"name": &"WalkGreen",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd2u8"]
+size = Vector2(10, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q77e"]
+size = Vector2(20, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_215k6"]
+size = Vector2(16, 20)
+
+[node name="Koopa" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_215k6")
+collision = NodePath("Collision")
+hurtbox = NodePath("HurtBox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_oq3vd")
+animation = &"WalkGreen"
+frame_progress = 0.77984
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_cd2u8")
+
+[node name="CustomStompBox" type="Area2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CustomStompBox"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_4q77e")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, -2)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_215k6")
