@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbyfn4vsml8fn"]
+
+[ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="1_khexa"]
+[ext_resource type="Texture2D" uid="uid://cbgvkayb2005" path="res://Sprites/Backgrounds/Castle/1.png" id="1_ogxp0"]
+
+[node name="Overworld" type="Node2D"]
+z_index = -50
+
+[node name="Sky" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.75, 1)
+scroll_offset = Vector2(0, -433)
+repeat_size = Vector2(1024, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+scale = Vector2(100, 100)
+texture = ExtResource("1_khexa")
+
+[node name="Hills" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 1)
+scroll_offset = Vector2(0, -374)
+repeat_size = Vector2(1024, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hills"]
+texture = ExtResource("1_ogxp0")

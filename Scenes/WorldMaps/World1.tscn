@@ -142,6 +142,7 @@ animation_name = "6"
 
 [node name="1-Castle" parent="." instance=ExtResource("4_432jv")]
 position = Vector2(-24, -24)
+level_scene_path = "res://Scenes/Levels/1_MF.tscn"
 animation_name = "castle"
 
 [node name="1-Peach" parent="." instance=ExtResource("4_432jv")]

@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="20_7jq2t"]
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="23_8qeg6"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="24_gjds7"]
-[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/overworld.tscn" id="25_apbsp"]
+[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/Overworld.tscn" id="25_apbsp"]
 [ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/Big_Goomba.tscn" id="25_ctbui"]
 [ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="26_4l0o0"]
 [ext_resource type="PackedScene" uid="uid://bvyctepg6fxxu" path="res://Scenes/Enemies/Big_GPiranha_Plant.tscn" id="26_fvnt4"]

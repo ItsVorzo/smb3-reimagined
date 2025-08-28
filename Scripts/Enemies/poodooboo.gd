@@ -1,37 +1,47 @@
 extends EnemyClass
 
-@export var jump_force := -400.0
-@export var gravity := 1000.0
+@export var jump_force := -350.0
+@export var gravity := 500.0
 @export var jump_interval := 2.0
 
-var jumping := false
 var start_y := 0.0
+var jump_cooldown := 0.0
+var jumping := false
 
-@onready var jump_timer: Timer = $Timer
+@onready var sprite: AnimatedSprite2D = $Area2D/AnimatedSprite2D
 
 func _ready() -> void:
 	start_y = global_position.y
-	jump_timer.wait_time = jump_interval
-	jump_timer.start()
+	jump_cooldown = jump_interval
 	set_signals()
 
 func _physics_process(delta: float) -> void:
 	if stomped:
 		return
 
+	if not jumping:
+		jump_cooldown -= delta
+		if jump_cooldown <= 0.0:
+			_start_jump()
+
 	if jumping:
-		self.velocity.y += gravity * delta  # ✅ use built-in velocity
-		if global_position.y >= start_y:
+		velocity.y += gravity * delta
+
+		sprite.flip_v = velocity.y > 0
+
+		if global_position.y >= start_y and velocity.y > 0:
 			global_position.y = start_y
-			self.velocity.y = 0.0
+			velocity.y = 0
 			jumping = false
-			jump_timer.start()
+			jump_cooldown = jump_interval
+			sprite.flip_v = false
 	else:
-		self.velocity.y = 0.0
+		velocity.y = 0
+		sprite.flip_v = false
 
 	move_and_slide()
 	process()
 
-func _on_timer_timeout() -> void:
+func _start_jump() -> void:
 	jumping = true
-	self.velocity.y = jump_force  # ✅ use built-in velocity
+	velocity.y = jump_force

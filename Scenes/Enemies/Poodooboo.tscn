@@ -50,10 +50,6 @@ frame_progress = 0.799805
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_sswme")
 
-[node name="Timer" type="Timer" parent="."]
-
-[node name="Timer" type="Timer" parent="Timer"]
-
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, 26)
 collision_layer = 8
@@ -65,5 +61,3 @@ shape = SubResource("RectangleShape2D_057ka")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u36ug")
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
