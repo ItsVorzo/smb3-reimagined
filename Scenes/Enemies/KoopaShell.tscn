@@ -1,25 +1,58 @@
-[gd_scene load_steps=8 format=3 uid="uid://2j1cbp0qxdsy"]
+[gd_scene load_steps=12 format=3 uid="uid://2j1cbp0qxdsy"]
 
 [ext_resource type="Script" uid="uid://dbxprdjwycq6" path="res://Scripts/Enemies/KoopaShell.gd" id="1_2kq23"]
-[ext_resource type="Texture2D" uid="uid://ch638gbwsbsa0" path="res://Sprites/Enemies/Spike.png" id="2_2kq23"]
+[ext_resource type="Texture2D" uid="uid://q18ann6ebs6" path="res://Sprites/Objects/KoopaShells.png" id="2_snsoy"]
 [ext_resource type="Script" uid="uid://dw0c3fr6coi35" path="res://Scripts/GrabbableClass.gd" id="3_snsoy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kq23"]
 size = Vector2(8, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_snsoy"]
-atlas = ExtResource("2_2kq23")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l02h"]
+atlas = ExtResource("2_snsoy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6wik"]
+atlas = ExtResource("2_snsoy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02fkw"]
+atlas = ExtResource("2_snsoy")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deas8"]
+atlas = ExtResource("2_snsoy")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f18p6"]
+atlas = ExtResource("2_snsoy")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2kq23"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_snsoy")
+"texture": SubResource("AtlasTexture_7l02h")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6wik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02fkw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deas8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f18p6")
+}],
+"loop": true,
+"name": &"Spin",
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l02h"]
@@ -34,7 +67,11 @@ position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_2kq23")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_2kq23")
+animation = &"Spin"
+autoplay = "Idle"
+frame_progress = 0.24272972
 
 [node name="Grabbox" type="Area2D" parent="."]
 collision_layer = 4
