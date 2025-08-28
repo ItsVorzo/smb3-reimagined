@@ -9,12 +9,12 @@ func enter() -> void:
 	player.z_index = 99 # Draw the player above all
 	player.is_dead = true
 	InputManager.input_disabled = true # Disable input
-	SoundManager.play_sfx("DieShort")
+	SoundManager.play_sfx("DieShort", player.global_position)
+	get_tree().paused = true # Freeze the game
 	if player.player_id == 0:
 		# Notify level
 		if get_tree().current_scene.has_method("on_player_death"):
 			get_tree().current_scene.on_player_death(player)
-		get_tree().paused = true # Freeze the game
 
 		# Freeze the active camera exactly here (works no matter where the camera node lives)
 		var cam := get_viewport().get_camera_2d()
@@ -22,6 +22,7 @@ func enter() -> void:
 			cam.freeze_here()
 
 	player.velocity = Vector2.ZERO # Freeze the player
+	SoundManager.play_sfx("Die")
 	# After 0.5 sec → short hop up if you didn't die from a pit
 	if player.global_position.y < player.bottom_pit.global_position.y + 48:
 		player.animated_sprite.play("dead") # Play death animation
@@ -29,6 +30,7 @@ func enter() -> void:
 		can_fall = true
 		player.velocity.y = -224.0
 	if player.player_id > 0:
+		get_tree().paused = false
 		c = get_viewport().get_camera_2d()
 		await get_tree().create_timer(2).timeout
 		state_machine.change_state("Normal")

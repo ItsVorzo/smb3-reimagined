@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c688u7qw55eff"]
 
 [ext_resource type="Script" uid="uid://bquc1mx5ttqg0" path="res://Scripts/Enemies/Goomba.gd" id="1_apkb4"]
-[ext_resource type="SpriteFrames" uid="uid://mt824ajsxhjc" path="res://SpriteFrames/Enemies/Goomba.tres" id="2_d1rwa"]
+[ext_resource type="SpriteFrames" uid="uid://mt824ajsxhjc" path="res://SpriteFrames/Enemies/goomba.tres" id="2_d1rwa"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_d1rwa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]

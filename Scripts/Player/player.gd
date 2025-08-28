@@ -15,30 +15,30 @@ var character = ["Mario", "Luigi", "Toad", "Toadette"]
 
 # === Physics values ===
 #region
-var walk_speed = 0#PhysicsVal.walk_speed[character_index]
-var run_speed = 0#PhysicsVal.run_speed[character_index]
-var p_speed = 0#PhysicsVal.p_speed[character_index]
-var acc_speed = 0#PhysicsVal.acc_speed[character_index]
-var frc_speed = 0#PhysicsVal.frc_speed[character_index]
-var ice_frc_speed = 0#PhysicsVal.ice_frc_speed[character_index]
-var skid_speed = 0#PhysicsVal.skid_speed[character_index]
-var ice_skid_speed = 0#PhysicsVal.ice_skid_speed[character_index]
-var end_level_walk = 0#PhysicsVal.end_level_walk
-var airship_cutscene_walk = 0#PhysicsVal.airship_cutscene_walk
-var added_gentle_slope_speed = 0#PhysicsVal.added_gentle_slope_speed[character_index]
-var added_steep_slope_speed = 0#PhysicsVal.added_steep_slope_speed[character_index]
-var uphill_max_walk = 0#PhysicsVal.uphill_max_walk[character_index]
-var uphill_max_run = 0#PhysicsVal.uphill_max_run[character_index]
-var gentle_sliding_acc = 0#PhysicsVal.gentle_sliding_acc[character_index]
-var steep_sliding_acc = 0#PhysicsVal.steep_sliding_acc[character_index]
-var sliding_max_speed = 0#PhysicsVal.sliding_max_speed
+var walk_speed = 0
+var run_speed = 0
+var p_speed = 0
+var acc_speed = 0
+var frc_speed = 0
+var ice_frc_speed = 0
+var skid_speed = 0
+var ice_skid_speed = 0
+var end_level_walk = 0
+var airship_cutscene_walk = 0
+var added_gentle_slope_speed = 0
+var added_steep_slope_speed = 0
+var uphill_max_walk = 0
+var uphill_max_run = 0
+var gentle_sliding_acc = 0
+var steep_sliding_acc = 0
+var sliding_max_speed = 0
 
-var jump_speeds = 0#PhysicsVal.jump_speeds.slice(character_index * 4, 4)
-var strong_bounce = 0#PhysicsVal.strong_bounce[character_index]
-var weak_bounce = 0#PhysicsVal.weak_bounce[character_index]
+var jump_speeds = 0
+var strong_bounce = 0
+var weak_bounce = 0
 
-var low_gravity = 0#PhysicsVal.low_gravity[character_index]
-var high_gravity = 0#PhysicsVal.high_gravity[character_index]
+var low_gravity = 0
+var high_gravity = 0
 const death_gravity = 420.0
 #endregion
 
@@ -61,11 +61,12 @@ var max_speed = 0.0
 var current_powerup: int = 0
 var jump_buffer_timer = 0.12
 var coyote_timer = 0.12
-var crouching
+var crouching := false
 var skidding = false
 var is_super := false
 var can_take_damage := true
 var is_dead := false
+var is_holding := false
 
 # === Input shit ===
 var input
@@ -175,6 +176,8 @@ func _process(delta):
 
 # === Physics ===
 func _physics_process(delta: float) -> void:
+
+	print(is_holding)
 
 	# If you're dead or no input device is detected return
 	if is_dead or not input:
