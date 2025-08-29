@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 				has_bounced = true
 		# Kick the shell and spin
 		else:
-			$AnimatedSprite2D.play("Spin", direction) # Direction is used to change the sprite loop direction
+			$AnimatedSprite2D.play("Spin", 1.5 * direction) # Direction is used to change the sprite loop direction
 			velocity.x = xspd * direction
 
 	# Stop everything when you're holding it

@@ -8,7 +8,7 @@ var velocity: Vector2 = Vector2.ZERO
 var holder: Player # Current object holder, multiple players can't hold the same obj
 var plr: Player # Player reference for other shit
 var default_z_index
-var delay := 10 # Turn around animation delay
+var delay := 6 # Turn around animation delay
 var delaying := false
 var last_facing_direction := 1.0 # This is used for the turning around animation
 var can_grab := true
@@ -53,8 +53,8 @@ func _process(_delta: float) -> void:
 	else:
 		# Do it only if you're pressing B
 		if holder in bodies and holder.input.is_action_pressed("B") and can_grab:
-				owner.global_position.x = object_position(holder)
-				owner.global_position.y = holder.global_position.y - 16
+				owner.global_position.x = object_x_position(holder)
+				owner.global_position.y = object_y_position(holder)
 				holder.is_holding = true
 				is_kicked = false
 		# Else kick it
@@ -81,32 +81,36 @@ func _process(_delta: float) -> void:
 		# == Can grab logic ===
 		# If we have grab delay or the object is kicked, don't let the player grab the obj
 		# and decrease teh grab delay timer
-		if is_kicked or plr.crouching:
+		if is_kicked:
 			can_grab = false
 		if grab_delay > 0:
 			can_grab = false
 			grab_delay -= 1
 		# Reset the flag
-		elif not is_kicked and not plr.crouching:
+		elif not is_kicked:
 			can_grab = true
 	# Cap it to 0
 	grab_delay = max(grab_delay, 0)
 
+	bodies = grabbox.get_overlapping_bodies() # Do it twice for better checking
+
+
 # Set the grabbable position (this also handles turning around)
-func object_position(body: Node):
+func object_x_position(body: Node):
 	var final_pos = body.global_position.x + 10 * body.facing_direction # Determine the object position
 	owner.z_index = body.z_index - 1
 
 	# Turn around
-	if body.facing_direction != last_facing_direction and delay == 10:
+	if body.facing_direction != last_facing_direction and delay == 6:
 		delay = 0
 		delaying = true
 	if delaying:
-		if delay < 10:
+		if delay < 6:
 			delay += 1
 		owner.z_index = body.z_index + 1
-		final_pos = body.global_position.x
-	if delay == 10:
+		if delay <= 3: final_pos = body.global_position.x + 4 * last_facing_direction
+		elif delay <= 6: final_pos = body.global_position.x + 4 * body.facing_direction
+	if delay == 6:
 		delaying= false
 		owner.z_index = body.z_index - 1
 		final_pos = body.global_position.x + 10 * body.facing_direction
@@ -115,3 +119,12 @@ func object_position(body: Node):
 	last_facing_direction = body.facing_direction
 
 	return final_pos
+
+func object_y_position(body: Node):
+	var final_y_pos = body.global_position.y - 17
+	if not body.is_super:
+		final_y_pos = body.global_position.y - 17
+	else:
+		final_y_pos = body.global_position.y - 19
+
+	return final_y_pos
