@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://q18ann6ebs6" path="res://Sprites/Objects/KoopaShells.png" id="2_snsoy"]
 [ext_resource type="Script" uid="uid://dw0c3fr6coi35" path="res://Scripts/GrabbableClass.gd" id="3_snsoy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kq23"]
-size = Vector2(8, 13)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7l02h"]
 atlas = ExtResource("2_snsoy")
 region = Rect2(0, 0, 16, 16)
@@ -55,16 +52,15 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kq23"]
+size = Vector2(8, 13)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l02h"]
 size = Vector2(14, 16)
 
 [node name="KoopaShell" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_2kq23")
-
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9.5)
-shape = SubResource("RectangleShape2D_2kq23")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 8)
@@ -73,15 +69,20 @@ animation = &"Spin"
 autoplay = "Idle"
 frame_progress = 0.24272972
 
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_2kq23")
+
 [node name="Grabbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grabbox"]
-position = Vector2(1, 8)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_7l02h")
 
-[node name="Grabbable" type="Node" parent="." node_paths=PackedStringArray("grabbox")]
+[node name="Grabbable" type="Node" parent="." node_paths=PackedStringArray("grabbox", "sprite")]
 script = ExtResource("3_snsoy")
 grabbox = NodePath("../Grabbox")
+sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://dw0c3fr6coi35"

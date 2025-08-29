@@ -35,23 +35,34 @@ func physics_process_update(_delta: float) -> void:
 
 func handle_animation():
 	# === Animation ===
-	if player.crouching:
-		player.animated_sprite.play("crouch")
-
-	elif player.is_on_floor():
-		if player.skidding:
-			player.animated_sprite.play("skid")
-		elif player.velocity.x == 0:
-			player.animated_sprite.play("idle")
-		elif abs(player.velocity.x) > 0 and abs(player.velocity.x) < player.p_speed:
-			player.animated_sprite.play("walk", walk_anim_speed())
+	# Holding animations
+	if player.is_holding:
+		if player.is_on_floor():
+			if player.velocity.x == 0:
+				player.animated_sprite.play("hold_idle")
+			elif abs(player.velocity.x) > 0:
+				player.animated_sprite.play("hold_walk", walk_anim_speed())
 		else:
-			player.animated_sprite.play("run", 7)
+			player.animated_sprite.play("hold_jump")
+	# Normal animations
 	else:
-		if player.max_speed != player.p_speed:
-			player.animated_sprite.play("jump")
+		if player.crouching:
+			player.animated_sprite.play("crouch")
+
+		elif player.is_on_floor():
+			if player.skidding:
+				player.animated_sprite.play("skid")
+			elif player.velocity.x == 0:
+				player.animated_sprite.play("idle")
+			elif abs(player.velocity.x) > 0 and abs(player.velocity.x) < player.p_speed:
+				player.animated_sprite.play("walk", walk_anim_speed())
+			else:
+				player.animated_sprite.play("run", 7)
 		else:
-			player.animated_sprite.play("fly")
+			if player.max_speed != player.p_speed:
+				player.animated_sprite.play("jump")
+			else:
+				player.animated_sprite.play("fly")
 
 func walk_anim_speed():
 	if player.get_slope_angle() == 0: return max(1, 0.03 * abs(player.velocity.x))
