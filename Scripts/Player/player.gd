@@ -174,14 +174,9 @@ func _process(delta):
 # === Physics ===
 func _physics_process(delta: float) -> void:
 
-	if pwrup.tier >= 1:
-		is_super = true
-	else:
-		is_super = false
-	#is_super = pwrup.tier >= 1
+	is_super = pwrup.tier >= 1
 	normal_collision_shape.disabled = is_super
 	super_collision_shape.disabled = not is_super
-	print(is_super)
 
 	# If you're dead or no input device is detected return
 	if is_dead or not input:
