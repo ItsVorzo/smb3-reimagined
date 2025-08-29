@@ -1,11 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://bhhffwhk6yyqu"]
+[gd_scene load_steps=39 format=3 uid="uid://bhhffwhk6yyqu"]
 
 [ext_resource type="Script" uid="uid://cjy2wenueykb6" path="res://Scripts/UI/TitleScreen.gd" id="1_3txao"]
 [ext_resource type="Texture2D" uid="uid://b0qrrxm7r1rgc" path="res://Sprites/UI/Title Screen/Sky.png" id="2_28uqs"]
 [ext_resource type="Texture2D" uid="uid://xmxvmam0080x" path="res://Sprites/UI/Title Screen/Scroll.png" id="3_bvwvd"]
 [ext_resource type="Texture2D" uid="uid://c63o17p3g26m5" path="res://Sprites/UI/Title Screen/Stage.png" id="4_5b5vi"]
-[ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="5_iwqp0"]
-[ext_resource type="Texture2D" uid="uid://biavto5dup6eu" path="res://Sprites/Characters/Luigi/LuigiBig.png" id="6_fw2l0"]
+[ext_resource type="Texture2D" uid="uid://1ngsdrxr3fp6" path="res://Sprites/UI/Title Screen/Characters.png" id="5_o00x8"]
 [ext_resource type="Texture2D" uid="uid://dmegii86ekoeh" path="res://Sprites/UI/Title Screen/Title.png" id="7_c5u5f"]
 [ext_resource type="Texture2D" uid="uid://i72bn023shol" path="res://Sprites/UI/Title Screen/SelectSquare.png" id="8_5b5vi"]
 [ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="8_bvwvd"]
@@ -54,62 +53,79 @@ _data = {
 &"scroll": SubResource("Animation_6vd4x")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ld5bx"]
-atlas = ExtResource("5_iwqp0")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="Animation" id="Animation_o00x8"]
+resource_name = "new_animation"
+length = 15.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(288, -26), Vector2(-288, -26)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvmj1"]
-atlas = ExtResource("5_iwqp0")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="Animation" id="Animation_84xpj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -26)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s2vxk"]
-atlas = ExtResource("5_iwqp0")
-region = Rect2(128, 0, 32, 32)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ft70"]
+_data = {
+&"RESET": SubResource("Animation_84xpj"),
+&"new_animation": SubResource("Animation_o00x8")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbv52"]
+atlas = ExtResource("5_o00x8")
+region = Rect2(0, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obdur"]
+atlas = ExtResource("5_o00x8")
+region = Rect2(0, 32, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prs6u"]
+atlas = ExtResource("5_o00x8")
+region = Rect2(0, 64, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exc60"]
+atlas = ExtResource("5_o00x8")
+region = Rect2(0, 96, 128, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1e67"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ld5bx")
+"texture": SubResource("AtlasTexture_mbv52")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bvmj1")
+"texture": SubResource("AtlasTexture_obdur")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s2vxk")
+"texture": SubResource("AtlasTexture_prs6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exc60")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4aatk"]
-atlas = ExtResource("6_fw2l0")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq06q"]
-atlas = ExtResource("6_fw2l0")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pfj4o"]
-atlas = ExtResource("6_fw2l0")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6tf26"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4aatk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sq06q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pfj4o")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84xpj"]
@@ -266,19 +282,17 @@ autoplay = "scroll"
 position = Vector2(0, -26)
 texture = ExtResource("4_5b5vi")
 
-[node name="Mario" type="AnimatedSprite2D" parent="."]
-position = Vector2(-19, 61)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sky/Stage"]
+libraries = {
+&"": SubResource("AnimationLibrary_5ft70")
+}
+autoplay = "new_animation"
+
+[node name="Players" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 61)
 sprite_frames = SubResource("SpriteFrames_o1e67")
 autoplay = "default"
-frame = 1
-frame_progress = 0.815126
-
-[node name="Luigi" type="AnimatedSprite2D" parent="."]
-position = Vector2(19, 61)
-sprite_frames = SubResource("SpriteFrames_6tf26")
-autoplay = "default"
-frame = 1
-frame_progress = 0.745364
+frame_progress = 0.2482412
 
 [node name="Title" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 11.935)
@@ -320,6 +334,7 @@ text = "options
 "
 
 [node name="Curtain" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("10_vk2b7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Curtain"]

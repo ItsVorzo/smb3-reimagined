@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://c52ljitokec22"]
+[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://c52ljitokec22"]
 
 [ext_resource type="Texture2D" uid="uid://c6uvlkjutpv3y" path="res://Sprites/Characters/Mario/MarioFire.png" id="1_yxq6w"]
 
@@ -9,6 +9,30 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_glx4g"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvdw6"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvnrb"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcx5y"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u4cl"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf6re"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me7d3"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_miouo"]
 atlas = ExtResource("1_yxq6w")
@@ -74,6 +98,39 @@ animations = [{
 }],
 "loop": true,
 "name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvdw6")
+}],
+"loop": true,
+"name": &"hold_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvnrb")
+}],
+"loop": true,
+"name": &"hold_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcx5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u4cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf6re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me7d3")
+}],
+"loop": true,
+"name": &"hold_walk",
 "speed": 5.0
 }, {
 "frames": [{

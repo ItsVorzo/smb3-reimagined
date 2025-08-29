@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://dqfhw1wm7bnsa"]
+[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://dqfhw1wm7bnsa"]
 
 [ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="1_scpvm"]
 
@@ -13,6 +13,30 @@ region = Rect2(288, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5aaad"]
 atlas = ExtResource("1_scpvm")
 region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcknv"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67hwf"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw227"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x8m4"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la0d2"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vya0t"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18sm1"]
 atlas = ExtResource("1_scpvm")
@@ -90,6 +114,39 @@ animations = [{
 }],
 "loop": true,
 "name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcknv")
+}],
+"loop": true,
+"name": &"hold_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67hwf")
+}],
+"loop": true,
+"name": &"hold_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw227")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x8m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la0d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vya0t")
+}],
+"loop": true,
+"name": &"hold_walk",
 "speed": 5.0
 }, {
 "frames": [{
