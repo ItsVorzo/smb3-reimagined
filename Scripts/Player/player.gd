@@ -58,6 +58,7 @@ var max_speed = 0.0
 # === States ===
 @onready var state_machine: StateMachine = $States
 @export var pwrup: PowerUps = null
+var current_grabbed_obj: Grabbable
 var current_powerup: int = 0
 var jump_buffer_timer = 0.12
 var coyote_timer = 0.12
@@ -83,7 +84,7 @@ func update_input_device(player_num: int):
 
 # === Update the character index ===
 func char_idx() -> int:
-	return int(SaveManager.runtime_data.get("character_index", 0))
+	return player_id
 
 func player_instance_exists(id: int) -> bool:
 	for player in get_tree().get_nodes_in_group("Player"):

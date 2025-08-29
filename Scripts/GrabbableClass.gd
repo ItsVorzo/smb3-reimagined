@@ -3,12 +3,16 @@ extends Node
 
 @export var grabbox: Area2D = null
 @export var sprite: AnimatedSprite2D = null
+@export var can_kick: bool
 var velocity: Vector2 = Vector2.ZERO
-var plr: Player
+var holder: Player # Current object holder, multiple players can't hold the same obj
+var plr: Player # Player reference for other shit
 var default_z_index
-var delay := 10
+var delay := 10 # Turn around animation delay
 var delaying := false
-var last_facing_direction := 1 # This is used for the turning around animation
+var last_facing_direction := 1.0 # This is used for the turning around animation
+var can_grab := true
+var grab_delay := 0 # Frames in which you can't grab the object
 var is_grabbed := false
 var is_kicked := false
 
@@ -17,26 +21,81 @@ func _ready() -> void:
 	default_z_index = owner.z_index # Get the default z index
 
 func _process(_delta: float) -> void:
-	is_kicked = not is_grabbed # This is going to be changed
 
-	var bodies = grabbox.get_overlapping_bodies() # Wether the player body is inside the area
+	# Wether the player body is inside the area
+	var bodies = grabbox.get_overlapping_bodies()
+	# === Get the player side ===
+	# If we can kick the object determine from which side
+	# is the object being kicked
 	for body in bodies:
 		if body.is_in_group("Player"):
+			if can_kick:
+				owner.dir = sign(owner.global_position.x - body.global_position.x)
 
-			is_grabbed = body.input.is_action_pressed("B")
-
-			if is_grabbed:
-				owner.global_position.x = object_position(body)
-				owner.global_position.y = body.global_position.y - 16
-				body.is_holding = true
+	# === Grabbing/Kicking logic ===
+	# Get the object holder if we have none
+	if holder == null:
+		for body in bodies:
+			if body.is_in_group("Player"):
+				# If you're holding B hold it
+				if body.input.is_action_pressed("B") and can_grab:
+					holder = body
+					is_grabbed = true
+					break
+				# Else Kick it (if you can)
+				elif can_kick and grab_delay == 0:
+					SoundManager.play_sfx("Kick", owner.global_position)
+					is_kicked = true
+					can_grab = false
+					grab_delay = 10
+					break
+	# Follow the holder if we have it
+	else:
+		# Do it only if you're pressing B
+		if holder in bodies and holder.input.is_action_pressed("B") and can_grab:
+				owner.global_position.x = object_position(holder)
+				owner.global_position.y = holder.global_position.y - 16
+				holder.is_holding = true
 				is_kicked = false
-			else:
-				body.is_holding = false
-				is_kicked = true
+		# Else kick it
+		else:
+			# If you're not pressing down kick it
+			if not holder.input.is_action_pressed("down"):
+				SoundManager.play_sfx("Kick", owner.global_position)
+				if can_kick: 
+					is_kicked = true
+					can_grab = false
+				grab_delay = 10
+				owner.dir = holder.facing_direction # Kick it in the direction the player's facing
+			grab_delay = 5
+			owner.global_position.x = holder.global_position.x + 13 * holder.facing_direction
+			owner.z_index = default_z_index # Reset the z index
+			is_grabbed = false
+			holder.is_holding = false
+			holder = null # No holder
 
+	# Reference the players for other stuff
+	var players = get_tree().get_nodes_in_group("Player")
+	for p in players:
+		plr = p
+		# == Can grab logic ===
+		# If we have grab delay or the object is kicked, don't let the player grab the obj
+		# and decrease teh grab delay timer
+		if is_kicked or plr.crouching:
+			can_grab = false
+		if grab_delay > 0:
+			can_grab = false
+			grab_delay -= 1
+		# Reset the flag
+		elif not is_kicked and not plr.crouching:
+			can_grab = true
+	# Cap it to 0
+	grab_delay = max(grab_delay, 0)
+
+# Set the grabbable position (this also handles turning around)
 func object_position(body: Node):
-	var final_pos = body.global_position.x + 10 * body.facing_direction
-	owner.z_index = default_z_index
+	var final_pos = body.global_position.x + 10 * body.facing_direction # Determine the object position
+	owner.z_index = body.z_index - 1
 
 	# Turn around
 	if body.facing_direction != last_facing_direction and delay == 10:
@@ -49,9 +108,10 @@ func object_position(body: Node):
 		final_pos = body.global_position.x
 	if delay == 10:
 		delaying= false
-		owner.z_index = default_z_index
+		owner.z_index = body.z_index - 1
 		final_pos = body.global_position.x + 10 * body.facing_direction
 
+	# Update
 	last_facing_direction = body.facing_direction
 
 	return final_pos

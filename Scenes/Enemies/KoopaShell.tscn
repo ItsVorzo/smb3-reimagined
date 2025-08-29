@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2j1cbp0qxdsy"]
+[gd_scene load_steps=14 format=3 uid="uid://2j1cbp0qxdsy"]
 
 [ext_resource type="Script" uid="uid://dbxprdjwycq6" path="res://Scripts/Enemies/KoopaShell.gd" id="1_2kq23"]
 [ext_resource type="Texture2D" uid="uid://q18ann6ebs6" path="res://Sprites/Objects/KoopaShells.png" id="2_snsoy"]
@@ -55,6 +55,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kq23"]
 size = Vector2(8, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6wik"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snsoy"]
+size = Vector2(16, 4)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l02h"]
 size = Vector2(14, 16)
 
@@ -67,11 +73,25 @@ position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_2kq23")
 animation = &"Spin"
 autoplay = "Idle"
-frame_progress = 0.24272972
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_2kq23")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_w6wik")
+
+[node name="StompArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea"]
+shape = SubResource("RectangleShape2D_snsoy")
 
 [node name="Grabbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -81,8 +101,8 @@ collision_mask = 11
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_7l02h")
 
-[node name="Grabbable" type="Node" parent="." node_paths=PackedStringArray("grabbox", "sprite")]
+[node name="Grabbable" type="Node" parent="." node_paths=PackedStringArray("grabbox")]
 script = ExtResource("3_snsoy")
 grabbox = NodePath("../Grabbox")
-sprite = NodePath("../AnimatedSprite2D")
+can_kick = true
 metadata/_custom_type_script = "uid://dw0c3fr6coi35"
