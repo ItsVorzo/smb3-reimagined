@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var stomparea := $StompArea
 @onready var hurtbox := $HurtBox
 var xspd := 120
-var dir := 1
+var direction := 1
 var gravity = 500.0
 var bounce_force = -80.0
 var has_bounced = false
@@ -31,8 +31,8 @@ func _physics_process(delta: float) -> void:
 				has_bounced = true
 		# Kick the shell and spin
 		else:
-			$AnimatedSprite2D.play("Spin", dir) # Dir is used to change the sprite loop direction
-			velocity.x = xspd * dir
+			$AnimatedSprite2D.play("Spin", direction) # Direction is used to change the sprite loop direction
+			velocity.x = xspd * direction
 
 	# Stop everything when you're holding it
 	else:
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
 	# Change direction on wall 
 	if is_on_wall():
-		dir *= -1
+		direction *= -1
 		SoundManager.play_sfx("Hit", global_position)
 
 func stomp_on_shell(body: Node):

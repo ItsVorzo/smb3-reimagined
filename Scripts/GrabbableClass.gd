@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 	for body in bodies:
 		if body.is_in_group("Player"):
 			if can_kick:
-				owner.dir = sign(owner.global_position.x - body.global_position.x)
+				owner.direction = sign(owner.global_position.x - body.global_position.x)
 
 	# === Grabbing/Kicking logic ===
 	# Get the object holder if we have none
@@ -66,7 +66,7 @@ func _process(_delta: float) -> void:
 					is_kicked = true
 					can_grab = false
 				grab_delay = 10
-				owner.dir = holder.facing_direction # Kick it in the direction the player's facing
+				owner.direction = holder.facing_direction # Kick it in the direction the player's facing
 			grab_delay = 5
 			owner.global_position.x = holder.global_position.x + 13 * holder.facing_direction
 			owner.z_index = default_z_index # Reset the z index
