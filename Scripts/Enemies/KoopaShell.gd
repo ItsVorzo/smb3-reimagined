@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	# === Grab/Kick ===
 	# If you didn't grab it
 	if not is_currently_grabbed:
+		$Collision.disabled = false
 		velocity.y += gravity * delta
 
 		# If you didn't kick it
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 
 	# Stop everything when you're holding it
 	else:
+		$Collision.disabled = true
 		velocity = Vector2.ZERO
 
 	# Reset bounce if it was just released

@@ -39,9 +39,10 @@ func _process(_delta: float) -> void:
 		for body in bodies:
 			if body.is_in_group("Player"):
 				# If you're holding B hold it
-				if body.input.is_action_pressed("B") and can_grab:
+				if body.input.is_action_pressed("B") and can_grab and body.current_grabbed_obj == null:
 					holder = body
-					holder.current_grabbed_obj = self
+					if holder.current_grabbed_obj == null: 
+						holder.current_grabbed_obj = self
 					is_grabbed = true
 					break
 				# Else Kick it (if you can)
