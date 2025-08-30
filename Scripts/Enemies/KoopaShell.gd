@@ -67,5 +67,5 @@ func stomp_on_shell(body: Node):
 
 func shell_damage(body: Node):
 	if body.is_in_group("Player"):
-		if grab.is_kicked and grab.grab_delay == 0:
+		if grab.is_kicked and grab.grab_delay == 0 or grab.holder != null and body.current_grabbed_obj != $Grabbable:
 			body.damage()
