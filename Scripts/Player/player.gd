@@ -234,6 +234,8 @@ func die() -> void:
 
 # === Deal damage ===
 func damage() -> void:
+	if not can_take_damage:
+		return
 	# If you're small DIE
 	if pwrup.tier == 0:
 		return die()

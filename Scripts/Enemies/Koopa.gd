@@ -25,6 +25,12 @@ func _process(delta: float) -> void:
 	if is_on_wall():
 		direction *= -1
 
-func _on_stomped():
-	SoundManager.play_sfx("Stomp", global_position)
-	
+func _on_stomped(body: Node):
+	if body.is_in_group("Player"):
+		if body.velocity.y > 0:
+			body.bounce_on_enemy()
+			SoundManager.play_sfx("Stomp", global_position)
+			var shell = load("res://Scenes/Enemies/KoopaShell.tscn").instantiate()
+			shell.global_position = global_position
+			get_parent().add_child(shell)
+			queue_free()

@@ -16,6 +16,7 @@ size = Vector2(20, 18)
 [node name="BigGoomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "stompbox")]
 collision_layer = 8
 collision_mask = 9
+floor_constant_speed = true
 script = ExtResource("1_wbgd1")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")

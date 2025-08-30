@@ -3,15 +3,16 @@ extends CharacterBody2D
 @onready var grab = $Grabbable
 @onready var stomparea := $StompArea
 @onready var hurtbox := $HurtBox
-var xspd := 120
+var xspd := 180
 var direction := 1
 var gravity = 500.0
 var bounce_force = -80.0
-var has_bounced = false
+var has_bounced = true
 var was_on_floor = false
 var was_grabbed = false 
 
 func _ready() -> void:
+	hurtbox.body_entered.connect(shell_damage)
 	stomparea.body_entered.connect(stomp_on_shell)
 
 func _physics_process(delta: float) -> void:
@@ -31,7 +32,7 @@ func _physics_process(delta: float) -> void:
 				has_bounced = true
 		# Kick the shell and spin
 		else:
-			$AnimatedSprite2D.play("Spin", 1.5 * direction) # Direction is used to change the sprite loop direction
+			$AnimatedSprite2D.play("Spin", 2 * direction) # Direction is used to change the sprite loop direction
 			velocity.x = xspd * direction
 
 	# Stop everything when you're holding it
@@ -51,12 +52,18 @@ func _physics_process(delta: float) -> void:
 	# Change direction on wall 
 	if is_on_wall():
 		direction *= -1
-		SoundManager.play_sfx("Hit", global_position)
+		if not grab.is_grabbed: SoundManager.play_sfx("Hit", global_position)
 
 func stomp_on_shell(body: Node):
 	if body.is_in_group("Player") and grab.grab_delay == 0 and grab.is_kicked:
 		if body.velocity.y > 0:
+			SoundManager.play_sfx("Stomp", global_position)
 			body.bounce_on_enemy()
 			grab.is_kicked = false
 			grab.grab_delay = 10
 			velocity.x = 0
+
+func shell_damage(body: Node):
+	if body.is_in_group("Player"):
+		if grab.is_kicked and grab.grab_delay == 0:
+			body.damage()

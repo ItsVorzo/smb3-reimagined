@@ -4,6 +4,7 @@ extends Node
 @export var grabbox: Area2D = null
 @export var sprite: AnimatedSprite2D = null
 @export var can_kick: bool
+@export var can_kill: bool
 var velocity: Vector2 = Vector2.ZERO
 var holder: Player # Current object holder, multiple players can't hold the same obj
 var plr: Player # Player reference for other shit
@@ -29,7 +30,7 @@ func _process(_delta: float) -> void:
 	# is the object being kicked
 	for body in bodies:
 		if body.is_in_group("Player"):
-			if can_kick:
+			if can_kick and grab_delay == 0 and not is_kicked:
 				owner.direction = sign(owner.global_position.x - body.global_position.x)
 
 	# === Grabbing/Kicking logic ===
@@ -40,17 +41,15 @@ func _process(_delta: float) -> void:
 				# If you're holding B hold it
 				if body.input.is_action_pressed("B") and can_grab:
 					holder = body
+					holder.current_grabbed_obj = self
 					is_grabbed = true
 					break
 				# Else Kick it (if you can)
-				elif can_kick and grab_delay == 0:
-					SoundManager.play_sfx("Kick", owner.global_position)
-					is_kicked = true
-					can_grab = false
-					grab_delay = 10
+				elif can_kick and grab_delay == 0 and not is_kicked:
+					kick()
 					break
 	# Follow the holder if we have it
-	else:
+	elif holder.current_grabbed_obj == self:
 		# Do it only if you're pressing B
 		if holder in bodies and holder.input.is_action_pressed("B") and can_grab:
 				owner.global_position.x = object_x_position(holder)
@@ -65,14 +64,21 @@ func _process(_delta: float) -> void:
 				if can_kick: 
 					is_kicked = true
 					can_grab = false
-				grab_delay = 10
+				grab_delay = 15
 				owner.direction = holder.facing_direction # Kick it in the direction the player's facing
-			grab_delay = 5
-			owner.global_position.x = holder.global_position.x + 13 * holder.facing_direction
-			owner.z_index = default_z_index # Reset the z index
-			is_grabbed = false
-			holder.is_holding = false
-			holder = null # No holder
+				owner.z_index = default_z_index
+				is_grabbed = false
+				holder.is_holding = false
+				holder.current_grabbed_obj = null
+				holder = null
+			else:
+				grab_delay = 5
+				owner.global_position.x = holder.global_position.x + 13 * holder.facing_direction
+				owner.z_index = default_z_index
+				is_grabbed = false
+				holder.is_holding = false
+				holder.current_grabbed_obj = null
+				holder = null
 
 	# Reference the players for other stuff
 	var players = get_tree().get_nodes_in_group("Player")
@@ -128,3 +134,9 @@ func object_y_position(body: Node):
 		final_y_pos = body.global_position.y - 19
 
 	return final_y_pos
+
+func kick():
+	SoundManager.play_sfx("Kick", owner.global_position)
+	is_kicked = true
+	can_grab = false
+	grab_delay = 15
