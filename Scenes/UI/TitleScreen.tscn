@@ -333,6 +333,15 @@ theme_override_font_sizes/font_size = 8
 text = "options
 "
 
+[node name="Text" type="Label" parent="."]
+offset_left = -191.0
+offset_top = 98.0
+offset_right = -47.0
+offset_bottom = 114.75
+theme_override_fonts/font = ExtResource("8_bvwvd")
+theme_override_font_sizes/font_size = 8
+text = "1988/2025 nintendo"
+
 [node name="Curtain" type="Sprite2D" parent="."]
 texture = ExtResource("10_vk2b7")
 

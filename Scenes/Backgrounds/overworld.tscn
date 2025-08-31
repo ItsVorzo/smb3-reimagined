@@ -16,7 +16,7 @@ repeat_size = Vector2(1024, 512)
 texture = ExtResource("1_om8m2")
 
 [node name="Clouds" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.25, 1)
+scroll_scale = Vector2(0.5, 2)
 scroll_offset = Vector2(0, -326)
 repeat_size = Vector2(1024, 512)
 autoscroll = Vector2(-6, 0)

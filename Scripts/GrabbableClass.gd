@@ -50,6 +50,7 @@ func _process(_delta: float) -> void:
 					break
 				# Else Kick it (if you can)
 				elif can_kick and grab_delay == 0 and not is_kicked:
+					
 					kick()
 					break
 	# Follow the holder if we have it

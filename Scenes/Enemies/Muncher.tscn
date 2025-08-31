@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dn14tyievo5qd"]
 
-[ext_resource type="Script" uid="uid://dc0ldeaimqmy7" path="res://Scenes/Enemies/muncher.gd" id="1_3bqq8"]
+[ext_resource type="Script" uid="uid://dc0ldeaimqmy7" path="res://Scripts/Enemies/muncher.gd" id="1_3bqq8"]
 [ext_resource type="SpriteFrames" uid="uid://dht1m4maqublw" path="res://SpriteFrames/Enemies/Muncher.tres" id="2_3bqq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
