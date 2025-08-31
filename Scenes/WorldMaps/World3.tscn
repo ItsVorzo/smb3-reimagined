@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://4ewsrcxdbnij"]
+[gd_scene load_steps=14 format=4 uid="uid://ovk0ult1d6fb"]
 
 [ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/world_1.gd" id="1_y6fcp"]
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="2_o7k8k"]

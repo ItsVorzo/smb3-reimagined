@@ -8,7 +8,7 @@ func _ready() -> void:
 	set_signals()
 
 func _physics_process(delta: float) -> void:
-	process()
+	process(delta)
 
 	if stomped:
 		return
@@ -29,6 +29,6 @@ func _physics_process(delta: float) -> void:
 		flip_sprite()
 
 func flip_sprite() -> void:
-	var sprite = get_node_or_null("Sprite")
-	if sprite:
-		sprite.scale.x *= -1
+	var spr = get_node_or_null("Sprite")
+	if spr:
+		spr.scale.x *= -1

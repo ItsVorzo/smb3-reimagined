@@ -12,13 +12,14 @@ size = Vector2(16, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(16, 16)
 
-[node name="Spiny" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+[node name="Spiny" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
 collision_layer = 8
 collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_3y5nv")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
+sprite = NodePath("Sprite")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_uatgh")

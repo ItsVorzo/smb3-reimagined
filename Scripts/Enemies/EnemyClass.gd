@@ -4,18 +4,27 @@ extends CharacterBody2D
 @export var collision: CollisionShape2D = null
 @export var hurtbox: Area2D = null
 @export var stompbox: Area2D = null
+@export var sprite: Node = null
+var dead_from_obj := false
 var can_stomp := false
 var stomped := false
 var score_value = 100
 
 # Called when the node enters the scene tree for the first time.
 func set_signals() -> void:
+	add_to_group("Enemies")
 	hurtbox.body_entered.connect(_on_hurtbox_touch)
 	if stompbox != null: stompbox.body_entered.connect(_on_head_stomp)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func process() -> void:
+func process(delta: float) -> void:
+	if dead_from_obj:
+		if stompbox != null:
+			stompbox.monitoring = false
+		collision.disabled = true
+		hurtbox.monitoring = false
+		sprite.rotation += 0.4 * sign(velocity.x)
 	if stompbox == null:
 		can_stomp = false
 	else:

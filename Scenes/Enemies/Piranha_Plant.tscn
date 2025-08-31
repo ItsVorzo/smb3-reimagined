@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://whn1nrkohgb4"]
 
-[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/piranha_plant.gd" id="1_grha8"]
+[ext_resource type="Script" path="res://Scripts/Enemies/piranha_plant.gd" id="1_grha8"]
 [ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="2_grha8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
@@ -12,12 +12,13 @@ size = Vector2(8, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(10, 19)
 
-[node name="PiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+[node name="PiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_grha8")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

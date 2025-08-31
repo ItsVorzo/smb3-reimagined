@@ -47,9 +47,9 @@ func _physics_process(delta: float) -> void:
 			part.position = pos
 
 func flip_sprite() -> void:
-	var sprite = get_node_or_null("Sprite")
-	if sprite:
-		sprite.scale.x *= -1
+	var spr = get_node_or_null("Sprite")
+	if spr:
+		spr.scale.x *= -1
 
 func _show_wings(visible: bool) -> void:
 	for wing_name in ["Wings", "Wings2"]:

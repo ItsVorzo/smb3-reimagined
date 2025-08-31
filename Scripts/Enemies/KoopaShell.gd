@@ -21,8 +21,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var is_currently_grabbed = grab.is_grabbed
 
+	# If the shell dies then make it rotate
 	if is_dead:
-		$AnimatedSprite2D.rotation += 0.4 * sign(abs(velocity.x))
+		$AnimatedSprite2D.rotation += 0.4 * sign(velocity.x)
 
 	# === Grab/Kick ===
 	# If you didn't grab it
@@ -73,10 +74,14 @@ func stomp_on_shell(body: Node):
 			velocity.x = 0
 
 func shell_damage(body: Node):
+	# Collide with the player
 	if body.is_in_group("Player"):
 		if grab.is_kicked and grab.grab_delay == 0 or grab.holder != null and body.current_grabbed_obj != $Grabbable:
 			body.damage()
+	# Collide with other shells
 	elif body != self and body.is_in_group("Shell"):
+		if grab.holder:
+			grab.holder.current_grabbed_obj = null
 		SoundManager.play_sfx("Kick", global_position)
 		is_dead = true
 		die(body)
@@ -84,7 +89,7 @@ func shell_damage(body: Node):
 
 func die(body: Node):
 	velocity.y = -130
-	xspd = body.xspd / 1.2
+	xspd = body.xspd / 1.3
 	$Collision.set_deferred("disabled", true)
 	set_collision_layer(0)
 	set_collision_mask(0)

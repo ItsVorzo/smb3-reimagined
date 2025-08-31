@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://xwhpthdlc61v"]
+[gd_scene load_steps=10 format=4 uid="uid://xwhpthdlc61v"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Blocks/brick.tscn" id="1_v71h5"]
+[ext_resource type="Script" uid="uid://ctsphc6os4dys" path="res://Scenes/Levels/ToadHouseStart.gd" id="1_thvwr"]
 [ext_resource type="Texture2D" uid="uid://bm3j8e8nrjl6d" path="res://Sprites/Tilesets/ToadHouse.png" id="2_thvwr"]
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="3_tgpjf"]
-[ext_resource type="PackedScene" uid="uid://0rjn3gu5tf54" path="res://Scenes/Backgrounds/Overworld.tscn" id="4_nw5wf"]
+[ext_resource type="PackedScene" path="res://Scenes/Backgrounds/Overworld.tscn" id="4_nw5wf"]
 [ext_resource type="AudioStream" uid="uid://dwrnkj7k1qpq8" path="res://Audio/BGM/ToadHouse.ogg" id="5_u7nwc"]
+[ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="5_v71h5"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_yediy"]
-scenes/1/scene = ExtResource("1_v71h5")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2dkw4"]
 texture = ExtResource("2_thvwr")
@@ -42,6 +42,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_yediy")
 sources/2 = SubResource("TileSetAtlasSource_2dkw4")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_thvwr")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD7/wAAAgAEAAAAAAD7////AgAEAAAAAAD7//7/AgAEAAAAAAD7//z/AgAEAAAAAAD7//3/AgAEAAAAAAD8/wAAAgAEAAAAAAD9/wAAAgAEAAAAAAD+/wAAAgAEAAAAAAD//wAAAgAEAAAAAAAAAAAAAgAEAAAAAAABAAAAAgAEAAAAAAACAAAAAgAEAAAAAAADAAAAAgAEAAAAAAAEAAAAAgAEAAAAAAAFAAAAAgAEAAAAAAAGAAAAAgAEAAAAAAAGAP//AgAEAAAAAAAGAP7/AgAEAAAAAAAGAP3/AgAEAAAAAAAGAPz/AgAEAAAAAAAHAPz/AgAEAAAAAAAIAPz/AgAEAAAAAAAIAPv/AgAEAAAAAAD6//z/AgAEAAAAAAD5//z/AgAEAAAAAAD5//v/AgAEAAAAAAD5//n/AgAEAAAAAAD5//r/AgAEAAAAAAD5//j/AgAEAAAAAAD6//j/AgAEAAAAAAD6//f/AgAEAAAAAAD7//f/AgAEAAAAAAD7//b/AgAEAAAAAAAIAPr/AgAEAAAAAAAIAPn/AgAEAAAAAAAIAPj/AgAEAAAAAAAHAPj/AgAEAAAAAAAHAPf/AgAEAAAAAAAGAPb/AgAEAAAAAAAGAPf/AgAEAAAAAAD8//b/AgAEAAAAAAD9//b/AgAEAAAAAAAFAPb/AgAEAAAAAAAEAPb/AgAEAAAAAAAEAPX/AgAEAAAAAAADAPX/AgAEAAAAAAACAPX/AgAEAAAAAAABAPX/AgAEAAAAAAAAAPX/AgAEAAAAAAD///X/AgAEAAAAAAD+//X/AgAEAAAAAAD9//X/AgAEAAAAAAA=")
@@ -52,7 +53,7 @@ tile_map_data = PackedByteArray("AAD6//n/AgAFAAEAAAD6//r/AgAFAAAAAAD6//v/AgAFAAA
 tile_set = SubResource("TileSet_l1668")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_tgpjf")]
-position = Vector2(-72, -64)
+position = Vector2(-112, -2)
 
 [node name="Overworld" parent="." instance=ExtResource("4_nw5wf")]
 visible = false
@@ -68,3 +69,6 @@ position = Vector2(16, -34)
 offset = Vector2(0, -46)
 zoom = Vector2(3, 3)
 drag_vertical_enabled = true
+
+[node name="CameraGroundLimit" parent="." instance=ExtResource("5_v71h5")]
+position = Vector2(-79, 15)

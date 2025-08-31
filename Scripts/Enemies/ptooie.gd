@@ -30,7 +30,7 @@ func _ready() -> void:
 	state_timer = walk_duration
 
 func _physics_process(delta: float) -> void:
-	process()
+	process(delta)
 
 	if stomped:
 		return

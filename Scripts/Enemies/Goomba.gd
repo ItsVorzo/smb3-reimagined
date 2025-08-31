@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	process()
+	process(delta)
 
 	# Apply gravity
 	velocity.y += gravity * delta
@@ -37,6 +37,6 @@ func _physics_process(delta: float) -> void:
 		flip_sprite()
 
 func flip_sprite() -> void:
-	var sprite = get_node_or_null("Sprite")
-	if sprite:
+	var spr = get_node_or_null("Sprite")
+	if spr:
 		sprite.scale.x *= -1

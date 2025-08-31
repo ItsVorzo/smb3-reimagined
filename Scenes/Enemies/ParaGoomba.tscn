@@ -35,7 +35,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Goomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "stompbox")]
+[node name="Goomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "stompbox", "sprite")]
 collision_layer = 8
 collision_mask = 9
 floor_constant_speed = true
@@ -43,6 +43,7 @@ script = ExtResource("1_kcqjj")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
 stompbox = NodePath("StompBox")
+sprite = NodePath("Sprite")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)

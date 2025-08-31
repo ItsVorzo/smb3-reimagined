@@ -12,7 +12,7 @@ size = Vector2(8, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(16, 27)
 
-[node name="BigGPiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+[node name="BigGPiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox") groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_kcjiw")

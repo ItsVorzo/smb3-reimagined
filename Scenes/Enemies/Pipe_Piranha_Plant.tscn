@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dptrn021waygr"]
 
-[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/piranha_plant.gd" id="1_otiw6"]
+[ext_resource type="Script" path="res://Scripts/Enemies/piranha_plant.gd" id="1_otiw6"]
 [ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="2_0bssp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
@@ -11,6 +11,21 @@ size = Vector2(8, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(10, 19)
+
+[sub_resource type="Animation" id="Animation_0bssp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingParts:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_otiw6"]
 resource_name = "pipe"
@@ -42,33 +57,19 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.75, 0.75), Vector2(0.75, 0.75), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_0bssp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MovingParts:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yqd38"]
 _data = {
 &"RESET": SubResource("Animation_0bssp"),
 &"pipe": SubResource("Animation_otiw6")
 }
 
-[node name="PipePiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+[node name="PipePiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_otiw6")
 collision = NodePath("MovingParts/Collision")
 hurtbox = NodePath("MovingParts/HurtBox")
+sprite = NodePath("MovingParts/Sprite2D")
 
 [node name="MovingParts" type="Area2D" parent="."]
 

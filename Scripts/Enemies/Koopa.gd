@@ -1,21 +1,26 @@
 extends EnemyClass
 
-@onready var sprite := $AnimatedSprite2D
+@onready var spr := $AnimatedSprite2D
 @onready var cstompbox := $CustomStompBox # Stomping works differently here
 var direction := 1
 var xspd := 30
-var gravity = 1000.0 
+var gravity = 500.0 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_signals()
 	cstompbox.body_entered.connect(_on_stomped)
-	sprite.play("WalkGreen")
+	spr.play("WalkGreen")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	sprite.scale.x = -direction
+	process(delta)
+
+	if dead_from_obj:
+		cstompbox.monitoring = false
+
+	spr.scale.x = -direction
 	velocity.x = xspd * direction
 	if not is_on_floor(): 
 		velocity.y += gravity * delta
