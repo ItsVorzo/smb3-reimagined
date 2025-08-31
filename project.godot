@@ -25,6 +25,7 @@ ConfigManager="*res://Scripts/Game/ConfigManager.gd"
 SoundManager="*res://Scripts/Game/SoundManager.gd"
 MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 PlayerManager="*res://Scripts/Player/PlayerManager.gd"
+TransitionManager="*res://Scenes/UI/TransitionManager.tscn"
 
 [display]
 

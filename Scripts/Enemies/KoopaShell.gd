@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var grab = $Grabbable
 @onready var stomparea := $StompArea
 @onready var hurtbox := $HurtBox
+@onready var grabbox := $Grabbox
 var xspd := 180
 var direction := 1
 var gravity = 500.0
@@ -10,13 +11,18 @@ var bounce_force = -80.0
 var has_bounced = true
 var was_on_floor = false
 var was_grabbed = false 
+var is_dead := false
 
 func _ready() -> void:
+	add_to_group("Shell")
 	hurtbox.body_entered.connect(shell_damage)
 	stomparea.body_entered.connect(stomp_on_shell)
 
 func _physics_process(delta: float) -> void:
 	var is_currently_grabbed = grab.is_grabbed
+
+	if is_dead:
+		$AnimatedSprite2D.rotation += 0.4 * sign(abs(velocity.x))
 
 	# === Grab/Kick ===
 	# If you didn't grab it
@@ -52,9 +58,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	# Change direction on wall 
-	if is_on_wall():
-		direction *= -1
-		if not grab.is_grabbed: SoundManager.play_sfx("Hit", global_position)
+	if not is_dead:
+		if is_on_wall():
+			if not is_dead: direction *= -1
+			if not grab.is_grabbed: SoundManager.play_sfx("Hit", global_position)
 
 func stomp_on_shell(body: Node):
 	if body.is_in_group("Player") and grab.grab_delay == 0 and grab.is_kicked:
@@ -69,3 +76,19 @@ func shell_damage(body: Node):
 	if body.is_in_group("Player"):
 		if grab.is_kicked and grab.grab_delay == 0 or grab.holder != null and body.current_grabbed_obj != $Grabbable:
 			body.damage()
+	elif body != self and body.is_in_group("Shell"):
+		SoundManager.play_sfx("Kick", global_position)
+		is_dead = true
+		die(body)
+		body.die(self)
+
+func die(body: Node):
+	velocity.y = -130
+	xspd = body.xspd / 1.2
+	$Collision.set_deferred("disabled", true)
+	set_collision_layer(0)
+	set_collision_mask(0)
+	collision_mask = 0
+	hurtbox.set_deferred("monitoring", false)
+	stomparea.set_deferred("monitoring", false)
+	grabbox.set_deferred("monitoring", false)

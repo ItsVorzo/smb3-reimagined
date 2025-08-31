@@ -15,6 +15,7 @@ var save_index := 0
 const BLOCK_SIZE := 16
 
 func _ready() -> void:
+	TransitionManager.fade_out(6.0)
 	SaveManager.start_runtime_from_save(save_index)
 	SaveManager.hud = hud
 	SaveManager.hud.update_labels()

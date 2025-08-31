@@ -106,4 +106,5 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ng4al")
 autoplay = "default"
-frame_progress = 0.46876928
+frame = 12
+frame_progress = 1.0

@@ -71,6 +71,7 @@ var is_holding := false
 
 # === Input shit ===
 var input
+var input_disabled := false
 
 # === Udate the input devices ===
 func update_input_device(player_num: int):
@@ -137,6 +138,9 @@ func _on_joy_connection_changed(device: int, connected: bool):
 # === Logic ===
 func _process(delta):
 
+	if current_grabbed_obj == null:
+		is_holding = false
+
 	# === Remove unused players ===
 	var device = PlayerManager.get_player_device(player_id)
 	if device == null:
@@ -198,7 +202,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_speeds[final_jump_speed]
 		SoundManager.play_sfx("JumpSmall", global_position)
 
-	# Player dies when you fall in a pitS
+	# Player dies when you fall in a pit
 	if !is_dead && is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 54: die()
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://7n3rmnf72koy"]
+
+[ext_resource type="Script" uid="uid://2mu0t4gxg4mc" path="res://Scenes/UI/TransitionManager.gd" id="1_q8heo"]
+[ext_resource type="Script" uid="uid://gxhtip6slors" path="res://Scenes/UI/Transitions.gd" id="2_5bkkp"]
+
+[node name="TransitionManager" type="Node"]
+script = ExtResource("1_q8heo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 40
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 4096
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("2_5bkkp")

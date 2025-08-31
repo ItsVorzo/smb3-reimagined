@@ -10,7 +10,7 @@ func _ready():
 		audio_streamer.play()
 
 	if save_index >= 0 and character_index >= 0:
-		var save_data := {
+		var _save_data := {
 			"character_index": character_index,
 			"world_number": 1
 		}

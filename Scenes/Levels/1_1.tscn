@@ -110,6 +110,7 @@ script = ExtResource("1_q0pi4")
 
 [node name="ThemeManager" type="Node2D" parent="."]
 process_mode = 3
+visible = false
 script = ExtResource("2_q0pi4")
 
 [node name="152106" type="Sprite2D" parent="."]
@@ -199,8 +200,7 @@ position = Vector2(751, -48)
 
 [node name="KoopaShell" parent="." instance=ExtResource("29_fxiy1")]
 position = Vector2(419, -44)
-collision_layer = 8
 collision_mask = 9
 
 [node name="Koopa" parent="." instance=ExtResource("30_x8ai0")]
-position = Vector2(436, -26)
+position = Vector2(561, -17)

@@ -45,6 +45,10 @@ func _process(_delta):
 		# Wait for sound to finish (adjust time to match your audio)
 		await get_tree().create_timer(1.11).timeout
 
+		# Smoother transition fix i think?
+		TransitionManager.fade_out(0, 0, 0, 0, 30)
+		await get_tree().create_timer(0.2).timeout
+
 		InputManager.input_disabled = false
 
 		# Load the new level

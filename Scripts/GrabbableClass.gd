@@ -23,6 +23,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 
+	if grabbox.monitoring == false:
+		return
+
 	# Wether the player body is inside the area
 	var bodies = grabbox.get_overlapping_bodies()
 	# === Get the player side ===

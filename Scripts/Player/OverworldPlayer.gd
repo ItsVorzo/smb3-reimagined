@@ -18,7 +18,6 @@ var character = ["Mario", "Luigi", "Toad", "Toadette"]
 func char_idx() -> int:
 	return int(SaveManager.runtime_data.get("character_index", 0))
 	
-@onready var state_machine: StateMachine = $States
 @export var pwrup: PowerUps = null
 var current_powerup: int = 0
 var jump_buffer_timer = 0.12
@@ -42,14 +41,9 @@ func _ready() -> void:
 	SaveManager.start_runtime_from_save(0)
 	character_index = char_idx() # Get the current character index
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
-	apply_physics(character_index) # Apply unique physics (will be a toggle in the future)
-	add_to_group("Player") # Add to the correct group
 	target_position = position
 	add_to_group("Overworld")
 
-func apply_physics(i:int) -> void:
-	pass
-	
 func _on_animation_timer_timeout():
 	animation.play("map")
 
