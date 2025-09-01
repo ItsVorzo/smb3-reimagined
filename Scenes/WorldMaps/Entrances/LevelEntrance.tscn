@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bpt12tgpm70ys"]
+[gd_scene load_steps=24 format=3 uid="uid://bpt12tgpm70ys"]
 
 [ext_resource type="Script" uid="uid://bh6akojg55un8" path="res://Scripts/Game/LevelEntrance.gd" id="1_cwbiw"]
 [ext_resource type="Texture2D" uid="uid://ce5dirnc4lclh" path="res://Sprites/Tilesets/WorldMaps/Levels.png" id="2_ik2j3"]
@@ -10,6 +10,10 @@ size = Vector2(16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_30bqu"]
 atlas = ExtResource("2_ik2j3")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo36p"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(144, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ry522"]
 atlas = ExtResource("2_ik2j3")
@@ -31,6 +35,22 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("2_ik2j3")
 region = Rect2(80, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag1gb"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j00vf"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kued2"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwbiw"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(240, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wc54x"]
 atlas = ExtResource("2_ik2j3")
 region = Rect2(192, 16, 16, 16)
@@ -39,13 +59,17 @@ region = Rect2(192, 16, 16, 16)
 atlas = ExtResource("2_ik2j3")
 region = Rect2(192, 48, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cbrt"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(208, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1eyl"]
 atlas = ExtResource("2_ik2j3")
 region = Rect2(176, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5cbrt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik2j3"]
 atlas = ExtResource("2_ik2j3")
-region = Rect2(208, 0, 16, 16)
+region = Rect2(224, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucptm"]
 atlas = ExtResource("2_ik2j3")
@@ -63,6 +87,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo36p")
+}],
+"loop": true,
+"name": &"10",
 "speed": 5.0
 }, {
 "frames": [{
@@ -107,6 +139,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ag1gb")
+}],
+"loop": true,
+"name": &"7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j00vf")
+}],
+"loop": true,
+"name": &"8",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kued2")
+}],
+"loop": true,
+"name": &"9",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwbiw")
+}],
+"loop": true,
+"name": &"bpipe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wc54x")
 }],
 "loop": true,
@@ -123,6 +187,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5cbrt")
+}],
+"loop": true,
+"name": &"gpipe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_r1eyl")
 }],
 "loop": true,
@@ -131,10 +203,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5cbrt")
+"texture": SubResource("AtlasTexture_ik2j3")
 }],
 "loop": true,
-"name": &"pipe",
+"name": &"rpipe",
 "speed": 5.0
 }, {
 "frames": [{
@@ -162,7 +234,7 @@ shape = SubResource("RectangleShape2D_fy40d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2i11j")
-animation = &"start"
+animation = &"3"
 
 [node name="EnterLevelSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_lo36p")
