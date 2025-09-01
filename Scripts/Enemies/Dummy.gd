@@ -8,7 +8,7 @@ func _ready() -> void:
 	set_signals()
 
 func _physics_process(delta: float) -> void:
-	process()
+	process(delta)
 
 	if stomped:
 		return

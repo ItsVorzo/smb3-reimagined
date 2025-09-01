@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://7642xvxlvd6r"]
+
+[ext_resource type="Script" uid="uid://dtrtw7abkyt2t" path="res://Scripts/BlockClass.gd" id="1_cq4ay"]
+[ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="2_cpsrl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsprb"]
+atlas = ExtResource("2_cpsrl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh32s"]
+atlas = ExtResource("2_cpsrl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq84n"]
+atlas = ExtResource("2_cpsrl")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v14j"]
+atlas = ExtResource("2_cpsrl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1vmc"]
+atlas = ExtResource("2_cpsrl")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cq4ay"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsprb")
+}],
+"loop": true,
+"name": &"Activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh32s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq84n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v14j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1vmc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsprb"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpsrl"]
+size = Vector2(16, 2)
+
+[node name="QuestionBlock" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "sprite")]
+script = ExtResource("1_cq4ay")
+hitbox = NodePath("Hitbox")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cq4ay")
+animation = &"Activated"
+autoplay = "Idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nsprb")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_cpsrl")

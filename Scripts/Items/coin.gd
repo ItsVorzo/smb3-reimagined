@@ -4,23 +4,22 @@ extends Node2D
 @onready var coin_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
-@export var from_block: bool = false
+var from_block := false
 var collected := false
+var default_z_index := 0
 
 
 func _ready() -> void:
 	if from_block:
-		# Coin from Question Block
-		anim_sprite.play("item_box")
-		coin_sound.play()
-		_add_coin_to_hud()
 		_pop_animation()
+		anim_sprite.play("item_box", 2)
 	else:
-		# Normal placed coin
 		anim_sprite.play("collectable")
-		collision.disabled = false
-		connect("body_entered", _on_body_entered)
+	connect("body_entered", _on_body_entered)
 
+func _physics_process(delta: float) -> void:
+	if not from_block:
+		z_index = default_z_index
 
 func _on_body_entered(body: Node) -> void:
 	if collected or not body.is_in_group("Player"):
@@ -32,7 +31,7 @@ func _on_body_entered(body: Node) -> void:
 
 	# Hide immediately (so player can't touch again)
 	anim_sprite.visible = false
-	collision.disabled = true
+	collision.set_deferred("monitoring", false)
 
 	# Remove once sound finishes (~0.88s)
 	await get_tree().create_timer(0.88).timeout
@@ -44,8 +43,8 @@ func _pop_animation() -> void:
 	var tween = create_tween()
 	var start_y = global_position.y
 	var peak_y = start_y - 48  # ↑ 48px jump
-	tween.tween_property(self, "global_position:y", peak_y, 0.44).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "global_position:y", start_y, 0.44).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "global_position:y", peak_y, 0.24).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position:y", start_y, 0.24).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.tween_callback(queue_free)
 
 

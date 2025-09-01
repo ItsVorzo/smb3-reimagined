@@ -6,7 +6,7 @@ func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	print((t.fade_speed * (255.0/100.0)) * t.fade_type)
+	pass
 
 func fade_to_scene(fade_speed := 1.0, r := 0, g := 0, b := 0, scene_path := ""):
 	fade_in(fade_speed, r, g, b)

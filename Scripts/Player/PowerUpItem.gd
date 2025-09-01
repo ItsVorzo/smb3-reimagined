@@ -6,13 +6,7 @@ extends CharacterBody2D
 
 var direction := 1
 var from_block := false
-
-func _ready() -> void:
-	if from_block:
-		await get_tree().create_timer(0.5).timeout 
-		pick_up_area.body_entered.connect(body_entered)
-	else:
-		pick_up_area.body_entered.connect(body_entered)
+var default_z_index := 0
 
 func body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):

@@ -14,7 +14,7 @@ func _ready() -> void:
 	_show_wings(true)
 
 func _physics_process(delta: float) -> void:
-	process()
+	process(delta)
 
 	if stomped:
 		$Sprite.play("squish")

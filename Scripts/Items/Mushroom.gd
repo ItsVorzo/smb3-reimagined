@@ -1,49 +1,31 @@
 extends PowerUpItem
 
-@export var is_one_up: bool = false
-
 @onready var sprite := $Sprite2D
 @onready var collision := $Collision
-@onready var ray_wall := $RayCast2D_WallCheck
 var xspd = 50.0
 var gravity := 500.0
 
+var target_y
+
+func _ready() -> void:
+	target_y = self.global_position.y - 10
+	pick_up_area.body_entered.connect(body_entered)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	velocity.x = xspd * direction
-	if not is_on_floor(): velocity.y += gravity * delta
-	if ray_wall.is_colliding():
-		flip_direction()
-	if from_block:
-		await get_tree().create_timer(0.5).timeout
-		update_rays()
-		move_and_slide()
+	if not from_block:
+		z_index = default_z_index
+		collision.disabled = false
+		velocity.x = xspd * direction
+		if not is_on_floor(): velocity.y += gravity * delta
 	else:
-		update_rays()
-		move_and_slide()
+		collision.disabled = true
+		if global_position.y >= target_y:
+			global_position.y -= 0.4
+		else:
+			from_block = false
 
-func flip_direction() -> void:
-	direction *= -1
-	update_rays()
+	move_and_slide()
 
-func update_rays() -> void:
-	ray_wall.position.x = 8 * direction
-	ray_wall.target_position.x = 1 * direction
-
-func _on_body_entered(body: Node) -> void:
-	if not body.is_in_group("Player"):
-		return
-
-	if is_one_up:
-		body.is_super = false
-		SaveManager.add_life(1)
-		if SaveManager.hud:
-			SaveManager.hud.update_labels()
-		queue_free()
-		return
-
-	if body.has_method("power_up_animation"):
-		body.is_super = true
-		body.power_up_animation("Big")
-
-	queue_free()
+	if is_on_wall():
+		direction *= -1
