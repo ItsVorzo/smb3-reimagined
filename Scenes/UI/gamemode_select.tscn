@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://jxsq0arumgvb" path="res://Scripts/UI/gamemode_select.gd" id="1_dinpg"]
 [ext_resource type="Texture2D" uid="uid://6cf3pobgicqd" path="res://Sprites/UI/Gamemode Select/gamemode select.png" id="1_ialvr"]
 [ext_resource type="Texture2D" uid="uid://dxaw7133c8wjq" path="res://Sprites/UI/Gamemode Select/SingleplayerB.png" id="2_dinpg"]
-[ext_resource type="Texture2D" uid="uid://oc05el8f2b7l" path="res://Sprites/UI/Gamemode Select/SingleplayerBHover.png" id="3_1ppci"]
 [ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="4_xs2cb"]
+[ext_resource type="Texture2D" uid="uid://dub3p20v8vbfe" path="res://Sprites/UI/Gamemode Select/LockedB.png" id="5_dinpg"]
 
 [node name="Gamemode Select" type="Node2D"]
 script = ExtResource("1_dinpg")
@@ -12,15 +12,14 @@ script = ExtResource("1_dinpg")
 [node name="BG" type="Sprite2D" parent="."]
 texture = ExtResource("1_ialvr")
 
-[node name="SingleplayerB" type="TextureButton" parent="."]
+[node name="StoryB" type="TextureButton" parent="."]
 offset_left = -58.0
 offset_top = -64.0
 offset_right = 59.0
 offset_bottom = 61.0
 texture_normal = ExtResource("2_dinpg")
-texture_hover = ExtResource("3_1ppci")
 
-[node name="SingleplayerText" type="Label" parent="SingleplayerB"]
+[node name="StoryText" type="Label" parent="StoryB"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 131.0
@@ -28,7 +27,43 @@ offset_right = 106.0
 offset_bottom = 139.0
 theme_override_fonts/font = ExtResource("4_xs2cb")
 theme_override_font_sizes/font_size = 8
-text = "singleplayer"
+text = "story mode"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="SingleplayerB" to="." method="_on_singleplayer_b_pressed"]
+[node name="VersusB" type="TextureButton" parent="."]
+offset_left = -181.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = 61.0
+texture_normal = ExtResource("5_dinpg")
+
+[node name="VersusText" type="Label" parent="VersusB"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 131.0
+offset_right = 106.0
+offset_bottom = 139.0
+theme_override_fonts/font = ExtResource("4_xs2cb")
+theme_override_font_sizes/font_size = 8
+text = "???"
+horizontal_alignment = 1
+
+[node name="ReimaginedB" type="TextureButton" parent="."]
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 181.0
+offset_bottom = 61.0
+texture_normal = ExtResource("5_dinpg")
+
+[node name="ReimaginedText" type="Label" parent="ReimaginedB"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 131.0
+offset_right = 106.0
+offset_bottom = 139.0
+theme_override_fonts/font = ExtResource("4_xs2cb")
+theme_override_font_sizes/font_size = 8
+text = "???"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="StoryB" to="." method="_on_singleplayer_b_pressed"]
