@@ -32,8 +32,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	process(delta)
 
-	if stomped:
-		return
+	if stomped or dead_from_obj:
+		ball_instance.dead_from_obj = true
 
 
 	velocity.y += gravity * delta
@@ -85,6 +85,6 @@ func spawn_ball_above() -> void:
 	ball_instance.global_position = global_position + Vector2(0, BALL_OFFSET_Y)
 
 func flip_sprite() -> void:
-	var sprite = get_node_or_null("Sprite")
-	if sprite:
+	var spr = get_node_or_null("Sprite")
+	if spr:
 		sprite.scale.x *= -1

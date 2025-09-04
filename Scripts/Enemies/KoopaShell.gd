@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var stomparea := $StompArea
 @onready var hurtbox := $HurtBox
 @onready var grabbox := $Grabbox
-var xspd := 180
+var xspd := 180.0
 var direction := 1
 var gravity = 500.0
 var bounce_force = -80.0
@@ -19,11 +19,13 @@ func _ready() -> void:
 	stomparea.body_entered.connect(stomp_on_shell)
 
 func _physics_process(delta: float) -> void:
+	print(self, ": ", direction)
 	var is_currently_grabbed = grab.is_grabbed
 
 	# If the shell dies then make it rotate
 	if is_dead:
 		$AnimatedSprite2D.rotation += 0.4 * sign(velocity.x)
+		velocity.x = xspd * direction
 
 	# === Grab/Kick ===
 	# If you didn't grab it
@@ -61,8 +63,9 @@ func _physics_process(delta: float) -> void:
 	# Change direction on wall 
 	if not is_dead:
 		if is_on_wall():
-			if not is_dead: direction *= -1
 			if not grab.is_grabbed: SoundManager.play_sfx("Hit", global_position)
+			direction *= -1
+
 
 func stomp_on_shell(body: Node):
 	if body.is_in_group("Player") and grab.grab_delay == 0 and grab.is_kicked:
@@ -73,23 +76,32 @@ func stomp_on_shell(body: Node):
 			grab.grab_delay = 10
 			velocity.x = 0
 
+# Interact with objects
 func shell_damage(body: Node):
 	# Collide with the player
 	if body.is_in_group("Player"):
 		if grab.is_kicked and grab.grab_delay == 0 or grab.holder != null and body.current_grabbed_obj != $Grabbable:
 			body.damage()
-	# Collide with other shells
-	elif body != self and body.is_in_group("Shell"):
+	# Kill the shell
+	elif (body != self and body.is_in_group("Shell")) or grab.is_grabbed and body.is_in_group("Enemies"):
 		if grab.holder:
 			grab.holder.current_grabbed_obj = null
+			grab.is_grabbed = false
 		SoundManager.play_sfx("Kick", global_position)
 		is_dead = true
-		die(body)
-		body.die(self)
+		die()
+		if body.is_in_group("Shell"):
+			body.die()
+		else:
+			body.dead_from_obj = true
 
-func die(body: Node):
+func die():
 	velocity.y = -130
-	xspd = body.xspd / 1.3
+	if direction == 1:
+		direction = -1 
+	else:
+		direction *= -1
+	xspd = xspd / 2
 	$Collision.set_deferred("disabled", true)
 	set_collision_layer(0)
 	set_collision_mask(0)

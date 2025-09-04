@@ -10,21 +10,23 @@ var can_stomp := false
 var stomped := false
 var score_value = 100
 
-# Called when the node enters the scene tree for the first time.
+# === Important signals ===
 func set_signals() -> void:
 	add_to_group("Enemies")
 	hurtbox.body_entered.connect(_on_hurtbox_touch)
 	if stompbox != null: stompbox.body_entered.connect(_on_head_stomp)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# === Knock off physics process ===
 func process(delta: float) -> void:
+	# Special case for when enemy is killed by an object
 	if dead_from_obj:
 		if stompbox != null:
 			stompbox.monitoring = false
 		collision.disabled = true
 		hurtbox.monitoring = false
-		sprite.rotation += 0.4 * sign(velocity.x)
+		if sprite: sprite.rotation += 0.4 * sign(velocity.x)
+
+	# NO stomping
 	if stompbox == null:
 		can_stomp = false
 	else:
@@ -44,12 +46,12 @@ func _on_head_stomp(body: Node) -> void:
 			SaveManager.hud.update_labels()
 		_die()
 
-# === Enemy's dead
+# === Enemy's dead ===
 func _die() -> void:
-	stomped = true
+	if stompbox: stomped = true
 	velocity = Vector2.ZERO
 
-	# disable all collisions (player should not die after stomp)
+	# disable all collisions
 	collision.disabled = true
 	stompbox.monitoring = false
 	hurtbox.monitoring = false
