@@ -12,8 +12,10 @@ func physics_process_update(_delta: float) -> void:
 		if not state_machine.state.name == "Slide":
 			if player.input.is_action_pressed("down") and player.input_direction() == 0 and player.get_slope_angle() > 0:
 				state_machine.change_state("Slide")
-			elif player.get_slope_angle() == 0:
+			elif player.get_slope_angle() == 0 and not player.test_move(player.global_transform, Vector2(0, -5)):
 				player.crouching = player.input.is_action_pressed("down")
+			elif player.crouching:
+				player.crouching = true
 		if player.get_slope_angle() > 0 and player.crouching: player.crouching = false
 
 	# === Horizontal Movement ===

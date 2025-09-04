@@ -10,15 +10,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if from_block:
+	if not from_block:
+		z_index = default_z_index
+		collision.disabled = false
+		if not is_on_floor():
+			velocity.y += gravity * delta
+	else:
 		collision.disabled = true
 		if global_position.y >= target_y:
 			global_position.y -= 0.4
 		else:
 			from_block = false
-	else:
-		z_index = default_z_index
-		collision.disabled = false
-		if not is_on_floor():
-			velocity.y += gravity * delta
 	move_and_slide()

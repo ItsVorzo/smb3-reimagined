@@ -50,7 +50,6 @@ func _process(_delta: float) -> void:
 					break
 				# Else Kick it (if you can)
 				elif can_kick and grab_delay == 0 and not is_kicked:
-					
 					kick()
 					break
 	# Follow the holder if we have it
@@ -102,8 +101,6 @@ func _process(_delta: float) -> void:
 			can_grab = true
 	# Cap it to 0
 	grab_delay = max(grab_delay, 0)
-
-	bodies = grabbox.get_overlapping_bodies() # Do it twice for better checking
 
 
 # Set the grabbable position (this also handles turning around)

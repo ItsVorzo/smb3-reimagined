@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var sprite: Node = null
 @export var item: PackedScene = null
 var item_scene: Node
-var coin_scene = load("res://Scenes/Items/coin.tscn")
+const coin_scene = preload("res://Scenes/Items/coin.tscn")
 
 # === Block position/states ===
 var original_y_pos: float
@@ -16,6 +16,7 @@ var is_activated := false
 var is_used := false
 
 func _ready() -> void:
+	add_to_group("Blocks")
 	original_y_pos = sprite.global_position.y
 	hitbox.body_entered.connect(activate)
 
@@ -39,23 +40,29 @@ func _physics_process(delta: float) -> void:
 
 # === Activate the block
 func activate(body: Node):
-	if body.is_in_group("Player") and body.velocity.x >= -10 and not is_activated and not is_used:
+	if body.is_in_group("Player") and not is_activated and not is_used:
 		sprite.play("Activated")
 		is_activated = true
 		yspd = -140.0
+		# If there's nothing in the block, give a coin
 		if item == null:
 			SoundManager.play_sfx("Coin", self.global_position)
 			item_scene = coin_scene.instantiate()
-			spawn_item()
+			spawn_item(body)
+		# Else give the item associated with it
 		else:
 			SoundManager.play_sfx("ItemPop", self.global_position)
 			item_scene = item.instantiate()
-			spawn_item()
+			spawn_item(body)
 
-func spawn_item():
-	item_scene.default_z_index = item_scene.z_index
-	item_scene.from_block = true
+# Item pop sound effect
+func spawn_item(body: Node):
+	item_scene.default_z_index = item_scene.z_index # Get the original z index
+	item_scene.from_block = true 
 	item_scene.global_position.x = self.global_position.x
 	item_scene.global_position.y = self.global_position.y - 6
-	get_tree().current_scene.add_child(item_scene)
-	item_scene.z_index = self.z_index - 1
+	get_tree().current_scene.add_child(item_scene) # Add it to the level tree
+	item_scene.z_index = self.z_index - 1 # Draw it behind the block
+	# If the item has got a direction variable, make it go to the opposite direction
+	if item_scene.get("direction") != null:
+		item_scene.direction = -sign(body.global_position.x - self.global_position.x)

@@ -57,7 +57,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpsrl"]
 size = Vector2(16, 2)
 
-[node name="QuestionBlock" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "sprite")]
+[node name="QuestionBlock" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "sprite") groups=["Blocks"]]
 script = ExtResource("1_cq4ay")
 hitbox = NodePath("Hitbox")
 sprite = NodePath("AnimatedSprite2D")

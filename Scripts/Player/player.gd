@@ -136,10 +136,7 @@ func _on_joy_connection_changed(device: int, connected: bool):
 		PlayerManager.leave_device(device)
 
 # === Logic ===
-func _process(delta):
-
-	if current_grabbed_obj == null:
-		is_holding = false
+func _process(_delta: float) -> void:
 
 	# === Remove unused players ===
 	var device = PlayerManager.get_player_device(player_id)
@@ -151,6 +148,30 @@ func _process(delta):
 	# === Update input devices for local multiplayer ===
 	if PlayerManager.player_data:
 		update_input_device(player_id) 
+
+# === Physics ===
+func _physics_process(delta: float) -> void:
+
+	# Change collision shapes
+	is_super = pwrup.tier >= 1
+	if not is_super or crouching:
+		normal_collision_shape.disabled = false
+		super_collision_shape.disabled = true
+	else:
+		normal_collision_shape.disabled = true
+		super_collision_shape.disabled = false
+
+	# Bump
+	if is_on_ceiling():
+		SoundManager.play_sfx("Hit", global_position)
+
+	# If you're dead or no input device is detected return
+	if is_dead or not input:
+		return
+
+	# Reset skidding
+	if input_direction() == 0:
+		skidding = false
 
 	# === Set variables ===
 	max_speed = final_max_speed()
@@ -175,21 +196,6 @@ func _process(delta):
 	else:
 		jump_buffer_timer -= 1
 
-# === Physics ===
-func _physics_process(delta: float) -> void:
-
-	is_super = pwrup.tier >= 1
-	normal_collision_shape.disabled = is_super
-	super_collision_shape.disabled = not is_super
-
-	# If you're dead or no input device is detected return
-	if is_dead or not input:
-		return
-
-	# Reset skidding
-	if input_direction() == 0:
-		skidding = false
-
 	# === Gravity and Jumping ===
 	if not is_on_floor():
 		if velocity.y < -120 and input.is_action_pressed("A"): final_grav_speed = low_gravity
@@ -207,6 +213,9 @@ func _physics_process(delta: float) -> void:
 		if global_position.y > bottom_pit.global_position.y + 54: die()
 
 	move_and_slide()
+
+	if current_grabbed_obj == null:
+		is_holding = false
 
 # === Get the input direction ===
 func input_direction() -> int:
