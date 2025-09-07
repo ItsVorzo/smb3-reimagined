@@ -18,10 +18,6 @@ region = Rect2(0, 64, 32, 32)
 atlas = ExtResource("1_yxq6w")
 region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qcx5y"]
-atlas = ExtResource("1_yxq6w")
-region = Rect2(0, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8u4cl"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(32, 64, 32, 32)
@@ -33,6 +29,10 @@ region = Rect2(64, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_me7d3"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcx5y"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_miouo"]
 atlas = ExtResource("1_yxq6w")
@@ -70,10 +70,6 @@ region = Rect2(288, 0, 32, 32)
 atlas = ExtResource("1_yxq6w")
 region = Rect2(256, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m0x7a"]
-atlas = ExtResource("1_yxq6w")
-region = Rect2(160, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v66d"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(96, 0, 32, 32)
@@ -81,6 +77,10 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x63xi"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0x7a"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(160, 0, 32, 32)
 
 [resource]
 animations = [{
@@ -118,9 +118,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qcx5y")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8u4cl")
 }, {
 "duration": 1.0,
@@ -128,6 +125,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_me7d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcx5y")
 }],
 "loop": true,
 "name": &"hold_walk",
@@ -195,9 +195,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m0x7a")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_5v66d")
 }, {
 "duration": 1.0,
@@ -205,6 +202,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5v66d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0x7a")
 }],
 "loop": true,
 "name": &"walk",

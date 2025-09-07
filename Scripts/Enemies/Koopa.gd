@@ -1,41 +1,32 @@
 extends EnemyClass
 
-@onready var spr := $AnimatedSprite2D
-@onready var cstompbox := $CustomStompBox # Stomping works differently here
-var direction := 1
-var xspd := 30
-var gravity = 500.0 
+@export_enum("Green", "Red") var color := "Green"
+@onready var ledgecheck = $LedgeCheck
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_signals()
-	cstompbox.body_entered.connect(_on_stomped)
-	spr.play("WalkGreen")
+	init()
+	sprite.play("Walk" + color)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	process(delta)
+	move_horizontally()
+	sprite.scale.x = -direction
 
-	if dead_from_obj:
-		cstompbox.monitoring = false
-
-	spr.scale.x = -direction
-	velocity.x = xspd * direction
 	if not is_on_floor(): 
-		velocity.y += gravity * delta
+		gravity(delta)
+	velocity.y = min(velocity.y, grav_speed)
+	if color == "Red" and is_on_floor() and not ledgecheck.is_colliding():
+		direction *= -1
+	ledgecheck.position.x = 4.0 * direction
 
 	move_and_slide()
 
-	if is_on_wall():
-		direction *= -1
+	flip_direction()
 
-func _on_stomped(body: Node):
-	if body.is_in_group("Player"):
-		if body.velocity.y > 0:
-			body.bounce_on_enemy()
-			SoundManager.play_sfx("Stomp", global_position)
-			var shell = load("res://Scenes/Enemies/KoopaShell.tscn").instantiate()
-			shell.global_position = global_position
-			get_parent().add_child(shell)
-			queue_free()
+# Spawn the shell
+func on_stomped() -> void:
+	var shell = load("res://Scenes/Enemies/KoopaShell.tscn").instantiate()
+	shell.global_position = global_position
+	shell.color = color
+	get_parent().call_deferred("add_child", shell)
+	queue_free()

@@ -129,9 +129,10 @@ collision_mask = 11
 script = ExtResource("1_dnano")
 collision = NodePath("Disc/Area2D/Collision")
 hurtbox = NodePath("Disc/Area2D/HurtBox")
+can_die_from_slide = false
 
 [node name="Disc" type="Sprite2D" parent="."]
-position = Vector2(-29.310928, 38.011436)
+position = Vector2(0, -48)
 texture = SubResource("AtlasTexture_dnano")
 
 [node name="Area2D" type="Area2D" parent="Disc"]

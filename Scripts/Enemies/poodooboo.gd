@@ -1,7 +1,6 @@
 extends EnemyClass
 
 @export var jump_force := -350.0
-@export var gravity := 500.0
 @export var jump_interval := 2.0
 
 var start_y := 0.0
@@ -13,7 +12,7 @@ var jumping := false
 func _ready() -> void:
 	start_y = global_position.y
 	jump_cooldown = jump_interval
-	set_signals()
+	init()
 
 func _physics_process(delta: float) -> void:
 	if stomped:
@@ -25,7 +24,7 @@ func _physics_process(delta: float) -> void:
 			_start_jump()
 
 	if jumping:
-		velocity.y += gravity * delta
+		gravity(delta)
 
 		spr.flip_v = velocity.y > 0
 

@@ -3,8 +3,7 @@ extends EnemyClass  # EnemyClass extends CharacterBody2D
 @export var ball_scene: PackedScene = preload("res://Scenes/Enemies/Ball.tscn")
 
 # Movement variables
-var xspd := -30.0
-var gravity := 1000.0
+var cxspd := -30.0
 var max_fall_speed := 2000.0
 const BALL_OFFSET_Y := -60.0 
 
@@ -24,7 +23,7 @@ var wobble_amplitude := 4.0
 var ball_instance: Node2D
 
 func _ready() -> void:
-	set_signals()
+	init()
 	spawn_ball_above()
 	state = State.WALKING
 	state_timer = walk_duration
@@ -36,37 +35,38 @@ func _physics_process(delta: float) -> void:
 		ball_instance.dead_from_obj = true
 
 
-	velocity.y += gravity * delta
+	gravity(delta)
 	velocity.y = min(velocity.y, max_fall_speed)
 
 
-	state_timer -= delta
-	match state:
-		State.WALKING:
-			velocity.x = xspd
-			move_and_slide()
+	if not dead_from_obj:
+		state_timer -= delta
+		match state:
+			State.WALKING:
+				velocity.x = cxspd
+				move_and_slide()
 
-			
-			if is_on_wall():
-				xspd *= -1
-				flip_sprite()
-
-			
-			if state_timer <= 0:
-				state = State.PAUSING
-				state_timer = pause_duration
-				velocity.x = 0  
 				
-		State.PAUSING:
+				if is_on_wall():
+					cxspd *= -1
+					flip_sprite()
 
-			wobble_motion(delta)
-			move_and_slide()
+				
+				if state_timer <= 0:
+					state = State.PAUSING
+					state_timer = pause_duration
+					velocity.x = 0  
+					
+			State.PAUSING:
+
+				wobble_motion(delta)
+				move_and_slide()
 
 
-			if state_timer <= 0:
-				state = State.WALKING
-				state_timer = walk_duration
-				velocity.x = xspd
+				if state_timer <= 0:
+					state = State.WALKING
+					state_timer = walk_duration
+					velocity.x = cxspd
 
 	
 	if ball_instance:

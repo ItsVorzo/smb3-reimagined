@@ -43,7 +43,8 @@ folder_colors={
 "res://Scenes/": "red",
 "res://Scripts/": "yellow",
 "res://SpriteFrames/": "purple",
-"res://Sprites/": "green"
+"res://Sprites/": "green",
+"res://addons/": "gray"
 }
 
 [global_group]

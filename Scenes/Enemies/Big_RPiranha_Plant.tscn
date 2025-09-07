@@ -12,12 +12,14 @@ size = Vector2(8, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(16, 27)
 
-[node name="BigRPiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+[node name="BigRPiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_v25p7")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
+sprite = NodePath("Sprite2D")
+can_die_from_slide = false
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

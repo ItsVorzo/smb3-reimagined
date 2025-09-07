@@ -3,10 +3,12 @@ extends CharacterBody2D
 
 # === Block info ===
 @export var hitbox: Area2D = null
+@export var sidebox: Area2D = null
 @export var sprite: Node = null
 @export var item: PackedScene = null
 var item_scene: Node
 const coin_scene = preload("res://Scenes/Items/coin.tscn")
+const mushroom_scene = preload("res://Scenes/Items/Mushroom.tscn")
 
 # === Block position/states ===
 var original_y_pos: float
@@ -15,10 +17,14 @@ var gravity := 1500.0
 var is_activated := false
 var is_used := false
 
+signal block_bounce(force: float)
+
+# === Set some important stuff
 func _ready() -> void:
 	add_to_group("Blocks")
 	original_y_pos = sprite.global_position.y
 	hitbox.body_entered.connect(activate)
+	sidebox.body_entered.connect(activate)
 
 # === Processing ===
 func _physics_process(delta: float) -> void:
@@ -40,20 +46,28 @@ func _physics_process(delta: float) -> void:
 
 # === Activate the block
 func activate(body: Node):
-	if body.is_in_group("Player") and not is_activated and not is_used:
+	if (body.is_in_group("Player") or body.is_in_group("Shell")) and not is_activated and not is_used:
 		sprite.play("Activated")
 		is_activated = true
 		yspd = -140.0
+		block_bounce.emit(yspd)
 		# If there's nothing in the block, give a coin
 		if item == null:
 			SoundManager.play_sfx("Coin", self.global_position)
 			item_scene = coin_scene.instantiate()
 			spawn_item(body)
-		# Else give the item associated with it
+		# Else give a mushroom if you're small/there's a mushroom
 		else:
-			SoundManager.play_sfx("ItemPop", self.global_position)
-			item_scene = item.instantiate()
-			spawn_item(body)
+			for p in get_tree().get_nodes_in_group("Player"):
+				if p.pwrup.tier < 1 or item == mushroom_scene:
+					SoundManager.play_sfx("ItemPop", self.global_position)
+					item_scene = mushroom_scene.instantiate()
+					spawn_item(body)
+				# Cooler powerup
+				else:
+					SoundManager.play_sfx("ItemPop", self.global_position)
+					item_scene = item.instantiate()
+					spawn_item(body)
 
 # Item pop sound effect
 func spawn_item(body: Node):
@@ -61,7 +75,7 @@ func spawn_item(body: Node):
 	item_scene.from_block = true 
 	item_scene.global_position.x = self.global_position.x
 	item_scene.global_position.y = self.global_position.y - 6
-	get_tree().current_scene.add_child(item_scene) # Add it to the level tree
+	get_tree().current_scene.call_deferred("add_child", item_scene) # Add it to the level tree
 	item_scene.z_index = self.z_index - 1 # Draw it behind the block
 	# If the item has got a direction variable, make it go to the opposite direction
 	if item_scene.get("direction") != null:

@@ -43,6 +43,7 @@ const death_gravity = 420.0
 #endregion
 
 # === Other stuff ===
+var animation_override := ""
 var final_grav_speed: float
 var direction_allow := true
 var facing_direction := 1.0

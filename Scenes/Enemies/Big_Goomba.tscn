@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_a8cbn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
-size = Vector2(20, 17)
+size = Vector2(20, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7role"]
 size = Vector2(24, 8)
@@ -13,14 +13,16 @@ size = Vector2(24, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(20, 18)
 
-[node name="BigGoomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "stompbox") groups=["Enemies"]]
+[node name="BigGoomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite", "stompbox") groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_wbgd1")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
+sprite = NodePath("Sprite")
 stompbox = NodePath("StompBox")
+can_die_from_slide = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
@@ -29,7 +31,7 @@ animation = &"walk"
 autoplay = "walk"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.5)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_sswme")
 
 [node name="StompBox" type="Area2D" parent="."]

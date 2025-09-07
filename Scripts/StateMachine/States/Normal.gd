@@ -50,8 +50,10 @@ func physics_process_update(_delta: float) -> void:
 
 func handle_animation():
 	# === Animation ===
+	if player.animation_override != "":
+		player.animated_sprite.play(player.animation_override)
 	# Holding animations
-	if player.is_holding:
+	elif player.is_holding:
 		if player.is_on_floor():
 			if player.velocity.x == 0:
 				player.animated_sprite.play("hold_idle")
@@ -74,7 +76,7 @@ func handle_animation():
 			else:
 				player.animated_sprite.play("run", 7)
 		else:
-			if player.max_speed != player.p_speed:
+			if player.p_meter < player.p_meter_max:
 				player.animated_sprite.play("jump")
 			else:
 				player.animated_sprite.play("fly")

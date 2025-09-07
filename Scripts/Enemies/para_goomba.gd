@@ -1,7 +1,5 @@
 extends EnemyClass  # EnemyClass extends CharacterBody2D
 
-var xspd := -30.0
-var gravity := 1000.0
 var max_fall_speed := 2000.0
 
 # Bobbing parameters
@@ -10,18 +8,20 @@ var bob_amplitude := 4.0
 var bob_time := 0.0
 
 func _ready() -> void:
-	set_signals()
+	init()
 	_show_wings(true)
 
 func _physics_process(delta: float) -> void:
 	process(delta)
+	move_horizontally()
+	sprite.scale.x = direction
 
 	if stomped:
 		$Sprite.play("squish")
 		return
 
 	# Apply gravity
-	velocity.y += gravity * delta
+	gravity(delta)
 	velocity.y = min(velocity.y, max_fall_speed)
 
 	# Horizontal movement
@@ -29,10 +29,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Flip direction on wall hit
-	if is_on_wall():
-		xspd *= -1
-		flip_sprite()
+	flip_direction()
 
 	# Bobbing effect (purely visual)
 	bob_time += delta * bob_speed
@@ -45,11 +42,6 @@ func _physics_process(delta: float) -> void:
 			var pos = part.position
 			pos.y = bob_offset
 			part.position = pos
-
-func flip_sprite() -> void:
-	var spr = get_node_or_null("Sprite")
-	if spr:
-		spr.scale.x *= -1
 
 func _show_wings(visible: bool) -> void:
 	for wing_name in ["Wings", "Wings2"]:

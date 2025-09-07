@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dptrn021waygr"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/piranha_plant.gd" id="1_otiw6"]
+[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/piranha_plant.gd" id="1_otiw6"]
 [ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="2_0bssp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
@@ -70,10 +70,12 @@ script = ExtResource("1_otiw6")
 collision = NodePath("MovingParts/Collision")
 hurtbox = NodePath("MovingParts/HurtBox")
 sprite = NodePath("MovingParts/Sprite2D")
+can_die_from_slide = false
 
 [node name="MovingParts" type="Area2D" parent="."]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="MovingParts"]
+z_index = -1
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_0bssp")
 animation = &"Chomp"

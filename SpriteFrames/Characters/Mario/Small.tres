@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://b4y7uk0wcicdb"]
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://b4y7uk0wcicdb"]
 
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="1_xo0ai"]
 
@@ -13,6 +13,10 @@ region = Rect2(288, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
 atlas = ExtResource("1_xo0ai")
 region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7em3l"]
+atlas = ExtResource("1_xo0ai")
+region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gx82h"]
 atlas = ExtResource("1_xo0ai")
@@ -98,6 +102,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7em3l")
+}],
+"loop": true,
+"name": &"front_facing",
 "speed": 5.0
 }, {
 "frames": [{

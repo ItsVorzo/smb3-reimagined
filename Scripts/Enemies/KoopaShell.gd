@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+@export_enum("Green", "Red") var color := "Green"
 @onready var grab = $Grabbable
 @onready var stomparea := $StompArea
 @onready var hurtbox := $HurtBox
 @onready var grabbox := $Grabbox
 var xspd := 180.0
+var added_xspd := 0.0
 var direction := 1
 var gravity = 500.0
 var bounce_force = -80.0
@@ -19,12 +21,11 @@ func _ready() -> void:
 	stomparea.body_entered.connect(stomp_on_shell)
 
 func _physics_process(delta: float) -> void:
-	print(self, ": ", direction)
 	var is_currently_grabbed = grab.is_grabbed
 
 	# If the shell dies then make it rotate
 	if is_dead:
-		$AnimatedSprite2D.rotation += 0.4 * sign(velocity.x)
+		$AnimatedSprite2D.rotation += 0.3 * sign(velocity.x)
 		velocity.x = xspd * direction
 
 	# === Grab/Kick ===
@@ -35,14 +36,14 @@ func _physics_process(delta: float) -> void:
 
 		# If you didn't kick it
 		if not grab.is_kicked:
-			$AnimatedSprite2D.play("Idle")
+			$AnimatedSprite2D.play("Idle" + color)
 			# Make the shell bounce a little
 			if is_on_floor() and not was_on_floor and not has_bounced and velocity.y > 0:
 				velocity.y = bounce_force
 				has_bounced = true
 		# Kick the shell and spin
 		else:
-			$AnimatedSprite2D.play("Spin", 2 * direction) # Direction is used to change the sprite loop direction
+			$AnimatedSprite2D.play("Spin" + color, 2 * direction) # Direction is used to change the sprite loop direction
 			velocity.x = xspd * direction
 
 	# Stop everything when you're holding it
@@ -82,26 +83,31 @@ func shell_damage(body: Node):
 	if body.is_in_group("Player"):
 		if grab.is_kicked and grab.grab_delay == 0 or grab.holder != null and body.current_grabbed_obj != $Grabbable:
 			body.damage()
-	# Kill the shell
-	elif (body != self and body.is_in_group("Shell")) or grab.is_grabbed and body.is_in_group("Enemies"):
+
+	# Kill while being grabbed
+	elif grab.is_grabbed and ((body != self and body.is_in_group("Shell")) or body.is_in_group("Enemies")):
 		if grab.holder:
 			grab.holder.current_grabbed_obj = null
 			grab.is_grabbed = false
 		SoundManager.play_sfx("Kick", global_position)
-		is_dead = true
-		die()
+		die(-direction)
 		if body.is_in_group("Shell"):
-			body.die()
+			body.die(-direction)
 		else:
-			body.dead_from_obj = true
+			body.die_from_obj(-direction)
 
-func die():
+	elif (body != self and body.is_in_group("Shell") or body.is_in_group("Enemies")) and grab.is_kicked:
+		SoundManager.play_sfx("Kick", global_position)
+		if body.is_in_group("Shell"):
+			body.die(direction)
+		else:
+			body.die_from_obj(direction)
+
+func die(dir := 1):
+	is_dead = true
 	velocity.y = -130
-	if direction == 1:
-		direction = -1 
-	else:
-		direction *= -1
-	xspd = xspd / 2
+	direction = dir
+	xspd = 130
 	$Collision.set_deferred("disabled", true)
 	set_collision_layer(0)
 	set_collision_mask(0)

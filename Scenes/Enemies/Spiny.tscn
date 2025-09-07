@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bik6sni4rqmu"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/Spiny.gd" id="1_3y5nv"]
+[ext_resource type="Script" uid="uid://bnp14qyglm1fx" path="res://Scripts/Enemies/Spiny.gd" id="1_3y5nv"]
 [ext_resource type="SpriteFrames" uid="uid://dakosf25hvmeo" path="res://SpriteFrames/Enemies/Spiny.tres" id="2_uatgh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]

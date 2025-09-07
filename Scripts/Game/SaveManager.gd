@@ -94,3 +94,8 @@ func add_life(amount: int) -> void:
 	var lives = runtime_data.get("lives", 3) + amount
 	runtime_data["lives"] = lives
 	commit_runtime_to_save(0)
+
+func add_score(amount: int) -> void:
+	SaveManager.runtime_data["score"] = SaveManager.runtime_data.get("score", 0) + amount
+	if SaveManager.hud and SaveManager.hud.has_method("update_labels"):
+		SaveManager.hud.update_labels()

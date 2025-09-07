@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7642xvxlvd6r"]
+[gd_scene load_steps=13 format=3 uid="uid://7642xvxlvd6r"]
 
 [ext_resource type="Script" uid="uid://dtrtw7abkyt2t" path="res://Scripts/BlockClass.gd" id="1_cq4ay"]
 [ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="2_cpsrl"]
@@ -54,12 +54,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsprb"]
 size = Vector2(16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bh32s"]
+size = Vector2(16, 2)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpsrl"]
 size = Vector2(16, 2)
 
-[node name="QuestionBlock" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "sprite") groups=["Blocks"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iq84n"]
+size = Vector2(18, 12)
+
+[node name="QuestionBlock" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "sidebox", "sprite") groups=["Blocks"]]
 script = ExtResource("1_cq4ay")
 hitbox = NodePath("Hitbox")
+sidebox = NodePath("SideBox")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -70,9 +77,21 @@ autoplay = "Idle"
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nsprb")
 
+[node name="TopInteraction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopInteraction"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_bh32s")
+
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="Bottom" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_cpsrl")
+
+[node name="SideBox" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="Sides" type="CollisionShape2D" parent="SideBox"]
+shape = SubResource("RectangleShape2D_iq84n")

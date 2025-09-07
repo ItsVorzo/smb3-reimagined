@@ -1,7 +1,7 @@
 extends EnemyClass
 
 func _ready() -> void:
-	set_signals()
+	init()
 
 func _physics_process(delta: float) -> void:
 	process(delta)
