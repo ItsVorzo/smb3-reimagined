@@ -1,6 +1,5 @@
 extends Node
 
-var player: Player
 var device_n = -1 # Device number/id (defaults to keyboard/p1)
 
 # === Inputs ===
@@ -31,7 +30,7 @@ var x_direction_disabled = false
 var action_disabled = false
 
 # Process inputs
-# Whenever you want to call an input you must call it as so: InputManager.A/B/left/right...
+# These are strictly used in menus or general stuff, these are single player
 func _process(_delta: float) -> void:
 	if device_n == null:
 		assert(device_n != null, "No input device detected!! Happens if device_n is null")

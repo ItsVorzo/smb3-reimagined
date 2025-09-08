@@ -18,6 +18,7 @@ var can_grab := true
 var grab_delay := 0 # Frames in which you can't grab the object
 var is_grabbed := false
 var is_kicked := false
+var is_just_released := false
 var kick_timer := 0 # How long does the kick animation last
 
 func _ready() -> void:
@@ -26,7 +27,15 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 
+	if not grabbox.monitoring:
+		return
+
 	# === Grabbing/Kicking logic ===
+	# Kick the shell if the player is inside
+	for body in grabbox.get_overlapping_bodies():
+		if body.is_in_group("Player") and not holder and not is_kicked and grab_delay == 0:
+			kick(body)
+
 	# Follow the holder if we have it
 	if holder and holder.current_grabbed_obj == self:
 		# Do it only if you're pressing B
@@ -53,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 		plr = p
 
 		# == Can grab logic ===
-		# Kick animation
+		# Override animations
 		if kick_timer > 0:
 			plr.animation_override = "kick"
 		elif delaying:
@@ -69,6 +78,9 @@ func _physics_process(_delta: float) -> void:
 		# Reset the flag
 		elif not is_kicked:
 			can_grab = true
+
+	if owner.is_on_floor():
+		is_just_released = false
 
 	# Decrease the timers
 	if grab_delay > 0: grab_delay -= 1
@@ -101,8 +113,10 @@ func kick(body):
 		is_grabbed = false
 		owner.direction = holder.facing_direction
 
+# Place it down
 func release() -> void:
 	grab_delay = 5
+	is_just_released = true
 	owner.global_position.x = holder.global_position.x + 13 * holder.facing_direction
 	owner.z_index = default_z_index
 	is_grabbed = false

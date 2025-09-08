@@ -64,7 +64,7 @@ _data = {
 }
 
 [node name="PipePiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_otiw6")
 collision = NodePath("MovingParts/Collision")
@@ -73,6 +73,11 @@ sprite = NodePath("MovingParts/Sprite2D")
 can_die_from_slide = false
 
 [node name="MovingParts" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="Collision" type="CollisionShape2D" parent="MovingParts"]
+shape = SubResource("RectangleShape2D_sswme")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="MovingParts"]
 z_index = -1
@@ -80,9 +85,6 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("2_0bssp")
 animation = &"Chomp"
 autoplay = "Chomp"
-
-[node name="Collision" type="CollisionShape2D" parent="MovingParts"]
-shape = SubResource("RectangleShape2D_sswme")
 
 [node name="StompBox" type="Area2D" parent="MovingParts"]
 collision_layer = 8
@@ -95,7 +97,7 @@ shape = SubResource("RectangleShape2D_7role")
 [node name="HurtBox" type="Area2D" parent="MovingParts"]
 position = Vector2(0, 26)
 collision_layer = 8
-collision_mask = 3
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MovingParts/HurtBox"]
 position = Vector2(0, -27.5)

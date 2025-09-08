@@ -27,15 +27,7 @@ var skidding = false
 var is_super := false
 var can_take_damage := true
 var is_dead := false
-	
-func set_power_state(powerup: String) -> void:
-	if powerup in PowerUps.power_ups:
-		pwrup.exit()
-		pwrup = get_node("PowerUpStates/" + powerup)
-		pwrup.enter()
-	else:
-		push_error("Invalid powerup name! %s" % powerup)
-		
+
 func _ready() -> void:
 
 	SaveManager.start_runtime_from_save(0)
@@ -44,12 +36,8 @@ func _ready() -> void:
 	target_position = position
 	add_to_group("Overworld")
 
-func _on_animation_timer_timeout():
-	animation.play("map")
-
 func _process(delta):
 	if not is_moving:
-		animation.play("map")
 
 		var input_direction = Vector2(
 			int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")),

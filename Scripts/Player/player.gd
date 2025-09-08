@@ -123,14 +123,18 @@ func apply_physics(i:int) -> void:
 
 func _ready() -> void:
 
+	# Disconnect controller
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 
-	InputManager.player = self 
+	# Character indexes will be handles differently
 	SaveManager.start_runtime_from_save(0) # 1st step to getting the character index
-	character_index = char_idx() # Get the current character index
+	character_index = char_idx() # 2nd step
+
+	# Load the correct sprites
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+	
 	apply_physics(character_index) # Apply unique physics (will be a toggle in the future)
-	add_to_group("Player") # Add to the correct group
+	add_to_group("Player")
 
 func _on_joy_connection_changed(device: int, connected: bool):
 	if not connected:
@@ -139,14 +143,14 @@ func _on_joy_connection_changed(device: int, connected: bool):
 # === Logic ===
 func _process(_delta: float) -> void:
 
-	# === Remove unused players ===
+	# Remove unused players
 	var device = PlayerManager.get_player_device(player_id)
 	if device == null:
 		PlayerManager.leave(device)
 		queue_free()
 		return
 
-	# === Update input devices for local multiplayer ===
+	# Update input devices for local multiplayer
 	if PlayerManager.player_data:
 		update_input_device(player_id) 
 

@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 
 # === Activate the block
 func activate(body: Node):
-	if (body.is_in_group("Player") or body.is_in_group("Shell")) and not is_activated and not is_used:
+	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:
 		sprite.play("Activated")
 		is_activated = true
 		yspd = -140.0

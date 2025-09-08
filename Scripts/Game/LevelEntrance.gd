@@ -1,7 +1,8 @@
 extends Area2D
 
 @export var level_scene_path: String
-@export var animation_name: String = "start"
+@export_enum ("start", "castle", "peach_castle", "card", "toad_house",
+ "1", "2", "3", "4", "5", "6", "7", "8", "9") var animation_name: String = "start"
 @export var ball_offset_y := -40.0  # Optional offset if needed
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

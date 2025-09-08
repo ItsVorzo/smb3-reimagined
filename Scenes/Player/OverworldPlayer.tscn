@@ -1,9 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqtph6w8yxiqa"]
+[gd_scene load_steps=7 format=3 uid="uid://bqtph6w8yxiqa"]
 
 [ext_resource type="Script" uid="uid://dafy3wdeopgp6" path="res://Scripts/Player/OverworldPlayer.gd" id="1_w8f4d"]
 [ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/JumpSmall.wav" id="3_ghqbo"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="4_64nex"]
 [ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/Player/PowerUps.gd" id="5_afd1n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poiie"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
 size = Vector2(10, 13)
@@ -14,7 +22,9 @@ pwrup = NodePath("PowerUpStates/Small")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
-animation = &"map"
+sprite_frames = SubResource("SpriteFrames_poiie")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)

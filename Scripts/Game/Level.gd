@@ -1,6 +1,7 @@
 extends Node2D
 
 @export_enum("Overworld", "Underground", "Desert", "Snow", "Athletic", "Castle") var theme: String = "Overworld"
+@export_enum("None", "Sliding", "Coming out of pipe") var entrance: String = "None"
 
 @onready var terrain_tilemap = $TerrainTileMap
 @onready var semisolid_tilemap = $SemisolidTileMap

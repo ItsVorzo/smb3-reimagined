@@ -38,6 +38,12 @@ func process(delta: float) -> void:
 		velocity.x = 130 * direction
 		velocity.y += grav_speed * delta
 
+	# Damage the player
+	if hurtbox.monitoring:
+		for body in hurtbox.get_overlapping_bodies():
+			if body.is_in_group("Player"):
+				player_interaction(body)
+
 	# NO stomping
 	if stompbox == null:
 		can_stomp = false
@@ -65,8 +71,7 @@ func stomp_the_enemy(body: Node) -> void:
 	if not body.is_in_group("Player"):
 		return
 	if body.velocity.y > 0:
-		if body.has_method("bounce_on_enemy"):
-			body.bounce_on_enemy()
+		body.bounce_on_enemy()
 		SoundManager.play_sfx("Stomp", global_position)
 		SaveManager.add_score(score_value)
 		if has_custom_stomp:
@@ -108,7 +113,7 @@ func die_from_obj(dir := 1) -> void:
 # === Damage the player... or the player damages YOU! ===
 func player_interaction(body: Node) -> void:
 	if body.is_in_group("Player"): 
-		if body.can_take_damage and (body.state_machine.state.name != "Slide" or not can_die_from_slide):
+		if body.can_take_damage or body.state_machine.state.name != "Slide" or not can_die_from_slide:
 			body.damage()
 		else:
 			die_from_obj(body.velocity_direction)

@@ -207,19 +207,16 @@ color = "Red"
 
 [node name="QuestionBlock" parent="." instance=ExtResource("30_da70h")]
 position = Vector2(440, -56)
-item = ExtResource("31_da70h")
 
 [node name="QuestionBlock2" parent="." instance=ExtResource("30_da70h")]
 position = Vector2(456, -56)
-item = ExtResource("18_xecmd")
 
 [node name="QuestionBlock3" parent="." instance=ExtResource("30_da70h")]
 position = Vector2(488, -104)
-item = ExtResource("31_da70h")
 
 [node name="QuestionBlock4" parent="." instance=ExtResource("30_da70h")]
 position = Vector2(504, -104)
-item = ExtResource("21_n5am2")
+item = ExtResource("31_da70h")
 
 [node name="QuestionBlock5" parent="." instance=ExtResource("30_da70h")]
 position = Vector2(920, -24)
