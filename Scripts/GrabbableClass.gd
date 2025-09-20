@@ -21,6 +21,8 @@ var is_kicked := false
 var is_just_released := false
 var kick_timer := 0 # How long does the kick animation last
 
+@warning_ignore("unused_signal") signal on_kicked
+
 func _ready() -> void:
 	grabbox.body_entered.connect(grab)
 	default_z_index = owner.z_index # Get the default z index
@@ -57,18 +59,18 @@ func _physics_process(_delta: float) -> void:
 				release()
 
 	# Reference EACH player for other stuff
-	var players = get_tree().get_nodes_in_group("Player")
-	for p in players:
+	for p in get_tree().get_nodes_in_group("Player"):
 		plr = p
 
-		# == Can grab logic ===
 		# Override animations
-		if kick_timer > 0:
-			plr.animation_override = "kick"
-		elif delaying:
-			plr.animation_override = "front_facing"
-		else:
-			plr.animation_override = ""
+		if holder and holder.current_grabbed_obj == self:
+			if kick_timer > 0:
+				plr.animation_override = "kick"
+			else:
+				if delaying:
+					plr.animation_override = "front_facing"
+				else:
+					plr.animation_override = ""
 
 		# Some state switching
 		if is_kicked:
@@ -96,6 +98,7 @@ func grab(body: Node) -> void:
 				if holder.current_grabbed_obj == null: 
 					holder.current_grabbed_obj = self
 				is_grabbed = true
+				last_facing_direction = holder.facing_direction
 			# Else Kick it (if you can)
 			elif can_kick and grab_delay == 0 and not is_kicked:
 				kick(body)
@@ -112,6 +115,7 @@ func kick(body):
 	else:
 		is_grabbed = false
 		owner.direction = holder.facing_direction
+	on_kicked.emit()
 
 # Place it down
 func release() -> void:

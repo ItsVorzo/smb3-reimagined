@@ -21,7 +21,6 @@ var score_value = 100
 # === SUPER IMPORTANT DON'T FORGET THIS ===
 func init() -> void:
 	add_to_group("Enemies")
-	hurtbox.body_entered.connect(player_interaction)
 	if stompbox != null: stompbox.body_entered.connect(stomp_the_enemy)
 	for p in get_tree().get_nodes_in_group("Player"):
 		direction = -sign(global_position.x - p.global_position.x)
@@ -112,8 +111,7 @@ func die_from_obj(dir := 1) -> void:
 
 # === Damage the player... or the player damages YOU! ===
 func player_interaction(body: Node) -> void:
-	if body.is_in_group("Player"): 
-		if body.can_take_damage or body.state_machine.state.name != "Slide" or not can_die_from_slide:
-			body.damage()
-		else:
-			die_from_obj(body.velocity_direction)
+	if body.state_machine.state.name == "Slide" and can_die_from_slide:
+		die_from_obj(body.velocity_direction)
+	elif body.can_take_damage:
+		body.damage()

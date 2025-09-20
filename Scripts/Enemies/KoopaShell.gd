@@ -14,7 +14,7 @@ extends CharacterBody2D
 var xspd := 180.0
 var added_xspd := 0.0
 var direction := 1
-var gravity = 500.0
+var gravity = 600.0
 var bounce_force = -80.0
 var can_bounce = false
 var is_dead := false

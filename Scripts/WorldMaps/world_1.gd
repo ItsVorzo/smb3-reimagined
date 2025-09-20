@@ -6,6 +6,7 @@ var save_index := -1
 @onready var audio_streamer: AudioStreamPlayer2D = $AudioStreamer
 
 func _ready():
+	TransitionManager.fade_out(6.0)
 	if audio_streamer and not audio_streamer.playing:
 		audio_streamer.play()
 

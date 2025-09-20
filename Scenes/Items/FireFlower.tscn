@@ -6,11 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se6lb"]
 size = Vector2(16, 16)
 
-[node name="FireFlower" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area")]
+[node name="FireFlower" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area", "collision")]
 collision_layer = 4
 floor_max_angle = 0.80285144
 script = ExtResource("1_i48h3")
 pick_up_area = NodePath("Area2D")
+collision = NodePath("Collision")
 powerup = "Fire"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

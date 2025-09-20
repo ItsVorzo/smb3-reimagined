@@ -60,15 +60,15 @@ var max_speed = 0.0
 @onready var state_machine: StateMachine = $States
 @export var pwrup: PowerUps = null
 var current_grabbed_obj: Grabbable
-var current_powerup: int = 0
 var jump_buffer_timer = 0.12
 var coyote_timer = 0.12
 var crouching := false
 var skidding = false
-var is_super := false
-var can_take_damage := true
-var is_dead := false
 var is_holding := false
+var is_super := false
+var is_dead := false
+var has_star := false
+var can_take_damage := true
 
 # === Input shit ===
 var input
@@ -151,7 +151,7 @@ func _process(_delta: float) -> void:
 		return
 
 	# Update input devices for local multiplayer
-	if PlayerManager.player_data:
+	if PlayerManager.player_data and not input_disabled:
 		update_input_device(player_id) 
 
 # === Physics ===

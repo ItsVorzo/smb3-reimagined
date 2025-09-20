@@ -66,6 +66,7 @@ func apply_theme_to_blocks(node: Node) -> void:
 func on_player_death(player: Player) -> void:
 	if bgm.playing: bgm.stop() # Stop background music
 	player.death_sound.play() # Play death sound
+	TransitionManager.fade_in(7.0, 0, 0, 0, 220)
 
 	# When death sound finishes → decrement life and go to the correct world map
 	player.death_sound.finished.connect(func():
