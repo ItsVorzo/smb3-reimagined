@@ -324,6 +324,11 @@ func i_frames() -> void:
 	can_take_damage = true
 	return
 
+func kick_anim():
+	animation_override = "kick"
+	await get_tree().create_timer(0.25, false).timeout
+	animation_override = ""
+
 # === P meter ===
 func handle_p_meter():
 	p_meter = clamp(p_meter, 0, p_meter_max)

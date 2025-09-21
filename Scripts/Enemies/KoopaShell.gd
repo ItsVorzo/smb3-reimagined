@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 # === Stomp da shell ===
 func stomp_on_shell(body):
 	if body.is_in_group("Player") and grab.grab_delay == 0 and grab.is_kicked:
-		if body.velocity.y > 0:
+		if not body.is_on_floor():
 			SoundManager.play_sfx("Stomp", global_position)
 			body.bounce_on_enemy()
 			grab.is_kicked = false
@@ -78,7 +78,7 @@ func stomp_on_shell(body):
 func shell_damage(body: Node):
 	# Kill the player
 	if body.is_in_group("Player"):
-		if grab.is_kicked and grab.grab_delay == 0 or grab.holder != null and body.current_grabbed_obj != $Grabbable:
+		if grab.is_kicked and grab.grab_delay == 0:
 			body.damage()
 
 	# Kill while being grabbed

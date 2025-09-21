@@ -62,16 +62,6 @@ func _physics_process(_delta: float) -> void:
 	for p in get_tree().get_nodes_in_group("Player"):
 		plr = p
 
-		# Override animations
-		if holder and holder.current_grabbed_obj == self:
-			if kick_timer > 0:
-				plr.animation_override = "kick"
-			else:
-				if delaying:
-					plr.animation_override = "front_facing"
-				else:
-					plr.animation_override = ""
-
 		# Some state switching
 		if is_kicked:
 			can_grab = false
@@ -113,6 +103,7 @@ func kick(body):
 	if holder == null:
 		owner.direction = sign(owner.global_position.x - body.global_position.x)
 	else:
+		holder.kick_anim()
 		is_grabbed = false
 		owner.direction = holder.facing_direction
 	on_kicked.emit()

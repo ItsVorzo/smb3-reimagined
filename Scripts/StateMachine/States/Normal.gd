@@ -50,6 +50,13 @@ func physics_process_update(_delta: float) -> void:
 
 func handle_animation():
 	# === Animation ===
+	if player.current_grabbed_obj != null:
+		if player.current_grabbed_obj.delaying:
+			player.animation_override = "front_facing"
+		else:
+			player.animation_override = ""
+	
+	# Override animations (animations that play over others)
 	if player.animation_override != "":
 		player.animated_sprite.play(player.animation_override)
 	# Holding animations
