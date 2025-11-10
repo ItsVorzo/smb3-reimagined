@@ -33,6 +33,7 @@ func _ready() -> void:
 	SaveManager.start_runtime_from_save(0)
 	character_index = char_idx() # Get the current character index
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+	animated_sprite.play("map")
 	target_position = position
 	add_to_group("Overworld")
 

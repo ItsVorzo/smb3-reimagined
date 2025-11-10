@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=39 format=4 uid="uid://fmfeiihxihvg"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -19,17 +19,15 @@
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="11_xecmd"]
 [ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="12_73wy6"]
 [ext_resource type="PackedScene" uid="uid://dyhqqm7qv7alh" path="res://Scenes/Enemies/Ptooie.tscn" id="13_73wy6"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/HUD.tscn" id="14_noyq2"]
+[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 [ext_resource type="PackedScene" uid="uid://d4l67y1jw8iwh" path="res://Scenes/Enemies/Ball.tscn" id="15_da70h"]
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
-[ext_resource type="PackedScene" uid="uid://e4embafexpde" path="res://Scenes/Items/Mushroom.tscn" id="18_xecmd"]
-[ext_resource type="PackedScene" uid="uid://ck1ooqc5elweo" path="res://Scenes/Items/1UpMushroom.tscn" id="21_n5am2"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://dptrn021waygr" path="res://Scenes/Enemies/Pipe_Piranha_Plant.tscn" id="23_gw30q"]
-[ext_resource type="PackedScene" uid="uid://2j1cbp0qxdsy" path="res://Scenes/Enemies/KoopaShell.tscn" id="29_fxiy1"]
-[ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="30_da70h"]
-[ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="30_x8ai0"]
-[ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="31_da70h"]
+[ext_resource type="PackedScene" uid="uid://2j1cbp0qxdsy" path="res://Scenes/Enemies/KoopaShell.tscn" id="25_xv8io"]
+[ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_da70h"]
+[ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="27_fxiy1"]
+[ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="28_x8ai0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -188,52 +186,40 @@ position = Vector2(312, 1)
 player_id = 3
 
 [node name="Overworld" parent="." instance=ExtResource("8_28jxv")]
-position = Vector2(234, 150)
+position = Vector2(260, 149)
 
 [node name="HUD" parent="." instance=ExtResource("14_noyq2")]
 
-[node name="Mushroom" parent="." instance=ExtResource("18_xecmd")]
-position = Vector2(828, -13)
-
-[node name="Mushroom2" parent="." instance=ExtResource("21_n5am2")]
-position = Vector2(751, -48)
-
-[node name="KoopaShell" parent="." instance=ExtResource("29_fxiy1")]
+[node name="KoopaShell" parent="." instance=ExtResource("25_xv8io")]
 position = Vector2(504, -120)
 
-[node name="KoopaShell2" parent="." instance=ExtResource("29_fxiy1")]
+[node name="KoopaShell2" parent="." instance=ExtResource("25_xv8io")]
 position = Vector2(488, -120)
 
-[node name="Koopa6" parent="." instance=ExtResource("30_x8ai0")]
+[node name="Koopa6" parent="." instance=ExtResource("26_da70h")]
 position = Vector2(840, -72)
 color = "Red"
 
-[node name="QuestionBlock" parent="." instance=ExtResource("30_da70h")]
+[node name="QuestionBlock" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(440, -56)
 
-[node name="QuestionBlock2" parent="." instance=ExtResource("30_da70h")]
+[node name="QuestionBlock2" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(456, -56)
 
-[node name="QuestionBlock3" parent="." instance=ExtResource("30_da70h")]
+[node name="QuestionBlock3" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(488, -104)
 
-[node name="QuestionBlock4" parent="." instance=ExtResource("30_da70h")]
+[node name="QuestionBlock4" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(504, -104)
-item = ExtResource("31_da70h")
+item = ExtResource("28_x8ai0")
 
-[node name="QuestionBlock5" parent="." instance=ExtResource("30_da70h")]
+[node name="QuestionBlock5" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(920, -24)
-item = ExtResource("31_da70h")
+item = ExtResource("28_x8ai0")
 
-[node name="QuestionBlock6" parent="." instance=ExtResource("30_da70h")]
+[node name="QuestionBlock6" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(968, -56)
 
-[node name="QuestionBlock7" parent="." instance=ExtResource("30_da70h")]
+[node name="QuestionBlock7" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(1736, -40)
-item = ExtResource("31_da70h")
-
-[node name="Koopa" parent="." instance=ExtResource("30_x8ai0")]
-position = Vector2(488, -8)
-
-[node name="Koopa2" parent="." instance=ExtResource("30_x8ai0")]
-position = Vector2(536, -8)
+item = ExtResource("28_x8ai0")
