@@ -1,0 +1,236 @@
+[gd_scene load_steps=14 format=4 uid="uid://cjwh0661c6xtj"]
+
+[ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/world_1.gd" id="1_tpsxi"]
+[ext_resource type="Texture2D" uid="uid://bgiu8yknec6bx" path="res://Sprites/HUD/Border.png" id="2_73c4k"]
+[ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="3_afa6d"]
+[ext_resource type="Texture2D" uid="uid://bx001a8qontap" path="res://Sprites/Tilesets/WorldMaps/Paths.png" id="4_m8f2r"]
+[ext_resource type="Texture2D" uid="uid://qvonhnepubv7" path="res://Sprites/Tilesets/WorldMaps/Decoration.png" id="5_sx0n1"]
+[ext_resource type="PackedScene" uid="uid://bpt12tgpm70ys" path="res://Scenes/WorldMaps/Entrances/LevelEntrance.tscn" id="6_mgwe1"]
+[ext_resource type="Texture2D" uid="uid://bxoy0w7deusa1" path="res://Sprites/HUD/HUD.png" id="7_7rl71"]
+[ext_resource type="PackedScene" uid="uid://bqtph6w8yxiqa" path="res://Scenes/Player/OverworldPlayer.tscn" id="8_f5orc"]
+[ext_resource type="AudioStream" uid="uid://diaegrih3i8q6" path="res://Audio/BGM/World 1 Map.mp3" id="9_qxxl3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mm7mx"]
+texture = ExtResource("4_m8f2r")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:0/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+7:4/0 = 0
+7:5/0 = 0
+5:5/0 = 0
+4:5/0 = 0
+4:4/0 = 0
+3:4/0 = 0
+5:4/0 = 0
+3:5/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+9:7/0 = 0
+8:7/0 = 0
+7:7/0 = 0
+6:7/0 = 0
+5:7/0 = 0
+4:7/0 = 0
+3:7/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+7:9/0 = 0
+6:9/0 = 0
+5:9/0 = 0
+4:9/0 = 0
+3:9/0 = 0
+7:10/0 = 0
+6:10/0 = 0
+5:10/0 = 0
+4:10/0 = 0
+3:10/0 = 0
+2:10/0 = 0
+1:10/0 = 0
+0:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+2:9/0 = 0
+2:8/0 = 0
+2:7/0 = 0
+1:6/0 = 0
+1:7/0 = 0
+0:7/0 = 0
+0:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+1:8/0 = 0
+0:6/0 = 0
+2:6/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3pls"]
+texture = ExtResource("5_sx0n1")
+0:0/animation_columns = 4
+0:0/animation_frame_0/duration = 0.3
+0:0/animation_frame_1/duration = 0.3
+0:0/animation_frame_2/duration = 0.3
+0:0/animation_frame_3/duration = 0.3
+0:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+3:3/0 = 0
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -8, -8, -8)
+
+[sub_resource type="TileSet" id="TileSet_28bhr"]
+physics_layer_0/collision_layer = 1
+sources/3 = SubResource("TileSetAtlasSource_h3pls")
+sources/2 = SubResource("TileSetAtlasSource_mm7mx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ops3f"]
+atlas = ExtResource("7_7rl71")
+region = Rect2(0, 39, 383, 31)
+
+[node name="World1" type="Node2D"]
+script = ExtResource("1_tpsxi")
+
+[node name="BorderHUD" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(1.225, 1.225)
+texture = ExtResource("2_73c4k")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(2.861023e-06, -1.4999976)
+scale = Vector2(25.875002, 13.9375)
+texture = ExtResource("3_afa6d")
+
+[node name="World BG" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD4/wIAAgAEAAEAAAD5/wIAAgAEAAEAAAD8/wIAAgAEAAEAAAD9/wIAAgAEAAEAAAD+/wIAAgAEAAEAAAD//wIAAgAEAAEAAAAAAAIAAgAEAAEAAAABAAIAAgAEAAEAAAACAAIAAgAEAAEAAAADAAIAAgAEAAEAAAAEAAIAAgAEAAEAAAAFAAIAAgAEAAEAAAAGAAIAAgAEAAEAAAAHAAIAAgAEAAEAAAAHAPr/AgAHAAcAAAAGAPr/AgAHAAcAAAAFAPv/AgAEAAEAAAAEAPv/AgAEAAEAAAADAPv/AgAEAAEAAAACAPv/AgAEAAEAAAABAPv/AgAEAAEAAAAAAPv/AgAEAAEAAAAAAPr/AgAEAAEAAAD///r/AgAEAAEAAAD+//r/AgAEAAEAAAD9//r/AgAEAAEAAAD8//r/AgAEAAEAAAD7//r/AgAEAAEAAAD6//r/AgAEAAEAAAD5//r/AgAEAAEAAAD4//r/AgAEAAEAAAD4/wEAAgAEAAEAAAD5/wEAAgAEAAEAAAD8/wEAAgAEAAEAAAD9/wEAAgAEAAEAAAD+/wEAAgAEAAEAAAD//wEAAgAEAAEAAAAAAAEAAgAEAAEAAAABAAEAAgAEAAEAAAACAAEAAgAEAAEAAAADAAEAAgAEAAEAAAAEAAEAAgAEAAEAAAAFAAAAAgAEAAEAAAAGAAAAAgAEAAEAAAAHAAAAAgAEAAEAAAAHAAEAAgAEAAEAAAAGAAEAAgAEAAEAAAAFAAEAAgAEAAEAAAAFAPr/AgAHAAcAAAAEAPr/AgAEAAEAAAADAPr/AgAEAAEAAAACAPr/AgAEAAEAAAABAPr/AgAEAAEAAAAEAAAAAgAEAAEAAAADAAAAAgAEAAEAAAACAAAAAgAEAAEAAAABAAAAAgAEAAEAAAAAAAAAAgAEAAEAAAD//wAAAgAEAAEAAAD+/wAAAgAEAAEAAAD9/wAAAgAEAAEAAAD8/wAAAgAEAAEAAAD6/wAAAgAEAAEAAAD5/wAAAgAEAAEAAAD4/wAAAgAEAAEAAAD4////AgAEAAEAAAD5////AgAEAAEAAAD6////AgAEAAEAAAD7////AgAEAAEAAAD8////AgAEAAEAAAD9////AgAEAAEAAAD+////AgAEAAEAAAD/////AgAEAAEAAAAAAP//AgAEAAEAAAABAP//AgAEAAEAAAACAP//AgAEAAEAAAADAP//AgAEAAEAAAAEAP//AgAEAAEAAAAFAP//AgAEAAEAAAAGAP//AgAEAAEAAAAHAP//AgAEAAEAAAAHAP7/AgAEAAEAAAAGAP7/AgAEAAEAAAAFAP7/AgAEAAEAAAAEAP7/AgAEAAEAAAADAP7/AgAEAAEAAAACAP7/AgAEAAEAAAABAP7/AgAEAAEAAAAAAP7/AgAEAAEAAAD///7/AgAEAAEAAAD+//7/AgAEAAEAAAD9//7/AgAEAAEAAAD8//7/AgAEAAEAAAD7//7/AgAEAAEAAAD6//7/AgAEAAEAAAD5//7/AgAEAAEAAAD4//7/AgAEAAEAAAD4//3/AgAEAAEAAAD5//z/AgAEAAEAAAD6//z/AgAEAAEAAAD7//z/AgAEAAEAAAD8//z/AgAEAAEAAAD9//z/AgAEAAEAAAD+//z/AgAEAAEAAAD///z/AgAEAAEAAAAAAPz/AgAEAAEAAAABAPz/AgAEAAEAAAACAPz/AgAEAAEAAAADAPz/AgAEAAEAAAAEAPz/AgAEAAEAAAAFAPz/AgAEAAEAAAAGAPz/AgAEAAEAAAAHAPz/AgAEAAEAAAAHAP3/AgAEAAEAAAAGAP3/AgAEAAEAAAAFAP3/AgAEAAEAAAAEAP3/AgAEAAEAAAADAP3/AgAEAAEAAAACAP3/AgAEAAEAAAABAP3/AgAEAAEAAAAAAP3/AgAEAAEAAAD///3/AgAEAAEAAAD+//3/AgAEAAEAAAD9//3/AgAEAAEAAAD8//3/AgAEAAEAAAD7//3/AgAEAAEAAAD6//3/AgAEAAEAAAD5//3/AgAEAAEAAAD4//v/AgAEAAEAAAD5//v/AgAEAAEAAAD6//v/AgAEAAEAAAD7//v/AgAEAAEAAAD8//v/AgAEAAEAAAD9//v/AgAEAAEAAAD+//v/AgAEAAEAAAD///v/AgAEAAEAAAAGAPv/AgAEAAEAAAAHAPv/AgAEAAEAAAD4//z/AgAEAAEAAAD6/wEAAgAEAAEAAAD7/wEAAgAEAAEAAAD7/wAAAgAEAAEAAAD7/wIAAgAEAAEAAAD6/wIAAgAEAAEAAAD4/wMAAgAEAAEAAAD5/wMAAgAEAAEAAAD6/wMAAgAEAAEAAAD7/wMAAgAEAAEAAAD8/wMAAgAEAAEAAAD9/wMAAgAEAAEAAAD+/wMAAgAEAAEAAAD//wMAAgAEAAEAAAAAAAMAAgAEAAEAAAABAAMAAgAEAAEAAAACAAMAAgAEAAEAAAADAAMAAgAEAAEAAAAEAAMAAgAEAAEAAAAFAAMAAgAEAAEAAAAGAAMAAgAEAAEAAAAHAAMAAgAEAAEAAAD4/wQAAgAEAAEAAAD5/wQAAgAEAAEAAAD6/wQAAgAEAAEAAAD7/wQAAgAEAAEAAAD8/wQAAgAEAAEAAAD9/wQAAgAEAAEAAAD+/wQAAgAEAAEAAAD//wQAAgAEAAEAAAAAAAQAAgAEAAEAAAABAAQAAgAEAAEAAAACAAQAAgAEAAEAAAADAAQAAgAEAAEAAAAEAAQAAgAEAAEAAAAFAAQAAgAEAAEAAAAHAAQAAgAEAAEAAAAGAAQAAgAEAAEAAAA=")
+tile_set = SubResource("TileSet_28bhr")
+
+[node name="Deco" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD6/wIAAwAEAAAAAAD6/wEAAwAEAAAAAAD7/wAAAwAEAAAAAAD7/wEAAwAEAAAAAAD7/wIAAwAEAAAAAAD8/wIAAwAEAAEAAAD8/wEAAgADAAEAAAD8/wAAAgADAAIAAAD8//7/AgADAAIAAAD8////AgADAAEAAAD9/wIAAgAEAAIAAAD//wIAAgAEAAIAAAD+/wIAAgAFAAAAAAAAAAIAAwAFAAEAAAAAAAEAAgAFAAEAAAAAAAAAAgAFAAAAAAD//wAAAgAEAAAAAAD+/wAAAwABAAMAAAABAAAAAgAJAAAAAAABAP//AgAGAAAAAAACAP//AgAHAAAAAAADAP//AgAIAAIAAAADAP7/AgAGAAAAAAAEAP7/AgAHAAAAAAAFAP7/AgAIAAAAAAAFAP//AgAIAAEAAAAFAAAAAgAIAAEAAAABAAEAAgAGAAEAAAABAAIAAgAGAAIAAAACAAIAAgAHAAIAAAAFAAEAAgAIAAEAAAAFAAIAAgAIAAIAAAACAAAAAgAFAAAAAAADAAAAAgAEAAAAAAAEAP//AwAAAAMAAAAEAAAAAwAAAAQAAAD8//3/AwADAAMAAAD8//z/AgAFAAIAAAD7//z/AgAEAAAAAAD5//z/AgAEAAAAAAD6//z/AwAAAAIAAAD9//r/AgAEAAAAAAD///r/AgAEAAAAAAABAPr/AgAEAAAAAAADAPr/AgAEAAAAAAADAPz/AgAEAAAAAAABAPz/AgAEAAAAAAD+//r/AgAFAAAAAAAAAPr/AwABAAEAAAACAPr/AwACAAEAAAACAPz/AwADAAEAAAAAAPv/AgAFAAEAAAAAAP3/AgAFAAEAAAAAAPz/AgADAAIAAAAAAP7/AwABAAIAAAD///7/AgAEAAAAAAD9//7/AgAEAAAAAAD+//7/AwACAAMAAAAEAPz/AwABAAMAAAAEAPr/AgAFAAAAAAAEAPv/AgAFAAEAAAD8//v/AgAFAAEAAAD4//z/AgADAAAAAAD5//r/AwAAAAAAAAD5//v/AwAAAAAAAAD7//v/AwAAAAAAAAD7//r/AwAAAAAAAAD6//r/AwAAAAAAAAD4//3/AgADAAEAAAD5//3/AwAAAAAAAAD6//3/AwAAAAAAAAD7//3/AwAAAAAAAAD7//7/AwAAAAAAAAD6//7/AwAAAAAAAAD5//7/AwAAAAAAAAD4//7/AgAFAAIAAAD4////AwAAAAAAAAD9//v/AwAAAAAAAAD9//z/AwAAAAAAAAD9//3/AwAAAAAAAAD+//3/AwAAAAAAAAD///3/AwAAAAAAAAD///z/AwAAAAAAAAD///v/AwAAAAAAAAD+//v/AwAAAAAAAAD+//z/AwAAAAAAAAABAPv/AwAAAAAAAAACAPv/AwAAAAAAAAADAPv/AwAAAAAAAAAFAPv/AwAAAAAAAAAFAPz/AwAAAAAAAAAFAP3/AwAAAAAAAAAGAP3/AwAAAAAAAAAGAPz/AwAAAAAAAAAGAPv/AwAAAAAAAAAGAAIAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAAAAwAAAAAAAAAGAP//AwAAAAAAAAAGAP7/AwAAAAAAAAABAP3/AwAAAAAAAAACAP3/AwAAAAAAAAADAP3/AwAAAAAAAAAEAP3/AwAAAAAAAAACAP7/AwAAAAAAAAABAP7/AwAAAAAAAAAAAP//AwAAAAAAAAD/////AwAAAAAAAAD+////AwAAAAAAAAD9/wAAAwAEAAAAAAD9/wEAAwAEAAAAAAD+/wEAAwAEAAAAAAAHAAAAAwAAAAAAAAAHAP//AwAAAAAAAAAHAP7/AwAAAAAAAAAHAP3/AwAAAAAAAAAHAAEAAwAAAAAAAAAHAPz/AwAAAAAAAAAHAPv/AwAAAAAAAAAHAAIAAwAAAAAAAAD8//r/AwAAAAEAAAD6//v/AwAAAAAAAAD6/wAAAwAAAAAAAAD5/wAAAwAAAAAAAAD5////AwAAAAAAAAD6////AwAAAAAAAAD7////AwAAAAAAAAD4/wAAAwAAAAAAAAD5/wIAAwAAAAAAAAADAAIAAgAHAAIAAAAEAAIAAgAHAAIAAAAHAAMAAwAAAAAAAAAGAAMAAwAAAAAAAAAFAAMAAwAAAAAAAAAEAAMAAwAAAAAAAAADAAMAAwAAAAAAAAAAAAMAAwAAAAAAAAD//wMAAwAAAAAAAAD+/wMAAwAAAAAAAAD7/wMAAwAEAAAAAAD8/wMAAwAEAAAAAAD9/wMAAwAEAAAAAAD5/wMAAwAAAAAAAAD4/wMAAwAAAAAAAAD4/wEAAwAAAAAAAAD5/wEAAwAAAAAAAAD4/wIAAwAAAAAAAAD6/wMAAwAAAAAAAAABAAMAAwAAAAAAAAACAAMAAwAAAAAAAAD4//v/AwAAAAAAAAAHAPr/AwAAAAAAAAAGAPr/AwAAAAAAAAD4//r/AwAAAAAAAAAFAPr/AwAAAAAAAAA=")
+tile_set = SubResource("TileSet_28bhr")
+
+[node name="Border" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD4//n/AgABAAAAAAD5//n/AgABAAAAAAD6//n/AgABAAAAAAD7//n/AgABAAAAAAD8//n/AgABAAAAAAD9//n/AgABAAAAAAD+//n/AgABAAAAAAD///n/AgABAAAAAAAAAPn/AgABAAAAAAABAPn/AgABAAAAAAACAPn/AgABAAAAAAADAPn/AgABAAAAAAAEAPn/AgABAAAAAAAFAPn/AgABAAAAAAAGAPn/AgABAAAAAAAHAPn/AgABAAAAAAD3/wQAAgAAAAIAAAD4/wQAAgABAAIAAAD5/wQAAgABAAIAAAD6/wQAAgABAAIAAAD7/wQAAgABAAIAAAD8/wQAAgABAAIAAAD9/wQAAgABAAIAAAD+/wQAAgABAAIAAAD//wQAAgABAAIAAAAAAAQAAgABAAIAAAABAAQAAgABAAIAAAACAAQAAgABAAIAAAADAAQAAgABAAIAAAAEAAQAAgABAAIAAAAFAAQAAgABAAIAAAAGAAQAAgABAAIAAAAHAAQAAgABAAIAAAAIAAQAAgACAAIAAAD3//r/AgAAAAEAAAD3//v/AgAAAAEAAAD3//z/AgAAAAEAAAD3//3/AgAAAAEAAAD3//7/AgAAAAEAAAD3////AgAAAAEAAAD3/wAAAgAAAAEAAAD3/wEAAgAAAAEAAAD3/wIAAgAAAAEAAAD3/wMAAgAAAAEAAAD3//n/AgAAAAAAAAAIAAMAAgACAAEAAAAIAAIAAgACAAEAAAAIAAEAAgACAAEAAAAIAAAAAgACAAEAAAAIAP//AgACAAEAAAAIAP7/AgACAAEAAAAIAP3/AgACAAEAAAAIAPz/AgACAAEAAAAIAPv/AgACAAEAAAAIAPr/AgACAAEAAAAIAPn/AgACAAAAAAA=")
+tile_set = SubResource("TileSet_28bhr")
+
+[node name="Start" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(-88, -56)
+
+[node name="1-1" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(-56, -88)
+level_scene_path = "res://Scenes/Levels/1_1.tscn"
+animation_name = "1"
+
+[node name="1-2" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(8, -88)
+level_scene_path = "res://Scenes/Levels/1_2.tscn"
+animation_name = "2"
+
+[node name="1-3" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(40, -88)
+animation_name = "3"
+
+[node name="1-4" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(40, -56)
+animation_name = "4"
+
+[node name="1-5" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(-56, 40)
+animation_name = "5"
+
+[node name="1-6" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(8, 40)
+animation_name = "6"
+
+[node name="1-Castle" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(-24, -24)
+level_scene_path = "res://Scenes/Levels/1_MF.tscn"
+animation_name = "castle"
+
+[node name="1-Peach" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(72, 0)
+level_scene_path = "res://Scenes/Levels/level.tscn"
+animation_name = "peach_castle"
+
+[node name="1-Card" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(8, -24)
+animation_name = "card"
+
+[node name="1-Toad1" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(72, -56)
+level_scene_path = "res://Scenes/Levels/ToadHouse.tscn"
+animation_name = "toad_house"
+
+[node name="1-Toad2" parent="." instance=ExtResource("6_mgwe1")]
+position = Vector2(-24, 8)
+level_scene_path = "res://Scenes/Levels/ToadHouse.tscn"
+animation_name = "toad_house"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="HUD" type="Sprite2D" parent="."]
+position = Vector2(0, 88)
+texture = SubResource("AtlasTexture_ops3f")
+
+[node name="Player" parent="." instance=ExtResource("8_f5orc")]
+position = Vector2(-88, -48)
+
+[node name="AudioStreamer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_qxxl3")
+autoplay = true
