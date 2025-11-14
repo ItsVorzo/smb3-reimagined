@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="21_ne2m0"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="22_frthx"]
 [ext_resource type="PackedScene" uid="uid://cbyfn4vsml8fn" path="res://Scenes/Backgrounds/Castle.tscn" id="24_05s0e"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/HUD.tscn" id="24_eqt7r"]
+[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="24_eqt7r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("4_md4xb")

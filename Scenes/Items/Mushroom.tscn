@@ -1,7 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://e4embafexpde"]
+[gd_scene load_steps=7 format=3 uid="uid://e4embafexpde"]
 
 [ext_resource type="Script" uid="uid://fu5iktk3b7yd" path="res://Scripts/Items/Mushroom.gd" id="1_se6lb"]
 [ext_resource type="Texture2D" uid="uid://daln4yc7ueohv" path="res://Sprites/Items/SuperMushroom.png" id="1_u2twr"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_isfgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isfgy"]
+atlas = ExtResource("1_u2twr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wel58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isfgy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se6lb"]
 size = Vector2(16, 16)
@@ -14,8 +30,13 @@ pick_up_area = NodePath("Area2D")
 collision = NodePath("Collision")
 powerup = "Big"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u2twr")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wel58")
+animation = &"idle"
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("3_isfgy")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_se6lb")

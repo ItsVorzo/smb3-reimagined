@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://7642xvxlvd6r"]
+[gd_scene load_steps=14 format=3 uid="uid://7642xvxlvd6r"]
 
 [ext_resource type="Script" uid="uid://dtrtw7abkyt2t" path="res://Scripts/BlockClass.gd" id="1_cq4ay"]
 [ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="2_cpsrl"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_nsprb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsprb"]
 atlas = ExtResource("2_cpsrl")
@@ -73,6 +74,9 @@ sprite = NodePath("AnimatedSprite2D")
 sprite_frames = SubResource("SpriteFrames_cq4ay")
 animation = &"Activated"
 autoplay = "Idle"
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+script = ExtResource("3_nsprb")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nsprb")

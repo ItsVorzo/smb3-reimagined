@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4l67y1jw8iwh"]
+[gd_scene load_steps=10 format=3 uid="uid://d4l67y1jw8iwh"]
 
 [ext_resource type="Script" uid="uid://cvrq4wofjeyst" path="res://Scripts/Enemies/ball.gd" id="1_cw3fc"]
 [ext_resource type="Texture2D" uid="uid://brxjytb8l6qlc" path="res://Sprites/Enemies/Ptooie.png" id="2_cdyhe"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_cdyhe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_057ka"]
 atlas = ExtResource("2_cdyhe")
@@ -106,3 +107,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_5ofoi")
 }
 autoplay = "spin"
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("3_cdyhe")

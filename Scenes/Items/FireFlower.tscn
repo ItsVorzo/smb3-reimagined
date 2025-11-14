@@ -1,7 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwuk3bqvrnqav"]
+[gd_scene load_steps=7 format=3 uid="uid://bwuk3bqvrnqav"]
 
 [ext_resource type="Script" uid="uid://cbq4drnt5gogw" path="res://Scripts/Items/FireFlower.gd" id="1_i48h3"]
 [ext_resource type="Texture2D" uid="uid://w4xys6kc7n4d" path="res://Sprites/Items/FireFlower.png" id="2_i48h3"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_7kymk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kymk"]
+atlas = ExtResource("2_i48h3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cjqhf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kymk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se6lb"]
 size = Vector2(16, 16)
@@ -14,8 +30,13 @@ pick_up_area = NodePath("Area2D")
 collision = NodePath("Collision")
 powerup = "Fire"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_i48h3")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cjqhf")
+animation = &"idle"
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("3_7kymk")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_se6lb")

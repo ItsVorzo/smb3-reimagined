@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://2j1cbp0qxdsy"]
+[gd_scene load_steps=20 format=3 uid="uid://2j1cbp0qxdsy"]
 
 [ext_resource type="Script" uid="uid://dbxprdjwycq6" path="res://Scripts/Enemies/KoopaShell.gd" id="1_2kq23"]
 [ext_resource type="Texture2D" uid="uid://q18ann6ebs6" path="res://Sprites/Objects/KoopaShells.png" id="2_snsoy"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_7l02h"]
 [ext_resource type="Script" uid="uid://dw0c3fr6coi35" path="res://Scripts/GrabbableClass.gd" id="3_snsoy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7l02h"]
@@ -117,6 +118,9 @@ script = ExtResource("1_2kq23")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2kq23")
 animation = &"IdleGreen"
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+script = ExtResource("3_7l02h")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

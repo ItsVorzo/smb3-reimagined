@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://whn1nrkohgb4"]
+[gd_scene load_steps=7 format=3 uid="uid://whn1nrkohgb4"]
 
 [ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/piranha_plant.gd" id="1_grha8"]
 [ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="2_grha8"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_1kdu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
 size = Vector2(10, 16)
@@ -18,15 +19,19 @@ collision_mask = 9
 script = ExtResource("1_grha8")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("AnimatedSprite2D")
 can_die_from_slide = false
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_grha8")
 animation = &"Chomp"
 autoplay = "Chomp"
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("3_1kdu4")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sswme")

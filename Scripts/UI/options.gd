@@ -85,8 +85,18 @@ func _on_option_clicked(option_name: String) -> void:
 	var new_value: String = values[idx]
 	_set_option_text(option_name, new_value)
 
-	if option_name in ["Mode", "VSync"]:
-		_apply_options()
+	# --- Apply option changes immediately ---
+	match option_name:
+		"Mode", "VSync":
+			_apply_options()
+		"DropShadows":
+			match idx:
+				0:
+					for shadow_node in get_tree().get_nodes_in_group("DropShadow"):
+						shadow_node._apply_drop_shadow(false)
+				1:
+					for shadow_node in get_tree().get_nodes_in_group("DropShadow"):
+						shadow_node._apply_drop_shadow(true)
 
 	print(option_name, "changed to", new_value)
 
@@ -111,18 +121,17 @@ func _on_back_pressed() -> void:
 	await get_tree().create_timer(0.2).timeout
 	queue_free()
 
-
 func _apply_options() -> void:
 	# --- Apply Mode ---
 	match ConfigManager.option_indices["Mode"]:
-		0: # Windowed
+		0:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 			DisplayServer.window_set_size(Vector2i(1152, 648))
-		1: # Borderless Window cuz why not
+		1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-		2: # Fullscreen
+		2:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
 	# --- Apply VSync ---
@@ -131,3 +140,12 @@ func _apply_options() -> void:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		1:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+
+	# --- Apply DropShadows ---
+	match ConfigManager.option_indices["DropShadows"]:
+		0: # Off
+			for shadow_node in get_tree().get_nodes_in_group("DropShadow"):
+				shadow_node._apply_drop_shadow(false)
+		1: # On
+			for shadow_node in get_tree().get_nodes_in_group("DropShadow"):
+				shadow_node._apply_drop_shadow(true)
