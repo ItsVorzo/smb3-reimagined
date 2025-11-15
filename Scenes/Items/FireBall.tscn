@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7ab081in6wso"]
+[gd_scene load_steps=11 format=3 uid="uid://b7ab081in6wso"]
 
 [ext_resource type="Script" uid="uid://dbxtbptcny6vs" path="res://Scripts/Items/FireBall.gd" id="1_1rwmd"]
 [ext_resource type="Texture2D" uid="uid://csiypondj8jo" path="res://Sprites/Effects/Bullet.png" id="1_5u0op"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_rkkjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1rwmd"]
 atlas = ExtResource("1_5u0op")
@@ -53,6 +54,10 @@ script = ExtResource("1_1rwmd")
 sprite_frames = SubResource("SpriteFrames_j4w32")
 animation = &"spin"
 frame_progress = 0.7855406
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("3_rkkjm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5u0op")
