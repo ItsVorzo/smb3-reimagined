@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5iv6rg1q266m"]
+[gd_scene load_steps=15 format=3 uid="uid://5iv6rg1q266m"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://r2jyvocfl4bl" path="res://Scripts/StateMachine/States/Normal.gd" id="3_3smsa"]
@@ -9,7 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://d1xtkpmqyle5h" path="res://Audio/Sfx/Die.wav" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://dku66u6sy4t54" path="res://Scripts/StateMachine/States/Slide.gd" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/Player/PowerUps.gd" id="6_yoq75"]
-[ext_resource type="SpriteFrames" uid="uid://b4y7uk0wcicdb" path="res://SpriteFrames/Characters/Mario/Small.tres" id="7_74mp2"]
+[ext_resource type="Script" uid="uid://cauxcx0g3y4kc" path="res://Scenes/Player/FirePower.gd" id="7_06tpx"]
+[ext_resource type="SpriteFrames" uid="uid://c52ljitokec22" path="res://SpriteFrames/Characters/Mario/Fire.tres" id="8_06tpx"]
 [ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="8_oikmp"]
 [ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="13_miouo"]
 
@@ -23,7 +24,7 @@ floor_constant_speed = true
 floor_max_angle = 0.80285144
 floor_snap_length = 12.0
 script = ExtResource("1_cvnsp")
-pwrup = NodePath("PowerUpStates/Small")
+pwrup = NodePath("PowerUpStates/Fire")
 
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_x3wgy")
@@ -48,7 +49,7 @@ script = ExtResource("6_yoq75")
 tier = 1
 
 [node name="Fire" type="Node" parent="PowerUpStates"]
-script = ExtResource("6_yoq75")
+script = ExtResource("7_06tpx")
 tier = 2
 
 [node name="Raccoon" type="Node" parent="PowerUpStates"]
@@ -65,8 +66,9 @@ tier = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
-sprite_frames = ExtResource("7_74mp2")
-animation = &"idle"
+sprite_frames = ExtResource("8_06tpx")
+animation = &"swim"
+frame_progress = 0.75729704
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)

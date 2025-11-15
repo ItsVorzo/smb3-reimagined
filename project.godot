@@ -26,6 +26,7 @@ SoundManager="*res://Scripts/Game/SoundManager.gd"
 MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 PlayerManager="*res://Scripts/Player/PlayerManager.gd"
 TransitionManager="*res://Scenes/UI/TransitionManager.tscn"
+GameManager="*res://Scripts/Game/GameManager.gd"
 
 [display]
 
@@ -106,6 +107,8 @@ B={
 2d_navigation/layer_4="Enemies"
 2d_physics/layer_5="Decorations"
 2d_navigation/layer_5="Decorations"
+2d_physics/layer_6="Effects"
+2d_navigation/layer_6="Effects"
 
 [rendering]
 

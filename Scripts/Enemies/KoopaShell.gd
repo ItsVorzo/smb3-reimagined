@@ -25,6 +25,8 @@ func _ready() -> void:
 	hurtbox.area_entered.connect(shell_damage)
 	stomparea.body_entered.connect(stomp_on_shell)
 
+	sprite.play("Idle" + color)
+
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		sprite.rotation += 0.3 * sign(velocity.x)
@@ -105,11 +107,11 @@ func shell_damage(body: Node):
 			body.die_from_obj(direction)
 
 # === Basically die_from_obj but for shells ===
-func die(dir := 1):
+func die(dir := 1, spd := 130):
 	is_dead = true
 	velocity.y = -130
 	direction = dir
-	xspd = 130
+	xspd = spd
 	collision.set_deferred("disabled", true)
 	set_collision_layer(0)
 	set_collision_mask(0)

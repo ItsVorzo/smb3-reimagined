@@ -19,7 +19,6 @@ var grab_delay := 0 # Frames in which you can't grab the object
 var is_grabbed := false
 var is_kicked := false
 var is_just_released := false
-var kick_timer := 0 # How long does the kick animation last
 
 @warning_ignore("unused_signal") signal on_kicked
 
@@ -74,9 +73,8 @@ func _physics_process(_delta: float) -> void:
 	if owner.is_on_floor():
 		is_just_released = false
 
-	# Decrease the timers
+	# Decrease the timer
 	if grab_delay > 0: grab_delay -= 1
-	if kick_timer > 0: kick_timer -= 1
 
 # Grab them objects
 func grab(body: Node) -> void:
@@ -97,13 +95,12 @@ func grab(body: Node) -> void:
 func kick(body):
 	SoundManager.play_sfx("Kick", owner.global_position)
 	grab_delay = 15
-	kick_timer = 10
 	is_kicked = true
 	can_grab = false
 	if holder == null:
 		owner.direction = sign(owner.global_position.x - body.global_position.x)
 	else:
-		holder.kick_anim()
+		holder.kick_timer = 10
 		is_grabbed = false
 		owner.direction = holder.facing_direction
 	on_kicked.emit()

@@ -55,6 +55,8 @@ var p_meter = 0.0
 var p_meter_max = 70.0
 var extra_p_frames = 16.0
 var max_speed = 0.0
+var kick_timer := 0
+var shoot_timer := 0
 
 # === States ===
 @onready var state_machine: StateMachine = $States
@@ -140,8 +142,8 @@ func _on_joy_connection_changed(device: int, connected: bool):
 	if not connected:
 		PlayerManager.leave_device(device)
 
-# === Logic ===
-func _process(_delta: float) -> void:
+# === Physics ===
+func _physics_process(delta: float) -> void:
 
 	# Remove unused players
 	var device = PlayerManager.get_player_device(player_id)
@@ -154,8 +156,7 @@ func _process(_delta: float) -> void:
 	if PlayerManager.player_data and not input_disabled:
 		update_input_device(player_id) 
 
-# === Physics ===
-func _physics_process(delta: float) -> void:
+	handle_powerups(delta)
 
 	# Change collision shapes
 	is_super = pwrup.tier >= 1
@@ -221,6 +222,19 @@ func _physics_process(delta: float) -> void:
 
 	if current_grabbed_obj == null:
 		is_holding = false
+
+	if shoot_timer > 0:
+		if is_on_floor():
+			if animation_override != "shoot":
+				animation_override = "shoot"
+		else:
+			if animation_override != "swim":
+				animation_override = "swim"
+		shoot_timer -= 1
+	elif kick_timer > 0:
+		if animation_override != "kick":
+			animation_override = "kick"
+		kick_timer -= 1
 
 # === Get the input direction ===
 func input_direction() -> int:
@@ -313,6 +327,9 @@ func set_power_state(powerup: String) -> void:
 	else:
 		push_error("Invalid powerup name! %s" % powerup)
 
+func handle_powerups(delta: float):
+	pwrup.physics_update(delta)
+
 # === i frames ===
 func i_frames() -> void:
 	for i in 16:
@@ -323,11 +340,6 @@ func i_frames() -> void:
 		await get_tree().create_timer(0.05).timeout
 	can_take_damage = true
 	return
-
-func kick_anim():
-	animation_override = "kick"
-	await get_tree().create_timer(0.25, false).timeout
-	animation_override = ""
 
 # === P meter ===
 func handle_p_meter():

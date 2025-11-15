@@ -55,6 +55,8 @@ func handle_animation():
 			player.animation_override = "front_facing"
 		else:
 			player.animation_override = ""
+	elif player.kick_timer == 0 and player.shoot_timer == 0:
+			player.animation_override = ""
 	
 	# Override animations (animations that play over others)
 	if player.animation_override != "":
@@ -78,7 +80,7 @@ func handle_animation():
 				player.animated_sprite.play("skid")
 			elif player.velocity.x == 0:
 				player.animated_sprite.play("idle")
-			elif abs(player.velocity.x) > 0 and abs(player.velocity.x) < player.p_speed:
+			elif abs(player.velocity.x) > 0 and abs(player.velocity.x) < player.p_speed and player.p_meter < player.p_meter_max:
 				player.animated_sprite.play("walk", walk_anim_speed())
 			else:
 				player.animated_sprite.play("run", 7)

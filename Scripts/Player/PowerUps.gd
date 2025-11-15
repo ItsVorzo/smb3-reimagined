@@ -4,7 +4,7 @@ extends Node
 @export var tier := 0
 enum power_ups {Small, Big, Fire, Raccoon, Frog, Tanooki, Hammer, Star, PWing}
 
-var player: Player
+var player: Player = owner
 
 func enter() -> void:
 	pass

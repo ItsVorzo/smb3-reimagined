@@ -4,6 +4,7 @@ extends CharacterBody2D
 # === Block info ===
 @export var hitbox: Area2D = null
 @export var sidebox: Area2D = null
+@onready var top_interaction: Area2D = $TopInteraction
 @export var sprite: Node = null
 @export var item: PackedScene = null
 var item_scene: Node
@@ -16,8 +17,6 @@ var yspd := 0.0
 var gravity := 1500.0
 var is_activated := false
 var is_used := false
-
-signal block_bounce(force: float)
 
 # === Set some important stuff
 func _ready() -> void:
@@ -50,7 +49,12 @@ func activate(body: Node):
 		sprite.play("Activated")
 		is_activated = true
 		yspd = -140.0
-		block_bounce.emit(yspd)
+
+		# Interact with other objects on top
+		for obj in top_interaction.get_overlapping_bodies():
+			if obj != null:
+				block_top_interaction(obj)
+
 		# If there's nothing in the block, give a coin
 		if item == null:
 			SoundManager.play_sfx("Coin", self.global_position)
@@ -80,3 +84,9 @@ func spawn_item(body: Node):
 	# If the item has got a direction variable, make it go to the opposite direction
 	if item_scene.get("direction") != null:
 		item_scene.direction = -sign(body.global_position.x - self.global_position.x)
+
+func block_top_interaction(body):
+	if body.is_in_group("Enemies"):
+		body.dead_from_obj(body.direction)
+	if body.is_in_group("Shell"):
+		body.die(body.direction, 60)

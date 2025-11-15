@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf17fupwubnk5"]
+
+[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/piranha_plant.gd" id="1_v25p7"]
+[ext_resource type="SpriteFrames" uid="uid://ci45prhati8jn" path="res://SpriteFrames/Enemies/BigRPiranhaPlant.tres" id="2_v25p7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
+size = Vector2(12, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7role"]
+size = Vector2(8, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
+size = Vector2(16, 27)
+
+[node name="BigRPiranhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_v25p7")
+collision = NodePath("Collision")
+hurtbox = NodePath("HurtBox")
+sprite = NodePath("Sprite2D")
+can_die_from_slide = false
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("2_v25p7")
+autoplay = "default"
+frame_progress = 0.6958499
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_sswme")
+
+[node name="StompBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompBox"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_7role")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, 26)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -31.5)
+shape = SubResource("RectangleShape2D_057ka")

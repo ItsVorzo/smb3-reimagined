@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://c52ljitokec22"]
+[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://c52ljitokec22"]
 
 [ext_resource type="Texture2D" uid="uid://c6uvlkjutpv3y" path="res://Sprites/Characters/Mario/MarioFire.png" id="1_yxq6w"]
 
@@ -62,6 +62,14 @@ region = Rect2(192, 0, 32, 32)
 atlas = ExtResource("1_yxq6w")
 region = Rect2(224, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_icoap"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(320, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udve8"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(352, 32, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ulo2v"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(288, 0, 32, 32)
@@ -69,6 +77,18 @@ region = Rect2(288, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1iu4k"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(256, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fal4m"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un0pq"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaodt"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v66d"]
 atlas = ExtResource("1_yxq6w")
@@ -179,6 +199,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_icoap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udve8")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ulo2v")
 }],
 "loop": true,
@@ -192,6 +223,20 @@ animations = [{
 "loop": true,
 "name": &"slide",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fal4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un0pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaodt")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

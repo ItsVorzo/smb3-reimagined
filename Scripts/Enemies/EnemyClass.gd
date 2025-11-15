@@ -34,7 +34,6 @@ func process(delta: float) -> void:
 		collision.disabled = true
 		hurtbox.monitoring = false
 		if sprite: sprite.rotation += 0.3 * direction
-		velocity.x = 130 * direction
 		velocity.y += grav_speed * delta
 
 	# Damage the player
@@ -102,12 +101,13 @@ func die_from_stomp() -> void:
 	queue_free()
 
 # === Die from an object (it could be anything) ===
-func die_from_obj(dir := 1) -> void:
+func die_from_obj(dir := 1, spd := 130) -> void:
 	SoundManager.play_sfx("Kick", global_position)
 	SaveManager.add_score(score_value)
 	dead_from_obj = true
-	velocity.y = -160
 	direction = dir
+	velocity.x = spd * direction
+	velocity.y = -160
 
 # === Damage the player... or the player damages YOU! ===
 func player_interaction(body: Node) -> void:
