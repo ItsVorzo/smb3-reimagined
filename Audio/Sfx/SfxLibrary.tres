@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://d8nt0fqqkekh" path="res://Audio/Sfx/MapStart.mp3" id="16_jpg2p"]
 [ext_resource type="AudioStream" uid="uid://cyfciritij6uq" path="res://Audio/Sfx/OnOffSwitch.wav" id="17_2bf71"]
 [ext_resource type="AudioStream" uid="uid://cgqyglsbwx2qt" path="res://Audio/Sfx/Pause.wav" id="18_tlm0s"]
-[ext_resource type="AudioStream" uid="uid://dlif7s0esqpv" path="res://Audio/Sfx/PMeterFull.wav" id="19_4hfvl"]
+[ext_resource type="AudioStream" uid="uid://bxsx4yremicje" path="res://Audio/Sfx/PMeterFull.wav" id="19_4hfvl"]
 [ext_resource type="AudioStream" uid="uid://cuhksoq2cadaj" path="res://Audio/Sfx/Pipe.wav" id="20_tlm0s"]
 [ext_resource type="AudioStream" uid="uid://b2ieosmp4bkvs" path="res://Audio/Sfx/PowerUp.wav" id="21_4hfvl"]
 [ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="22_1me08"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cqq5r4nvtqnpu"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/PipePiranhaPlant.gd" id="1_vs007"]
+[ext_resource type="Script" uid="uid://b3us1jp56tmfj" path="res://Scripts/Enemies/PipePiranhaPlant.gd" id="1_vs007"]
 [ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="2_330me"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
@@ -20,7 +20,6 @@ collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
 sprite = NodePath("Sprite2D")
 can_die_from_slide = false
-xspd = 10
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sswme")

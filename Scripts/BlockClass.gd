@@ -87,6 +87,6 @@ func spawn_item(body: Node):
 
 func block_top_interaction(body):
 	if body.is_in_group("Enemies"):
-		body.dead_from_obj(body.direction)
+		body.dead_from_obj(body.direction, 60)
 	if body.is_in_group("Shell"):
 		body.die(body.direction, 60)

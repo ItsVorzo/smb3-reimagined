@@ -16,7 +16,7 @@ func throw_fireball():
 	var fireball := fireball_scene.instantiate()
 	get_parent().add_child(fireball)
 	fireball.global_position = owner.global_position
-	fireball.global_position.y = owner.global_position.y - 10
+	fireball.global_position.y = owner.global_position.y - 16
 	fireball_amount += 1
 	fireball.direction = owner.facing_direction
 

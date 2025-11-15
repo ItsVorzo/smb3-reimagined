@@ -19,6 +19,10 @@ func _physics_process(_delta: float) -> void:
 func is_on_screen(pos, RegionW := 16, RegionH := 16):
 	var screen_size = get_viewport().get_visible_rect().size
 	var camera = get_viewport().get_camera_2d()
+
+	if camera == null:
+		return
+
 	var cam_pos = camera.global_position
 
 	return (pos.x > cam_pos.x - (screen_size.x / 2) / 3 - RegionW and
