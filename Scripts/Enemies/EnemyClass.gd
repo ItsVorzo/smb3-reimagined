@@ -6,8 +6,9 @@ extends CharacterBody2D
 @export var hurtbox: Area2D = null
 @export var sprite: Node = null
 @export var stompbox: Area2D = null
-@export var can_die_from_slide := true
 @export var has_custom_stomp := false
+@export var can_die_from_fire := true
+@export var can_die_from_slide := true
 @export var xspd := 30
 @export var grav_speed := 400.0
 

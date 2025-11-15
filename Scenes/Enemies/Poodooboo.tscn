@@ -41,6 +41,7 @@ script = ExtResource("1_u36ug")
 collision = NodePath("Area2D/CollisionShape2D")
 hurtbox = NodePath("HurtBox")
 sprite = NodePath("Area2D/AnimatedSprite2D")
+can_die_from_fire = false
 can_die_from_slide = false
 
 [node name="Area2D" type="Area2D" parent="."]

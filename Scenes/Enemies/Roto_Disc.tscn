@@ -129,6 +129,7 @@ collision_mask = 11
 script = ExtResource("1_dnano")
 collision = NodePath("Disc/Area2D/Collision")
 hurtbox = NodePath("Disc/Area2D/HurtBox")
+can_die_from_fire = false
 can_die_from_slide = false
 
 [node name="Disc" type="Sprite2D" parent="."]

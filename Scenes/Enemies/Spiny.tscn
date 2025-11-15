@@ -20,6 +20,8 @@ script = ExtResource("1_3y5nv")
 collision = NodePath("Collision")
 hurtbox = NodePath("HurtBox")
 sprite = NodePath("Sprite")
+can_die_from_fire = false
+can_die_from_slide = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_uatgh")

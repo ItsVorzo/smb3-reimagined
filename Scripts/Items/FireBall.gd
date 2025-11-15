@@ -26,10 +26,12 @@ func _physics_process(delta: float) -> void:
 
 func kill(body: Node):
 
-	if body.is_in_group("Enemies"):
+	if body.is_in_group("Enemies") and body.can_die_from_fire:
 		body.die_from_obj(direction, 60)
 	elif body.is_in_group("Shell"):
 		SoundManager.play_sfx("Kick", global_position)
 		body.die(direction)
+	else:
+		SoundManager.play_sfx("Hit", global_position)
 
 	queue_free()
