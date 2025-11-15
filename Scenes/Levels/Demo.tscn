@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=40 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxkafas67lmod" path="res://Scenes/Player/cameralimitright.tscn" id="10_28jxv"]
 [ext_resource type="PackedScene" uid="uid://bfjxybinsknj5" path="res://Scenes/Player/cameralimitleft.tscn" id="10_ftxpn"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
-[ext_resource type="PackedScene" uid="uid://whn1nrkohgb4" path="res://Scenes/Enemies/Piranha_Plant.tscn" id="11_4fq55"]
+[ext_resource type="PackedScene" uid="uid://whn1nrkohgb4" path="res://Scenes/Enemies/PiranhaPlant.tscn" id="11_4fq55"]
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="11_saxwf"]
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="11_xecmd"]
 [ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="12_73wy6"]
@@ -23,13 +23,12 @@
 [ext_resource type="PackedScene" uid="uid://d4l67y1jw8iwh" path="res://Scenes/Enemies/Ball.tscn" id="15_da70h"]
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
-[ext_resource type="PackedScene" uid="uid://dptrn021waygr" path="res://Scenes/Enemies/Pipe_Piranha_Plant.tscn" id="23_gw30q"]
-[ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/Big_Goomba.tscn" id="25_x8ai0"]
+[ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/BigGoomba.tscn" id="25_x8ai0"]
 [ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_da70h"]
 [ext_resource type="PackedScene" uid="uid://dn14tyievo5qd" path="res://Scenes/Enemies/Muncher.tscn" id="27_330ea"]
 [ext_resource type="PackedScene" uid="uid://dxipgbg180h01" path="res://Scenes/Enemies/Roto_Disc.tscn" id="28_a2q5g"]
-[ext_resource type="PackedScene" uid="uid://bvyctepg6fxxu" path="res://Scenes/Enemies/Big_GPiranha_Plant.tscn" id="29_1msyd"]
-[ext_resource type="PackedScene" uid="uid://drte2yomf8eml" path="res://Scenes/Enemies/Big_RPiranha_Plant.tscn" id="30_x2oup"]
+[ext_resource type="PackedScene" uid="uid://cufxcbcr83crp" path="res://Scenes/Enemies/BigGPiranhaPlant.tscn" id="29_1msyd"]
+[ext_resource type="PackedScene" uid="uid://drte2yomf8eml" path="res://Scenes/Enemies/BigRPiranhaPlant.tscn" id="30_x2oup"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -96,7 +95,6 @@ _bundled = {
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xv8io"]
 scenes/1/scene = SubResource("PackedScene_330ea")
-scenes/3/scene = ExtResource("23_gw30q")
 scenes/4/scene = ExtResource("11_4fq55")
 scenes/5/scene = ExtResource("12_73wy6")
 scenes/6/scene = ExtResource("13_73wy6")
@@ -138,7 +136,7 @@ tile_map_data = PackedByteArray("AAAQAAAAAAABAAAAAAARAAAAAAABAAAAAAASAAAAAAABAAA
 tile_set = ExtResource("6_gw30q")
 
 [node name="Enemies" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAeAP//AAAAAAAABAAkAP//AAAAAAAABQApAP//AAAAAAAABgAuAP//AAAAAAAACAA=")
+tile_map_data = PackedByteArray("AAAeAP//AAAAAAAABAAkAP//AAAAAAAABQAuAP//AAAAAAAACAApAP//AAAAAAAABgA=")
 tile_set = SubResource("TileSet_fxiy1")
 
 [node name="CameraLimitLeft" parent="." instance=ExtResource("10_ftxpn")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://gvxgnuul7lcs"]
+[gd_scene load_steps=45 format=4 uid="uid://gvxgnuul7lcs"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_1okno"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_gewk7"]
@@ -9,8 +9,9 @@
 [ext_resource type="Script" uid="uid://cvrq4wofjeyst" path="res://Scripts/Enemies/ball.gd" id="8_rce1s"]
 [ext_resource type="Texture2D" uid="uid://brxjytb8l6qlc" path="res://Sprites/Enemies/Ptooie.png" id="9_po7c1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="10_1l1rf"]
-[ext_resource type="PackedScene" uid="uid://dptrn021waygr" path="res://Scenes/Enemies/Pipe_Piranha_Plant.tscn" id="11_nfuhv"]
-[ext_resource type="PackedScene" uid="uid://whn1nrkohgb4" path="res://Scenes/Enemies/Piranha_Plant.tscn" id="12_mre5j"]
+[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/PiranhaPlant.gd" id="10_1oinr"]
+[ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="11_7wv64"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="12_g2s5m"]
 [ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="13_sqmfs"]
 [ext_resource type="PackedScene" uid="uid://dyhqqm7qv7alh" path="res://Scenes/Enemies/Ptooie.tscn" id="14_gt6x1"]
 [ext_resource type="TileSet" uid="uid://di1rs7fq2b3x6" path="res://Sprites/Pipes.tres" id="15_q036u"]
@@ -21,11 +22,11 @@
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="20_7jq2t"]
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="23_8qeg6"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="24_gjds7"]
-[ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/Overworld.tscn" id="25_apbsp"]
-[ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/Big_Goomba.tscn" id="25_ctbui"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/HUD.tscn" id="26_4l0o0"]
-[ext_resource type="PackedScene" uid="uid://bvyctepg6fxxu" path="res://Scenes/Enemies/Big_GPiranha_Plant.tscn" id="26_fvnt4"]
-[ext_resource type="PackedScene" uid="uid://drte2yomf8eml" path="res://Scenes/Enemies/Big_RPiranha_Plant.tscn" id="27_1oinr"]
+[ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="25_apbsp"]
+[ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/BigGoomba.tscn" id="25_ctbui"]
+[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="26_4l0o0"]
+[ext_resource type="PackedScene" uid="uid://cufxcbcr83crp" path="res://Scenes/Enemies/BigGPiranhaPlant.tscn" id="26_fvnt4"]
+[ext_resource type="PackedScene" uid="uid://drte2yomf8eml" path="res://Scenes/Enemies/BigRPiranhaPlant.tscn" id="27_1oinr"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="28_1vwdc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
@@ -91,11 +92,32 @@ _bundled = {
 "version": 3
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1okno"]
+size = Vector2(10, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gewk7"]
+size = Vector2(8, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcwik"]
+size = Vector2(10, 19)
+
+[sub_resource type="PackedScene" id="PackedScene_tn8g8"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("PiranhaPlant", "CharacterBody2D", "collision_layer", "collision_mask", "script", "collision", "hurtbox", "sprite", "can_die_from_slide", "AnimatedSprite2D", "AnimatedSprite2D", "z_index", "position", "sprite_frames", "animation", "autoplay", "DropShadow", "AnimatedSprite2D", "position", "script", "Collision", "CollisionShape2D", "shape", "StompBox", "Area2D", "collision_layer", "collision_mask", "CollisionShape2D", "CollisionShape2D", "position", "shape", "HurtBox", "Area2D", "position", "collision_layer", "collision_mask", "CollisionShape2D", "CollisionShape2D", "position", "shape"),
+"node_count": 8,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("./StompBox"), NodePath("."), NodePath("./HurtBox")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 7, 2, 0, 3, 1, 4, 2, 1073741829, 3, 1073741830, 4, 1073741831, 5, 8, 6, 0, 1073741824, 0, 10, 9, -1, 5, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 0, 1073741825, 0, 17, 16, -1, 2, 18, 12, 19, 13, 0, 1073741826, 0, 21, 20, -1, 1, 22, 14, 0, 1073741827, 0, 24, 23, -1, 2, 25, 15, 26, 16, 0, 1073741828, 0, 28, 27, -1, 2, 29, 17, 30, 18, 0, 1073741829, 0, 32, 31, -1, 3, 33, 19, 34, 20, 35, 21, 0, 1073741830, 0, 37, 36, -1, 2, 38, 22, 39, 23, 0),
+"variants": [8, 9, ExtResource("10_1oinr"), NodePath("Collision"), NodePath("HurtBox"), NodePath("AnimatedSprite2D"), false, -1, Vector2(0, -8), ExtResource("11_7wv64"), &"Chomp", "Chomp", Vector2(0, -16), ExtResource("12_g2s5m"), SubResource("RectangleShape2D_1okno"), 8, 3, Vector2(0, -7), SubResource("RectangleShape2D_gewk7"), Vector2(0, 26), 8, 11, Vector2(0, -27.5), SubResource("RectangleShape2D_jcwik")],
+"version": 3
+}
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xv8io"]
 scenes/1/scene = SubResource("PackedScene_330ea")
 scenes/2/scene = ExtResource("10_1l1rf")
-scenes/3/scene = ExtResource("11_nfuhv")
-scenes/4/scene = ExtResource("12_mre5j")
+scenes/4/scene = SubResource("PackedScene_tn8g8")
 scenes/5/scene = ExtResource("13_sqmfs")
 scenes/6/scene = ExtResource("14_gt6x1")
 scenes/7/scene = ExtResource("15_ye1c0")

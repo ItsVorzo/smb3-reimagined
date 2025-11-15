@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf7j7dbprttqy"]
+[gd_scene load_steps=7 format=3 uid="uid://dejhtq47ffem4"]
 
 [ext_resource type="Script" uid="uid://bquc1mx5ttqg0" path="res://Scripts/Enemies/Goomba.gd" id="1_wbgd1"]
 [ext_resource type="SpriteFrames" uid="uid://lobjog7nfli0" path="res://SpriteFrames/Enemies/BigGoomba.tres" id="2_grwuy"]

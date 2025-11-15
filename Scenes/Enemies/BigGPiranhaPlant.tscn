@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cufxcbcr83crp"]
 
-[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/piranha_plant.gd" id="1_kcjiw"]
+[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/PiranhaPlant.gd" id="1_kcjiw"]
 [ext_resource type="SpriteFrames" uid="uid://lt1gjpmvga2t" path="res://SpriteFrames/Enemies/BigGPiranhaPlant.tres" id="2_o7am7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
