@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var shadow_offset: Vector2 = Vector2(3, 3)
-@export var shadow_tint: Color = Color(0, 0, 0, 0.5)
+@export var shadow_tint: Color = Color(0, 0, 0, 0.7)
 
 var parent_sprite: Node = null
 var shadow_sprite: Node = null
@@ -135,8 +135,6 @@ func _apply_theme_shadow_color() -> void:
 
 	if level_node:
 		match level_node.theme:
-			"Castle":
-				shadow_tint = Color(1, 1, 1, 0.5)
 			_:
 				shadow_tint = Color(0, 0, 0, 0.5)
 
