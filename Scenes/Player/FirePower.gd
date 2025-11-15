@@ -11,7 +11,7 @@ func physics_update(_delta: float) -> void:
 			throw_fireball()
 
 func throw_fireball():
-	SoundManager.play_sfx("Hit", owner.global_position)
+	SoundManager.play_sfx("Fireball", owner.global_position)
 	owner.shoot_timer = 10
 	var fireball := fireball_scene.instantiate()
 	get_parent().add_child(fireball)

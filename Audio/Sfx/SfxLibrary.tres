@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SfxLibrary" load_steps=24 format=3 uid="uid://di0sp7ttn2y7q"]
+[gd_resource type="Resource" script_class="SfxLibrary" load_steps=25 format=3 uid="uid://di0sp7ttn2y7q"]
 
 [ext_resource type="Script" uid="uid://c0lws2bivphw2" path="res://Audio/Sfx/SfxLibrary.gd" id="1_o277h"]
 [ext_resource type="AudioStream" uid="uid://d3wf1plxut2y7" path="res://Audio/Sfx/1UP.wav" id="2_susbn"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://b2ieosmp4bkvs" path="res://Audio/Sfx/PowerUp.wav" id="21_4hfvl"]
 [ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="22_1me08"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="23_pdfdx"]
+[ext_resource type="AudioStream" uid="uid://b5gghw0yl37mq" path="res://Audio/Sfx/Fireball.wav" id="24_4hfvl"]
 
 [resource]
 script = ExtResource("1_o277h")
@@ -32,6 +33,7 @@ sfx = {
 "Coin": ExtResource("4_gefsv"),
 "Die": ExtResource("5_b2u1n"),
 "DieShort": ExtResource("6_73ykr"),
+"Fireball": ExtResource("24_4hfvl"),
 "HammerBroMove": ExtResource("7_pdud7"),
 "Hit": ExtResource("8_jjo2x"),
 "Inventory": ExtResource("9_6r24t"),
