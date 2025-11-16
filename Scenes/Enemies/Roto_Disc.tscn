@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxipgbg180h01"]
+[gd_scene load_steps=21 format=3 uid="uid://dxipgbg180h01"]
 
 [ext_resource type="Script" uid="uid://beckswfpojmq8" path="res://Scripts/Enemies/roto_disc.gd" id="1_dnano"]
 [ext_resource type="Texture2D" uid="uid://c5wb7xsd8xgoj" path="res://Sprites/Gizmos/RotoDisc.png" id="1_otjvs"]
@@ -114,10 +114,28 @@ tracks/0/keys = {
 "values": [0.0, 6.283185307179586]
 }
 
+[sub_resource type="Animation" id="Animation_7s1hj"]
+resource_name = "disc2"
+length = 2.5
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7s1hj"]
 _data = {
 &"RESET": SubResource("Animation_iogqw"),
-&"disc": SubResource("Animation_dnano")
+&"disc": SubResource("Animation_dnano"),
+&"disc2": SubResource("Animation_7s1hj")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnano"]
@@ -133,6 +151,7 @@ can_die_from_fire = false
 can_die_from_slide = false
 
 [node name="Disc" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(0, -48)
 texture = SubResource("AtlasTexture_dnano")
 
@@ -172,5 +191,26 @@ libraries = {
 }
 autoplay = "disc"
 
+[node name="RotationJoint2" type="Node2D" parent="."]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RotationJoint2"]
+position = Vector2(-10, -48)
+remote_path = NodePath("../../Shadow")
+update_rotation = false
+update_scale = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RotationJoint2"]
+libraries = {
+&"": SubResource("AnimationLibrary_7s1hj")
+}
+autoplay = "disc"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dnano")
+
+[node name="Shadow" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5176471)
+position = Vector2(40.84256, 27.127209)
+sprite_frames = SubResource("SpriteFrames_njg65")
+autoplay = "default"
+frame_progress = 0.37425238
