@@ -79,6 +79,7 @@ func _process(_delta: float) -> void:
 	shadow_sprite.flip_h = parent_sprite.flip_h
 	shadow_sprite.flip_v = parent_sprite.flip_v
 	position = shadow_offset
+	shadow_sprite.rotation = parent_sprite.rotation
 
 	if parent_sprite.z_index - 1 != z_index:
 		z_index = parent_sprite.z_index - 1
