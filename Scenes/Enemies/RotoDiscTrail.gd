@@ -7,7 +7,6 @@ var timer := 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(timer)
 	timer -= delta
 	if timer <= 0:
 		trail_positions.append(global_position)
@@ -15,8 +14,7 @@ func _process(delta: float) -> void:
 			trail_positions.pop_front()
 		timer = trail_spacing
 
-	if GameManager.is_on_screen(global_position):
-		queue_redraw()
+	queue_redraw()
 
 func _draw():
 	var tex = sprite_frames.get_frame_texture(animation, frame)
