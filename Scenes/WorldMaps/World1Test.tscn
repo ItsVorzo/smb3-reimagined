@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://cjwh0661c6xtj"]
 
 [ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/world_1.gd" id="1_tpsxi"]
-[ext_resource type="Texture2D" uid="uid://bgiu8yknec6bx" path="res://Sprites/HUD/Border.png" id="2_73c4k"]
+[ext_resource type="Texture2D" uid="uid://cp38l5wwmcwat" path="res://Sprites/Tilesets/WorldMaps/Curtain.png" id="2_tpsxi"]
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="3_afa6d"]
 [ext_resource type="Texture2D" uid="uid://bx001a8qontap" path="res://Sprites/Tilesets/WorldMaps/Paths.png" id="4_m8f2r"]
 [ext_resource type="Texture2D" uid="uid://qvonhnepubv7" path="res://Sprites/Tilesets/WorldMaps/Decoration.png" id="5_sx0n1"]
@@ -146,10 +146,16 @@ region = Rect2(0, 39, 383, 31)
 [node name="World1" type="Node2D"]
 script = ExtResource("1_tpsxi")
 
-[node name="BorderHUD" type="Sprite2D" parent="."]
+[node name="Curtain1" type="Sprite2D" parent="."]
 z_index = 10
-scale = Vector2(1.225, 1.225)
-texture = ExtResource("2_73c4k")
+position = Vector2(186.03, -44.58)
+texture = ExtResource("2_tpsxi")
+
+[node name="Curtain2" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-186.03, -44.58)
+texture = ExtResource("2_tpsxi")
+flip_h = true
 
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(2.861023e-06, -1.4999976)
@@ -225,7 +231,7 @@ animation_name = "toad_house"
 zoom = Vector2(3, 3)
 
 [node name="HUD" type="Sprite2D" parent="."]
-position = Vector2(0, 88)
+position = Vector2(0, 91.545)
 texture = SubResource("AtlasTexture_ops3f")
 
 [node name="Player" parent="." instance=ExtResource("8_f5orc")]

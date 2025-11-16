@@ -6,5 +6,4 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	process(delta)
 	if stomped:
-		return
-	move_and_slide()
+		move_and_slide()
