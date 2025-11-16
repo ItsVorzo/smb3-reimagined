@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var shadow_offset: Vector2 = Vector2(3, 3)
 @export var shadow_tint: Color = Color(0, 0, 0, 0.7)
 
 var parent_sprite: Node = null
@@ -27,10 +26,7 @@ func _ready() -> void:
 
 	# Keep shadow behind parent
 	z_as_relative = false
-	if is_animated:
-		z_index = parent_sprite.z_index - 1
-	else:
-		z_index = parent_sprite.z_index - 1
+	z_index = parent_sprite.z_index - 1
 	add_to_group("DropShadow")
 
 	# Create the shadow node
@@ -49,10 +45,13 @@ func _ready() -> void:
 	shadow_sprite.name = "ShadowSprite"
 	shadow_sprite.z_index = z_index
 
-	# Theme and config
+	# Sync shadow on Player power-up animation
+	if is_animated:
+		if parent_sprite.has_signal("frame_changed"):
+			parent_sprite.frame_changed.connect(_on_frame_changed)
+
 	_apply_theme_shadow_color()
 	_update_shadow_from_config()
-	_set_offset_based_on_owner()
 
 	set_process(true)
 
@@ -62,6 +61,7 @@ func _process(_delta: float) -> void:
 		visible = false
 		return
 
+	# Sync animation / frames
 	if is_animated:
 		if parent_sprite.animation != last_animation:
 			shadow_sprite.play(parent_sprite.animation)
@@ -75,28 +75,27 @@ func _process(_delta: float) -> void:
 	else:
 		shadow_sprite.texture = parent_sprite.texture
 
+	# Sync flip/scale/rotation
 	shadow_sprite.scale = parent_sprite.scale
 	shadow_sprite.flip_h = parent_sprite.flip_h
 	shadow_sprite.flip_v = parent_sprite.flip_v
-	position = shadow_offset
 	shadow_sprite.rotation = parent_sprite.rotation
 
+	# Stick shadow under bouncing blocks or stomped sprites
+	global_position.y = parent_sprite.global_position.y + 3
+	global_position.x = parent_sprite.global_position.x + 3
+
+	# Maintain correct z-index
 	if parent_sprite.z_index - 1 != z_index:
 		z_index = parent_sprite.z_index - 1
 		shadow_sprite.z_index = z_index
 
 
-func _set_offset_based_on_owner() -> void:
-	var owner = get_owner()
-	if owner and typeof(owner.scene_file_path) == TYPE_STRING:
-		if owner.scene_file_path.ends_with("Scenes/Player/player.tscn"):
-			shadow_offset = Vector2(3, -13)
-		else:
-			shadow_offset = Vector2(3, 3)
-	else:
-		shadow_offset = Vector2(3, 3)
-	position = shadow_offset
-
+# Called when sprite flickers or transforms
+func _on_frame_changed() -> void:
+	if shadow_sprite and parent_sprite:
+		if is_animated:
+			shadow_sprite.frame = parent_sprite.frame
 
 func _apply_drop_shadow(state: bool) -> void:
 	visible = state
