@@ -24,7 +24,7 @@ floor_constant_speed = true
 floor_max_angle = 0.80285144
 floor_snap_length = 12.0
 script = ExtResource("1_cvnsp")
-pwrup = NodePath("PowerUpStates/Fire")
+pwrup = NodePath("PowerUpStates/Small")
 
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_x3wgy")
