@@ -74,6 +74,6 @@ func _apply_options() -> void:
 		0:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		1:
-			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ADAPTIVE)
 
 	print("Options applied:", option_indices)

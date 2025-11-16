@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxipgbg180h01"]
+[gd_scene load_steps=22 format=3 uid="uid://dxipgbg180h01"]
 
 [ext_resource type="Script" uid="uid://beckswfpojmq8" path="res://Scripts/Enemies/roto_disc.gd" id="1_dnano"]
 [ext_resource type="Texture2D" uid="uid://c5wb7xsd8xgoj" path="res://Sprites/Gizmos/RotoDisc.png" id="1_otjvs"]
+[ext_resource type="Script" uid="uid://c8vqocjplg577" path="res://Scenes/Enemies/RotoDiscTrail.gd" id="3_iogqw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnano"]
 atlas = ExtResource("1_otjvs")
@@ -160,7 +161,9 @@ texture = SubResource("AtlasTexture_dnano")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Disc/Area2D"]
 sprite_frames = SubResource("SpriteFrames_njg65")
 autoplay = "default"
-frame_progress = 0.37425238
+frame = 5
+frame_progress = 0.28793994
+script = ExtResource("3_iogqw")
 
 [node name="Collision" type="CollisionShape2D" parent="Disc/Area2D"]
 shape = SubResource("RectangleShape2D_sswme")
@@ -209,8 +212,10 @@ autoplay = "disc"
 shape = SubResource("RectangleShape2D_dnano")
 
 [node name="Shadow" type="AnimatedSprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.5176471)
-position = Vector2(40.84256, 27.127209)
+position = Vector2(-10, -48)
 sprite_frames = SubResource("SpriteFrames_njg65")
 autoplay = "default"
-frame_progress = 0.37425238
+frame = 5
+frame_progress = 0.20676772

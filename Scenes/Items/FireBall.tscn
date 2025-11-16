@@ -44,7 +44,7 @@ animations = [{
 size = Vector2(6, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rwmd"]
-size = Vector2(6, 6)
+size = Vector2(10, 10)
 
 [node name="FireBall" type="CharacterBody2D"]
 collision_layer = 32

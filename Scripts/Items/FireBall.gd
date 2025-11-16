@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var xspd := 170.0
+var xspd := 180.0
 var bounce := 176.0
 var direction := 1.0
 @onready var area2d = $Area2D

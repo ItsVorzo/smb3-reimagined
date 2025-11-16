@@ -6,7 +6,7 @@ var fireball_scene = preload("res://Scenes/Items/FireBall.tscn")
 
 func physics_update(_delta: float) -> void:
 
-	if owner.input.is_action_just_pressed("B") and owner.state_machine.state.name == "Normal":
+	if owner.input.is_action_just_pressed("B") and owner.state_machine.state.name == "Normal" and not owner.crouching:
 		if fireball_amount < fireball_limit:
 			throw_fireball()
 
