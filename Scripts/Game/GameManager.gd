@@ -17,6 +17,13 @@ func _physics_process(_delta: float) -> void:
 		else:
 			enemy.process_mode = Node.PROCESS_MODE_INHERIT
 
+	if Input.is_action_just_pressed("ui_accept"):
+		if ConfigManager.option_indices["Size"] == 0:
+			ConfigManager.option_indices["Size"] = 1
+		else:
+			ConfigManager.option_indices["Size"] = 0
+		ConfigManager._apply_options()
+
 # Check if "obj" is visible on screen
 func is_on_screen(pos, RegionW := 16, RegionH := 16):
 	var screen_size = get_viewport().get_visible_rect().size
