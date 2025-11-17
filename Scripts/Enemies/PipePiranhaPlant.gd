@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 		var dist = abs(player.global_position.x - global_position.x)
 		if dist < player_distance:
 			player_distance = dist
-	print(player_distance)
 
 	match state:
 		# Wait inside of the pipe

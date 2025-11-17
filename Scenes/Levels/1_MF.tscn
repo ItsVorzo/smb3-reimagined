@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="21_ne2m0"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="22_frthx"]
 [ext_resource type="PackedScene" uid="uid://cbyfn4vsml8fn" path="res://Scenes/Backgrounds/Castle.tscn" id="24_05s0e"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="24_eqt7r"]
+[ext_resource type="PackedScene" uid="uid://nxx0gbxh7x5k" path="res://Scenes/UI/hud.tscn" id="24_eqt7r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("4_md4xb")
@@ -139,12 +139,11 @@ position = Vector2(256, -10)
 position = Vector2(2816, -58)
 
 [node name="CameraGroundLimit" parent="." instance=ExtResource("19_p8i10")]
-position = Vector2(260.0002, -7.999998)
+position = Vector2(260.0002, 8.000002)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(1085, -6)
 offset = Vector2(0, -46)
-zoom = Vector2(3, 3)
 drag_top_margin = 1.0
 drag_bottom_margin = 0.0
 script = ExtResource("20_g6ukg")

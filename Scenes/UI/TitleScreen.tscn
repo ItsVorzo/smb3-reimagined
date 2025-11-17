@@ -10,7 +10,7 @@
 [ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="8_bvwvd"]
 [ext_resource type="Texture2D" uid="uid://c4atbwyjpdqp8" path="res://Sprites/UI/Title Screen/Curtain.png" id="10_vk2b7"]
 [ext_resource type="Texture2D" uid="uid://bvd25vci38frg" path="res://Sprites/UI/Title Screen/Button2.png" id="11_kyt38"]
-[ext_resource type="AudioStream" uid="uid://c6v4hdnu0somo" path="res://Audio/BGM/titletheme.mp3" id="12_2lcr0"]
+[ext_resource type="AudioStream" uid="uid://dk65kjlh6tth3" path="res://Audio/BGM/titletheme.mp3" id="12_2lcr0"]
 [ext_resource type="AudioStream" uid="uid://bef0hapqcqi67" path="res://Audio/Sfx/Inventory.wav" id="13_bvwvd"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="16_iwqp0"]
 
@@ -355,7 +355,6 @@ sprite_frames = SubResource("SpriteFrames_k1y01")
 autoplay = "default"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
 
 [node name="TitleMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_2lcr0")

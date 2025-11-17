@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ctsphc6os4dys" path="res://Scenes/Levels/ToadHouseStart.gd" id="1_thvwr"]
 [ext_resource type="Texture2D" uid="uid://bm3j8e8nrjl6d" path="res://Sprites/Tilesets/ToadHouse.png" id="2_thvwr"]
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="3_tgpjf"]
-[ext_resource type="PackedScene" path="res://Scenes/Backgrounds/Overworld.tscn" id="4_nw5wf"]
+[ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/Overworld.tscn" id="4_nw5wf"]
 [ext_resource type="AudioStream" uid="uid://dwrnkj7k1qpq8" path="res://Audio/BGM/ToadHouse.ogg" id="5_u7nwc"]
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="5_v71h5"]
 
@@ -67,7 +67,6 @@ autoplay = true
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(16, -34)
 offset = Vector2(0, -46)
-zoom = Vector2(3, 3)
 drag_vertical_enabled = true
 
 [node name="CameraGroundLimit" parent="." instance=ExtResource("5_v71h5")]

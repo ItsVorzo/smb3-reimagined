@@ -26,6 +26,7 @@ func _ready() -> void:
 	screen_size = get_viewport().get_visible_rect().size
 
 func _physics_process(_delta: float) -> void:
+	screen_size = get_viewport().get_visible_rect().size
 	# Stop if you aren't transitioning
 	if not is_fading:
 		fade_timer = 0.0

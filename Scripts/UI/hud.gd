@@ -1,26 +1,24 @@
 extends CanvasLayer
 
 @onready var player_icon: AnimatedSprite2D = $HUD_BG/PlayerIcon
-@onready var world_label: Label = $HUD_BG/WorldLabel
-@onready var score_label: Label = $HUD_BG/ScoreLabel
-@onready var coins_label: Label = $HUD_BG/CoinLabel
-@onready var time_label: Label = $HUD_BG/TimeLabel
-@onready var lives_label: Label = $HUD_BG/LivesLabel
-@onready var Plr = $"../Player"
+@onready var world_label: Label = $HUD_BG/WorldNumber
+@onready var score_label: Label = $HUD_BG/Score
+@onready var coins_label: Label = $HUD_BG/CoinCounter
+@onready var time_label: Label = $HUD_BG/Time
+@onready var lives_label: Label = $HUD_BG/LifeCounter
 
 var time_timer: Timer
-var time_running := true   # <--- NEW FLAG
+var time_running := true
 
 func update_labels():
 	var save_data = SaveManager.runtime_data
 	var temp_data = SaveManager.temp_level_data
 
-	
 	player_icon.frame = int(save_data.get("character_index", 0))
 	world_label.text = str(int(save_data.get("world_number", 1)))
 	coins_label.text = str(int(save_data.get("coins", 0))).pad_zeros(2)
 	score_label.text = str(int(save_data.get("score", 0))).pad_zeros(7)
-	time_label.text = str(int(temp_data.get("time", 300)))  # <-- use temp save
+	time_label.text = str(int(temp_data.get("time", 300)))
 	lives_label.text = str(int(save_data.get("lives", 3))).pad_zeros(2)
 
 func _ready():

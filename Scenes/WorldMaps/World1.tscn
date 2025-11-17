@@ -140,7 +140,7 @@ sources/2 = SubResource("TileSetAtlasSource_mm7mx")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ops3f"]
 atlas = ExtResource("6_cig1c")
-region = Rect2(0, 39, 383, 31)
+region = Rect2(237, 154, 270, 19)
 
 [node name="World1" type="Node2D"]
 script = ExtResource("1_cig1c")
@@ -216,7 +216,6 @@ level_scene_path = "res://Scenes/Levels/ToadHouse.tscn"
 animation_name = "toad_house"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
 
 [node name="HUD" type="Sprite2D" parent="."]
 position = Vector2(0, 91.595)

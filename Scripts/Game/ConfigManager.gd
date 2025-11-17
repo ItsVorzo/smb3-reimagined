@@ -69,6 +69,12 @@ func _apply_options() -> void:
 		2: # fullscreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
+	match option_indices["Size"]:
+		0:
+			get_window().content_scale_size.x = 256
+		1:
+			get_window().content_scale_size.x = 426
+
 	# --- Apply VSync ---
 	match option_indices["VSync"]:
 		0:
@@ -76,4 +82,4 @@ func _apply_options() -> void:
 		1:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ADAPTIVE)
 
-	print("Options applied:", option_indices)
+	print(get_viewport().get_visible_rect().size.x)

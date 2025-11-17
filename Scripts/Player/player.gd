@@ -353,6 +353,11 @@ func handle_p_meter():
 	elif p_meter > 0 and extra_p_frames <= 0:
 		p_meter -= 0.583
 
+	# Store it globally
+	GameManager.p_meter.clear()
+	for player in get_tree().get_nodes_in_group("Player"):
+		GameManager.p_meter.append(player.p_meter)
+
 	return p_meter
 
 # === Get slopes info ===

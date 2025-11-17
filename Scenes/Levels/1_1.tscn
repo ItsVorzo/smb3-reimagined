@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dyhqqm7qv7alh" path="res://Scenes/Enemies/Ptooie.tscn" id="13_73wy6"]
 [ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/PiranhaPlant.gd" id="13_x8ai0"]
 [ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="14_da70h"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
+[ext_resource type="PackedScene" uid="uid://nxx0gbxh7x5k" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 [ext_resource type="PackedScene" uid="uid://d4l67y1jw8iwh" path="res://Scenes/Enemies/Ball.tscn" id="15_da70h"]
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
@@ -187,7 +187,6 @@ collision_mask = 0
 
 [node name="Camera" type="Camera2D" parent="."]
 offset = Vector2(0, -46)
-zoom = Vector2(3, 3)
 drag_top_margin = 1.0
 drag_bottom_margin = 0.0
 script = ExtResource("11_saxwf")

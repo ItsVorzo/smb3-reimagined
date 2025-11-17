@@ -1,5 +1,7 @@
 extends Node
 
+var p_meter := [] # Access everyone's p meter globally
+var p_meter_max := 70
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,8 +27,8 @@ func is_on_screen(pos, RegionW := 16, RegionH := 16):
 
 	var cam_pos = camera.global_position
 
-	return (pos.x > cam_pos.x - (screen_size.x / 2) / 3 - RegionW and
-	pos.x < cam_pos.x + (screen_size.x / 2) / 3 + RegionW and
-	pos.y > cam_pos.y - (screen_size.y / 2) / 3 - 46 - RegionH and
-	pos.y < cam_pos.y + (screen_size.y / 2) / 3 + RegionH
+	return (pos.x > cam_pos.x - (screen_size.x / 2) - RegionW and
+	pos.x < cam_pos.x + (screen_size.x / 2) + RegionW and
+	pos.y > cam_pos.y - (screen_size.y / 2) - 46 - RegionH and
+	pos.y < cam_pos.y + (screen_size.y / 2) + RegionH
 	)

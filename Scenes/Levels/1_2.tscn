@@ -24,7 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="24_gjds7"]
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="25_apbsp"]
 [ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/BigGoomba.tscn" id="25_ctbui"]
-[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="26_4l0o0"]
+[ext_resource type="PackedScene" uid="uid://nxx0gbxh7x5k" path="res://Scenes/UI/hud.tscn" id="26_4l0o0"]
 [ext_resource type="PackedScene" uid="uid://cufxcbcr83crp" path="res://Scenes/Enemies/BigGPiranhaPlant.tscn" id="26_fvnt4"]
 [ext_resource type="PackedScene" uid="uid://drte2yomf8eml" path="res://Scenes/Enemies/BigRPiranhaPlant.tscn" id="27_1oinr"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="28_1vwdc"]
@@ -171,7 +171,6 @@ position = Vector2(260.0002, -7.999998)
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(1085, -6)
 offset = Vector2(0, -30)
-zoom = Vector2(3, 3)
 drag_top_margin = 1.0
 drag_bottom_margin = 0.0
 script = ExtResource("20_7jq2t")

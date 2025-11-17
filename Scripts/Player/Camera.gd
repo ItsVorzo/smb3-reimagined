@@ -18,8 +18,8 @@ var frozen_position := Vector2.ZERO
 
 func _ready() -> void:
 	# Get the camera center
-	center_x = (get_viewport().get_visible_rect().size.x / 2) / 3 # i divided by 3 because this game resolution is too high, will change this in the future
-	center_y = (get_viewport().get_visible_rect().size.y / 2) / 3
+	center_x = (get_viewport().get_visible_rect().size.x / 2) # i divided by 3 because this game resolution is too high, will change this in the future
+	center_y = (get_viewport().get_visible_rect().size.y / 2)
 
 func _process(_delta: float) -> void:
 	if frozen:
