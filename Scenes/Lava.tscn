@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://04bdqd23u1ya"]
+
+[ext_resource type="Script" uid="uid://d3xafao12rhya" path="res://Lava.gd" id="1_c0pnw"]
+[ext_resource type="Texture2D" uid="uid://bqnjjtvqejcyv" path="res://Sprites/Gizmos/Lava.png" id="2_c0pnw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g3ft"]
+atlas = ExtResource("2_c0pnw")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0nqr"]
+atlas = ExtResource("2_c0pnw")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7u5s"]
+atlas = ExtResource("2_c0pnw")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g185b"]
+atlas = ExtResource("2_c0pnw")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6ynk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7g3ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0nqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7u5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g185b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7u5s"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g185b"]
+size = Vector2(16, 32)
+
+[node name="Lava" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
+z_index = 1
+script = ExtResource("1_c0pnw")
+collision = NodePath("Area2D/Collision")
+hurtbox = NodePath("Area2D/HurtBox")
+sprite = NodePath("")
+can_die_from_fire = false
+can_die_from_slide = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Area2D"]
+position = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_n6ynk")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_h7u5s")
+
+[node name="HurtBox" type="Area2D" parent="Area2D"]
+position = Vector2(0, 26)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/HurtBox"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_g185b")
