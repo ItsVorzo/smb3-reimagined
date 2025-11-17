@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6cf3pobgicqd"
-path="res://.godot/imported/gamemode select.png-09ca7a721de5d670c03a78c53d3c58c9.ctex"
+uid="uid://d3nw5dqvb4sc4"
+path="res://.godot/imported/GameModeSelectBG43.png-66ca991aaa1a04b85f70c1ba0d4d0895.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/Gamemode Select/gamemode select.png"
-dest_files=["res://.godot/imported/gamemode select.png-09ca7a721de5d670c03a78c53d3c58c9.ctex"]
+source_file="res://Sprites/UI/Gamemode Select/GameModeSelectBG43.png"
+dest_files=["res://.godot/imported/GameModeSelectBG43.png-66ca991aaa1a04b85f70c1ba0d4d0895.ctex"]
 
 [params]
 

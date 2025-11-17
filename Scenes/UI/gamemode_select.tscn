@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnmy0qshaw7l4"]
 
 [ext_resource type="Script" uid="uid://jxsq0arumgvb" path="res://Scripts/UI/gamemode_select.gd" id="1_dinpg"]
-[ext_resource type="Texture2D" uid="uid://6cf3pobgicqd" path="res://Sprites/UI/Gamemode Select/gamemode select.png" id="1_ialvr"]
+[ext_resource type="Texture2D" uid="uid://dj67ry7po21so" path="res://Sprites/UI/Gamemode Select/GameModeBG.png" id="1_ialvr"]
 [ext_resource type="Texture2D" uid="uid://dxaw7133c8wjq" path="res://Sprites/UI/Gamemode Select/SingleplayerB.png" id="2_dinpg"]
 [ext_resource type="FontFile" uid="uid://dw3bs4aaneafm" path="res://Sprites/Font.png" id="4_xs2cb"]
 [ext_resource type="Texture2D" uid="uid://dub3p20v8vbfe" path="res://Sprites/UI/Gamemode Select/LockedB.png" id="5_dinpg"]
