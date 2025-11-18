@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=36 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -19,10 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="11_xecmd"]
 [ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="12_73wy6"]
 [ext_resource type="PackedScene" uid="uid://dyhqqm7qv7alh" path="res://Scenes/Enemies/Ptooie.tscn" id="13_73wy6"]
-[ext_resource type="PackedScene" uid="uid://nxx0gbxh7x5k" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
+[ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 [ext_resource type="PackedScene" uid="uid://d4l67y1jw8iwh" path="res://Scenes/Enemies/Ball.tscn" id="15_da70h"]
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
+[ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="25_1i5or"]
 [ext_resource type="PackedScene" uid="uid://dxipgbg180h01" path="res://Scenes/Enemies/Roto_Disc.tscn" id="28_a2q5g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
@@ -183,3 +184,12 @@ position = Vector2(234, 150)
 
 [node name="RotoDisc" parent="." instance=ExtResource("28_a2q5g")]
 position = Vector2(584, -56)
+
+[node name="Ptooie" parent="." instance=ExtResource("13_73wy6")]
+position = Vector2(530, -7)
+
+[node name="Ball" parent="." instance=ExtResource("15_da70h")]
+position = Vector2(505, -45)
+
+[node name="Area2D" parent="." instance=ExtResource("25_1i5or")]
+position = Vector2(399, -34)

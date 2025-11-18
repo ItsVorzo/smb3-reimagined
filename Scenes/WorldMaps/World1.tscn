@@ -146,8 +146,8 @@ region = Rect2(237, 154, 270, 19)
 script = ExtResource("1_cig1c")
 
 [node name="BG" type="Sprite2D" parent="."]
-position = Vector2(2.861023e-06, -1.4999976)
-scale = Vector2(25.875002, 13.9375)
+position = Vector2(2.861023e-06, -27.999996)
+scale = Vector2(56.07501, 32.345)
 texture = ExtResource("1_ha7v5")
 
 [node name="World BG" type="TileMapLayer" parent="."]
@@ -198,7 +198,7 @@ animation_name = "castle"
 
 [node name="1-Peach" parent="." instance=ExtResource("4_432jv")]
 position = Vector2(72, 0)
-level_scene_path = "res://Scenes/Levels/level.tscn"
+level_scene_path = "res://Scenes/Levels/Demo.tscn"
 animation_name = "peach_castle"
 
 [node name="1-Card" parent="." instance=ExtResource("4_432jv")]

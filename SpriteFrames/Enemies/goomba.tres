@@ -1,14 +1,33 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://mt824ajsxhjc"]
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://mt824ajsxhjc"]
 
-[ext_resource type="Texture2D" uid="uid://bsfu871rd2yu0" path="res://Sprites/Enemies/DryBonesP.png" id="1_2fpt1"]
+[ext_resource type="Texture2D" uid="uid://4edc0hcou80l" path="res://Sprites/Enemies/Goomba.png" id="1_2fpt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjpyj"]
+atlas = ExtResource("1_2fpt1")
+region = Rect2(96, 4, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fpt1"]
+atlas = ExtResource("1_2fpt1")
+region = Rect2(0, 4, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6aaao"]
 atlas = ExtResource("1_2fpt1")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(16, 4, 16, 16)
 
 [resource]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjpyj")
+}],
+"loop": true,
+"name": &"squish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fpt1")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6aaao")
 }],
