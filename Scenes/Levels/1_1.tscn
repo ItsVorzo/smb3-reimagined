@@ -139,6 +139,7 @@ process_mode = 3
 script = ExtResource("2_q0pi4")
 
 [node name="152106" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.9116014, 0.9116014, 0.9116014, 0.2901961)
 position = Vector2(1664, -103)
 texture = ExtResource("3_noyq2")

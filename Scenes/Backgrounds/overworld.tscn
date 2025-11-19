@@ -22,6 +22,7 @@ repeat_size = Vector2(1024, 512)
 autoscroll = Vector2(-6, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Clouds"]
+position = Vector2(0, -124)
 texture = ExtResource("2_6cdgx")
 
 [node name="Hills" type="Parallax2D" parent="."]

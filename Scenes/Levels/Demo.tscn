@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=37 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -24,6 +24,7 @@
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="25_1i5or"]
+[ext_resource type="PackedScene" uid="uid://dp2g0hadx1vgj" path="res://Scenes/Enemies/ParaKoopa.tscn" id="26_gsh3y"]
 [ext_resource type="PackedScene" uid="uid://dxipgbg180h01" path="res://Scenes/Enemies/Roto_Disc.tscn" id="28_a2q5g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
@@ -185,11 +186,8 @@ position = Vector2(234, 150)
 [node name="RotoDisc" parent="." instance=ExtResource("28_a2q5g")]
 position = Vector2(584, -56)
 
-[node name="Ptooie" parent="." instance=ExtResource("13_73wy6")]
-position = Vector2(530, -7)
-
-[node name="Ball" parent="." instance=ExtResource("15_da70h")]
-position = Vector2(505, -45)
-
 [node name="Area2D" parent="." instance=ExtResource("25_1i5or")]
 position = Vector2(399, -34)
+
+[node name="Koopa" parent="." instance=ExtResource("26_gsh3y")]
+position = Vector2(502, -41)

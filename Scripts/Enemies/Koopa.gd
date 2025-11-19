@@ -9,15 +9,19 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	process(delta)
-	move_horizontally()
-	sprite.scale.x = -direction
 
-	if not is_on_floor(): 
-		gravity(delta)
-	velocity.y = min(velocity.y, grav_speed)
-	if color == "Red" and is_on_floor() and not ledgecheck.is_colliding():
-		direction *= -1
-	ledgecheck.position.x = 4.0 * direction
+	# --- Disable walking ---
+	velocity.x = 0
+	direction = 0
+	# ------------------------
+
+	sprite.scale.x = -1  # keeps sprite facing one direction, optional
+
+	# prevent red version from flipping at ledges
+	if color == "Red":
+		pass
+
+	ledgecheck.position.x = 0
 
 	move_and_slide()
 
