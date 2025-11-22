@@ -2,6 +2,7 @@ extends EnemyClass
 
 @export_enum("Green", "Red") var color := "Green"
 @export var wings := false
+@onready var r_wing = $RightWing
 @onready var ledgecheck = $LedgeCheck
 var start_y
 var jump_speed = -155.0
@@ -10,6 +11,11 @@ var timer := 0.0
 func _ready() -> void:
 	if wings and color == "Red":
 		start_y = global_position.y
+	if wings:
+		r_wing.show()
+		r_wing.position = Vector2(4, -11)
+	else:
+		r_wing.hide()
 	init()
 	sprite.play("Walk" + color)
 
@@ -20,6 +26,10 @@ func _physics_process(delta: float) -> void:
 		move_horizontally()
 		sprite.scale.x = -direction
 		velocity.y = min(velocity.y, grav_speed)
+
+	if dead_from_obj:
+		r_wing.stop()
+		r_wing.hide()
 
 	# Normal koopa behavior
 	if not wings:
@@ -35,10 +45,12 @@ func _physics_process(delta: float) -> void:
 			gravity(delta)
 		if is_on_floor():
 			velocity.y = jump_speed
+		r_wing.play("flap")
 
 	# Red parakoopa
 	elif wings and color == "Red":
 		global_position.y = start_y + 112 * ((sin(timer) + 1.0) / 2.0)
+		r_wing.play("flap", 3)
 
 	if not (wings and color == "Red"):
 		move_and_slide()
@@ -57,3 +69,5 @@ func on_stomped() -> void:
 		if velocity.y < 0:
 			velocity.y = 0
 		wings = false
+		r_wing.stop()
+		r_wing.hide()

@@ -32,8 +32,6 @@ GameManager="*res://Scripts/Game/GameManager.gd"
 
 window/size/viewport_width=256
 window/size/viewport_height=240
-window/size/window_width_override=1024
-window/size/window_height_override=960
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=3
 

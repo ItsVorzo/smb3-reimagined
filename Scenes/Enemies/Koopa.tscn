@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://mpuy3cvca2ln"]
+[gd_scene load_steps=16 format=3 uid="uid://mpuy3cvca2ln"]
 
 [ext_resource type="Script" uid="uid://bgu24fd1hxx8x" path="res://Scripts/Enemies/Koopa.gd" id="1_215k6"]
+[ext_resource type="Texture2D" uid="uid://bo7bl4hm0qbsx" path="res://Sprites/Gizmos/Wing.png" id="2_1h1qm"]
 [ext_resource type="Texture2D" uid="uid://0munl4vjm1p6" path="res://Sprites/Enemies/Koopa.png" id="2_cd2u8"]
 [ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_4q77e"]
 
@@ -55,6 +56,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m14bv"]
+atlas = ExtResource("2_1h1qm")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jji44"]
+atlas = ExtResource("2_1h1qm")
+region = Rect2(16, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukqi4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m14bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jji44")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd2u8"]
 size = Vector2(12, 16)
 
@@ -79,6 +102,10 @@ has_custom_stomp = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_oq3vd")
 animation = &"WalkGreen"
+
+[node name="RightWing" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ukqi4")
+animation = &"flap"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
 script = ExtResource("3_4q77e")

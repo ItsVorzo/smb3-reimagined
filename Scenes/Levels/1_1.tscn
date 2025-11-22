@@ -165,7 +165,7 @@ tile_set = ExtResource("6_gw30q")
 script = ExtResource("9_fxiy1")
 
 [node name="Enemies" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAvAP//AAAAAAAACAAdAP//AAAAAAAACAAmAPz/AAAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAvAP//AAAAAAAACAAmAPz/AAAAAAAAAgA=")
 tile_set = SubResource("TileSet_fxiy1")
 
 [node name="CameraLimitLeft" parent="." instance=ExtResource("10_ftxpn")]
@@ -243,15 +243,15 @@ position = Vector2(968, -56)
 position = Vector2(1736, -40)
 item = ExtResource("28_x8ai0")
 
-[node name="Koopa2" parent="." instance=ExtResource("26_da70h")]
-position = Vector2(568, -94)
-wings = true
-
-[node name="Koopa3" parent="." instance=ExtResource("26_da70h")]
-position = Vector2(542, -94)
+[node name="Goomba" parent="." instance=ExtResource("22_x62f6")]
+position = Vector2(528, -8)
 wings = true
 
 [node name="Koopa" parent="." instance=ExtResource("26_da70h")]
-position = Vector2(451, -124)
+position = Vector2(504, -8)
+wings = true
+
+[node name="Koopa2" parent="." instance=ExtResource("26_da70h")]
+position = Vector2(592, -72)
 color = "Red"
 wings = true
