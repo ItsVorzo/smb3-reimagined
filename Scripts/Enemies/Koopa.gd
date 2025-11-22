@@ -1,36 +1,59 @@
 extends EnemyClass
 
 @export_enum("Green", "Red") var color := "Green"
+@export var wings := false
 @onready var ledgecheck = $LedgeCheck
+var start_y
+var jump_speed = -155.0
+var timer := 0.0
 
 func _ready() -> void:
+	if wings and color == "Red":
+		start_y = global_position.y
 	init()
 	sprite.play("Walk" + color)
 
 func _physics_process(delta: float) -> void:
 	process(delta)
+	timer += delta
+	if (not wings) or (wings and color == "Green"):
+		move_horizontally()
+		sprite.scale.x = -direction
+		velocity.y = min(velocity.y, grav_speed)
 
-	# --- Disable walking ---
-	velocity.x = 0
-	direction = 0
-	# ------------------------
+	# Normal koopa behavior
+	if not wings:
+		if not is_on_floor(): 
+			gravity(delta)
+		if color == "Red" and is_on_floor() and not ledgecheck.is_colliding():
+			direction *= -1
+		ledgecheck.position.x = 4.0 * direction
 
-	sprite.scale.x = -1  # keeps sprite facing one direction, optional
+	# Green parakoopa
+	elif wings and color == "Green":
+		if not is_on_floor(): 
+			gravity(delta)
+		if is_on_floor():
+			velocity.y = jump_speed
 
-	# prevent red version from flipping at ledges
-	if color == "Red":
-		pass
+	# Red parakoopa
+	elif wings and color == "Red":
+		global_position.y = start_y + 112 * ((sin(timer) + 1.0) / 2.0)
 
-	ledgecheck.position.x = 0
-
-	move_and_slide()
+	if not (wings and color == "Red"):
+		move_and_slide()
 
 	flip_direction()
 
 # Spawn the shell
 func on_stomped() -> void:
-	var shell = load("res://Scenes/Enemies/KoopaShell.tscn").instantiate()
-	shell.global_position = global_position
-	shell.color = color
-	get_parent().call_deferred("add_child", shell)
-	queue_free()
+	if not wings:
+		var shell = load("res://Scenes/Enemies/KoopaShell.tscn").instantiate()
+		shell.global_position = global_position
+		shell.color = color
+		get_parent().call_deferred("add_child", shell)
+		queue_free()
+	else:
+		if velocity.y < 0:
+			velocity.y = 0
+		wings = false

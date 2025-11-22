@@ -69,7 +69,7 @@ func stomp_the_enemy(body: Node) -> void:
 		return
 	if not body.is_in_group("Player"):
 		return
-	if body.velocity.y > 0:
+	if not body.is_on_floor():
 		body.bounce_on_enemy()
 		SoundManager.play_sfx("Stomp", global_position)
 		SaveManager.add_score(score_value)

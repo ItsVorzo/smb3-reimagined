@@ -242,3 +242,16 @@ position = Vector2(968, -56)
 [node name="QuestionBlock7" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(1736, -40)
 item = ExtResource("28_x8ai0")
+
+[node name="Koopa2" parent="." instance=ExtResource("26_da70h")]
+position = Vector2(568, -94)
+wings = true
+
+[node name="Koopa3" parent="." instance=ExtResource("26_da70h")]
+position = Vector2(542, -94)
+wings = true
+
+[node name="Koopa" parent="." instance=ExtResource("26_da70h")]
+position = Vector2(451, -124)
+color = "Red"
+wings = true

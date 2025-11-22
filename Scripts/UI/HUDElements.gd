@@ -56,7 +56,6 @@ func p_meter_element():
 	# Draw and color the arrows
 	for i in range(arrow_n):
 		var arrow_pos = Rect2(Vector2(64.1 + 8 * i, 199), Vector2(8, 7))
-		print(arrow_pos)
 		var arrow_color = arrow_white if i < filled_arrows else arrow_black
 		draw_texture_rect_region(hud, arrow_pos, arrow_color)
 
