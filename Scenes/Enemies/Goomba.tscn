@@ -81,7 +81,7 @@ animation = &"flap"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_d1rwa")
-animation = &"walk"
+animation = &"parawalk"
 autoplay = "walk"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]

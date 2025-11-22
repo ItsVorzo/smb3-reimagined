@@ -1,6 +1,19 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://mt824ajsxhjc"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://mt824ajsxhjc"]
 
 [ext_resource type="Texture2D" uid="uid://4edc0hcou80l" path="res://Sprites/Enemies/Goomba.png" id="1_2fpt1"]
+[ext_resource type="Texture2D" uid="uid://bqe0oyef34p3" path="res://Sprites/Enemies/RedGoomba.png" id="1_6aaao"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aogt"]
+atlas = ExtResource("1_6aaao")
+region = Rect2(96, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trune"]
+atlas = ExtResource("1_6aaao")
+region = Rect2(0, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aakn"]
+atlas = ExtResource("1_6aaao")
+region = Rect2(16, 8, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjpyj"]
 atlas = ExtResource("1_2fpt1")
@@ -16,6 +29,25 @@ region = Rect2(16, 4, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aogt")
+}],
+"loop": true,
+"name": &"parasquish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trune")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aakn")
+}],
+"loop": true,
+"name": &"parawalk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qjpyj")

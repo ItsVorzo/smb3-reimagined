@@ -27,7 +27,10 @@ func _physics_process(delta: float) -> void:
 
 	if stomped:
 		sprite.scale.x = direction
-		sprite.play("squish")
+		if not r_wing.hidden or l_wing.hidden:
+			sprite.play("parasquish")
+		else:
+			sprite.play("squish")
 		velocity = Vector2.ZERO
 		return
 	if dead_from_obj:
@@ -43,6 +46,7 @@ func _physics_process(delta: float) -> void:
 
 	# Hopping and jumping
 	if wings:
+		sprite.play("parawalk")
 		# 3 hops
 		if wait_timer <= 0.0:
 			if is_on_floor():
