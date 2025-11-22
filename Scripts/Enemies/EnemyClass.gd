@@ -23,8 +23,7 @@ var score_value = 100
 func init() -> void:
 	add_to_group("Enemies")
 	if stompbox != null: stompbox.body_entered.connect(stomp_the_enemy)
-	for p in get_tree().get_nodes_in_group("Player"):
-		direction = -sign(global_position.x - p.global_position.x)
+	direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
 
 # === Some SUPER IMPORTANT enemy logic ===
 func process(delta: float) -> void:

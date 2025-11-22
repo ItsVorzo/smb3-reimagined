@@ -48,10 +48,12 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				velocity.y = hop
 				jump_counter += 1
-		# Reset the counter
+		# Reset the counter/turn around
 		else:
 			if is_on_floor() and jump_counter == 3:
 				jump_counter = 0
+			if wait_timer == 15.0:
+				direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
 		# Big jump
 		if jump_counter == 3:
 			if is_on_floor():

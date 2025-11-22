@@ -22,9 +22,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	process(delta)
 	timer += delta
+	sprite.scale.x = -direction
+	r_wing.scale.x = -direction
+	r_wing.position.x = 4 * -direction
 	if (not wings) or (wings and color == "Green"):
 		move_horizontally()
-		sprite.scale.x = -direction
 		velocity.y = min(velocity.y, grav_speed)
 
 	if dead_from_obj:

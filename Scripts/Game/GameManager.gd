@@ -39,3 +39,21 @@ func is_on_screen(pos, RegionW := 16, RegionH := 16):
 	pos.y > cam_pos.y - (screen_size.y / 2) - 46 - RegionH and
 	pos.y < cam_pos.y + (screen_size.y / 2) + RegionH
 	)
+
+func first_player() -> CharacterBody2D:
+	return get_tree().get_first_node_in_group("Player")
+
+func get_players() -> Array:
+	return get_tree().get_nodes_in_group("Player")
+
+func nearest_player(pos) -> CharacterBody2D:
+	var nearest_plr: CharacterBody2D = null
+	var shortest_distance = INF
+
+	for player in get_players():
+		var distance = pos.distance_to(player.global_position)
+		if distance < shortest_distance:
+			shortest_distance = distance
+			nearest_plr = player
+
+	return nearest_plr
