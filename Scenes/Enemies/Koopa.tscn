@@ -34,11 +34,6 @@ animations = [{
 "name": &"WalkGreen",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"WalkGreenWings",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cd2u8")
@@ -48,11 +43,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"WalkRed",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"WalkRedWings",
 "speed": 5.0
 }]
 
