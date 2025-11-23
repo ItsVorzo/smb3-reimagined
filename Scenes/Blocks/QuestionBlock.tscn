@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://7642xvxlvd6r"]
 
-[ext_resource type="Script" uid="uid://dtrtw7abkyt2t" path="res://Scripts/QuestionBlock.gd" id="1_cq4ay"]
+[ext_resource type="Script" uid="uid://dtrtw7abkyt2t" path="res://Scripts/Blocks/QuestionBlock.gd" id="1_cq4ay"]
 [ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="2_cpsrl"]
 [ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_nsprb"]
 

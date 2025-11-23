@@ -297,9 +297,6 @@ fire = true
 position = Vector2(2360, -41)
 color = "Red"
 
-[node name="BrickBlock" parent="." instance=ExtResource("31_da70h")]
-position = Vector2(424, -56)
-
 [node name="BrickBlock2" parent="." instance=ExtResource("31_da70h")]
 position = Vector2(2360, -24)
 
