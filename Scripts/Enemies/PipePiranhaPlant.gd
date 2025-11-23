@@ -1,9 +1,15 @@
 extends EnemyClass
 
+@export var fire := false
 var max_height := 0.0
 var min_height := 0.0
 var state := 0
 var timer := 120
+var aim_timer := 60
+var has_shot = false
+var fireball_scene = preload("res://Scenes/Enemies/PiranhaFireBall.tscn")
+var aim_x_direction
+var aim_y_direction
 
 func _ready() -> void:
 	init()
@@ -21,10 +27,13 @@ func _physics_process(delta: float) -> void:
 
 	# Check if the player is near the pipe/plant
 	var player_distance = INF
-	for player in get_tree().get_nodes_in_group("Player"):
-		var dist = abs(player.global_position.x - global_position.x)
-		if dist < player_distance:
-			player_distance = dist
+	var dist = abs(GameManager.nearest_player(global_position).global_position.x - global_position.x)
+	if dist < player_distance:
+		player_distance = dist
+
+	# Get the aiming
+	aim_y_direction = sign(GameManager.nearest_player(global_position).global_position.y - global_position.y)
+	aim_x_direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
 
 	match state:
 		# Wait inside of the pipe
@@ -36,25 +45,48 @@ func _physics_process(delta: float) -> void:
 
 		# Come out of the pipe
 		1:
-			if timer != 120:
-				timer = 120
 			if global_position.y > max_height:
 				global_position.y -= 1
 			else:
+				if not fire:
+					timer = 120
+				else:
+					aim_timer = 60
+					timer = 60
 				state = 2
 
 		# Wait outside of the pipe
 		2:
-			if timer > 0:
-				timer -= 1
+			print(aim_y_direction)
+			if not fire:
+				if timer > 0:
+					timer -= 1
+				else:
+					state = 3
 			else:
-				state = 3
+				if aim_timer > 0:
+					aim_timer -= 1
+				elif not has_shot:
+					shoot_fireball()
+					has_shot = true 
+				if timer > 0 and aim_timer == 0:
+					timer -= 1
+				if timer == 0 and aim_timer == 0:
+					state = 3
 
 		# Get back inside
 		3:
-			if timer != 120:
-				timer = 120
 			if global_position.y < min_height:
 				global_position.y += 1
 			else:
+				timer = 120
+				has_shot = false
 				state = 0
+
+func shoot_fireball():
+	var fireball = fireball_scene.instantiate()
+	fireball.velocity.x = 40 * aim_x_direction
+	fireball.velocity.y = 40 * aim_y_direction
+	get_parent().add_child(fireball)
+	fireball.global_position.x = global_position.x
+	fireball.global_position.y = owner.global_position.y - 64

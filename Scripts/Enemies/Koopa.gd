@@ -25,13 +25,16 @@ func _physics_process(delta: float) -> void:
 	sprite.scale.x = -direction
 	r_wing.scale.x = -direction
 	r_wing.position.x = 4 * -direction
+
+	if dead_from_obj:
+		if wings: wings = false
+		r_wing.stop()
+		r_wing.hide()
+
 	if (not wings) or (wings and color == "Green"):
 		move_horizontally()
 		velocity.y = min(velocity.y, grav_speed)
 
-	if dead_from_obj:
-		r_wing.stop()
-		r_wing.hide()
 
 	# Normal koopa behavior
 	if not wings:

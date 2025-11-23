@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://c11kspgadrca5"]
+
+[ext_resource type="Script" uid="uid://cdp2cpeppdxoa" path="res://Scripts/Enemies/EnemyFireBall.gd" id="1_qaylt"]
+[ext_resource type="Texture2D" uid="uid://csiypondj8jo" path="res://Sprites/Effects/Bullet.png" id="2_a58xs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qlu5"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0elyo"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16hfc"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtlre"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhgku"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qlu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0elyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16hfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtlre")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5l8l0"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0elyo"]
+size = Vector2(8, 8)
+
+[node name="EnemyFireBall" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_qaylt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qhgku")
+animation = &"spin"
+autoplay = "spin"
+frame = 2
+frame_progress = 0.6571153
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5l8l0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0elyo")
