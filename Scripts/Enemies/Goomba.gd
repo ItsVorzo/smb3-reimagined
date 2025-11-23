@@ -1,6 +1,7 @@
 extends EnemyClass
 
 @export var wings := false
+var had_wings := false
 @export var micro_goombas := "does nothing yet"
 @onready var r_wing = $RightWing
 @onready var l_wing = $LeftWing
@@ -27,7 +28,7 @@ func _physics_process(delta: float) -> void:
 
 	if stomped:
 		sprite.scale.x = direction
-		if not r_wing.hidden or not l_wing.hidden:
+		if had_wings:
 			sprite.play("parasquish")
 		else:
 			sprite.play("squish")
@@ -99,6 +100,7 @@ func on_stomped() -> void:
 	if velocity.y < 0:
 		velocity.y = 0
 	wings = false
+	had_wings = true
 	r_wing.hide()
 	l_wing.hide()
 	has_custom_stomp = false
