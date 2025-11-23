@@ -1,10 +1,14 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://c52ljitokec22"]
+[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://c52ljitokec22"]
 
 [ext_resource type="Texture2D" uid="uid://c6uvlkjutpv3y" path="res://Sprites/Characters/Mario/MarioFire.png" id="1_yxq6w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ksbbd"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ckd1"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_glx4g"]
 atlas = ExtResource("1_yxq6w")
@@ -110,6 +114,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ckd1")
+}],
+"loop": true,
+"name": &"fall",
 "speed": 5.0
 }, {
 "frames": [{

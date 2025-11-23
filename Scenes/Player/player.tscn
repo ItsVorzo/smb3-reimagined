@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://dku66u6sy4t54" path="res://Scripts/StateMachine/States/Slide.gd" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/Player/PowerUps.gd" id="6_yoq75"]
 [ext_resource type="Script" uid="uid://cauxcx0g3y4kc" path="res://Scenes/Player/FirePower.gd" id="7_06tpx"]
-[ext_resource type="SpriteFrames" uid="uid://dqfhw1wm7bnsa" path="res://SpriteFrames/Characters/Mario/Big.tres" id="8_06tpx"]
+[ext_resource type="SpriteFrames" uid="uid://c52ljitokec22" path="res://SpriteFrames/Characters/Mario/Fire.tres" id="8_06tpx"]
 [ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="8_oikmp"]
 [ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="13_miouo"]
 
@@ -67,7 +67,7 @@ tier = 2
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = ExtResource("8_06tpx")
-animation = &"idle"
+animation = &"fall"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
