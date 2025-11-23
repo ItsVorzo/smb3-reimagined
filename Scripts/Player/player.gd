@@ -329,6 +329,7 @@ func set_power_state(powerup: String) -> void:
 
 func handle_powerups(delta: float):
 	pwrup.physics_update(delta)
+	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 
 # === i frames ===
 func i_frames() -> void:
