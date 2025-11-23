@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
+@export_enum("Red", "Green") var color = "Red"
 @onready var area2d = $Area2D
+@onready var sprite = $AnimatedSprite2D
 
 func _ready() -> void:
+	sprite.play("Spin" + str(color))
 	area2d.body_entered.connect(kill)
 
 func kill(body: Node):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caeu2u4kqtl3s"
-path="res://.godot/imported/PiranhaPlant.png-b3ebb63fdad68516f134f2cc2ffa5270.ctex"
+uid="uid://bmpduehhpcvy4"
+path="res://.godot/imported/FireDarkPiranhaPlant.png-d2b8a4b0ce0da0cdd92410b0c6063c6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/PiranhaPlant.png"
-dest_files=["res://.godot/imported/PiranhaPlant.png-b3ebb63fdad68516f134f2cc2ffa5270.ctex"]
+source_file="res://Sprites/Enemies/FireDarkPiranhaPlant.png"
+dest_files=["res://.godot/imported/FireDarkPiranhaPlant.png-d2b8a4b0ce0da0cdd92410b0c6063c6c.ctex"]
 
 [params]
 

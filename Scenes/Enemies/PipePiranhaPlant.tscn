@@ -29,8 +29,8 @@ shape = SubResource("RectangleShape2D_sswme")
 z_index = -1
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_330me")
-animation = &"Chomp"
-autoplay = "Chomp"
+animation = &"ChompRed"
+autoplay = "ChompRed"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)

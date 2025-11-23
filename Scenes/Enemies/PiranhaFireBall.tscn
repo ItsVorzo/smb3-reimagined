@@ -1,7 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://c11kspgadrca5"]
+[gd_scene load_steps=14 format=3 uid="uid://c11kspgadrca5"]
 
 [ext_resource type="Script" uid="uid://cdp2cpeppdxoa" path="res://Scripts/Enemies/EnemyFireBall.gd" id="1_qaylt"]
-[ext_resource type="Texture2D" uid="uid://csiypondj8jo" path="res://Sprites/Effects/Bullet.png" id="2_a58xs"]
+[ext_resource type="Texture2D" uid="uid://c7fpg01am5gko" path="res://Sprites/Effects/Bullet.png" id="2_a58xs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaylt"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(34, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a58xs"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(42, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugsa4"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(50, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nlgg"]
+atlas = ExtResource("2_a58xs")
+region = Rect2(58, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qlu5"]
 atlas = ExtResource("2_a58xs")
@@ -23,6 +39,23 @@ region = Rect2(24, 0, 8, 8)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qaylt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a58xs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugsa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nlgg")
+}],
+"loop": true,
+"name": &"SpinGreen",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6qlu5")
 }, {
 "duration": 1.0,
@@ -35,7 +68,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_wtlre")
 }],
 "loop": true,
-"name": &"spin",
+"name": &"SpinRed",
 "speed": 10.0
 }]
 
@@ -49,13 +82,12 @@ size = Vector2(8, 8)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_qaylt")
+color = ["Red", "Green"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qhgku")
-animation = &"spin"
-autoplay = "spin"
-frame = 2
-frame_progress = 0.6571153
+animation = &"SpinGreen"
+autoplay = "SpinRed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5l8l0")

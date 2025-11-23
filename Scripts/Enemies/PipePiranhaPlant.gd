@@ -1,5 +1,6 @@
 extends EnemyClass
 
+@export_enum("Red", "Green") var color := "Red"
 @export var fire := false
 var max_height := 0.0
 var min_height := 0.0
@@ -8,11 +9,15 @@ var timer := 120
 var aim_timer := 60
 var has_shot = false
 var fireball_scene = preload("res://Scenes/Enemies/PiranhaFireBall.tscn")
-var aim_x_direction
-var aim_y_direction
+var aim_x_direction = 1
+var aim_y_direction = 1
 
 func _ready() -> void:
 	init()
+	if not fire:
+		sprite.play("Chomp" + color)
+	else:
+		sprite.play("Shoot" + color + str(aim_y_direction))
 	max_height = global_position.y
 	min_height = global_position.y + 24
 	global_position.y = min_height
@@ -32,8 +37,19 @@ func _physics_process(delta: float) -> void:
 		player_distance = dist
 
 	# Get the aiming
-	aim_y_direction = sign(GameManager.nearest_player(global_position).global_position.y - global_position.y)
-	aim_x_direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
+	if fire:
+		aim_y_direction = sign(GameManager.nearest_player(global_position).global_position.y - global_position.y)
+		aim_x_direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
+		sprite.scale.x = -aim_x_direction
+		if state != 2:
+			sprite.play("Shoot" + color + str(int(aim_y_direction)))
+		else:
+			if aim_timer > 0:
+				sprite.animation = "Shoot" + color + str(int(aim_y_direction))
+				sprite.frame = 1
+			else:
+				sprite.animation = "Shoot" + color + str(int(aim_y_direction))
+				sprite.frame = 0
 
 	match state:
 		# Wait inside of the pipe
@@ -86,6 +102,8 @@ func shoot_fireball():
 	var fireball = fireball_scene.instantiate()
 	fireball.velocity.x = 40 * aim_x_direction
 	fireball.velocity.y = 40 * aim_y_direction
+	fireball.color = color
+	fireball.z_index = 0
 	get_parent().add_child(fireball)
-	fireball.global_position.x = global_position.x
+	fireball.global_position.x = global_position.x + 4 * aim_x_direction
 	fireball.global_position.y = owner.global_position.y - 64
