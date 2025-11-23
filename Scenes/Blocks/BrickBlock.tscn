@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://gkuetip4jrov"]
+
+[ext_resource type="Script" uid="uid://de30uimqcbkwr" path="res://Scripts/BrickBlock.gd" id="1_2uf2c"]
+[ext_resource type="Texture2D" uid="uid://d3558kgmmu4ct" path="res://Sprites/Blocks/GeneralOverworld.png" id="1_uss16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc2eh"]
+atlas = ExtResource("1_uss16")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uf2c"]
+atlas = ExtResource("1_uss16")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn15h"]
+atlas = ExtResource("1_uss16")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rel7"]
+atlas = ExtResource("1_uss16")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol8t5"]
+atlas = ExtResource("1_uss16")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bc2eh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc2eh")
+}],
+"loop": true,
+"name": &"Activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uf2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn15h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rel7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol8t5")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uf2c"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kn15h"]
+size = Vector2(14, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rel7"]
+size = Vector2(16, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol8t5"]
+size = Vector2(18, 12)
+
+[node name="BrickBlock" type="StaticBody2D" node_paths=PackedStringArray("hitbox", "sidebox", "top_interaction", "sprite")]
+script = ExtResource("1_2uf2c")
+hitbox = NodePath("Hitbox")
+sidebox = NodePath("SideBox")
+top_interaction = NodePath("TopInteraction")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bc2eh")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2uf2c")
+
+[node name="TopInteraction" type="Area2D" parent="."]
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopInteraction"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_kn15h")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="Bottom" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_7rel7")
+
+[node name="SideBox" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="Sides" type="CollisionShape2D" parent="SideBox"]
+shape = SubResource("RectangleShape2D_ol8t5")

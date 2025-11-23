@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvsssurmdksb8"]
+
+[ext_resource type="Script" uid="uid://ctu4ux3su8jva" path="res://Scenes/Blocks/BrickDebris.gd" id="1_ojybb"]
+[ext_resource type="Texture2D" uid="uid://dhu3jxil13kh8" path="res://Sprites/Effects/BrickDebris.png" id="2_ktw52"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgo7j"]
+atlas = ExtResource("2_ktw52")
+region = Rect2(0, 0, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kps2c"]
+atlas = ExtResource("2_ktw52")
+region = Rect2(8, 0, 8, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dn2um"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgo7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kps2c")
+}],
+"loop": true,
+"name": &"Spin",
+"speed": 5.0
+}]
+
+[node name="BrickParticle" type="CharacterBody2D"]
+script = ExtResource("1_ojybb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dn2um")
+animation = &"Spin"
+autoplay = "Spin"
+frame_progress = 0.25979882

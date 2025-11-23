@@ -1,28 +1,16 @@
 extends BlockClass
 
-# === Block info ===
-@export var hitbox: Area2D = null
-@export var sidebox: Area2D = null
-@export var top_interaction: Area2D = null
-@export var sprite: Node = null
-@export var item: PackedScene = null
-var item_scene: Node
-const coin_scene = preload("res://Scenes/Items/coin.tscn")
-const mushroom_scene = preload("res://Scenes/Items/Mushroom.tscn")
-
 # === Block position/states ===
 var original_y_pos: float
 var yspd := 0.0
 var gravity := 1500.0
 var is_activated := false
 var is_used := false
+var brick_debris_scene = preload("res://Scenes/Blocks/BrickDebris.tscn")
 
-# === Set some important stuff
 func _ready() -> void:
-	add_to_group("Blocks")
+	super._ready()
 	original_y_pos = sprite.global_position.y
-	hitbox.body_entered.connect(activate)
-	sidebox.body_entered.connect(activate)
 
 # === Processing ===
 func _physics_process(delta: float) -> void:
@@ -40,12 +28,14 @@ func _physics_process(delta: float) -> void:
 	if sprite.global_position.y > original_y_pos:
 		sprite.global_position.y = original_y_pos
 		is_activated = false
-		is_used = true
+		if item != null:
+			is_used = true
 
 # === Activate the block
 func activate(body: Node) -> void:
 	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:
-		sprite.play("Activated")
+		if item != null:
+			sprite.play("Activated")
 		is_activated = true
 		yspd = -140.0
 
@@ -54,14 +44,18 @@ func activate(body: Node) -> void:
 			if obj != null:
 				block_top_interaction(obj)
 
-		# If there's nothing in the block, give a coin
 		if item == null:
+			if body.is_in_group("Player") and body.pwrup.name == "Big" or body.is_in_group("Shell"):
+				destroy()
+			else:
+				pass
+		elif item == coin_scene:
 			SoundManager.play_sfx("Coin", self.global_position)
 			item_scene = coin_scene.instantiate()
 			spawn_item()
 		# Else give a mushroom if you're small/there's a mushroom
 		else:
-			for p in get_tree().get_nodes_in_group("Player"):
+			for p in GameManager.get_players():
 				if p.pwrup.tier < 1 or item == mushroom_scene:
 					SoundManager.play_sfx("ItemPop", self.global_position)
 					item_scene = mushroom_scene.instantiate()
@@ -73,7 +67,7 @@ func activate(body: Node) -> void:
 					spawn_item()
 
 # Item pop sound effect
-func spawn_item():
+func spawn_item() -> void:
 	item_scene.default_z_index = item_scene.z_index # Get the original z index
 	item_scene.from_block = true 
 	item_scene.global_position.x = self.global_position.x
@@ -84,8 +78,38 @@ func spawn_item():
 	if item_scene.get("direction") != null:
 		item_scene.direction = -sign(GameManager.nearest_player(global_position).global_position.x - self.global_position.x)
 
-func block_top_interaction(body):
+func block_top_interaction(body) -> void:
 	if body.is_in_group("Enemies"):
 		body.dead_from_obj(body.direction, 60)
 	if body.is_in_group("Shell"):
 		body.die(body.direction, 60)
+
+func destroy() -> void:
+	SaveManager.add_score(100)
+	SoundManager.play_sfx("Break", global_position)
+	for i in range(4):
+		var part = brick_debris_scene.instantiate()
+		get_parent().add_child(part)
+
+		match i:
+			0:
+				part.global_position = Vector2(global_position.x - 4, global_position.y + 4)
+				part.direction = -1
+				part.jump_speed = -220.0
+				part.velocity.y = part.jump_speed
+			1:
+				part.global_position = Vector2(global_position.x - 4, global_position.y - 4)
+				part.direction = -1
+				part.jump_speed = -330.0
+				part.velocity.y = part.jump_speed
+			2:
+				part.global_position = Vector2(global_position.x + 4, global_position.y + 4)
+				part.direction = 1
+				part.jump_speed = -220.0
+				part.velocity.y = part.jump_speed
+			3:
+				part.global_position = Vector2(global_position.x + 4, global_position.y - 4)
+				part.direction = 1
+				part.jump_speed = -330.0
+				part.velocity.y = part.jump_speed
+	call_deferred("queue_free")
