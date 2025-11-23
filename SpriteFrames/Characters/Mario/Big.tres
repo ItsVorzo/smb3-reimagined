@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://dqfhw1wm7bnsa"]
+[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://dqfhw1wm7bnsa"]
 
 [ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="1_scpvm"]
 
@@ -77,6 +77,10 @@ region = Rect2(224, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_myhqk"]
 atlas = ExtResource("1_scpvm")
 region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsjw5"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h251i"]
 atlas = ExtResource("1_scpvm")
@@ -215,6 +219,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsjw5")
+}],
+"loop": true,
+"name": &"shoot",
 "speed": 5.0
 }, {
 "frames": [{

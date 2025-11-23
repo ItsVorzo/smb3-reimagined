@@ -9,6 +9,7 @@ var center_x = 0.0
 var center_y = 0.0
 var shift_x: float = 0.0
 var shift_y: float = 0.0
+var side_margin: float = 8.0
 var top_margin: float = 84.0
 var bottom_margin: float = -40.0
 
@@ -32,11 +33,13 @@ func _process(_delta: float) -> void:
 		0: # off
 			shift_x = 0
 		1: # fixed panning
-			if abs(Plr.velocity.x) > 0:
-				shift_x = move_toward(shift_x, 30.0 * Plr.facing_direction, 0.8)
+			side_margin = 0.0
+			if abs(Plr.velocity.x) > 30:
+				shift_x = move_toward(shift_x, 30.0 * Plr.facing_direction, 0.4)
 			elif Plr.velocity.x == 0:
-				shift_x = move_toward(shift_x, 0, 0.5)
+				shift_x = move_toward(shift_x, 0, 0.4)
 		2: # smooth panning
+			side_margin = 0.0
 			if abs(Plr.velocity.x) > 0:
 				shift_x = lerp(shift_x, Plr.velocity.x / 5.0, 0.1)
 			elif Plr.velocity.x == 0:
@@ -51,13 +54,19 @@ func _process(_delta: float) -> void:
 	for p in players:
 		if p.player_id == 0:
 			# Move the camera horizontally
-			camera_x = clamp(p.global_position.x + shift_x, camlimit_left.position.x + center_x, camlimit_right.position.x - center_x)
+			var final_x_pos = global_position.x
+			if p.global_position.x < global_position.x - side_margin:
+				final_x_pos = p.global_position.x + side_margin
+			if p.global_position.x > global_position.x + side_margin:
+				final_x_pos = p.global_position.x - side_margin
+			
+			camera_x = clamp(final_x_pos + shift_x, camlimit_left.position.x + center_x, camlimit_right.position.x - center_x)
 
 			# Move the camera vertically
 			var final_y_pos = global_position.y
 			if p.p_meter >= p.p_meter_max:
 				if p.global_position.y < global_position.y - top_margin:
-					final_y_pos = p.position.y + top_margin
+					final_y_pos = p.global_position.y + top_margin
 			if p.global_position.y > global_position.y + bottom_margin:
 				final_y_pos = p.global_position.y - bottom_margin
 
