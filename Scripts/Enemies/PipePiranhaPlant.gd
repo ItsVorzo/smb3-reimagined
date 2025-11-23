@@ -57,7 +57,6 @@ func _physics_process(delta: float) -> void:
 
 		# Wait outside of the pipe
 		2:
-			print(aim_y_direction)
 			if not fire:
 				if timer > 0:
 					timer -= 1

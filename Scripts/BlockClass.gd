@@ -1,10 +1,9 @@
-class_name block
-extends CharacterBody2D
+extends BlockClass
 
 # === Block info ===
 @export var hitbox: Area2D = null
 @export var sidebox: Area2D = null
-@onready var top_interaction: Area2D = $TopInteraction
+@export var top_interaction: Area2D = null
 @export var sprite: Node = null
 @export var item: PackedScene = null
 var item_scene: Node
@@ -44,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		is_used = true
 
 # === Activate the block
-func activate(body: Node):
+func activate(body: Node) -> void:
 	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:
 		sprite.play("Activated")
 		is_activated = true
@@ -59,22 +58,22 @@ func activate(body: Node):
 		if item == null:
 			SoundManager.play_sfx("Coin", self.global_position)
 			item_scene = coin_scene.instantiate()
-			spawn_item(body)
+			spawn_item()
 		# Else give a mushroom if you're small/there's a mushroom
 		else:
 			for p in get_tree().get_nodes_in_group("Player"):
 				if p.pwrup.tier < 1 or item == mushroom_scene:
 					SoundManager.play_sfx("ItemPop", self.global_position)
 					item_scene = mushroom_scene.instantiate()
-					spawn_item(body)
+					spawn_item()
 				# Cooler powerup
 				else:
 					SoundManager.play_sfx("ItemPop", self.global_position)
 					item_scene = item.instantiate()
-					spawn_item(body)
+					spawn_item()
 
 # Item pop sound effect
-func spawn_item(body: Node):
+func spawn_item():
 	item_scene.default_z_index = item_scene.z_index # Get the original z index
 	item_scene.from_block = true 
 	item_scene.global_position.x = self.global_position.x
@@ -83,7 +82,7 @@ func spawn_item(body: Node):
 	item_scene.z_index = self.z_index - 1 # Draw it behind the block
 	# If the item has got a direction variable, make it go to the opposite direction
 	if item_scene.get("direction") != null:
-		item_scene.direction = -sign(body.global_position.x - self.global_position.x)
+		item_scene.direction = -sign(GameManager.nearest_player(global_position).global_position.x - self.global_position.x)
 
 func block_top_interaction(body):
 	if body.is_in_group("Enemies"):

@@ -45,6 +45,7 @@ func _pop_animation() -> void:
 	var peak_y = start_y - 48  # ↑ 48px jump
 	tween.tween_property(self, "global_position:y", peak_y, 0.24).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "global_position:y", start_y, 0.24).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	_add_coin_to_hud()
 	tween.tween_callback(queue_free)
 
 
