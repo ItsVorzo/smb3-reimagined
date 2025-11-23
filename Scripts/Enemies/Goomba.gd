@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 
 	if stomped:
 		sprite.scale.x = direction
-		if not r_wing.hidden or l_wing.hidden:
+		if not r_wing.hidden or not l_wing.hidden:
 			sprite.play("parasquish")
 		else:
 			sprite.play("squish")
