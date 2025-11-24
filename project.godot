@@ -15,6 +15,10 @@ run/main_scene="uid://10y41hjhegda"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/autoload_on_startup=false
+
 [autoload]
 
 GlobalAudio="*res://Scripts/Game/GlobalAudio.gd"

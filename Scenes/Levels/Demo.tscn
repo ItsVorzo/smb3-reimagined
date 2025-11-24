@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=38 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -24,12 +24,9 @@
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="25_1i5or"]
-[ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/BigGoomba.tscn" id="26_gsh3y"]
-[ext_resource type="PackedScene" uid="uid://cufxcbcr83crp" path="res://Scenes/Enemies/BigGPiranhaPlant.tscn" id="27_xyty3"]
+[ext_resource type="PackedScene" uid="uid://gkuetip4jrov" path="res://Scenes/Blocks/BrickBlock.tscn" id="26_xyty3"]
+[ext_resource type="PackedScene" uid="uid://lpfpxsvrvv22" path="res://Scenes/Blocks/PSwitch.tscn" id="27_se0gi"]
 [ext_resource type="PackedScene" uid="uid://dxipgbg180h01" path="res://Scenes/Enemies/Roto_Disc.tscn" id="28_a2q5g"]
-[ext_resource type="PackedScene" uid="uid://drte2yomf8eml" path="res://Scenes/Enemies/BigRPiranhaPlant.tscn" id="28_se0gi"]
-[ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="29_x6ddr"]
-[ext_resource type="PackedScene" uid="uid://cqq5r4nvtqnpu" path="res://Scenes/Enemies/PipePiranhaPlant.tscn" id="30_x0qbb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -192,49 +189,10 @@ position = Vector2(234, 150)
 position = Vector2(1088, -8)
 
 [node name="Area2D" parent="." instance=ExtResource("25_1i5or")]
-position = Vector2(399, -34)
+position = Vector2(492, -100)
 
-[node name="BigGPiranhaPlant" parent="." instance=ExtResource("27_xyty3")]
-position = Vector2(776, -8)
+[node name="BrickBlock" parent="." instance=ExtResource("26_xyty3")]
+position = Vector2(565, -127)
 
-[node name="BigRPiranhaPlant" parent="." instance=ExtResource("28_se0gi")]
-position = Vector2(688, -8)
-
-[node name="BigRPiranhaPlant2" parent="." instance=ExtResource("28_se0gi")]
-position = Vector2(824, -8)
-
-[node name="BigGoomba" parent="." instance=ExtResource("26_gsh3y")]
-position = Vector2(496, -16)
-
-[node name="Koopa" parent="." instance=ExtResource("29_x6ddr")]
-position = Vector2(736, -120)
-color = "Red"
-wings = true
-
-[node name="PipePiranhaPlant" parent="." instance=ExtResource("30_x0qbb")]
-position = Vector2(432, -56)
-
-[node name="PipePiranhaPlant2" parent="." instance=ExtResource("30_x0qbb")]
-position = Vector2(464, -56)
-fire = true
-
-[node name="Goomba" parent="." instance=ExtResource("22_x62f6")]
-position = Vector2(600, -8)
-wings = true
-
-[node name="Goomba2" parent="." instance=ExtResource("22_x62f6")]
-position = Vector2(552, -8)
-
-[node name="Koopa2" parent="." instance=ExtResource("29_x6ddr")]
-position = Vector2(920, -8)
-wings = true
-
-[node name="Koopa3" parent="." instance=ExtResource("29_x6ddr")]
-position = Vector2(960, -8)
-wings = true
-
-[node name="Koopa4" parent="." instance=ExtResource("29_x6ddr")]
-position = Vector2(1000, -8)
-
-[node name="Koopa5" parent="." instance=ExtResource("29_x6ddr")]
-position = Vector2(1040, -8)
+[node name="PSwitch" parent="." instance=ExtResource("27_se0gi")]
+position = Vector2(609, -93)

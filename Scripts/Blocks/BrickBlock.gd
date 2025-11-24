@@ -9,6 +9,8 @@ var is_used := false
 var brick_debris_scene = preload("res://Scenes/Blocks/BrickDebris.tscn")
 
 func _ready() -> void:
+	GameManager.p_switch_activated.connect(_on_switch_on)
+	GameManager.p_switch_expired.connect(_on_switch_off)
 	super._ready()
 	original_y_pos = sprite.global_position.y
 
@@ -31,6 +33,16 @@ func _physics_process(delta: float) -> void:
 		if item != null:
 			is_used = true
 
+
+func _on_switch_on():
+	# Replace this brick with a coin
+	var coin = coin_scene.instantiate()
+	coin.global_position = global_position
+	get_parent().add_child(coin)
+	queue_free()
+
+func _on_switch_off():
+	pass
 # === Activate the block
 func activate(body: Node) -> void:
 	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:

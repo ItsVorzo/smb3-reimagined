@@ -3,6 +3,7 @@ extends Node2D
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coin_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
+@export var brick_scene: PackedScene
 
 var from_block := false
 var collected := false
@@ -10,6 +11,8 @@ var default_z_index := 0
 
 
 func _ready() -> void:
+	GameManager.p_switch_activated.connect(_on_switch_on)
+	GameManager.p_switch_expired.connect(_on_switch_off)
 	if from_block:
 		_pop_animation()
 		anim_sprite.play("item_box", 2)
@@ -36,6 +39,16 @@ func _on_body_entered(body: Node) -> void:
 	# Remove once sound finishes (~0.88s)
 	await get_tree().create_timer(0.88).timeout
 	queue_free()
+
+func _on_switch_on():
+	# Replace this coin with a brick
+	var brick = brick_scene.instantiate()
+	brick.global_position = global_position
+	get_parent().add_child(brick)
+	queue_free()
+	
+func _on_switch_off():
+	pass
 
 
 func _pop_animation() -> void:
