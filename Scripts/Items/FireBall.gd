@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_wall() or not GameManager.is_on_screen(global_position):
 		if is_on_wall():
+			smoke_effect(global_position)
 			SoundManager.play_sfx("Hit", global_position)
 		queue_free()
 
@@ -26,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 func kill(body: Node):
 
+	smoke_effect(body.global_position)
 	if body.is_in_group("Enemies") and body.can_die_from_fire:
 		body.die_from_obj(direction, 60)
 	elif body.is_in_group("Shell"):
@@ -35,3 +37,9 @@ func kill(body: Node):
 		SoundManager.play_sfx("Hit", global_position)
 
 	queue_free()
+
+func smoke_effect(pos) -> void:
+	var smoke_effect_scene = preload("res://Scenes/Effects/SmokeEffect.tscn")
+	var smoke_fx = smoke_effect_scene.instantiate()
+	smoke_fx.global_position = pos
+	get_parent().add_child(smoke_fx)

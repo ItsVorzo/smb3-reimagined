@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="25_apbsp"]
 [ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="26_3ugbu"]
 [ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="26_4l0o0"]
-[ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="28_1vwdc"]
+[ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/Coin.tscn" id="28_1vwdc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("4_tn8g8")

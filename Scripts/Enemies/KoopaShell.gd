@@ -96,6 +96,7 @@ func shell_damage(body: Node):
 		if body.is_in_group("Shell"):
 			body.die(-direction)
 		else:
+			impact_effect(body.global_position)
 			body.die_from_obj(-direction)
 
 	# Kill while spinning
@@ -104,6 +105,7 @@ func shell_damage(body: Node):
 		if body.is_in_group("Shell"):
 			body.die(direction)
 		else:
+			impact_effect(body.global_position)
 			body.die_from_obj(direction)
 
 # === Basically die_from_obj but for shells ===
@@ -118,3 +120,10 @@ func die(dir := 1, spd := 130):
 	hurtbox.set_deferred("monitoring", false)
 	stomparea.set_deferred("monitoring", false)
 	grabbox.set_deferred("monitoring", false)
+
+func impact_effect(pos) -> void:
+	var impact_effect_scene = preload("res://Scenes/Enemies/BoomEffect.tscn")
+	var impact_fx = impact_effect_scene.instantiate()
+	impact_fx.global_position = pos
+	print(pos)
+	get_parent().add_child(impact_fx)

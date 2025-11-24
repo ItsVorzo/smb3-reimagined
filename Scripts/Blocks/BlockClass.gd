@@ -7,7 +7,7 @@ extends StaticBody2D
 @export var sprite: Node = null
 @export var item: PackedScene = null
 var item_scene: Node
-const coin_scene = preload("res://Scenes/Items/coin.tscn")
+const coin_scene = preload("res://Scenes/Items/Coin.tscn")
 const mushroom_scene = preload("res://Scenes/Items/Mushroom.tscn")
 
 # Called when the node enters the scene tree for the first time.

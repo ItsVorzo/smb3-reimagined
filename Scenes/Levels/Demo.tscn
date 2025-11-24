@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=42 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -23,10 +23,14 @@
 [ext_resource type="PackedScene" uid="uid://d4l67y1jw8iwh" path="res://Scenes/Enemies/Ball.tscn" id="15_da70h"]
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
-[ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/coin.tscn" id="25_1i5or"]
+[ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/Coin.tscn" id="25_1i5or"]
 [ext_resource type="PackedScene" uid="uid://gkuetip4jrov" path="res://Scenes/Blocks/BrickBlock.tscn" id="26_xyty3"]
 [ext_resource type="PackedScene" uid="uid://lpfpxsvrvv22" path="res://Scenes/Blocks/PSwitch.tscn" id="27_se0gi"]
 [ext_resource type="PackedScene" uid="uid://dxipgbg180h01" path="res://Scenes/Enemies/Roto_Disc.tscn" id="28_a2q5g"]
+[ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="28_se0gi"]
+[ext_resource type="PackedScene" uid="uid://dejhtq47ffem4" path="res://Scenes/Enemies/BigGoomba.tscn" id="29_wj4uq"]
+[ext_resource type="PackedScene" uid="uid://cufxcbcr83crp" path="res://Scenes/Enemies/BigGPiranhaPlant.tscn" id="30_vp4vu"]
+[ext_resource type="PackedScene" uid="uid://drte2yomf8eml" path="res://Scenes/Enemies/BigRPiranhaPlant.tscn" id="31_cjm55"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -195,4 +199,19 @@ position = Vector2(492, -100)
 position = Vector2(565, -127)
 
 [node name="PSwitch" parent="." instance=ExtResource("27_se0gi")]
-position = Vector2(609, -93)
+position = Vector2(604, -104)
+
+[node name="Koopa" parent="." instance=ExtResource("28_se0gi")]
+position = Vector2(580, -8)
+
+[node name="Goomba" parent="." instance=ExtResource("22_x62f6")]
+position = Vector2(508, -8)
+
+[node name="BigGoomba" parent="." instance=ExtResource("29_wj4uq")]
+position = Vector2(668, -16)
+
+[node name="BigGPiranhaPlant" parent="." instance=ExtResource("30_vp4vu")]
+position = Vector2(708, -8)
+
+[node name="BigRPiranhaPlant" parent="." instance=ExtResource("31_cjm55")]
+position = Vector2(812, -8)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c56pd3aj6cm0a"]
+
+[ext_resource type="Script" uid="uid://bwep3irq7qx8h" path="res://Scripts/Enemies/BoomEffect.gd" id="1_1qj6a"]
+[ext_resource type="Texture2D" uid="uid://bse0m1wbehjsy" path="res://Sprites/Effects/Impact.png" id="1_dijyl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77eiq"]
+atlas = ExtResource("1_dijyl")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnyb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77eiq")
+}],
+"loop": true,
+"name": &"Boom",
+"speed": 5.0
+}]
+
+[node name="BoomEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_pnyb7")
+animation = &"Boom"
+autoplay = "Boom"
+script = ExtResource("1_1qj6a")
