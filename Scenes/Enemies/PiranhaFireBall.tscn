@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c11kspgadrca5"]
+[gd_scene load_steps=15 format=3 uid="uid://c11kspgadrca5"]
 
 [ext_resource type="Script" uid="uid://cdp2cpeppdxoa" path="res://Scripts/Enemies/EnemyFireBall.gd" id="1_qaylt"]
 [ext_resource type="Texture2D" uid="uid://c7fpg01am5gko" path="res://Sprites/Effects/Bullet.png" id="2_a58xs"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_a58xs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qaylt"]
 atlas = ExtResource("2_a58xs")
@@ -82,7 +83,6 @@ size = Vector2(8, 8)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_qaylt")
-color = ["Red", "Green"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qhgku")
@@ -98,3 +98,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_0elyo")
+
+[node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("3_a58xs")
