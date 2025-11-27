@@ -82,5 +82,8 @@ func on_stomped() -> void:
 		r_wing.hide()
 
 func reset_enemy() -> void:
+	if had_wings:
+		wings = true
+		had_wings = false
 	_ready()
 	timer = 0.0

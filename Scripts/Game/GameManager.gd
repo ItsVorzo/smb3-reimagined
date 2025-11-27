@@ -34,13 +34,6 @@ func _process(_delta: float) -> void:
 			enemy.visible = true
 			enemy.process_mode = Node.PROCESS_MODE_INHERIT
 
-	# Ignore this for a while
-	for enemy in shells:
-		if not GameManager.is_on_screen(enemy.global_position):
-			enemy.process_mode = Node.PROCESS_MODE_DISABLED
-		else:
-			enemy.process_mode = Node.PROCESS_MODE_INHERIT
-
 	if Input.is_action_just_pressed("ui_accept"):
 		if ConfigManager.option_indices["Size"] == 0:
 			ConfigManager.option_indices["Size"] = 1
