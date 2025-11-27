@@ -12,7 +12,7 @@ func kill(body: Node):
 	if body.is_in_group("Player"):
 		body.damage()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not GameManager.is_on_screen(global_position):
 		queue_free()
 	move_and_slide()

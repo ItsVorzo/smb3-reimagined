@@ -3,19 +3,39 @@ extends Node
 var p_meter := [] # Access everyone's p meter globally
 var p_meter_max := 70
 
-signal p_switch_activated
-signal p_switch_expired
+@warning_ignore("unused_signal") signal p_switch_activated
+@warning_ignore("unused_signal") signal p_switch_expired
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	var shells = get_tree().get_nodes_in_group("Shell")
 	var objects = enemies + shells
+
+	# Handle enemy spawning and despwning
 	for enemy in objects:
+		# Disable enemies when offscreen
+		if not GameManager.is_on_screen(enemy.global_position, 32, 32):
+			enemy.process_mode = Node.PROCESS_MODE_DISABLED
+			enemy.visible = false
+		# Enable respawns when you're far from the enemy spawn point
+		if not enemy.visible and not GameManager.is_on_screen(enemy.og_spawn_position, 8, 8):
+			enemy.can_respawn = true
+
+		# Respawn and reset enemies when you go near the spawn point again
+		if not enemy.visible and enemy.can_respawn and GameManager.is_on_screen(enemy.og_spawn_position, 8, 8):
+			if enemy.is_in_group("Enemies"):
+				var spawn_pos = enemy.og_spawn_position
+				enemy.global_position = spawn_pos
+			enemy.can_respawn = false
+			enemy.reset_enemy()
+			enemy.visible = true
+			enemy.process_mode = Node.PROCESS_MODE_INHERIT
+
+	# Ignore this for a while
+	for enemy in shells:
 		if not GameManager.is_on_screen(enemy.global_position):
 			enemy.process_mode = Node.PROCESS_MODE_DISABLED
 		else:

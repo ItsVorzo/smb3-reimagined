@@ -18,11 +18,16 @@ var can_stomp := false
 var stomped := false
 var direction: int
 var score_value = 100
+var og_spawn_position
+var can_respawn := false
 
 # === SUPER IMPORTANT DON'T FORGET THIS ===
 func init() -> void:
-	add_to_group("Enemies")
-	if stompbox != null: stompbox.body_entered.connect(stomp_the_enemy)
+	og_spawn_position = global_position
+	if not is_in_group("Enemies"):
+		add_to_group("Enemies")
+	if stompbox != null and not stompbox.body_entered.is_connected(stomp_the_enemy):
+			stompbox.body_entered.connect(stomp_the_enemy)
 	direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
 
 # === Some SUPER IMPORTANT enemy logic ===
@@ -35,6 +40,8 @@ func process(delta: float) -> void:
 		hurtbox.monitoring = false
 		if sprite: sprite.rotation += 0.3 * direction
 		velocity.y += grav_speed * delta
+		if not GameManager.is_on_screen(global_position):
+			queue_free()
 
 	# Damage the player
 	if hurtbox.monitoring:
@@ -115,3 +122,7 @@ func player_interaction(body: Node) -> void:
 		die_from_obj(body.velocity_direction)
 	elif body.can_take_damage:
 		body.damage()
+
+# === Reset any enemy variable you want with this function ===
+func reset_enemy() -> void:
+	pass

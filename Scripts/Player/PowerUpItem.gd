@@ -15,7 +15,7 @@ func _ready() -> void:
 		target_y = self.global_position.y - 10
 	pick_up_area.body_entered.connect(body_entered)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if from_block:
 		from_block_anim()
 	else:

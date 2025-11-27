@@ -17,7 +17,7 @@ func _ready() -> void:
 	if not fire:
 		sprite.play("Chomp" + color)
 	else:
-		sprite.play("Shoot" + color + str(aim_y_direction))
+		sprite.play("Shoot" + color + str(int(aim_y_direction)))
 	max_height = global_position.y
 	min_height = global_position.y + 24
 	global_position.y = min_height
@@ -107,3 +107,12 @@ func shoot_fireball():
 	get_parent().add_child(fireball)
 	fireball.global_position.x = global_position.x + 4 * aim_x_direction
 	fireball.global_position.y = owner.global_position.y - 64
+
+func reset_enemy() -> void:
+	_ready()
+	state = 0
+	timer = 120
+	aim_timer = 60
+	has_shot = false
+	aim_x_direction = 1
+	aim_y_direction = 1

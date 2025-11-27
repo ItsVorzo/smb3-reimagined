@@ -25,7 +25,7 @@ can_die_from_slide = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_grha8")
-animation = &"Chomp"
+animation = &"ChompRed"
 autoplay = "Chomp"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]

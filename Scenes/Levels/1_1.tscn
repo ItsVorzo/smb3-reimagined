@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://fmfeiihxihvg"]
+[gd_scene load_steps=28 format=4 uid="uid://fmfeiihxihvg"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -8,22 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
 [ext_resource type="TileSet" uid="uid://08ekcyit34ot" path="res://SpriteFrames/Overworld/Semisolid.tres" id="7_gw30q"]
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
-[ext_resource type="Script" uid="uid://cvrq4wofjeyst" path="res://Scripts/Enemies/ball.gd" id="8_fxiy1"]
 [ext_resource type="Texture2D" uid="uid://c1n8cgqsfvhww" path="res://Sprites/Tilesets/EndTiles.png" id="8_xecmd"]
 [ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="9_fxiy1"]
-[ext_resource type="Texture2D" uid="uid://brxjytb8l6qlc" path="res://Sprites/Enemies/Ptooie.png" id="9_x8ai0"]
 [ext_resource type="PackedScene" uid="uid://cxkafas67lmod" path="res://Scenes/Player/cameralimitright.tscn" id="10_28jxv"]
 [ext_resource type="PackedScene" uid="uid://bfjxybinsknj5" path="res://Scenes/Player/cameralimitleft.tscn" id="10_ftxpn"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="10_x1pt7"]
-[ext_resource type="PackedScene" uid="uid://whn1nrkohgb4" path="res://Scenes/Enemies/PiranhaPlant.tscn" id="11_da70h"]
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="11_saxwf"]
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="11_xecmd"]
-[ext_resource type="PackedScene" uid="uid://bik6sni4rqmu" path="res://Scenes/Enemies/Spiny.tscn" id="12_73wy6"]
-[ext_resource type="PackedScene" uid="uid://dyhqqm7qv7alh" path="res://Scenes/Enemies/Ptooie.tscn" id="13_73wy6"]
-[ext_resource type="Script" uid="uid://hrxxg0jgqpmg" path="res://Scripts/Enemies/PiranhaPlant.gd" id="13_x8ai0"]
-[ext_resource type="SpriteFrames" uid="uid://c13vlfydrqp7p" path="res://SpriteFrames/Enemies/Piranha_Plant.tres" id="14_da70h"]
 [ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
-[ext_resource type="PackedScene" uid="uid://d4l67y1jw8iwh" path="res://Scenes/Enemies/Ball.tscn" id="15_da70h"]
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_da70h"]
@@ -70,69 +62,6 @@ texture = ExtResource("8_xecmd")
 sources/0 = SubResource("TileSetAtlasSource_x1pt7")
 sources/1 = SubResource("TileSetAtlasSource_5tb3e")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_057ka"]
-atlas = ExtResource("9_x8ai0")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
-size = Vector2(10, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7role"]
-size = Vector2(20, 6)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
-size = Vector2(16, 13)
-
-[sub_resource type="PackedScene" id="PackedScene_330ea"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("Ball", "CharacterBody2D", "collision_layer", "collision_mask", "script", "collision", "hurtbox", "Area2D", "Area2D", "Sprite2D", "Sprite2D", "texture", "Collision", "CollisionShape2D", "shape", "StompBox", "Area2D", "collision_layer", "collision_mask", "CollisionShape2D", "CollisionShape2D", "position", "shape", "HurtBox", "Area2D", "position", "collision_layer", "collision_mask", "CollisionShape2D", "CollisionShape2D", "position", "shape"),
-"node_count": 8,
-"node_paths": [NodePath("."), NodePath("./Area2D"), NodePath("./Area2D"), NodePath("./Area2D"), NodePath("./Area2D/StompBox"), NodePath("./Area2D"), NodePath("./Area2D/HurtBox")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 4, 2, 1073741829, 3, 1073741830, 4, 0, 1073741824, 0, 8, 7, -1, 0, 0, 1073741825, 0, 10, 9, -1, 1, 11, 5, 0, 1073741826, 0, 13, 12, -1, 1, 14, 6, 0, 1073741827, 0, 16, 15, -1, 2, 17, 7, 18, 8, 0, 1073741828, 0, 20, 19, -1, 2, 21, 9, 22, 10, 0, 1073741829, 0, 24, 23, -1, 3, 25, 11, 26, 12, 27, 13, 0, 1073741830, 0, 29, 28, -1, 2, 30, 14, 31, 15, 0),
-"variants": [8, 9, ExtResource("8_fxiy1"), NodePath("Area2D/Collision"), NodePath("Area2D/HurtBox"), SubResource("AtlasTexture_057ka"), SubResource("RectangleShape2D_sswme"), 8, 3, Vector2(0, -7), SubResource("RectangleShape2D_7role"), Vector2(0, 26), 8, 3, Vector2(0, -24.5), SubResource("RectangleShape2D_057ka")],
-"version": 3
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1okno"]
-size = Vector2(10, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gewk7"]
-size = Vector2(8, 6)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcwik"]
-size = Vector2(10, 19)
-
-[sub_resource type="PackedScene" id="PackedScene_tn8g8"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("PiranhaPlant", "CharacterBody2D", "collision_layer", "collision_mask", "script", "collision", "hurtbox", "sprite", "can_die_from_slide", "AnimatedSprite2D", "AnimatedSprite2D", "z_index", "position", "sprite_frames", "animation", "autoplay", "DropShadow", "AnimatedSprite2D", "position", "script", "Collision", "CollisionShape2D", "shape", "StompBox", "Area2D", "collision_layer", "collision_mask", "CollisionShape2D", "CollisionShape2D", "position", "shape", "HurtBox", "Area2D", "position", "collision_layer", "collision_mask", "CollisionShape2D", "CollisionShape2D", "position", "shape"),
-"node_count": 8,
-"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("./StompBox"), NodePath("."), NodePath("./HurtBox")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 7, 2, 0, 3, 1, 4, 2, 1073741829, 3, 1073741830, 4, 1073741831, 5, 8, 6, 0, 1073741824, 0, 10, 9, -1, 5, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 0, 1073741825, 0, 17, 16, -1, 2, 18, 12, 19, 13, 0, 1073741826, 0, 21, 20, -1, 1, 22, 14, 0, 1073741827, 0, 24, 23, -1, 2, 25, 15, 26, 16, 0, 1073741828, 0, 28, 27, -1, 2, 29, 17, 30, 18, 0, 1073741829, 0, 32, 31, -1, 3, 33, 19, 34, 20, 35, 21, 0, 1073741830, 0, 37, 36, -1, 2, 38, 22, 39, 23, 0),
-"variants": [8, 9, ExtResource("13_x8ai0"), NodePath("Collision"), NodePath("HurtBox"), NodePath("AnimatedSprite2D"), false, -1, Vector2(0, -8), ExtResource("14_da70h"), &"Chomp", "Chomp", Vector2(0, -16), ExtResource("9_fxiy1"), SubResource("RectangleShape2D_1okno"), 8, 3, Vector2(0, -7), SubResource("RectangleShape2D_gewk7"), Vector2(0, 26), 8, 11, Vector2(0, -27.5), SubResource("RectangleShape2D_jcwik")],
-"version": 3
-}
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xv8io"]
-scenes/1/scene = SubResource("PackedScene_330ea")
-scenes/2/scene = ExtResource("30_x8ai0")
-scenes/3/scene = ExtResource("11_da70h")
-scenes/4/scene = SubResource("PackedScene_tn8g8")
-scenes/5/scene = ExtResource("12_73wy6")
-scenes/6/scene = ExtResource("13_73wy6")
-scenes/7/scene = ExtResource("15_da70h")
-scenes/8/scene = ExtResource("22_x62f6")
-
-[sub_resource type="TileSet" id="TileSet_fxiy1"]
-tile_shape = 2
-tile_layout = 1
-sources/0 = SubResource("TileSetScenesCollectionSource_xv8io")
-
 [node name="1-1" type="Node2D"]
 script = ExtResource("1_q0pi4")
 
@@ -166,9 +95,6 @@ tile_set = ExtResource("6_gw30q")
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="TerrainTileMap"]
 script = ExtResource("9_fxiy1")
-
-[node name="Enemies" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_fxiy1")
 
 [node name="CameraLimitLeft" parent="." instance=ExtResource("10_ftxpn")]
 position = Vector2(256, -10)
@@ -218,7 +144,7 @@ position = Vector2(260, 149)
 [node name="HUD" parent="." instance=ExtResource("14_noyq2")]
 
 [node name="Koopa6" parent="." instance=ExtResource("26_da70h")]
-position = Vector2(840, -41)
+position = Vector2(840, -56)
 color = "Red"
 
 [node name="QuestionBlock" parent="." instance=ExtResource("27_fxiy1")]
@@ -429,7 +355,3 @@ position = Vector2(2072, -312)
 
 [node name="Area2D23" parent="." instance=ExtResource("32_330ea")]
 position = Vector2(2104, -280)
-
-[node name="BrickBlock" parent="." instance=ExtResource("31_da70h")]
-position = Vector2(424, -56)
-item = ExtResource("32_330ea")

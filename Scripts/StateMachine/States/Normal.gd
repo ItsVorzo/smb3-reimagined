@@ -86,9 +86,9 @@ func handle_animation():
 				player.animated_sprite.play("run", 7)
 		else:
 			if player.p_meter < player.p_meter_max:
-				if player.velocity.y < 0 or player.pwrup.name == "Small":
+				if player.velocity.y < 0:
 					player.animated_sprite.play("jump")
-				else:
+				elif player.pwrup.name == "Big":
 					player.animated_sprite.play("fall")
 			else:
 				player.animated_sprite.play("fly")

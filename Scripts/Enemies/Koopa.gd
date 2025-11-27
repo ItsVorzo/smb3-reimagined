@@ -4,6 +4,7 @@ extends EnemyClass
 @export var wings := false
 @onready var r_wing = $RightWing
 @onready var ledgecheck = $LedgeCheck
+var had_wings := false
 var start_y
 var jump_speed = -155.0
 var timer := 0.0
@@ -67,6 +68,8 @@ func on_stomped() -> void:
 	if not wings:
 		var shell = load("res://Scenes/Enemies/KoopaShell.tscn").instantiate()
 		shell.global_position = global_position
+		shell.shell_owner_spawn_pos = og_spawn_position
+		shell.had_wings = had_wings
 		shell.color = color
 		get_parent().call_deferred("add_child", shell)
 		queue_free()
@@ -74,5 +77,10 @@ func on_stomped() -> void:
 		if velocity.y < 0:
 			velocity.y = 0
 		wings = false
+		had_wings = true
 		r_wing.stop()
 		r_wing.hide()
+
+func reset_enemy() -> void:
+	_ready()
+	timer = 0.0

@@ -20,7 +20,7 @@ func _ready() -> void:
 		anim_sprite.play("collectable")
 	connect("body_entered", _on_body_entered)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not from_block:
 		z_index = default_z_index
 

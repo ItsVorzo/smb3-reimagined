@@ -11,6 +11,10 @@ extends CharacterBody2D
 @onready var grabbox := $Grabbox
 @onready var sprite := $AnimatedSprite2D
 @onready var collision := $Collision
+var koopa_scene = preload("res://Scenes/Enemies/Koopa.tscn")
+var had_wings := false
+var og_spawn_position
+var shell_owner_spawn_pos
 var xspd := 180.0
 var added_xspd := 0.0
 var direction := 1
@@ -18,8 +22,13 @@ var gravity = 600.0
 var bounce_force = -80.0
 var can_bounce = false
 var is_dead := false
+var can_respawn := false
 
 func _ready() -> void:
+	if shell_owner_spawn_pos == null:
+		og_spawn_position = global_position
+	else:
+		og_spawn_position = shell_owner_spawn_pos
 	add_to_group("Shell")
 	hurtbox.body_entered.connect(shell_damage)
 	hurtbox.area_entered.connect(shell_damage)
@@ -31,6 +40,8 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		sprite.rotation += 0.3 * sign(velocity.x)
 		velocity.x = xspd * direction
+		if not GameManager.is_on_screen(global_position):
+			queue_free()
 
 	if grab.is_just_released:
 		can_bounce = true
@@ -127,3 +138,14 @@ func impact_effect(pos) -> void:
 	impact_fx.global_position = pos
 	print(pos)
 	get_parent().add_child(impact_fx)
+
+func reset_enemy() -> void:
+	if shell_owner_spawn_pos == null:
+		global_position = og_spawn_position
+	else:
+		var koopa = koopa_scene.instantiate()
+		koopa.color = color
+		koopa.global_position = shell_owner_spawn_pos
+		koopa.wings = had_wings
+		get_parent().call_deferred("add_child", koopa)
+		queue_free()

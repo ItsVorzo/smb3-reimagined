@@ -104,3 +104,11 @@ func on_stomped() -> void:
 	r_wing.hide()
 	l_wing.hide()
 	has_custom_stomp = false
+
+func reset_enemy() -> void:
+	if had_wings:
+		wings = true
+	_ready()
+	wait_timer = 0.0
+	jump_counter = 0
+	had_wings = false

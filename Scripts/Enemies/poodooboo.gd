@@ -15,8 +15,6 @@ func _ready() -> void:
 	init()
 
 func _physics_process(delta: float) -> void:
-	if stomped:
-		return
 
 	if not jumping:
 		jump_cooldown -= delta

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://04bdqd23u1ya"]
 
-[ext_resource type="Script" uid="uid://d3xafao12rhya" path="res://Lava.gd" id="1_c0pnw"]
+[ext_resource type="Script" path="res://Lava.gd" id="1_c0pnw"]
 [ext_resource type="Texture2D" uid="uid://bqnjjtvqejcyv" path="res://Sprites/Gizmos/Lava.png" id="2_c0pnw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7g3ft"]
@@ -45,12 +45,11 @@ size = Vector2(16, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g185b"]
 size = Vector2(16, 32)
 
-[node name="Lava" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite")]
+[node name="Lava" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
 z_index = 1
 script = ExtResource("1_c0pnw")
 collision = NodePath("Area2D/Collision")
 hurtbox = NodePath("Area2D/HurtBox")
-sprite = NodePath("")
 can_die_from_fire = false
 can_die_from_slide = false
 
