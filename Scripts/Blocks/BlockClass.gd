@@ -18,14 +18,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
-func activate(body: Node) -> void:
+func activate(_body: Node) -> void:
 	pass
 
 func spawn_item() -> void:
 	pass
 
-func block_top_interaction(body: Node) -> void:
+func block_top_interaction(_body: Node) -> void:
 	pass

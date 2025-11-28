@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ukxwymwh44b" path="res://Sprites/152106.png" id="3_noyq2"]
 [ext_resource type="TileSet" uid="uid://b01frtlkfgaka" path="res://SpriteFrames/Overworld/Overworld.tres" id="6_gw30q"]
 [ext_resource type="Texture2D" uid="uid://btu0wladbptrj" path="res://Sprites/Tilesets/BackgroundTiles.png" id="7_28jxv"]
-[ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
+[ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/Player.tscn" id="7_ftxpn"]
 [ext_resource type="TileSet" uid="uid://08ekcyit34ot" path="res://SpriteFrames/Overworld/Semisolid.tres" id="7_gw30q"]
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
 [ext_resource type="Script" uid="uid://cvrq4wofjeyst" path="res://Scripts/Enemies/ball.gd" id="8_fxiy1"]

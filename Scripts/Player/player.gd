@@ -48,8 +48,6 @@ var final_grav_speed: float
 var direction_allow := true
 var facing_direction := 1.0
 var velocity_direction := 0.0
-const coyote_time = 0.1
-const jump_buffer_time = 0.1
 
 var p_meter = 0.0
 var p_meter_max = 70.0
@@ -62,8 +60,6 @@ var shoot_timer := 0
 @onready var state_machine: StateMachine = $States
 @export var pwrup: PowerUps = null
 var current_grabbed_obj: Grabbable
-var jump_buffer_timer = 0.12
-var coyote_timer = 0.12
 var crouching := false
 var skidding = false
 var is_holding := false
@@ -85,16 +81,6 @@ func update_input_device(player_num: int):
 	else:
 		device = PlayerManager.get_player_device(player_num)
 	input = DeviceInput.new(device)
-
-# === Update the character index ===
-func char_idx() -> int:
-	return player_id
-
-func player_instance_exists(id: int) -> bool:
-	for player in get_tree().get_nodes_in_group("Player"):
-		if player.player_id == id:
-			return true
-	return false
 
 # === Apply unique physics ===
 func apply_physics(i:int) -> void:
@@ -124,13 +110,12 @@ func apply_physics(i:int) -> void:
 	high_gravity = PhysicsVal.high_gravity[i]
 
 func _ready() -> void:
-
 	# Disconnect controller
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 
 	# Character indexes will be handles differently
 	SaveManager.start_runtime_from_save(0) # 1st step to getting the character index
-	character_index = char_idx() # 2nd step
+	character_index = player_id # 2nd step
 
 	# Load the correct sprites
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
@@ -142,9 +127,8 @@ func _on_joy_connection_changed(device: int, connected: bool):
 	if not connected:
 		PlayerManager.leave_device(device)
 
-# === Physics ===
+# === Player logic ===
 func _physics_process(delta: float) -> void:
-
 	# Remove unused players
 	var device = PlayerManager.get_player_device(player_id)
 	if device == null:
@@ -154,53 +138,32 @@ func _physics_process(delta: float) -> void:
 
 	# Update input devices for local multiplayer
 	if PlayerManager.player_data and not input_disabled:
-		update_input_device(player_id) 
-
-	handle_powerups(delta)
-
-	# Change collision shapes
-	is_super = pwrup.tier >= 1
-	if not is_super or crouching:
-		normal_collision_shape.disabled = false
-		super_collision_shape.disabled = true
-	else:
-		normal_collision_shape.disabled = true
-		super_collision_shape.disabled = false
-
-	# Bump
-	if is_on_ceiling():
-		SoundManager.play_sfx("Hit", global_position)
+		update_input_device(player_id)
 
 	# If you're dead or no input device is detected return
 	if is_dead or not input:
 		return
 
-	# Reset skidding
-	if input_direction() == 0:
-		skidding = false
+	handle_powerups(delta)
+
+	# Bump
+	if is_on_ceiling():
+		SoundManager.play_sfx("Hit", global_position)
 
 	# === Set variables ===
 	max_speed = final_max_speed()
 	p_meter = handle_p_meter()
 	skidding = input_direction() != 0 and velocity_direction != 0 and input_direction() != velocity_direction and is_on_floor() and !crouching
+	animated_sprite.scale.x = sprite_direction()
+	velocity_direction = sign(velocity.x)
 	if skidding:
 		if skid_sfx.is_playing() == false:
 			skid_sfx.play()
 	else:
 		skid_sfx.stop()
-	animated_sprite.scale.x = sprite_direction()
-	velocity_direction = sign(velocity.x)
-
-	# === Timers ===
-	if not is_on_floor():
-		coyote_timer -= delta
-	else:
-		coyote_timer = coyote_time
-
-	if input.is_action_just_pressed("A"):
-		jump_buffer_timer = jump_buffer_time
-	else:
-		jump_buffer_timer -= 1
+	# Reset skidding
+	if input_direction() == 0:
+		skidding = false
 
 	# === Gravity and Jumping ===
 	if not is_on_floor():
@@ -212,17 +175,12 @@ func _physics_process(delta: float) -> void:
 	if input.is_action_just_pressed("A") and is_on_floor():
 		var final_jump_speed = floor(abs(velocity.x)/60)
 		velocity.y = jump_speeds[final_jump_speed]
-		SoundManager.play_sfx("JumpSmall", global_position)
-
-	# Player dies when you fall in a pit
-	if !is_dead && is_instance_valid(bottom_pit):
-		if global_position.y > bottom_pit.global_position.y + 54: die()
-
-	move_and_slide()
+		SoundManager.play_sfx("Jump", global_position)
 
 	if current_grabbed_obj == null:
 		is_holding = false
 
+	# Timers
 	if shoot_timer > 0:
 		if is_on_floor():
 			if animation_override != "shoot":
@@ -235,6 +193,12 @@ func _physics_process(delta: float) -> void:
 		if animation_override != "kick":
 			animation_override = "kick"
 		kick_timer -= 1
+
+	# Player dies when you fall in a pit
+	if not is_dead and is_instance_valid(bottom_pit):
+		if global_position.y > bottom_pit.global_position.y + 54: die()
+
+	move_and_slide()
 
 # === Get the input direction ===
 func input_direction() -> int:
@@ -258,13 +222,45 @@ func bounce_on_enemy() -> void:
 	else:
 		velocity.y = -180.0
 
+# === That's what I needed! ===
+func get_powerup(powerup := "") -> void:
+	var new_powerup: PowerUps = get_node("PowerUpStates/" + powerup)
+	if pwrup.tier > new_powerup.tier or pwrup == new_powerup:
+		SaveManager.add_score(100)
+		SoundManager.play_sfx("PowerUp", global_position)
+		return
+	await powerup_animation(powerup) # Wait for the animation
+	set_power_state(powerup) # Set new powerup
+
+# === Change powerup state ===
+func set_power_state(powerup: String) -> void:
+	if powerup in PowerUps.power_ups:
+		pwrup.exit()
+		pwrup = get_node("PowerUpStates/" + powerup)
+		pwrup.enter()
+	else:
+		push_error("Invalid powerup name! %s" % powerup)
+
+# === Powerup logic ===
+func handle_powerups(delta: float):
+	pwrup.physics_update(delta)
+	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+	# Change collision shapes
+	is_super = pwrup.tier >= 1
+	if not is_super or crouching:
+		normal_collision_shape.disabled = false
+		super_collision_shape.disabled = true
+	else:
+		normal_collision_shape.disabled = true
+		super_collision_shape.disabled = false
+
 # === DIE! ===
 func die() -> void:
 	if state_machine.state.name == "Die":
 		return
 	state_machine.change_state("Die")
 
-# === Deal damage ===
+# === Ouch :( ===
 func damage() -> void:
 	if not can_take_damage:
 		return
@@ -290,18 +286,6 @@ func damage() -> void:
 	i_frames()
 	return
 
-# === That's what I needed! ===
-func get_powerup(powerup := "") -> void:
-	var new_powerup: PowerUps = get_node("PowerUpStates/" + powerup)
-	if pwrup.tier > new_powerup.tier or pwrup == new_powerup:
-		SaveManager.runtime_data["score"] = SaveManager.runtime_data.get("score", 0) + 100
-		if SaveManager.hud and SaveManager.hud.has_method("update_labels"):
-			SaveManager.hud.update_labels()
-		SoundManager.play_sfx("PowerUp", global_position)
-		return
-	await powerup_animation(powerup) # Wait for the animation
-	set_power_state(powerup) # Set new powerup
-
 # === Powerup transformation ===
 func powerup_animation(powerup := "") -> void:
 	SoundManager.play_sfx("PowerUp", global_position)
@@ -318,18 +302,12 @@ func powerup_animation(powerup := "") -> void:
 	get_tree().paused = false
 	return
 
-# === Change powerup state ===
-func set_power_state(powerup: String) -> void:
-	if powerup in PowerUps.power_ups:
-		pwrup.exit()
-		pwrup = get_node("PowerUpStates/" + powerup)
-		pwrup.enter()
-	else:
-		push_error("Invalid powerup name! %s" % powerup)
-
-func handle_powerups(delta: float):
-	pwrup.physics_update(delta)
-	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+# === It's the super mario brother ===
+# animation_type = 0, damage animation
+# animation_type = 1, normal powerup animation
+# animation_type = 2, poof powerup animation
+func transform_animation(_animation_type := 1, _powerup := "") -> void:
+	pass
 
 # === i frames ===
 func i_frames() -> void:

@@ -88,7 +88,7 @@ func handle_animation():
 			if player.p_meter < player.p_meter_max:
 				if player.velocity.y < 0:
 					player.animated_sprite.play("jump")
-				elif player.pwrup.name == "Big":
+				elif player.is_super:
 					player.animated_sprite.play("fall")
 			else:
 				player.animated_sprite.play("fly")

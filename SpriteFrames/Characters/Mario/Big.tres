@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://dqfhw1wm7bnsa"]
+[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://dqfhw1wm7bnsa"]
 
 [ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="1_scpvm"]
 
@@ -93,6 +93,18 @@ region = Rect2(288, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qw56x"]
 atlas = ExtResource("1_scpvm")
 region = Rect2(256, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg2un"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls1hs"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cewqf"]
+atlas = ExtResource("1_scpvm")
+region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uro1n"]
 atlas = ExtResource("1_scpvm")
@@ -256,6 +268,20 @@ animations = [{
 "loop": true,
 "name": &"slide",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg2un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls1hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cewqf")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

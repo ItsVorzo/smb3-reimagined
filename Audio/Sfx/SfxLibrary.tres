@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SfxLibrary" load_steps=25 format=3 uid="uid://di0sp7ttn2y7q"]
+[gd_resource type="Resource" script_class="SfxLibrary" load_steps=24 format=3 uid="uid://di0sp7ttn2y7q"]
 
 [ext_resource type="Script" uid="uid://c0lws2bivphw2" path="res://Audio/Sfx/SfxLibrary.gd" id="1_o277h"]
 [ext_resource type="AudioStream" uid="uid://d3wf1plxut2y7" path="res://Audio/Sfx/1UP.wav" id="2_susbn"]
@@ -10,8 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="8_jjo2x"]
 [ext_resource type="AudioStream" uid="uid://bef0hapqcqi67" path="res://Audio/Sfx/Inventory.wav" id="9_6r24t"]
 [ext_resource type="AudioStream" uid="uid://dbjp0jc3b34fs" path="res://Audio/Sfx/ItemPop.wav" id="10_x455q"]
-[ext_resource type="AudioStream" uid="uid://0or4c25apxq5" path="res://Audio/Sfx/JumpBig.wav" id="11_vllr6"]
-[ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/JumpSmall.wav" id="12_at3l1"]
 [ext_resource type="AudioStream" uid="uid://dcobbmu165s6b" path="res://Audio/Sfx/Kick.wav" id="13_jjo2x"]
 [ext_resource type="AudioStream" uid="uid://c6avd3weoege1" path="res://Audio/Sfx/MapClear.mp3" id="14_mfkoy"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="15_oeb17"]
@@ -23,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://b2ieosmp4bkvs" path="res://Audio/Sfx/PowerUp.wav" id="21_4hfvl"]
 [ext_resource type="AudioStream" uid="uid://cg5ya16c3tbk1" path="res://Audio/Sfx/Skid.wav" id="22_1me08"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="23_pdfdx"]
+[ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/Jump.wav" id="23_tlm0s"]
 [ext_resource type="AudioStream" uid="uid://b5gghw0yl37mq" path="res://Audio/Sfx/Fireball.wav" id="24_4hfvl"]
 
 [resource]
@@ -38,8 +37,7 @@ sfx = {
 "Hit": ExtResource("8_jjo2x"),
 "Inventory": ExtResource("9_6r24t"),
 "ItemPop": ExtResource("10_x455q"),
-"JumpBig": ExtResource("11_vllr6"),
-"JumpSmall": ExtResource("12_at3l1"),
+"Jump": ExtResource("23_tlm0s"),
 "Kick": ExtResource("13_jjo2x"),
 "MapClear": ExtResource("14_mfkoy"),
 "MapMove": ExtResource("15_oeb17"),

@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cxkafas67lmod" path="res://Scenes/Player/cameralimitright.tscn" id="18_a4xpn"]
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="19_yhnqd"]
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="20_7jq2t"]
-[ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="23_8qeg6"]
+[ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/Player.tscn" id="23_8qeg6"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="24_gjds7"]
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="25_apbsp"]
 [ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="26_3ugbu"]

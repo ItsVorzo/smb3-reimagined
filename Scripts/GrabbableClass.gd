@@ -14,7 +14,7 @@ var default_z_index # The z index set by default
 var delay := 6 # Turn around animation delay
 var delaying := false 
 var last_facing_direction := 1.0 # This is used for the turning around animation
-var can_grab := true
+var can_grab := false
 var grab_delay := 0 # Frames in which you can't grab the object
 var is_grabbed := false
 var is_kicked := false
@@ -23,6 +23,7 @@ var is_just_released := false
 @warning_ignore("unused_signal") signal on_kicked
 
 func _ready() -> void:
+	grab_delay = 5
 	grabbox.body_entered.connect(grab)
 	default_z_index = owner.z_index # Get the default z index
 

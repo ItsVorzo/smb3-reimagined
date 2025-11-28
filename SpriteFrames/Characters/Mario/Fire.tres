@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://c52ljitokec22"]
+[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://c52ljitokec22"]
 
 [ext_resource type="Texture2D" uid="uid://c6uvlkjutpv3y" path="res://Sprites/Characters/Mario/MarioFire.png" id="1_yxq6w"]
 
@@ -13,6 +13,10 @@ region = Rect2(352, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_glx4g"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a384i"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hvdw6"]
 atlas = ExtResource("1_yxq6w")
@@ -45,6 +49,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3h8g"]
 atlas = ExtResource("1_yxq6w")
 region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4t53"]
+atlas = ExtResource("1_yxq6w")
+region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lsxh2"]
 atlas = ExtResource("1_yxq6w")
@@ -134,6 +142,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_a384i")
+}],
+"loop": true,
+"name": &"front_facing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hvdw6")
 }],
 "loop": true,
@@ -179,6 +195,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4t53")
+}],
+"loop": true,
+"name": &"kick",
 "speed": 5.0
 }, {
 "frames": [{

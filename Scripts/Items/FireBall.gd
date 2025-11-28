@@ -6,7 +6,6 @@ var direction := 1.0
 @onready var area2d = $Area2D
 
 func _ready() -> void:
-	$AnimatedSprite2D.play("spin")
 	area2d.body_entered.connect(kill)
 
 func _physics_process(delta: float) -> void:

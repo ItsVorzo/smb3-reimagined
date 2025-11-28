@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cxkafas67lmod" path="res://Scenes/Player/cameralimitright.tscn" id="18_gkx8x"]
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="19_p8i10"]
 [ext_resource type="Script" uid="uid://bss0wgcxwfixx" path="res://Scripts/Player/Camera.gd" id="20_g6ukg"]
-[ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="21_ne2m0"]
+[ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/Player.tscn" id="21_ne2m0"]
 [ext_resource type="AudioStream" uid="uid://pb52075hxihl" path="res://Audio/BGM/Overworld.ogg" id="22_frthx"]
 [ext_resource type="PackedScene" uid="uid://cbyfn4vsml8fn" path="res://Scenes/Backgrounds/Castle.tscn" id="24_05s0e"]
 [ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="24_eqt7r"]
