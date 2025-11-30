@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c68rgoirnvukf"
-path="res://.godot/imported/LuigiSmall.png-5731f4d4c5f88975b9fcac534ca4e2c1.ctex"
+uid="uid://cpas56qdmfsss"
+path="res://.godot/imported/MarioTanooki.png-2b1dbcd228151f629b5b0e475bd788fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/Luigi/LuigiSmall.png"
-dest_files=["res://.godot/imported/LuigiSmall.png-5731f4d4c5f88975b9fcac534ca4e2c1.ctex"]
+source_file="res://Sprites/Characters/Mario/MarioTanooki.png"
+dest_files=["res://.godot/imported/MarioTanooki.png-2b1dbcd228151f629b5b0e475bd788fa.ctex"]
 
 [params]
 

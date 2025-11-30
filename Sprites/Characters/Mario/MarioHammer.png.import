@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biavto5dup6eu"
-path="res://.godot/imported/LuigiBig.png-1b19ff7d7c5fe8994adefda6e5edc6db.ctex"
+uid="uid://ca5k3cvea8wik"
+path="res://.godot/imported/MarioHammer.png-1dd3f1590bd54b75c02048792fe00351.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/Luigi/LuigiBig.png"
-dest_files=["res://.godot/imported/LuigiBig.png-1b19ff7d7c5fe8994adefda6e5edc6db.ctex"]
+source_file="res://Sprites/Characters/Mario/MarioHammer.png"
+dest_files=["res://.godot/imported/MarioHammer.png-1dd3f1590bd54b75c02048792fe00351.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://12stfwoyqdyc"
-path="res://.godot/imported/LuigiFire.png-eb3b6ac349fdf04e34ab868b955e8869.ctex"
+uid="uid://chdafxg2nla62"
+path="res://.godot/imported/MarioRacoon.png-f41e8dffc9097e37b128d806b9d156b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/Luigi/LuigiFire.png"
-dest_files=["res://.godot/imported/LuigiFire.png-eb3b6ac349fdf04e34ab868b955e8869.ctex"]
+source_file="res://Sprites/Characters/Mario/MarioRacoon.png"
+dest_files=["res://.godot/imported/MarioRacoon.png-f41e8dffc9097e37b128d806b9d156b4.ctex"]
 
 [params]
 
