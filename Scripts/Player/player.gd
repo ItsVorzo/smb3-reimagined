@@ -277,8 +277,6 @@ func damage() -> void:
 	var new_power_state := "Small" if pwrup.tier == 1 else "Big"
 	set_power_state(new_power_state) # Change the power state
 	transform_animation(0)
-	await transform_finished
-	i_frames()
 	return
 
 # === It's the super mario brother ===
@@ -288,10 +286,12 @@ func damage() -> void:
 func transform_animation(animation_type := 1, powerup := "") -> void:
 	# Damage
 	if animation_type == 0:
+		i_frames()
 		var old_sprite = animated_sprite.sprite_frames
 		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 		# Flashing damage animation
 		if pwrup.tier == 0:
+			#Engine.time_scale = 0.1
 			get_tree().paused = true
 			animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 			animated_sprite.sprite_frames = new_sprite
@@ -300,6 +300,7 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 			transform_finished.emit()
 			get_tree().paused = false
 			animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+			#Engine.time_scale = 1.0
 		# Flashing powerdown animation
 		else:
 			get_tree().paused = true
@@ -317,6 +318,7 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + powerup + ".tres")
 		# Growing powerup animation
 		if powerup == "Big":
+			#Engine.time_scale = 0.1
 			get_tree().paused = true
 			animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 			animated_sprite.sprite_frames = new_sprite
@@ -325,38 +327,39 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 			transform_finished.emit()
 			get_tree().paused = false
 			animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+			#Engine.time_scale = 1.0
 		# Flashing powerup animation
 		else:
 			get_tree().paused = true
 			for i in 4:
 				animated_sprite.sprite_frames = old_sprite
-				await get_tree().create_timer(0.07).timeout
+				await get_tree().create_timer(4.0 / 60.0988).timeout
 				animated_sprite.sprite_frames = new_sprite
-				await get_tree().create_timer(0.07).timeout
+				await get_tree().create_timer(4.0 / 60.0988).timeout
 			transform_finished.emit()
 			get_tree().paused = false
 
 func small_big_transition() -> void:
 	for i in 3:
 		animated_sprite.frame = 1
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(4.0 / 60.0988).timeout
 		animated_sprite.frame = 0
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(4.0 / 60.0988).timeout
 	for i in 3:
 		animated_sprite.frame = 1
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(4.0 / 60.0988).timeout
 		animated_sprite.frame = 2
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(4.0 / 60.0988).timeout
 	return
 
 # === i frames ===
 func i_frames() -> void:
-	for i in 16:
-		can_take_damage = false
-		animated_sprite.visible = false
-		await get_tree().create_timer(0.05).timeout
-		animated_sprite.visible = true
-		await get_tree().create_timer(0.05).timeout
+	can_take_damage = false
+	for i in 28:
+		animated_sprite.hide()
+		await get_tree().create_timer(2.0 / 60.0988).timeout
+		animated_sprite.show()
+		await get_tree().create_timer(2.0 / 60.0988).timeout
 	can_take_damage = true
 	return
 

@@ -142,6 +142,8 @@ func impact_effect(pos) -> void:
 func reset_enemy() -> void:
 	if shell_owner_spawn_pos == null:
 		global_position = og_spawn_position
+		grab.is_kicked = false
+		velocity.x = 0
 	else:
 		var koopa = koopa_scene.instantiate()
 		koopa.color = color
