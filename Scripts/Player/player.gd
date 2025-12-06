@@ -12,6 +12,7 @@ var input_device := -1
 @export var player_id := 0
 var character_index := 0
 var character = ["Mario", "Luigi", "Toad", "Toadette"]
+signal transform_finished
 
 # === Physics values ===
 #region
@@ -59,6 +60,7 @@ var shoot_timer := 0
 # === States ===
 @onready var state_machine: StateMachine = $States
 @export var pwrup: PowerUps = null
+var old_pwrup: PowerUps = null
 var current_grabbed_obj: Grabbable
 var crouching := false
 var skidding = false
@@ -225,16 +227,18 @@ func bounce_on_enemy() -> void:
 # === That's what I needed! ===
 func get_powerup(powerup := "") -> void:
 	var new_powerup: PowerUps = get_node("PowerUpStates/" + powerup)
+	SoundManager.play_sfx("PowerUp", global_position)
 	if pwrup.tier > new_powerup.tier or pwrup == new_powerup:
 		SaveManager.add_score(100)
-		SoundManager.play_sfx("PowerUp", global_position)
 		return
-	await powerup_animation(powerup) # Wait for the animation
+	transform_animation(1, new_powerup.name)
 	set_power_state(powerup) # Set new powerup
+	return
 
 # === Change powerup state ===
 func set_power_state(powerup: String) -> void:
 	if powerup in PowerUps.power_ups:
+		old_pwrup = pwrup
 		pwrup.exit()
 		pwrup = get_node("PowerUpStates/" + powerup)
 		pwrup.enter()
@@ -272,42 +276,78 @@ func damage() -> void:
 	# Become either small or big
 	var new_power_state := "Small" if pwrup.tier == 1 else "Big"
 	set_power_state(new_power_state) # Change the power state
-	# Get the sprite frames for the damage animation
-	var old_sprite = animated_sprite.sprite_frames
-	var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
-	# Damage animation
-	get_tree().paused = true
-	for i in 4:
-		animated_sprite.sprite_frames = old_sprite
-		await get_tree().create_timer(0.07).timeout
-		animated_sprite.sprite_frames = new_sprite
-		await get_tree().create_timer(0.07).timeout
-	get_tree().paused = false
+	transform_animation(0)
+	await transform_finished
 	i_frames()
-	return
-
-# === Powerup transformation ===
-func powerup_animation(powerup := "") -> void:
-	SoundManager.play_sfx("PowerUp", global_position)
-	# Get the sprite frames for the powerup animation
-	var old_sprite = animated_sprite.sprite_frames
-	var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + powerup + ".tres")
-	get_tree().paused = true
-	# Powerup animation
-	for i in 4:
-		animated_sprite.sprite_frames = old_sprite
-		await get_tree().create_timer(0.07).timeout
-		animated_sprite.sprite_frames = new_sprite
-		await get_tree().create_timer(0.07).timeout
-	get_tree().paused = false
 	return
 
 # === It's the super mario brother ===
 # animation_type = 0, damage animation
 # animation_type = 1, normal powerup animation
 # animation_type = 2, poof powerup animation
-func transform_animation(_animation_type := 1, _powerup := "") -> void:
-	pass
+func transform_animation(animation_type := 1, powerup := "") -> void:
+	# Damage
+	if animation_type == 0:
+		var old_sprite = animated_sprite.sprite_frames
+		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
+		# Flashing damage animation
+		if pwrup.tier == 0:
+			get_tree().paused = true
+			animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+			animated_sprite.sprite_frames = new_sprite
+			animated_sprite.animation = "powerdown"
+			await small_big_transition()
+			transform_finished.emit()
+			get_tree().paused = false
+			animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+		# Flashing powerdown animation
+		else:
+			get_tree().paused = true
+			for i in 4:
+				animated_sprite.sprite_frames = old_sprite
+				await get_tree().create_timer(0.07).timeout
+				animated_sprite.sprite_frames = new_sprite
+				await get_tree().create_timer(0.07).timeout
+			transform_finished.emit()
+			get_tree().paused = false
+
+	# Powerup
+	elif animation_type == 1:
+		var old_sprite = animated_sprite.sprite_frames
+		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + powerup + ".tres")
+		# Growing powerup animation
+		if powerup == "Big":
+			get_tree().paused = true
+			animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+			animated_sprite.sprite_frames = new_sprite
+			animated_sprite.animation = "powerup"
+			await small_big_transition()
+			transform_finished.emit()
+			get_tree().paused = false
+			animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+		# Flashing powerup animation
+		else:
+			get_tree().paused = true
+			for i in 4:
+				animated_sprite.sprite_frames = old_sprite
+				await get_tree().create_timer(0.07).timeout
+				animated_sprite.sprite_frames = new_sprite
+				await get_tree().create_timer(0.07).timeout
+			transform_finished.emit()
+			get_tree().paused = false
+
+func small_big_transition() -> void:
+	for i in 3:
+		animated_sprite.frame = 1
+		await get_tree().create_timer(0.05).timeout
+		animated_sprite.frame = 0
+		await get_tree().create_timer(0.05).timeout
+	for i in 3:
+		animated_sprite.frame = 1
+		await get_tree().create_timer(0.05).timeout
+		animated_sprite.frame = 2
+		await get_tree().create_timer(0.05).timeout
+	return
 
 # === i frames ===
 func i_frames() -> void:

@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://b4y7uk0wcicdb"]
+[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://b4y7uk0wcicdb"]
 
 [ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="1_xo0ai"]
+[ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="2_fry04"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("1_xo0ai")
@@ -53,6 +54,18 @@ region = Rect2(416, 160, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fry04"]
 atlas = ExtResource("1_xo0ai")
 region = Rect2(448, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8mqd"]
+atlas = ExtResource("2_fry04")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2yfu"]
+atlas = ExtResource("2_fry04")
+region = Rect2(512, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0ejd"]
+atlas = ExtResource("1_xo0ai")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
 atlas = ExtResource("1_xo0ai")
@@ -174,10 +187,19 @@ animations = [{
 "name": &"map",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"powerup",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8mqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2yfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0ejd")
+}],
+"loop": false,
+"name": &"powerdown",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
