@@ -55,8 +55,9 @@ func handle_animation():
 			player.animation_override = "front_facing"
 		else:
 			player.animation_override = ""
-	elif player.kick_timer == 0 and player.shoot_timer == 0:
-			player.animation_override = ""
+	elif player.animation_override != "hover":
+		if player.kick_timer == 0 and player.shoot_timer == 0:
+				player.animation_override = ""
 	
 	# Override animations (animations that play over others)
 	if player.animation_override != "":
@@ -70,6 +71,7 @@ func handle_animation():
 				player.animated_sprite.play("hold_walk", walk_anim_speed())
 		else:
 			player.animated_sprite.play("hold_jump")
+
 	# Normal animations
 	else:
 		if player.crouching:
@@ -88,9 +90,9 @@ func handle_animation():
 			if player.p_meter < player.p_meter_max:
 				if player.velocity.y < 0:
 					player.animated_sprite.play("jump")
-				elif player.is_super:
+				elif player.is_super and not player.hovering:
 					player.animated_sprite.play("fall")
-			else:
+			elif not player.flying:
 				player.animated_sprite.play("fly")
 
 func walk_anim_speed():

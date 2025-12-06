@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkg2jj78y7lpy"]
+
+[ext_resource type="Texture2D" uid="uid://c3cxolxu32eym" path="res://Sprites/Effects/BigSmoke.png" id="1_0lmde"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u3j0"]
+atlas = ExtResource("1_0lmde")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oucn8"]
+atlas = ExtResource("1_0lmde")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42bdg"]
+atlas = ExtResource("1_0lmde")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kil0j"]
+atlas = ExtResource("1_0lmde")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63gr2"]
+atlas = ExtResource("1_0lmde")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77fu1"]
+atlas = ExtResource("1_0lmde")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8bu5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u3j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oucn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42bdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kil0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63gr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77fu1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BigSmokeEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_x8bu5")
+frame = 1
+frame_progress = 0.5221907

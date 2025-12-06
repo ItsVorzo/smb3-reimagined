@@ -2,6 +2,7 @@ class_name PowerUps
 extends Node
 
 @export var tier := 0
+@export var animation_type := 1
 enum power_ups {Small, Big, Fire, Raccoon, Frog, Tanooki, Hammer, Star, PWing}
 
 var player: Player = owner

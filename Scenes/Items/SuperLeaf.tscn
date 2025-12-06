@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhxl7ppselfg8"]
+
+[ext_resource type="Script" uid="uid://dab2ya8tu61ym" path="res://Scripts/Items/SuperLeaf.gd" id="1_t0ra4"]
+[ext_resource type="Texture2D" uid="uid://dk3meuruaektv" path="res://Sprites/Items/SuperLeafFall.png" id="2_t0ra4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wr5c"]
+atlas = ExtResource("2_t0ra4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t0ra4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wr5c")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wr5c"]
+size = Vector2(14, 12)
+
+[node name="SuperLeaf" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area")]
+script = ExtResource("1_t0ra4")
+pick_up_area = NodePath("PickupArea")
+powerup = "Raccoon"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t0ra4")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("RectangleShape2D_0wr5c")

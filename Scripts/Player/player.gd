@@ -64,6 +64,8 @@ var old_pwrup: PowerUps = null
 var current_grabbed_obj: Grabbable
 var crouching := false
 var skidding = false
+var hovering := false
+var flying := false
 var is_holding := false
 var is_super := false
 var is_dead := false
@@ -231,7 +233,7 @@ func get_powerup(powerup := "") -> void:
 	if pwrup.tier > new_powerup.tier or pwrup == new_powerup:
 		SaveManager.add_score(100)
 		return
-	transform_animation(1, new_powerup.name)
+	transform_animation(new_powerup.animation_type, new_powerup.name)
 	set_power_state(powerup) # Set new powerup
 	return
 
@@ -313,7 +315,7 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 			transform_finished.emit()
 			get_tree().paused = false
 
-	# Powerup
+	# Powerup Grow/Flash
 	elif animation_type == 1:
 		var old_sprite = animated_sprite.sprite_frames
 		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + powerup + ".tres")
@@ -340,6 +342,20 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 			transform_finished.emit()
 			get_tree().paused = false
 
+	# Poof animation
+	elif animation_type == 2:
+		get_tree().paused = true
+		var smoke_scene = load("res://Scenes/Effects/SmokeEffect.tscn").instantiate()
+		smoke_scene.process_mode = Node.PROCESS_MODE_ALWAYS
+		animated_sprite.hide()
+		add_child(smoke_scene)
+		smoke_scene.global_position = Vector2(global_position.x, global_position.y - 12)
+		await smoke_scene.animation_finished
+		smoke_scene.process_mode = Node.PROCESS_MODE_INHERIT
+		animated_sprite.show()
+		get_tree().paused = false
+
+# === Transition between small and big mario ===
 func small_big_transition() -> void:
 	for i in 3:
 		animated_sprite.frame = 1
@@ -402,16 +418,19 @@ func final_acc_speed():
 func final_max_speed():
 	var is_going_uphill = get_slope_direction() == -1 and input_direction() == 1 or get_slope_direction() == 1 and input_direction() == -1
 
+	if not flying:
 	# Uphill slope
-	if get_slope_angle() > 0 && is_going_uphill:
-			return uphill_max_run if input.is_action_pressed("B") else uphill_max_walk
-	elif state_machine.state.name == "Slide":
-		return sliding_max_speed if get_slope_angle() > 0 else 0.0
+		if get_slope_angle() > 0 && is_going_uphill:
+				return uphill_max_run if input.is_action_pressed("B") else uphill_max_walk
+		elif state_machine.state.name == "Slide":
+			return sliding_max_speed if get_slope_angle() > 0 else 0.0
+		else:
+			if p_meter < p_meter_max:
+				if input.is_action_pressed("B"): return run_speed + downhill_speed_modifier()
+				else: return walk_speed + downhill_speed_modifier()
+			else: return p_speed + downhill_speed_modifier()
 	else:
-		if p_meter < p_meter_max:
-			if input.is_action_pressed("B"): return run_speed + downhill_speed_modifier()
-			else: return walk_speed + downhill_speed_modifier()
-		else: return p_speed + downhill_speed_modifier()
+		return 86.25
 
 # === Add speed downhill ===
 func downhill_speed_modifier():
