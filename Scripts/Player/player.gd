@@ -286,7 +286,6 @@ func damage() -> void:
 func transform_animation(animation_type := 1, powerup := "") -> void:
 	# Damage
 	if animation_type == 0:
-		i_frames()
 		var old_sprite = animated_sprite.sprite_frames
 		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 		# Flashing damage animation
@@ -296,6 +295,7 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 			animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 			animated_sprite.sprite_frames = new_sprite
 			animated_sprite.animation = "powerdown"
+			i_frames()
 			await small_big_transition()
 			transform_finished.emit()
 			get_tree().paused = false
@@ -303,12 +303,13 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 			#Engine.time_scale = 1.0
 		# Flashing powerdown animation
 		else:
+			i_frames()
 			get_tree().paused = true
 			for i in 4:
 				animated_sprite.sprite_frames = old_sprite
-				await get_tree().create_timer(0.07).timeout
+				await get_tree().create_timer(4.0 / 60.0988).timeout
 				animated_sprite.sprite_frames = new_sprite
-				await get_tree().create_timer(0.07).timeout
+				await get_tree().create_timer(4.0 / 60.0988).timeout
 			transform_finished.emit()
 			get_tree().paused = false
 
