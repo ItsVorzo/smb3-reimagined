@@ -2,6 +2,7 @@ extends PowerUps
 
 var hover_timer := 0
 var flying_timer := 0
+var fly_mode_timer := 255
 
 func enter() -> void:
 	pass
@@ -14,11 +15,6 @@ func physics_update(_delta: float) -> void:
 	else:
 		owner.hovering = false
 		owner.animation_override = ""
-	if flying_timer > 0:
-		flying_timer -= 1
-		owner.velocity.y = -90.0
-		if flying_timer >= 10:
-			owner.animated_sprite.play("fly")
 
 	if not owner.is_on_floor() and owner.input.is_action_pressed("A") and not owner.flying:
 		owner.hovering = true
@@ -26,16 +22,31 @@ func physics_update(_delta: float) -> void:
 		owner.velocity.y = min(owner.velocity.y, 16)
 		owner.animated_sprite.play("hover")
 
-	if owner.p_meter >= owner.p_meter_max and owner.input.is_action_just_pressed("A"):
-		owner.animated_sprite.play("fly")
-		owner.flying = true
-	if owner.is_on_floor():
+	if flying_timer > 0:
+		flying_timer -= 1
+		owner.velocity.y = -90.0
+
+	if not owner.is_on_floor() and owner.p_meter >= owner.p_meter_max and fly_mode_timer > 0:
+		if not owner.flying:
+			owner.flying = true
+			fly_mode_timer = 255
+			owner.animated_sprite.play("fly")
+	elif owner.is_on_floor() or owner.p_meter <= 0.0:
 		owner.flying = false
+		flying_timer = 0
+		fly_mode_timer = 255
 	if owner.flying and owner.input.is_action_just_pressed("A"):
 		flying_timer = 16
+		owner.animated_sprite.play("fly")
 
-	if owner.flying and owner.velocity.y < 0:
-		if not owner.animated_sprite.is_playing():
-			owner.animated_sprite.frame = 0
-	if owner.flying and owner.velocity.y > 0:
-		owner.animated_sprite.frame = 1
+	if owner.flying:
+		fly_mode_timer -= 1
+		if owner.input and owner.input.is_action_just_pressed("A"):
+			flying_timer = 16
+
+	if fly_mode_timer <= 0:
+		owner.flying = false
+		owner.p_meter = 0.0
+
+func exit() -> void:
+	owner.flying = false

@@ -22,6 +22,8 @@ animations = [{
 size = Vector2(14, 12)
 
 [node name="SuperLeaf" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area")]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_t0ra4")
 pick_up_area = NodePath("PickupArea")
 powerup = "Raccoon"

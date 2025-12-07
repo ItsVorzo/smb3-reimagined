@@ -9,13 +9,15 @@ class_name PhysicsVal
 
 # === Flat ground ===
 const acc_speed = [3.28125, 3.28125, 3.28125, 3.28125]
-const frc_speed = [3.28125, 3.28125, 3.28125, 3.28125]
-const ice_frc_speed = [0.703125, 0.703125, 0.703125, 0.703125]
+const dec_speed = [3.28125, 3.28125, 3.28125, 3.28125]
+const ice_dec_speed = [0.703125, 0.703125, 0.703125, 0.703125]
 const skid_speed = [7.5, 7.5, 7.5, 7.5]
+const hover_skid_speed = 11.25
 const ice_skid_speed = [2.8125, 2.8125, 2.8125, 2.8125]
 const walk_speed = [90.0, 90.0, 90.0, 90.0]
 const run_speed = [150.0, 150.0, 150.0, 150.0]
 const p_speed = [210.0, 210.0, 210.0, 210.0]
+const max_fly_speed = 86.25
 const end_level_walk = 75.0
 const airship_cutscene_walk = 120.0
 

@@ -34,19 +34,23 @@ func physics_process_update(_delta: float) -> void:
 	if not (player.crouching and player.is_on_floor()):
 		if player.input_direction() == 1:
 			if player.velocity.x < 0:
-				player.velocity.x += player.skid_speed
+				player.velocity.x += player.final_skid_speed()
 			else:
-				player.velocity.x = move_toward(player.velocity.x, player.final_max_speed(), player.acc_speed)
+				player.velocity.x = move_toward(player.velocity.x, player.final_max_speed(), player.final_acc_speed())
 		elif player.input_direction() == -1:
 			if player.velocity.x > 0:
-				player.velocity.x -= player.skid_speed
+				player.velocity.x -= player.final_skid_speed()
 			else:
-				player.velocity.x = move_toward(player.velocity.x, -player.final_max_speed(), player.acc_speed)
+				player.velocity.x = move_toward(player.velocity.x, -player.final_max_speed(), player.final_acc_speed())
 
-	# If you aren't holding a direction, slow down
-	if player.input_direction() == 0 and player.is_on_floor() or player.crouching and player.is_on_floor():
-		player.velocity.x = move_toward(player.velocity.x, 0.0, player.frc_speed)
-
+	# If you aren't holding a direction, slow down.
+	var stop_speed := 0.0
+	if not player.hovering:
+		stop_speed = 0.0
+	elif abs(player.velocity.x) >= player.max_fly_speed:
+		stop_speed = player.max_fly_speed * player.facing_direction
+	if player.input_direction() == 0 and (player.is_on_floor() or player.hovering and abs(player.velocity.x) >= player.max_fly_speed) or player.crouching and player.is_on_floor():
+		player.velocity.x = move_toward(player.velocity.x, stop_speed, player.final_dec_speed())
 
 func handle_animation():
 	# === Animation ===
@@ -87,7 +91,7 @@ func handle_animation():
 			else:
 				player.animated_sprite.play("run", 7)
 		else:
-			if player.p_meter < player.p_meter_max:
+			if player.p_meter < player.p_meter_max and not player.flying:
 				if player.velocity.y < 0:
 					player.animated_sprite.play("jump")
 				elif player.is_super and not player.hovering:

@@ -199,4 +199,4 @@ position = Vector2(488, -8)
 position = Vector2(568, -8)
 
 [node name="SuperLeaf" parent="." instance=ExtResource("28_se0gi")]
-position = Vector2(408, -24)
+position = Vector2(392, -56)

@@ -19,10 +19,12 @@ signal transform_finished
 var walk_speed = 0
 var run_speed = 0
 var p_speed = 0
+var max_fly_speed = 0
 var acc_speed = 0
-var frc_speed = 0
-var ice_frc_speed = 0
+var dec_speed = 0
+var ice_dec_speed = 0
 var skid_speed = 0
+var hover_skid_speed = 0
 var ice_skid_speed = 0
 var end_level_walk = 0
 var airship_cutscene_walk = 0
@@ -91,10 +93,12 @@ func apply_physics(i:int) -> void:
 	walk_speed = PhysicsVal.walk_speed[i]
 	run_speed = PhysicsVal.run_speed[i]
 	p_speed = PhysicsVal.p_speed[i]
+	max_fly_speed = PhysicsVal.max_fly_speed
 	acc_speed = PhysicsVal.acc_speed[i]
-	frc_speed = PhysicsVal.frc_speed[i]
-	ice_frc_speed = PhysicsVal.ice_frc_speed[i]
+	dec_speed = PhysicsVal.dec_speed[i]
+	ice_dec_speed = PhysicsVal.ice_dec_speed[i]
 	skid_speed = PhysicsVal.skid_speed[i]
+	hover_skid_speed = PhysicsVal.hover_skid_speed
 	ice_skid_speed = PhysicsVal.ice_skid_speed[i]
 	end_level_walk = PhysicsVal.end_level_walk
 	airship_cutscene_walk = PhysicsVal.airship_cutscene_walk
@@ -119,7 +123,7 @@ func _ready() -> void:
 
 	# Character indexes will be handles differently
 	SaveManager.start_runtime_from_save(0) # 1st step to getting the character index
-	character_index = player_id # 2nd step
+	character_index = 0 # 2nd step
 
 	# Load the correct sprites
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
@@ -133,6 +137,7 @@ func _on_joy_connection_changed(device: int, connected: bool):
 
 # === Player logic ===
 func _physics_process(delta: float) -> void:
+	print(skidding)
 	# Remove unused players
 	var device = PlayerManager.get_player_device(player_id)
 	if device == null:
@@ -384,10 +389,13 @@ func i_frames() -> void:
 func handle_p_meter():
 	p_meter = clamp(p_meter, 0, p_meter_max)
 	if p_meter > p_meter_max: p_meter = p_meter_max
+	# Reset the extra frames in which you have a full p meter
 	if p_meter >= p_meter_max and input.is_action_pressed("B") and input_direction() == velocity_direction and abs(velocity.x) >= run_speed: 
 		extra_p_frames = 16.0
-	elif extra_p_frames > 0 && is_on_floor(): extra_p_frames -= 1
-	if state_machine.state.name == "Normal" and abs(velocity.x) >= run_speed and input.is_action_pressed("B") and is_on_floor() and input_direction() == velocity_direction or not is_on_floor() and p_meter >= p_meter_max:
+	elif extra_p_frames > 0 and is_on_floor(): extra_p_frames -= 1
+	var ground_conditions = state_machine.state.name == "Normal" and abs(velocity.x) >= run_speed and input.is_action_pressed("B") and is_on_floor() and input_direction() == velocity_direction
+	var air_conditions = not is_on_floor() and p_meter >= p_meter_max
+	if (ground_conditions) or (air_conditions):
 		p_meter += 1
 	elif p_meter > 0 and extra_p_frames <= 0:
 		p_meter -= 0.583
@@ -407,12 +415,30 @@ func get_slope_direction():
 
 # === Set final acceleration (this function is currently only used for sliding) ===
 func final_acc_speed():
-	if get_slope_angle() == 0:
-		return acc_speed
-	elif get_slope_angle() <= 27 && state_machine.state.name == "Slide":
-		return gentle_sliding_acc
+	if flying:
+		if abs(velocity.x) > max_fly_speed:
+			return 0.9375 # This counts as deceleration but i think it's the only exception
+		else:
+			return acc_speed
 	else:
-		return steep_sliding_acc
+		if get_slope_angle() == 0 or not is_on_floor():
+			return acc_speed
+		elif get_slope_angle() <= 27 && state_machine.state.name == "Slide":
+			return gentle_sliding_acc
+		else:
+			return steep_sliding_acc
+
+func final_skid_speed():
+	if not hovering or not flying:
+		return skid_speed
+	else:
+		return hover_skid_speed
+
+func final_dec_speed():
+	if hovering:
+		return 3.75
+	else:
+		return dec_speed
 
 # === Set max speeds ===
 func final_max_speed():
@@ -430,7 +456,7 @@ func final_max_speed():
 				else: return walk_speed + downhill_speed_modifier()
 			else: return p_speed + downhill_speed_modifier()
 	else:
-		return 86.25
+		return max_fly_speed
 
 # === Add speed downhill ===
 func downhill_speed_modifier():

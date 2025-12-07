@@ -64,7 +64,7 @@ func _process(_delta: float) -> void:
 
 			# Move the camera vertically
 			var final_y_pos = global_position.y
-			if p.p_meter >= p.p_meter_max:
+			if p.p_meter >= p.p_meter_max or p.flying:
 				if p.global_position.y < global_position.y - top_margin:
 					final_y_pos = p.global_position.y + top_margin
 			if p.global_position.y > global_position.y + bottom_margin:
