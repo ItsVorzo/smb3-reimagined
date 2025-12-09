@@ -50,6 +50,9 @@ func activation_condition(body: Node):
 
 # === Activate the block ===
 func activate(body: Node) -> void:
+	if is_activated or is_used:
+		return
+
 	if item != null:
 		sprite.play("Activated")
 	is_activated = true

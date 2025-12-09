@@ -36,6 +36,9 @@ func activation_condition(body: Node):
 
 # === Activate the block ===
 func activate(_body: Node) -> void:
+	if is_activated or is_used:
+		return
+
 	sprite.play("Activated")
 	is_activated = true
 	yspd = -140.0
