@@ -84,5 +84,6 @@ func tail_attack():
 
 func exit() -> void:
 	owner.flying = false
+	owner.hovering = false
 	owner.tail_attacking = false
 	owner.animation_override = ""
