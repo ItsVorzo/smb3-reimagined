@@ -4,15 +4,15 @@ extends CharacterBody2D
 # === Shortcuts ===
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var skid_sfx = $Skid
-@onready var normal_collision_shape := $CollisionShape2D
-@onready var super_collision_shape := $SuperCollisionShape2D
+@onready var small_collision := $SmallCollision
+@onready var big_collision := $BigCollision
+@onready var tailbox := $TailAttackBox
 @onready var death_sound: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var bottom_pit := $"../CameraGroundLimit"
 var input_device := -1
 @export var player_id := 0
 var character_index := 0
 var character = ["Mario", "Luigi", "Toad", "Toadette"]
-signal transform_finished
 
 # === Physics values ===
 #region
@@ -68,6 +68,7 @@ var crouching := false
 var skidding = false
 var hovering := false
 var flying := false
+var tail_attacking := false
 var is_holding := false
 var is_super := false
 var is_dead := false
@@ -137,7 +138,6 @@ func _on_joy_connection_changed(device: int, connected: bool):
 
 # === Player logic ===
 func _physics_process(delta: float) -> void:
-	print(skidding)
 	# Remove unused players
 	var device = PlayerManager.get_player_device(player_id)
 	if device == null:
@@ -218,7 +218,7 @@ func input_direction() -> int:
 
 # === Set the sprite x scale ===
 func sprite_direction():
-	if direction_allow && input_direction() != 0:
+	if direction_allow and input_direction() != 0:
 		facing_direction = input_direction()
 	return facing_direction
 
@@ -259,11 +259,11 @@ func handle_powerups(delta: float):
 	# Change collision shapes
 	is_super = pwrup.tier >= 1
 	if not is_super or crouching:
-		normal_collision_shape.disabled = false
-		super_collision_shape.disabled = true
+		small_collision.disabled = false
+		big_collision.disabled = true
 	else:
-		normal_collision_shape.disabled = true
-		super_collision_shape.disabled = false
+		small_collision.disabled = true
+		big_collision.disabled = false
 
 # === DIE! ===
 func die() -> void:
@@ -283,7 +283,8 @@ func damage() -> void:
 	# Become either small or big
 	var new_power_state := "Small" if pwrup.tier == 1 else "Big"
 	set_power_state(new_power_state) # Change the power state
-	transform_animation(0)
+	var animation_type = 0 if old_pwrup.animation_type != 2 else 2
+	transform_animation(animation_type)
 	return
 
 # === It's the super mario brother ===
@@ -297,17 +298,14 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 		# Flashing damage animation
 		if pwrup.tier == 0:
-			#Engine.time_scale = 0.1
 			get_tree().paused = true
 			animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 			animated_sprite.sprite_frames = new_sprite
 			animated_sprite.animation = "powerdown"
 			i_frames()
 			await small_big_transition()
-			transform_finished.emit()
 			get_tree().paused = false
 			animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
-			#Engine.time_scale = 1.0
 		# Flashing powerdown animation
 		else:
 			i_frames()
@@ -317,7 +315,6 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 				await get_tree().create_timer(4.0 / 60.0988).timeout
 				animated_sprite.sprite_frames = new_sprite
 				await get_tree().create_timer(4.0 / 60.0988).timeout
-			transform_finished.emit()
 			get_tree().paused = false
 
 	# Powerup Grow/Flash
@@ -326,16 +323,13 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 		var new_sprite := load("res://SpriteFrames/Characters/" + character[character_index] + "/" + powerup + ".tres")
 		# Growing powerup animation
 		if powerup == "Big":
-			#Engine.time_scale = 0.1
 			get_tree().paused = true
 			animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 			animated_sprite.sprite_frames = new_sprite
 			animated_sprite.animation = "powerup"
 			await small_big_transition()
-			transform_finished.emit()
 			get_tree().paused = false
 			animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
-			#Engine.time_scale = 1.0
 		# Flashing powerup animation
 		else:
 			get_tree().paused = true
@@ -344,7 +338,6 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 				await get_tree().create_timer(4.0 / 60.0988).timeout
 				animated_sprite.sprite_frames = new_sprite
 				await get_tree().create_timer(4.0 / 60.0988).timeout
-			transform_finished.emit()
 			get_tree().paused = false
 
 	# Poof animation
@@ -358,6 +351,8 @@ func transform_animation(animation_type := 1, powerup := "") -> void:
 		await smoke_scene.animation_finished
 		smoke_scene.process_mode = Node.PROCESS_MODE_INHERIT
 		animated_sprite.show()
+		if old_pwrup.tier > pwrup.tier:
+			i_frames()
 		get_tree().paused = false
 
 # === Transition between small and big mario ===
@@ -423,7 +418,7 @@ func final_acc_speed():
 	else:
 		if get_slope_angle() == 0 or not is_on_floor():
 			return acc_speed
-		elif get_slope_angle() <= 27 && state_machine.state.name == "Slide":
+		elif get_slope_angle() <= 27 and state_machine.state.name == "Slide":
 			return gentle_sliding_acc
 		else:
 			return steep_sliding_acc
@@ -446,7 +441,7 @@ func final_max_speed():
 
 	if not flying:
 	# Uphill slope
-		if get_slope_angle() > 0 && is_going_uphill:
+		if get_slope_angle() > 0 and is_going_uphill:
 				return uphill_max_run if input.is_action_pressed("B") else uphill_max_walk
 		elif state_machine.state.name == "Slide":
 			return sliding_max_speed if get_slope_angle() > 0 else 0.0

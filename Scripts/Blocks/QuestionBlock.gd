@@ -30,35 +30,38 @@ func _physics_process(delta: float) -> void:
 		is_activated = false
 		is_used = true
 
-# === Activate the block
-func activate(body: Node) -> void:
+func activation_condition(body: Node):
 	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:
-		sprite.play("Activated")
-		is_activated = true
-		yspd = -140.0
+		activate(body)
 
-		# Interact with other objects on top
-		for obj in top_interaction.get_overlapping_bodies():
-			if obj != null:
-				block_top_interaction(obj)
+# === Activate the block ===
+func activate(_body: Node) -> void:
+	sprite.play("Activated")
+	is_activated = true
+	yspd = -140.0
 
-		# If there's nothing in the block, give a coin
-		if item == null:
-			SoundManager.play_sfx("Coin", self.global_position)
-			item_scene = coin_scene.instantiate()
-			spawn_item()
-		# Else give a mushroom if you're small/there's a mushroom
-		else:
-			for p in GameManager.get_players():
-				if p.pwrup.tier < 1 or item == mushroom_scene:
-					SoundManager.play_sfx("ItemPop", self.global_position)
-					item_scene = mushroom_scene.instantiate()
-					spawn_item()
-				# Cooler powerup
-				else:
-					SoundManager.play_sfx("ItemPop", self.global_position)
-					item_scene = item.instantiate()
-					spawn_item()
+	# Interact with other objects on top
+	for obj in top_interaction.get_overlapping_bodies():
+		if obj != null:
+			block_top_interaction(obj)
+
+	# If there's nothing in the block, give a coin
+	if item == null:
+		SoundManager.play_sfx("Coin", self.global_position)
+		item_scene = coin_scene.instantiate()
+		spawn_item()
+	# Else give a mushroom if you're small/there's a mushroom
+	else:
+		for p in GameManager.get_players():
+			if p.pwrup.tier < 1 or item == mushroom_scene:
+				SoundManager.play_sfx("ItemPop", self.global_position)
+				item_scene = mushroom_scene.instantiate()
+				spawn_item()
+			# Cooler powerup
+			else:
+				SoundManager.play_sfx("ItemPop", self.global_position)
+				item_scene = item.instantiate()
+				spawn_item()
 
 # Item pop sound effect
 func spawn_item():

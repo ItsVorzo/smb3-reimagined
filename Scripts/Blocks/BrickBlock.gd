@@ -43,40 +43,47 @@ func _on_switch_on():
 
 func _on_switch_off():
 	pass
-# === Activate the block
-func activate(body: Node) -> void:
+
+func activation_condition(body: Node):
 	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:
-		if item != null:
-			sprite.play("Activated")
-		is_activated = true
-		yspd = -140.0
+		activate(body)
 
-		# Interact with other objects on top
-		for obj in top_interaction.get_overlapping_bodies():
-			if obj != null:
-				block_top_interaction(obj)
+# === Activate the block ===
+func activate(body: Node) -> void:
+	if item != null:
+		sprite.play("Activated")
+	is_activated = true
+	yspd = -140.0
 
-		if item == null:
-			if body.is_in_group("Player") and body.pwrup.name == "Big" or body.is_in_group("Shell"):
+	# Interact with other objects on top
+	for obj in top_interaction.get_overlapping_bodies():
+		if obj != null:
+			block_top_interaction(obj)
+
+	if item == null:
+		if body.is_in_group("Player"):
+			if body.pwrup.tier >= 1:
 				destroy()
 			else:
-				pass
-		elif item == coin_scene:
-			SoundManager.play_sfx("Coin", self.global_position)
-			item_scene = coin_scene.instantiate()
-			spawn_item()
-		# Else give a mushroom if you're small/there's a mushroom
+				return
 		else:
-			for p in GameManager.get_players():
-				if p.pwrup.tier < 1 or item == mushroom_scene:
-					SoundManager.play_sfx("ItemPop", self.global_position)
-					item_scene = mushroom_scene.instantiate()
-					spawn_item()
-				# Cooler powerup
-				else:
-					SoundManager.play_sfx("ItemPop", self.global_position)
-					item_scene = item.instantiate()
-					spawn_item()
+			destroy()
+	elif item == coin_scene:
+		SoundManager.play_sfx("Coin", self.global_position)
+		item_scene = coin_scene.instantiate()
+		spawn_item()
+	# Else give a mushroom if you're small/there's a mushroom
+	else:
+		for p in GameManager.get_players():
+			if p.pwrup.tier < 1 or item == mushroom_scene:
+				SoundManager.play_sfx("ItemPop", self.global_position)
+				item_scene = mushroom_scene.instantiate()
+				spawn_item()
+			# Cooler powerup
+			else:
+				SoundManager.play_sfx("ItemPop", self.global_position)
+				item_scene = item.instantiate()
+				spawn_item()
 
 # Item pop sound effect
 func spawn_item() -> void:

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://dsq57hjqffjbo"]
+[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://dsq57hjqffjbo"]
 
 [ext_resource type="Texture2D" uid="uid://cwflgyyhyx31r" path="res://Sprites/Characters/Mario/MarioBig.png" id="1_ddwg2"]
 [ext_resource type="Texture2D" uid="uid://chdafxg2nla62" path="res://Sprites/Characters/Mario/MarioRacoon.png" id="2_r84y4"]
@@ -15,13 +15,21 @@ region = Rect2(288, 32, 32, 32)
 atlas = ExtResource("2_r84y4")
 region = Rect2(352, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kac5a"]
-atlas = ExtResource("2_r84y4")
-region = Rect2(384, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0f4fy"]
 atlas = ExtResource("2_r84y4")
 region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kac5a"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2883"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs05g"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(256, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umtm3"]
 atlas = ExtResource("2_r84y4")
@@ -35,17 +43,17 @@ region = Rect2(0, 64, 32, 32)
 atlas = ExtResource("2_r84y4")
 region = Rect2(224, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0a83"]
-atlas = ExtResource("2_r84y4")
-region = Rect2(128, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivuas"]
 atlas = ExtResource("2_r84y4")
-region = Rect2(160, 64, 32, 32)
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_retub"]
 atlas = ExtResource("2_r84y4")
-region = Rect2(192, 64, 32, 32)
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0a83"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0sq1"]
 atlas = ExtResource("2_r84y4")
@@ -115,6 +123,22 @@ region = Rect2(128, 32, 32, 32)
 atlas = ExtResource("2_r84y4")
 region = Rect2(96, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2np4u"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6psbd"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mypwl"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w60we"]
+atlas = ExtResource("2_r84y4")
+region = Rect2(96, 224, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3jdw"]
 atlas = ExtResource("2_r84y4")
 region = Rect2(96, 0, 32, 32)
@@ -155,10 +179,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0f4fy")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kac5a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0f4fy")
+"texture": SubResource("AtlasTexture_s2883")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs05g")
 }],
 "loop": false,
 "name": &"fly",
@@ -190,16 +220,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e0a83")
+"texture": SubResource("AtlasTexture_ivuas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_retub")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ivuas")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e0a83")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_retub")
 }],
 "loop": true,
 "name": &"hold_walk",
@@ -308,6 +338,23 @@ animations = [{
 "loop": true,
 "name": &"swim",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2np4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6psbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mypwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w60we")
+}],
+"loop": false,
+"name": &"tail_attack",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,

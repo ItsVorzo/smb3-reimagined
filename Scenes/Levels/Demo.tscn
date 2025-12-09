@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=40 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://e4embafexpde" path="res://Scenes/Items/Mushroom.tscn" id="26_gsh3y"]
 [ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="27_xyty3"]
 [ext_resource type="PackedScene" uid="uid://dhxl7ppselfg8" path="res://Scenes/Items/SuperLeaf.tscn" id="28_se0gi"]
+[ext_resource type="PackedScene" uid="uid://gkuetip4jrov" path="res://Scenes/Blocks/BrickBlock.tscn" id="29_x6ddr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
 texture = ExtResource("7_28jxv")
@@ -190,7 +191,7 @@ position = Vector2(234, 150)
 position = Vector2(512, -56)
 
 [node name="KoopaShell" parent="." instance=ExtResource("25_1i5or")]
-position = Vector2(536, -8)
+position = Vector2(280, -8)
 
 [node name="Mushroom2" parent="." instance=ExtResource("26_gsh3y")]
 position = Vector2(488, -8)
@@ -200,3 +201,6 @@ position = Vector2(568, -8)
 
 [node name="SuperLeaf" parent="." instance=ExtResource("28_se0gi")]
 position = Vector2(392, -56)
+
+[node name="BrickBlock" parent="." instance=ExtResource("29_x6ddr")]
+position = Vector2(432, -56)

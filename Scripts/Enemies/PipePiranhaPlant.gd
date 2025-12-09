@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if dead_from_obj:
+		sprite.stop()
 		z_index = 1
 		return
 

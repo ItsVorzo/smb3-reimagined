@@ -59,7 +59,7 @@ func handle_animation():
 			player.animation_override = "front_facing"
 		else:
 			player.animation_override = ""
-	elif player.animation_override != "hover":
+	elif player.animation_override != "tail_attack":
 		if player.kick_timer == 0 and player.shoot_timer == 0:
 				player.animation_override = ""
 	
@@ -91,7 +91,9 @@ func handle_animation():
 			else:
 				player.animated_sprite.play("run", 7)
 		else:
-			if player.p_meter < player.p_meter_max and not player.flying:
+			if player.hovering:
+				owner.animated_sprite.play("hover")
+			elif player.p_meter < player.p_meter_max and not player.flying:
 				if player.velocity.y < 0:
 					player.animated_sprite.play("jump")
 				elif player.is_super and not player.hovering:
