@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var is_empty := true
 
 # === General shell stuff ===
-@onready var grab = $Grabbable
+@onready var grab: Grabbable = $Grabbable
 @onready var stomparea := $StompArea
 @onready var hurtbox := $HurtBox
 @onready var grabbox := $Grabbox
@@ -16,15 +16,20 @@ var had_wings := false
 var og_spawn_position
 var shell_owner_spawn_pos
 var xspd := 180.0
+var knocked_xspd := 40.0
 var added_xspd := 0.0
 var direction := 1
 var gravity = 600.0
 var bounce_force = -80.0
+var knocked := false
 var can_bounce = false
 var is_dead := false
 var can_respawn := false
+var was_on_floor := true
 
 func _ready() -> void:
+	if knocked:
+		knocked_by_tail()
 	if shell_owner_spawn_pos == null:
 		og_spawn_position = global_position
 	else:
@@ -36,12 +41,30 @@ func _ready() -> void:
 
 	sprite.play("Idle" + color)
 
+func knocked_by_tail(dir := 1):
+	if grab.grab_delay > 5: # > 5 because when the shell spawns there's a delay of 5
+		return
+	direction = dir
+	knocked = true
+	grab.is_kicked = false
+	grab.can_grab = true
+	velocity.x = knocked_xspd * direction
+	velocity.y = -240.0
+	sprite.scale.y = -1.0
+	grab.grab_delay = 10
+
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		sprite.rotation += 0.3 * sign(velocity.x)
 		velocity.x = xspd * direction
 		if not GameManager.is_on_screen(global_position):
 			queue_free()
+
+	if knocked:
+		velocity.x = knocked_xspd * direction
+		if not was_on_floor and is_on_floor() or grab.is_kicked:
+			knocked = false
+			velocity.x = 0
 
 	if grab.is_just_released:
 		can_bounce = true
@@ -69,12 +92,14 @@ func _physics_process(delta: float) -> void:
 		collision.disabled = true
 		velocity = Vector2.ZERO
 
+	was_on_floor = is_on_floor()
+
 	move_and_slide()
 
 	# Change direction on wall 
 	if not is_dead:
 		if is_on_wall():
-			if not grab.is_grabbed: SoundManager.play_sfx("Hit", global_position)
+			if grab.is_kicked: SoundManager.play_sfx("Hit", global_position)
 			direction *= -1
 
 # === Stomp da shell ===

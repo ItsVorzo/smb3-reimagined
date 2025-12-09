@@ -199,7 +199,7 @@ func _physics_process(delta: float) -> void:
 				animation_override = "swim"
 		shoot_timer -= 1
 	elif kick_timer > 0:
-		if animation_override != "kick":
+		if animation_override != "kick" and animation_override != "tail_attack":
 			animation_override = "kick"
 		kick_timer -= 1
 

@@ -86,4 +86,6 @@ func exit() -> void:
 	owner.flying = false
 	owner.hovering = false
 	owner.tail_attacking = false
+	owner.tailbox.monitoring = false
+	owner.direction_allow = true
 	owner.animation_override = ""

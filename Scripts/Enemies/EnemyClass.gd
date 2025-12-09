@@ -107,6 +107,10 @@ func die_from_stomp() -> void:
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
+# === Override this function to insert more interactions ===
+func tail_interaction(body: Node):
+	die_from_obj(-sign(body.global_position.x - global_position.x), 60.0)
+
 # === Die from an object (it could be anything) ===
 func die_from_obj(dir := 1, spd := 130) -> void:
 	SoundManager.play_sfx("Kick", global_position)

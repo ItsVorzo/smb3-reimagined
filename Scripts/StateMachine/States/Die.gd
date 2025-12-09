@@ -38,8 +38,8 @@ func enter() -> void:
 
 func process_update(delta: float) -> void:
 	# Disable collisions so Mario phases through everything
-	player.normal_collision_shape.disabled = true
-	player.super_collision_shape.disabled = true
+	player.small_collision.disabled = true
+	player.big_collision.disabled = true
 
 	if can_fall:
 		player.velocity.y += player.death_gravity * delta
@@ -49,7 +49,7 @@ func process_update(delta: float) -> void:
 func exit() -> void:
 	player.is_dead = false
 	player.process_mode = player.PROCESS_MODE_INHERIT
-	player.normal_collision_shape.disabled = false
-	player.super_collision_shape.disabled = false
+	player.small_collision.disabled = false
+	player.big_collision.disabled = false
 	player.global_position = Vector2(randf_range(player.global_position.x - 64, player.global_position.x + 64), -48)
 	player.velocity.y = 0.0

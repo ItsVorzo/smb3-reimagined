@@ -63,6 +63,21 @@ func _physics_process(delta: float) -> void:
 
 	flip_direction()
 
+func tail_interaction(_body: Node):
+	var shell = load("res://Scenes/Enemies/KoopaShell.tscn").instantiate()
+	shell.global_position = global_position
+	shell.shell_owner_spawn_pos = og_spawn_position
+	shell.had_wings = had_wings
+	shell.color = color
+	shell.knocked = true
+	if wings:
+		wings = false
+		had_wings = true
+		r_wing.stop()
+		r_wing.hide()
+	get_parent().call_deferred("add_child", shell)
+	queue_free()
+
 # Spawn the shell
 func on_stomped() -> void:
 	if not wings:

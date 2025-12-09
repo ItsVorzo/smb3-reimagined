@@ -9,9 +9,9 @@ func _ready() -> void:
 
 func tail_attack(body: Node2D) -> void:
 	if body.is_in_group("Enemies"):
-		body.die_from_obj(-sign(plr.global_position.x - body.global_position.x), 60.0)
+		body.tail_interaction(self)
 	elif body.is_in_group("Shell"):
 		SoundManager.play_sfx("Kick", global_position)
-		body.die(-sign(plr.global_position.x - body.global_position.x), 60.0)
+		body.knocked_by_tail(-sign(plr.global_position.x - body.global_position.x))
 	elif body.is_in_group("Blocks"):
 		body.activate(self)
