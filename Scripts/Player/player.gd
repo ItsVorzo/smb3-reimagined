@@ -124,7 +124,7 @@ func _ready() -> void:
 
 	# Character indexes will be handles differently
 	SaveManager.start_runtime_from_save(0) # 1st step to getting the character index
-	character_index = 0 # 2nd step
+	character_index = player_id # 2nd step
 
 	# Load the correct sprites
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
