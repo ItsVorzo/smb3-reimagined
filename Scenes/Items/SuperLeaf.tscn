@@ -29,6 +29,7 @@ pick_up_area = NodePath("PickupArea")
 powerup = "Raccoon"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_t0ra4")
 animation = &"idle"
 autoplay = "idle"

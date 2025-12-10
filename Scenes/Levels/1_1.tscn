@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://fmfeiihxihvg"]
+[gd_scene load_steps=29 format=4 uid="uid://fmfeiihxihvg"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://htr458mvxcyt" path="res://Scenes/Player/cameragroundlimit.tscn" id="11_xecmd"]
 [ext_resource type="PackedScene" uid="uid://ckmo5tusoxd8f" path="res://Scenes/UI/hud.tscn" id="14_noyq2"]
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
+[ext_resource type="PackedScene" uid="uid://dhxl7ppselfg8" path="res://Scenes/Items/SuperLeaf.tscn" id="20_nbrqo"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_da70h"]
 [ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="27_fxiy1"]
@@ -158,15 +159,14 @@ position = Vector2(488, -104)
 
 [node name="QuestionBlock4" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(504, -104)
-item = ExtResource("28_x8ai0")
+item = ExtResource("20_nbrqo")
 
 [node name="QuestionBlock8" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(680, -88)
-item = ExtResource("28_x8ai0")
 
 [node name="QuestionBlock5" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(920, -24)
-item = ExtResource("28_x8ai0")
+item = ExtResource("20_nbrqo")
 
 [node name="QuestionBlock6" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(968, -56)
@@ -209,7 +209,7 @@ position = Vector2(1736, -8)
 
 [node name="QuestionBlock9" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(1736, -40)
-item = ExtResource("28_x8ai0")
+item = ExtResource("20_nbrqo")
 
 [node name="PipePiranhaPlant2" parent="." instance=ExtResource("30_x8ai0")]
 position = Vector2(2064, -40)
