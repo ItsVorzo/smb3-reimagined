@@ -2,9 +2,6 @@ extends EnemyClass  # EnemyClass extends CharacterBody2D
 
 var max_fall_speed := 2000.0   # Optional cap
 
-func _ready() -> void:
-	init()
-
 func _physics_process(delta: float) -> void:
 	process(delta)
 	move_horizontally()

@@ -6,7 +6,7 @@ var direction := 1.0
 @onready var area2d = $Area2D
 
 func _ready() -> void:
-	area2d.body_entered.connect(kill)
+	area2d.area_entered.connect(kill)
 
 func _physics_process(delta: float) -> void:
 
@@ -24,14 +24,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func kill(body: Node):
-
-	smoke_effect(body.global_position)
-	if body.is_in_group("Enemies") and body.can_die_from_fire:
-		body.die_from_obj(direction, 60)
-	elif body.is_in_group("Shell"):
+func kill(area: Area2D):
+	smoke_effect(area.owner.global_position)
+	if area.owner.is_in_group("Enemies") and area.owner.can_die_from_fire and not area.owner.dead_from_obj:
+		area.owner.die_from_obj(direction, 60)
+	elif area.owner.is_in_group("Shell") and not area.owner.is_dead:
 		SoundManager.play_sfx("Kick", global_position)
-		body.die(direction)
+		area.owner.die(direction)
 	else:
 		SoundManager.play_sfx("Hit", global_position)
 

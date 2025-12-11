@@ -12,7 +12,7 @@ var jumping := false
 func _ready() -> void:
 	start_y = global_position.y
 	jump_cooldown = jump_interval
-	init()
+	super._ready()
 
 func _physics_process(delta: float) -> void:
 

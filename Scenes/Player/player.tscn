@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://5iv6rg1q266m"]
+[gd_scene load_steps=19 format=3 uid="uid://5iv6rg1q266m"]
 
 [ext_resource type="Script" uid="uid://chmdycc5m3wqt" path="res://Scripts/Player/Player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://r2jyvocfl4bl" path="res://Scripts/StateMachine/States/Normal.gd" id="3_3smsa"]
@@ -22,6 +22,12 @@ size = Vector2(10, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5acl"]
 size = Vector2(30, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epg6k"]
+size = Vector2(10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esmjy"]
+size = Vector2(10, 21)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("pwrup") groups=["Player"]]
 z_index = 3
@@ -76,11 +82,10 @@ animation_type = 2
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = ExtResource("8_epg6k")
-animation = &"fly"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
-process_mode = 3
 position = Vector2(0, -16)
 script = ExtResource("8_oikmp")
 
@@ -91,6 +96,7 @@ shape = SubResource("RectangleShape2D_8erm5")
 [node name="BigCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_0u84n")
+disabled = true
 
 [node name="TailAttackBox" type="Area2D" parent="." groups=["Tail"]]
 collision_layer = 0
@@ -110,3 +116,18 @@ max_distance = 4096.0
 
 [node name="Skid" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_miouo")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="SmallCollision" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_epg6k")
+debug_color = Color(0.6892432, 0.31755483, 0.9565932, 0.41960785)
+
+[node name="BigCollision" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_esmjy")
+disabled = true
+debug_color = Color(0.6901961, 0.31764707, 0.95686275, 0.41960785)

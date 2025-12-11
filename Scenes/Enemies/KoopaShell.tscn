@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://2j1cbp0qxdsy"]
+[gd_scene load_steps=19 format=3 uid="uid://2j1cbp0qxdsy"]
 
 [ext_resource type="Script" uid="uid://dbxprdjwycq6" path="res://Scripts/Enemies/KoopaShell.gd" id="1_2kq23"]
 [ext_resource type="Texture2D" uid="uid://q18ann6ebs6" path="res://Sprites/Objects/KoopaShells.png" id="2_snsoy"]
@@ -101,11 +101,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kq23"]
 size = Vector2(10, 13)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6wik"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02fkw"]
 size = Vector2(14, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_snsoy"]
-size = Vector2(18, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l02h"]
 size = Vector2(14, 16)
@@ -116,36 +113,28 @@ floor_constant_speed = true
 script = ExtResource("1_2kq23")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_2kq23")
 animation = &"IdleGreen"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 script = ExtResource("3_7l02h")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_2kq23")
 
-[node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, -8)
-collision_layer = 0
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
 collision_mask = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 7.5)
-shape = SubResource("RectangleShape2D_w6wik")
-
-[node name="StompArea" type="Area2D" parent="."]
-position = Vector2(0, -8)
-collision_layer = 8
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_snsoy")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_02fkw")
 
 [node name="Grabbox" type="Area2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -16)
 collision_layer = 8
 collision_mask = 2
 

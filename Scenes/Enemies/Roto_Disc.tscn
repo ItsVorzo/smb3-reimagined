@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://beckswfpojmq8" path="res://Scripts/Enemies/roto_disc.gd" id="1_dnano"]
 [ext_resource type="Texture2D" uid="uid://c5wb7xsd8xgoj" path="res://Sprites/Gizmos/RotoDisc.png" id="1_otjvs"]
-[ext_resource type="Script" uid="uid://c8vqocjplg577" path="res://Scenes/Enemies/RotoDiscTrail.gd" id="3_iogqw"]
+[ext_resource type="Script" uid="uid://c8vqocjplg577" path="res://Scripts/Enemies/RotoDiscTrail.gd" id="3_iogqw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnano"]
 atlas = ExtResource("1_otjvs")
@@ -142,12 +142,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnano"]
 size = Vector2(16, 16)
 
-[node name="RotoDisc" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+[node name="RotoDisc" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hitbox")]
 collision_layer = 15
 collision_mask = 11
 script = ExtResource("1_dnano")
 collision = NodePath("Disc/Area2D/Collision")
-hurtbox = NodePath("Disc/Area2D/HurtBox")
+hitbox = NodePath("Disc/Area2D/HitBox")
 can_die_from_fire = false
 can_die_from_slide = false
 
@@ -168,12 +168,12 @@ script = ExtResource("3_iogqw")
 [node name="Collision" type="CollisionShape2D" parent="Disc/Area2D"]
 shape = SubResource("RectangleShape2D_sswme")
 
-[node name="HurtBox" type="Area2D" parent="Disc/Area2D"]
+[node name="HitBox" type="Area2D" parent="Disc/Area2D"]
 position = Vector2(0, 26)
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Disc/Area2D/HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Disc/Area2D/HitBox"]
 position = Vector2(0, -26)
 shape = SubResource("RectangleShape2D_057ka")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://e4embafexpde"]
+[gd_scene load_steps=8 format=3 uid="uid://e4embafexpde"]
 
 [ext_resource type="Script" uid="uid://fu5iktk3b7yd" path="res://Scripts/Items/Mushroom.gd" id="1_se6lb"]
 [ext_resource type="Texture2D" uid="uid://daln4yc7ueohv" path="res://Sprites/Items/SuperMushroom.png" id="1_u2twr"]
@@ -20,6 +20,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se6lb"]
+size = Vector2(14, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isfgy"]
 size = Vector2(16, 16)
 
 [node name="Mushroom" type="CharacterBody2D" node_paths=PackedStringArray("pick_up_area", "collision")]
@@ -39,6 +42,7 @@ position = Vector2(0, -16)
 script = ExtResource("3_isfgy")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_se6lb")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -46,6 +50,6 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_se6lb")
+shape = SubResource("RectangleShape2D_isfgy")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

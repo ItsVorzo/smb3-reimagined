@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://br3rgvvyyv5n6"]
+[gd_scene load_steps=23 format=4 uid="uid://br3rgvvyyv5n6"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -18,7 +18,6 @@
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://2j1cbp0qxdsy" path="res://Scenes/Enemies/KoopaShell.tscn" id="25_1i5or"]
-[ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_gsh3y"]
 [ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="27_xyty3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1pt7"]
@@ -137,15 +136,10 @@ position = Vector2(234, 150)
 [node name="HUD" parent="." instance=ExtResource("14_noyq2")]
 
 [node name="KoopaShell" parent="." instance=ExtResource("25_1i5or")]
-position = Vector2(288, 0)
+position = Vector2(288, -8)
 
 [node name="FireFlower" parent="." instance=ExtResource("27_xyty3")]
 position = Vector2(568, -8)
 
-[node name="Koopa" parent="." instance=ExtResource("26_gsh3y")]
-position = Vector2(472, -8)
-wings = true
-
 [node name="Goomba" parent="." instance=ExtResource("22_x62f6")]
-position = Vector2(424, 0)
-wings = true
+position = Vector2(472, -8)

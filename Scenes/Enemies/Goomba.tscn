@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c688u7qw55eff"]
+[gd_scene load_steps=14 format=3 uid="uid://c688u7qw55eff"]
 
 [ext_resource type="Script" uid="uid://bquc1mx5ttqg0" path="res://Scripts/Enemies/Goomba.gd" id="1_apkb4"]
 [ext_resource type="SpriteFrames" uid="uid://mt824ajsxhjc" path="res://SpriteFrames/Enemies/goomba.tres" id="2_d1rwa"]
@@ -53,61 +53,53 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
 size = Vector2(10, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7role"]
-size = Vector2(20, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m801s"]
+size = Vector2(14, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
-size = Vector2(16, 10)
-
-[node name="Goomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite", "stompbox") groups=["Enemies"]]
+[node name="Goomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hitbox", "sprite") groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_apkb4")
 collision = NodePath("Collision")
-hurtbox = NodePath("HurtBox")
+hitbox = NodePath("HitBox")
 sprite = NodePath("AnimatedSprite2D")
-stompbox = NodePath("StompBox")
 
 [node name="LeftWing" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 rotation = 3.1415927
 scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_qd7fg")
 animation = &"flap"
 
 [node name="RightWing" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_gutvv")
 animation = &"flap"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = ExtResource("2_d1rwa")
 animation = &"walk"
 autoplay = "walk"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 script = ExtResource("3_gutvv")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_sswme")
 
-[node name="StompBox" type="Area2D" parent="."]
-position = Vector2(0, -1)
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -8)
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StompBox"]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_7role")
-
-[node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, 25)
-collision_layer = 8
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -23)
-shape = SubResource("RectangleShape2D_057ka")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_m801s")
 
 [node name="StompSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -8)
 stream = ExtResource("3_d1rwa")

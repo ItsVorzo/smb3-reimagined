@@ -13,7 +13,7 @@ var aim_x_direction = 1
 var aim_y_direction = 1
 
 func _ready() -> void:
-	init()
+	super._ready()
 	if not fire:
 		sprite.play("Chomp" + color)
 	else:

@@ -1,27 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://dejhtq47ffem4"]
+[gd_scene load_steps=6 format=3 uid="uid://dejhtq47ffem4"]
 
 [ext_resource type="Script" uid="uid://bvyw74jhrymyw" path="res://Scripts/Enemies/BigGoomba.gd" id="1_m0rws"]
 [ext_resource type="SpriteFrames" uid="uid://lobjog7nfli0" path="res://SpriteFrames/Enemies/BigGoomba.tres" id="2_grwuy"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_a8cbn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
-size = Vector2(20, 14)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7role"]
-size = Vector2(24, 8)
+size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
-size = Vector2(20, 14)
+size = Vector2(20, 22)
 
-[node name="BigGoomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite", "stompbox") groups=["Enemies"]]
+[node name="BigGoomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hitbox", "sprite") groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_m0rws")
 collision = NodePath("Collision")
-hurtbox = NodePath("HurtBox")
+hitbox = NodePath("HitBox")
 sprite = NodePath("Sprite")
-stompbox = NodePath("StompBox")
 can_die_from_slide = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -35,20 +31,13 @@ offset = Vector2(0, -6)
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_sswme")
 
-[node name="StompBox" type="Area2D" parent="."]
-position = Vector2(0, -3)
-collision_layer = 8
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StompBox"]
-shape = SubResource("RectangleShape2D_7role")
-
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, 8)
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_057ka")
 
 [node name="StompSound" type="AudioStreamPlayer2D" parent="."]

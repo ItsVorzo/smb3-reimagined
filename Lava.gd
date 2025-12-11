@@ -1,7 +1,7 @@
 extends EnemyClass
 
 func _ready() -> void:
-	init()
+	super._ready()
 	remove_from_group("Enemies")
 
 func _physics_process(delta: float) -> void:

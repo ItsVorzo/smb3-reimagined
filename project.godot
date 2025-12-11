@@ -37,7 +37,9 @@ GameManager="*res://Scripts/Game/GameManager.gd"
 window/size/viewport_width=256
 window/size/viewport_height=240
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=3
+window/snap/snap_2d_transforms_to_pixel=false
 
 [editor_plugins]
 
@@ -126,3 +128,4 @@ C={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+2d/stretch/scale_mode="integer"

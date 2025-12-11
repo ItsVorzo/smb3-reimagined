@@ -3,7 +3,6 @@ extends Node
 
 # === Grabbable info ===
 @export var grabbox: Area2D = null
-@export var sprite: AnimatedSprite2D = null
 @export var can_kick: bool
 
 # === General shit ===
@@ -119,7 +118,7 @@ func release() -> void:
 
 # Set the obj x position (this also handles turning around)
 func object_x_position(body: Node):
-	var final_pos = body.global_position.x + 10 * body.facing_direction # Determine the object position
+	var final_pos = body.global_position.x + (12 - int(body.is_super)) * body.facing_direction # Determine the object position
 	owner.z_index = body.z_index - 1
 
 	# Turn around
@@ -135,7 +134,7 @@ func object_x_position(body: Node):
 	if delay == 6:
 		delaying = false
 		owner.z_index = body.z_index - 1
-		final_pos = body.global_position.x + 10 * body.facing_direction
+		final_pos = body.global_position.x + (12 - int(body.is_super)) * body.facing_direction
 
 	# Update
 	last_facing_direction = body.facing_direction
@@ -144,10 +143,10 @@ func object_x_position(body: Node):
 
 # Obj y position
 func object_y_position(body: Node):
-	var final_y_pos = body.global_position.y - 9
+	var final_y_pos = body.global_position.y - 1
 	if not body.is_super:
-		final_y_pos = body.global_position.y - 9
+		final_y_pos = body.global_position.y - 1
 	else:
-		final_y_pos = body.global_position.y - 11
+		final_y_pos = body.global_position.y - 4
 
 	return final_y_pos

@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var skid_sfx = $Skid
 @onready var small_collision := $SmallCollision
 @onready var big_collision := $BigCollision
+@onready var hitbox := $HitBox
+@onready var hitbox_small := $HitBox/SmallCollision
+@onready var hitbox_big := $HitBox/BigCollision
 @onready var tailbox := $TailAttackBox
 @onready var death_sound: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var bottom_pit := $"../CameraGroundLimit"
@@ -162,10 +165,10 @@ func _physics_process(delta: float) -> void:
 	# === Set variables ===
 	max_speed = final_max_speed()
 	p_meter = handle_p_meter()
-	skidding = input_direction() != 0 and velocity_direction != 0 and input_direction() != velocity_direction and is_on_floor() and !crouching
+	skidding = input_direction() != 0 and velocity_direction != 0 and input_direction() != velocity_direction and !crouching
 	animated_sprite.scale.x = sprite_direction()
 	velocity_direction = sign(velocity.x)
-	if skidding:
+	if skidding and is_on_floor():
 		if skid_sfx.is_playing() == false:
 			skid_sfx.play()
 	else:
@@ -199,7 +202,7 @@ func _physics_process(delta: float) -> void:
 				animation_override = "swim"
 		shoot_timer -= 1
 	elif kick_timer > 0:
-		if animation_override != "kick" and animation_override != "tail_attack":
+		if animation_override != "kick" or animation_override != "tail_attack":
 			animation_override = "kick"
 		kick_timer -= 1
 
@@ -260,10 +263,14 @@ func handle_powerups(delta: float):
 	is_super = pwrup.tier >= 1
 	if not is_super or crouching:
 		small_collision.disabled = false
+		hitbox_small.disabled = false
 		big_collision.disabled = true
+		hitbox_big.disabled = true
 	else:
 		small_collision.disabled = true
+		hitbox_small.disabled = true
 		big_collision.disabled = false
+		hitbox_big.disabled = false
 
 # === DIE! ===
 func die() -> void:

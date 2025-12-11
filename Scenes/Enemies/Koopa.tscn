@@ -69,59 +69,61 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd2u8"]
-size = Vector2(12, 16)
+size = Vector2(10, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4q77e"]
 size = Vector2(20, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_215k6"]
-size = Vector2(16, 16)
+size = Vector2(14, 15)
 
-[node name="Koopa" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox", "sprite", "stompbox") groups=["Enemies"]]
+[node name="Koopa" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hitbox", "sprite") groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_215k6")
 collision = NodePath("Collision")
-hurtbox = NodePath("HurtBox")
+hitbox = NodePath("HitBox")
 sprite = NodePath("AnimatedSprite2D")
-stompbox = NodePath("StompBox")
-has_custom_stomp = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_oq3vd")
 animation = &"WalkGreen"
 
 [node name="RightWing" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_ukqi4")
 animation = &"flap"
 
 [node name="DropShadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
 script = ExtResource("3_4q77e")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_cd2u8")
 
 [node name="LedgeCheck" type="RayCast2D" parent="."]
-position = Vector2(-6, 4)
+position = Vector2(-6, -5)
 target_position = Vector2(0, 8)
 
 [node name="StompBox" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -2)
 collision_layer = 8
 collision_mask = 2
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompBox"]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_4q77e")
 
-[node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, -2)
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -9)
 collision_layer = 8
 collision_mask = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_215k6")
-debug_color = Color(0.7911222, 0.4009099, 0.413241, 0.41960785)

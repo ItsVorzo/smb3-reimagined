@@ -13,15 +13,19 @@ const mushroom_scene = preload("res://Scenes/Items/Mushroom.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Blocks")
-	hitbox.body_entered.connect(activation_condition)
-	sidebox.body_entered.connect(activation_condition)
+	hitbox.body_entered.connect(body_activation_condition)
+	hitbox.area_entered.connect(area_activation_condition)
+	sidebox.area_entered.connect(area_activation_condition)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
-func activation_condition(_body: Node):
+func body_activation_condition(_body: Node):
+	pass
+
+func area_activation_condition(_area: Area2D):
 	pass
 
 func activate(_body: Node) -> void:

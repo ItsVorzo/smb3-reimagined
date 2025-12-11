@@ -6,8 +6,9 @@ extends CharacterBody2D
 
 # === General shell stuff ===
 @onready var grab: Grabbable = $Grabbable
-@onready var stomparea := $StompArea
-@onready var hurtbox := $HurtBox
+@onready var hitbox := $HitBox
+#@onready var stomparea := $StompArea
+#@onready var hurtbox := $HurtBox
 @onready var grabbox := $Grabbox
 @onready var sprite := $AnimatedSprite2D
 @onready var collision := $Collision
@@ -35,9 +36,10 @@ func _ready() -> void:
 	else:
 		og_spawn_position = shell_owner_spawn_pos
 	add_to_group("Shell")
-	hurtbox.body_entered.connect(shell_damage)
-	hurtbox.area_entered.connect(shell_damage)
-	stomparea.body_entered.connect(stomp_on_shell)
+	hitbox.area_entered.connect(area_entered)
+	#hurtbox.body_entered.connect(shell_damage)
+	#hurtbox.area_entered.connect(shell_damage)
+	#stomparea.body_entered.connect(stomp_on_shell)
 
 	sprite.play("Idle" + color)
 
@@ -102,25 +104,39 @@ func _physics_process(delta: float) -> void:
 			if grab.is_kicked: SoundManager.play_sfx("Hit", global_position)
 			direction *= -1
 
+func player_above(player: Player) -> bool:
+	return player.global_position.y + 4 < global_position.y
+
+func area_entered(area: Area2D) -> void:
+	if area.owner is Player:
+		if player_above(area.owner):
+			stomp_on_shell(area.owner)
+		else:
+			shell_damage(area)
+	elif area.owner.is_in_group("Enemies") or area.owner.is_in_group("Shell"):
+		shell_damage(area)
+
 # === Stomp da shell ===
-func stomp_on_shell(body):
-	if body.is_in_group("Player") and grab.grab_delay == 0 and grab.is_kicked:
-		if not body.is_on_floor():
+func stomp_on_shell(player: Player):
+	if player.is_in_group("Player") and grab.grab_delay == 0 and grab.is_kicked:
+		if not player.is_on_floor():
 			SoundManager.play_sfx("Stomp", global_position)
-			body.bounce_on_enemy()
+			player.bounce_on_enemy()
 			grab.is_kicked = false
 			grab.grab_delay = 10
 			velocity.x = 0
 
 # === Interact with objects ===
-func shell_damage(body: Node):
-	# Kill the player
-	if body.is_in_group("Player"):
+func shell_damage(area: Area2D):
+	var other = area.owner
+	# 1. Kill the player
+	if other is Player:
 		if grab.is_kicked and grab.grab_delay == 0:
-			body.damage()
+			other.damage()
+		return
 
-	# Kill while being grabbed
-	elif grab.is_grabbed and ((body != self and body.is_in_group("Shell")) or body.is_in_group("Enemies")):
+	# 2. Kill while being grabbed
+	if grab.is_grabbed and other != self:
 		# Get rid of the holder
 		if grab.holder:
 			grab.holder.current_grabbed_obj = null
@@ -129,20 +145,24 @@ func shell_damage(body: Node):
 		SoundManager.play_sfx("Kick", global_position)
 		# Kill the shell/enemy
 		die(-direction) # kills themselves
-		if body.is_in_group("Shell"):
-			body.die(-direction)
-		else:
-			impact_effect(body.global_position)
-			body.die_from_obj(-direction)
+		impact_effect(global_position + Vector2(0, -8))
+		if other.is_in_group("Shell") and not other.is_dead:
+			other.die(-direction)
+		elif other.is_in_group("Enemies") and not other.dead_from_obj:
+			other.die_from_obj(-direction)
+		impact_effect(other.global_position + Vector2(0, -8))
+		return
 
-	# Kill while spinning
-	elif (body != self and body.is_in_group("Shell") or body.is_in_group("Enemies")) and grab.is_kicked:
+	# 3. Kill while spinning
+	if grab.is_kicked and other != self:
 		SoundManager.play_sfx("Kick", global_position)
-		if body.is_in_group("Shell"):
-			body.die(direction)
-		else:
-			impact_effect(body.global_position)
-			body.die_from_obj(direction)
+		if other.is_in_group("Shell") and not other.is_dead:
+			other.die(direction)
+			impact_effect(other.global_position + Vector2(0, -8))
+		elif other.is_in_group("Enemies") and not other.dead_from_obj:
+			other.die_from_obj(direction)
+			impact_effect(other.global_position + Vector2(0, -8))
+			return
 
 # === Basically die_from_obj but for shells ===
 func die(dir := 1, spd := 130):
@@ -153,8 +173,9 @@ func die(dir := 1, spd := 130):
 	collision.set_deferred("disabled", true)
 	set_collision_layer(0)
 	set_collision_mask(0)
-	hurtbox.set_deferred("monitoring", false)
-	stomparea.set_deferred("monitoring", false)
+	hitbox.set_deferred("monitoring", false)
+	#hurtbox.set_deferred("monitoring", false)
+	#stomparea.set_deferred("monitoring", false)
 	grabbox.set_deferred("monitoring", false)
 
 func impact_effect(pos) -> void:

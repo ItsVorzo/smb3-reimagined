@@ -8,7 +8,6 @@
 z_index = -50
 
 [node name="Sky" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.75, 1)
 scroll_offset = Vector2(0, -433)
 repeat_size = Vector2(1024, 512)
 
@@ -16,17 +15,14 @@ repeat_size = Vector2(1024, 512)
 texture = ExtResource("1_om8m2")
 
 [node name="Clouds" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.25, 1)
 scroll_offset = Vector2(0, -700)
 repeat_size = Vector2(1024, 512)
-autoscroll = Vector2(-6, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Clouds"]
 position = Vector2(0, -124)
 texture = ExtResource("2_6cdgx")
 
 [node name="Hills" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.5, 1)
 scroll_offset = Vector2(0, -374)
 repeat_size = Vector2(1024, 0)
 

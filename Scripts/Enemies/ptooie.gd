@@ -23,7 +23,7 @@ var wobble_amplitude := 4.0
 var ball_instance: Node2D
 
 func _ready() -> void:
-	init()
+	super._ready()
 	spawn_ball_above()
 	state = State.WALKING
 	state_timer = walk_duration

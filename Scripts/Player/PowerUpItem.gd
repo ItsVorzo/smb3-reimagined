@@ -14,6 +14,7 @@ func _ready() -> void:
 	if from_block:
 		target_y = self.global_position.y - 10
 	pick_up_area.body_entered.connect(body_entered)
+	add_to_group("Items")
 
 func _physics_process(_delta: float) -> void:
 	if from_block:

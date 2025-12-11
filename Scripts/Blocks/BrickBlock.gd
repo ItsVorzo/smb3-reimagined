@@ -44,9 +44,15 @@ func _on_switch_on():
 func _on_switch_off():
 	pass
 
-func activation_condition(body: Node):
-	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:
+func body_activation_condition(body: Node):
+	if is_activated or is_used:
+		return
+	if body.is_in_group("Player") and body.velocity.y >= 0.0:
 		activate(body)
+
+func area_activation_condition(area: Area2D):
+	if (area.owner.is_in_group("Shell") and area.owner.grab.is_kicked) and not is_activated and not is_used:
+		activate(area.owner)
 
 # === Activate the block ===
 func activate(body: Node) -> void:

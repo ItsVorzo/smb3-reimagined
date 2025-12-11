@@ -30,9 +30,15 @@ func _physics_process(delta: float) -> void:
 		is_activated = false
 		is_used = true
 
-func activation_condition(body: Node):
-	if (body.is_in_group("Player") or body.is_in_group("Shell") and body.grab.is_kicked) and not is_activated and not is_used:
+func body_activation_condition(body: Node):
+	if is_activated or is_used:
+		return
+	if body.is_in_group("Player") and body.velocity.y >= 0.0:
 		activate(body)
+
+func area_activation_condition(area: Area2D):
+	if (area.owner.is_in_group("Shell") and area.owner.grab.is_kicked) and not is_activated and not is_used:
+		activate(area.owner)
 
 # === Activate the block ===
 func activate(_body: Node) -> void:
@@ -83,3 +89,5 @@ func block_top_interaction(body):
 		body.dead_from_obj(body.direction, 60)
 	if body.is_in_group("Shell"):
 		body.die(body.direction, 60)
+	if body.is_in_group("Items"):
+		body.velocity.y = -100.0

@@ -14,10 +14,10 @@ func _ready() -> void:
 		start_y = global_position.y
 	if wings:
 		r_wing.show()
-		r_wing.position = Vector2(4, -11)
+		r_wing.position = Vector2(4, -19)
 	else:
 		r_wing.hide()
-	init()
+	super._ready()
 	sprite.play("Walk" + color)
 
 func _physics_process(delta: float) -> void:

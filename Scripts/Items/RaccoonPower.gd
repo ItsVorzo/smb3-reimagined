@@ -14,7 +14,6 @@ func physics_update(_delta: float) -> void:
 	handle_hovering()
 	handle_flying()
 
-	owner.tailbox.monitoring = owner.tail_attacking
 	anim_playing = owner.animated_sprite.is_playing()
 
 	if owner.input.is_action_just_pressed("B") and not owner.tail_attacking:
@@ -45,6 +44,8 @@ func handle_timers():
 	else:
 		# Reset everything when you're done attacking
 		owner.tail_attacking = false
+		if owner.tailbox.monitoring == true:
+			owner.tailbox.monitoring = false
 		owner.animation_override = ""
 		owner.direction_allow = true
 
@@ -78,6 +79,7 @@ func handle_flying():
 func tail_attack():
 	SoundManager.play_sfx("Break", owner.global_position)
 	owner.tail_attacking = true
+	owner.tailbox.monitoring = true
 	owner.direction_allow = false
 	attack_timer = 15
 	owner.animation_override = "tail_attack"

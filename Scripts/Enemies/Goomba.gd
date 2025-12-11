@@ -12,15 +12,14 @@ var big_jump := -170.0
 
 func _ready() -> void:
 	if wings:
-		has_custom_stomp = true
 		r_wing.show()
 		l_wing.show()
-		r_wing.position = Vector2(6, -8)
-		l_wing.position = Vector2(-6, -8)
+		r_wing.position = Vector2(6, -16)
+		l_wing.position = Vector2(-6, -16)
 	else:
 		r_wing.hide()
 		l_wing.hide()
-	init()
+	super._ready()
 
 func _physics_process(delta: float) -> void:
 	process(delta)
@@ -97,13 +96,15 @@ func _physics_process(delta: float) -> void:
 
 # Get the wings off
 func on_stomped() -> void:
-	if velocity.y < 0:
-		velocity.y = 0
-	wings = false
-	had_wings = true
-	r_wing.hide()
-	l_wing.hide()
-	has_custom_stomp = false
+	if wings:
+		if velocity.y < 0:
+			velocity.y = 0
+		wings = false
+		had_wings = true
+		r_wing.hide()
+		l_wing.hide()
+	else:
+		die_from_stomp()
 
 func reset_enemy() -> void:
 	if had_wings:

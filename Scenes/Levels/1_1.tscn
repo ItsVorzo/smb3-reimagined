@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://fmfeiihxihvg"]
+[gd_scene load_steps=28 format=4 uid="uid://fmfeiihxihvg"]
 
 [ext_resource type="Script" uid="uid://dr4tfvdwfhdwn" path="res://Scripts/Game/Level.gd" id="1_q0pi4"]
 [ext_resource type="Script" uid="uid://l8iq1uumgigq" path="res://Scripts/Game/ThemeManager.gd" id="2_q0pi4"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
 [ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_da70h"]
 [ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="27_fxiy1"]
-[ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="28_x8ai0"]
 [ext_resource type="PackedScene" uid="uid://cqq5r4nvtqnpu" path="res://Scenes/Enemies/PipePiranhaPlant.tscn" id="30_x8ai0"]
 [ext_resource type="PackedScene" uid="uid://gkuetip4jrov" path="res://Scenes/Blocks/BrickBlock.tscn" id="31_da70h"]
 [ext_resource type="PackedScene" uid="uid://t3lmwf8gtcxe" path="res://Scenes/Items/Coin.tscn" id="32_330ea"]
@@ -119,7 +118,7 @@ drag_bottom_margin = 0.0
 script = ExtResource("11_saxwf")
 
 [node name="Player" parent="." instance=ExtResource("7_ftxpn")]
-position = Vector2(384, 1)
+position = Vector2(384, 0)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Player"]
 process_mode = 3
@@ -128,15 +127,15 @@ stream = ExtResource("10_x1pt7")
 autoplay = true
 
 [node name="Player2" parent="." instance=ExtResource("7_ftxpn")]
-position = Vector2(360, 1)
+position = Vector2(360, 0)
 player_id = 1
 
 [node name="Player3" parent="." instance=ExtResource("7_ftxpn")]
-position = Vector2(336, 1)
+position = Vector2(336, 0)
 player_id = 2
 
 [node name="Player4" parent="." instance=ExtResource("7_ftxpn")]
-position = Vector2(312, 1)
+position = Vector2(312, 0)
 player_id = 3
 
 [node name="Overworld" parent="." instance=ExtResource("8_28jxv")]
@@ -171,10 +170,6 @@ item = ExtResource("20_nbrqo")
 [node name="QuestionBlock6" parent="." instance=ExtResource("27_fxiy1")]
 position = Vector2(968, -56)
 
-[node name="QuestionBlock7" parent="." instance=ExtResource("27_fxiy1")]
-position = Vector2(1736, -40)
-item = ExtResource("28_x8ai0")
-
 [node name="PipePiranhaPlant" parent="." instance=ExtResource("30_x8ai0")]
 position = Vector2(624, -56)
 fire = true
@@ -208,7 +203,7 @@ wings = true
 position = Vector2(1736, -8)
 
 [node name="QuestionBlock9" parent="." instance=ExtResource("27_fxiy1")]
-position = Vector2(1736, -40)
+position = Vector2(1736, -56)
 item = ExtResource("20_nbrqo")
 
 [node name="PipePiranhaPlant2" parent="." instance=ExtResource("30_x8ai0")]
