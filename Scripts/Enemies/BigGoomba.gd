@@ -7,3 +7,6 @@ func _physics_process(delta: float) -> void:
 		sprite.play("squish")
 	move_and_slide()
 	flip_direction()
+
+func on_stomped() -> void:
+	die_from_stomp()

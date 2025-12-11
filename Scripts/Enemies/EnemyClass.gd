@@ -31,7 +31,7 @@ func _ready() -> void:
 	direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
 
 func player_above(player: Player) -> bool:
-	return player.global_position.y + 4 < global_position.y
+	return player.global_position.y + 4 < global_position.y and not player.state_machine.state.name == "Slide"
 
 # === Some SUPER IMPORTANT enemy logic ===
 func process(delta: float) -> void:
