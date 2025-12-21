@@ -5,8 +5,7 @@ extends CharacterBody2D
 @export var collision: CollisionShape2D = null
 @export var hitbox: Area2D = null
 @export var can_stomp := true
-#@export var hurtbox: Area2D = null
-#@export var stompbox: Area2D = null
+@export var stomp_tolerance := 4
 @export var sprite: Node = null
 @export var can_die_from_fire := true
 @export var can_die_from_slide := true
@@ -31,7 +30,7 @@ func _ready() -> void:
 	direction = sign(GameManager.nearest_player(global_position).global_position.x - global_position.x)
 
 func player_above(player: Player) -> bool:
-	return player.global_position.y + 4 < global_position.y and not player.state_machine.state.name == "Slide"
+	return player.global_position.y + stomp_tolerance < global_position.y and not player.state_machine.state.name == "Slide"
 
 # === Some SUPER IMPORTANT enemy logic ===
 func process(delta: float) -> void:

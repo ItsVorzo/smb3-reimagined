@@ -2,14 +2,34 @@ extends Node
 
 var p_meter := [] # Access everyone's p meter globally
 var p_meter_max := 70
+var p_switch_timer := 0.0
 
 @warning_ignore("unused_signal") signal p_switch_activated
 @warning_ignore("unused_signal") signal p_switch_expired
 
-func _ready() -> void:
-	pass
-
 func _process(_delta: float) -> void:
+	change_aspect_ratio()
+	enemy_spawning_despawning()
+	handle_p_switch()
+
+func handle_p_switch() -> void:
+	print(p_switch_timer)
+	if p_switch_timer > 0:
+		p_switch_timer -= 1
+		if p_switch_timer <= 0:
+			p_switch_timer = 0
+			print("replaced")
+			p_switch_expired.emit()
+
+func change_aspect_ratio() -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		if ConfigManager.option_indices["Size"] == 0:
+			ConfigManager.option_indices["Size"] = 1
+		else:
+			ConfigManager.option_indices["Size"] = 0
+		ConfigManager._apply_options()
+
+func enemy_spawning_despawning() -> void:
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	var shells = get_tree().get_nodes_in_group("Shell")
 	var objects = enemies + shells
@@ -33,13 +53,6 @@ func _process(_delta: float) -> void:
 			enemy.reset_enemy()
 			enemy.visible = true
 			enemy.process_mode = Node.PROCESS_MODE_INHERIT
-
-	if Input.is_action_just_pressed("ui_accept"):
-		if ConfigManager.option_indices["Size"] == 0:
-			ConfigManager.option_indices["Size"] = 1
-		else:
-			ConfigManager.option_indices["Size"] = 0
-		ConfigManager._apply_options()
 
 # Check if "obj" is visible on screen
 func is_on_screen(pos, RegionW := 16, RegionH := 16):

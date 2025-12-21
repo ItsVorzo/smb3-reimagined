@@ -1,6 +1,9 @@
 extends BlockClass
 
 # === Block position/states ===
+@export var coin_amount = 0
+var was_coin := false
+var had_coin := false
 var original_y_pos: float
 var yspd := 0.0
 var gravity := 1500.0
@@ -9,8 +12,9 @@ var is_used := false
 var brick_debris_scene = preload("res://Scenes/Blocks/BrickDebris.tscn")
 
 func _ready() -> void:
-	GameManager.p_switch_activated.connect(_on_switch_on)
-	GameManager.p_switch_expired.connect(_on_switch_off)
+	if coin_amount > 0: had_coin = true
+	GameManager.p_switch_activated.connect(_on_p_switch)
+	GameManager.p_switch_expired.connect(_on_p_switch)
 	super._ready()
 	original_y_pos = sprite.global_position.y
 
@@ -30,19 +34,17 @@ func _physics_process(delta: float) -> void:
 	if sprite.global_position.y > original_y_pos:
 		sprite.global_position.y = original_y_pos
 		is_activated = false
-		if item != null:
+		if item != null or coin_amount == 0 and had_coin:
 			is_used = true
 
-
-func _on_switch_on():
-	# Replace this brick with a coin
+func _on_p_switch():
+	if item != null or is_used or had_coin:
+		return
+	# Become coin
 	var coin = coin_scene.instantiate()
 	coin.global_position = global_position
-	get_parent().add_child(coin)
+	get_parent().call_deferred("add_child", coin)
 	queue_free()
-
-func _on_switch_off():
-	pass
 
 func body_activation_condition(body: Node):
 	if is_activated or is_used:
@@ -59,7 +61,7 @@ func activate(body: Node) -> void:
 	if is_activated or is_used:
 		return
 
-	if item != null:
+	if item != null or coin_amount <= 1 and had_coin:
 		sprite.play("Activated")
 	is_activated = true
 	yspd = -140.0
@@ -69,7 +71,7 @@ func activate(body: Node) -> void:
 		if obj != null:
 			block_top_interaction(obj)
 
-	if item == null:
+	if item == null and coin_amount == 0:
 		if body.is_in_group("Player"):
 			if body.pwrup.tier >= 1:
 				destroy()
@@ -77,29 +79,38 @@ func activate(body: Node) -> void:
 				return
 		else:
 			destroy()
-	elif item == coin_scene:
+	elif item == coin_scene or coin_amount > 0:
 		SoundManager.play_sfx("Coin", self.global_position)
 		item_scene = coin_scene.instantiate()
 		spawn_item()
+		coin_amount -= 1
 	# Else give a mushroom if you're small/there's a mushroom
 	else:
-		for p in GameManager.get_players():
-			if p.pwrup.tier < 1 or item == mushroom_scene:
-				SoundManager.play_sfx("ItemPop", self.global_position)
-				item_scene = mushroom_scene.instantiate()
-				spawn_item()
-			# Cooler powerup
-			else:
-				SoundManager.play_sfx("ItemPop", self.global_position)
-				item_scene = item.instantiate()
-				spawn_item()
+		if item_scene is PowerUpItem:
+			for p in GameManager.get_players():
+				if p.pwrup.tier < 1 or item == mushroom_scene:
+					SoundManager.play_sfx("ItemPop", self.global_position)
+					item_scene = mushroom_scene.instantiate()
+					spawn_item()
+				# Cooler powerup
+				else:
+					SoundManager.play_sfx("ItemPop", self.global_position)
+					item_scene = item.instantiate()
+					spawn_item()
+		else:
+			SoundManager.play_sfx("ItemPop", self.global_position)
+			item_scene = item.instantiate()
+			spawn_item()
 
 # Item pop sound effect
 func spawn_item() -> void:
 	item_scene.default_z_index = item_scene.z_index # Get the original z index
 	item_scene.from_block = true 
 	item_scene.global_position.x = self.global_position.x
-	item_scene.global_position.y = self.global_position.y - 6
+	if item_scene is PowerUpItem:
+		item_scene.global_position.y = self.global_position.y - 6
+	else:
+		item_scene.global_position.y = self.global_position.y
 	get_tree().current_scene.call_deferred("add_child", item_scene) # Add it to the level tree
 	item_scene.z_index = self.z_index - 1 # Draw it behind the block
 	# If the item has got a direction variable, make it go to the opposite direction

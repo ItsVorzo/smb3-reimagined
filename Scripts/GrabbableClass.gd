@@ -35,7 +35,8 @@ func _physics_process(_delta: float) -> void:
 	# Kick the shell if the player is inside
 	for body in grabbox.get_overlapping_bodies():
 		if body.is_in_group("Player") and not holder and not is_kicked and grab_delay == 0:
-			kick(body)
+			if can_kick:
+				kick(body)
 
 	# Follow the holder if we have it
 	if holder and holder.current_grabbed_obj == self:
@@ -95,8 +96,9 @@ func grab(body: Node) -> void:
 func kick(body):
 	SoundManager.play_sfx("Kick", owner.global_position)
 	grab_delay = 15
-	is_kicked = true
-	can_grab = false
+	if can_kick:
+		is_kicked = true
+		can_grab = false
 	if holder == null:
 		owner.direction = sign(owner.global_position.x - body.global_position.x)
 	else:

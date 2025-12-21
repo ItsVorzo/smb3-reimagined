@@ -33,6 +33,6 @@ func from_block_anim() -> void:
 func default_anim() ->void:
 	collision.disabled = true
 	if global_position.y >= target_y:
-		global_position.y -= 0.4
+		global_position.y -= 0.2
 	else:
 		from_block = false
