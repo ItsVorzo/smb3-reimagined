@@ -2,7 +2,7 @@ extends Node
 
 var p_meter := [] # Access everyone's p meter globally
 var p_meter_max := 70
-var p_switch_timer := 0.0
+var p_switch_timer := 0
 
 @warning_ignore("unused_signal") signal p_switch_activated
 @warning_ignore("unused_signal") signal p_switch_expired
