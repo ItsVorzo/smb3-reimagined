@@ -22,3 +22,4 @@ func pressed(area: Area2D) -> void:
 			$AnimatedSprite2D.play("pressed")
 			$CollisionShape2D.set_deferred("disabled", true)
 			hitbox.set_deferred("monitoring", false)
+			$HitBox/CollisionShape2D.set_deferred("disabled", true)

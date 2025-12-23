@@ -13,7 +13,6 @@ func _process(_delta: float) -> void:
 	handle_p_switch()
 
 func handle_p_switch() -> void:
-	print(p_switch_timer)
 	if p_switch_timer > 0:
 		p_switch_timer -= 1
 		if p_switch_timer <= 0:
