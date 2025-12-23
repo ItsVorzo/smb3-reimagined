@@ -14,7 +14,7 @@ var brick_debris_scene = preload("res://Scenes/Blocks/BrickDebris.tscn")
 func _ready() -> void:
 	if coin_amount > 0: had_coin = true
 	GameManager.p_switch_activated.connect(_on_p_switch)
-	GameManager.p_switch_expired.connect(_on_p_switch)
+	GameManager.p_switch_expired.connect(_on_p_switch_expired)
 	super._ready()
 	original_y_pos = sprite.global_position.y
 
@@ -37,10 +37,19 @@ func _physics_process(delta: float) -> void:
 		if item != null or coin_amount == 0 and had_coin:
 			is_used = true
 
+# Replace brick with coin if it wasn't already a coin when p switch is on
 func _on_p_switch():
+	if item != null or is_used or had_coin or was_coin:
+		return
+	var coin = coin_scene.instantiate()
+	coin.was_brick = true
+	coin.global_position = global_position
+	get_parent().call_deferred("add_child", coin)
+	queue_free()
+
+func _on_p_switch_expired():
 	if item != null or is_used or had_coin:
 		return
-	# Become coin
 	var coin = coin_scene.instantiate()
 	coin.global_position = global_position
 	get_parent().call_deferred("add_child", coin)

@@ -13,7 +13,7 @@ var default_z_index := 0
 
 func _ready() -> void:
 	GameManager.p_switch_activated.connect(_on_p_switch)
-	GameManager.p_switch_expired.connect(_on_p_switch)
+	GameManager.p_switch_expired.connect(_on_p_switch_expired)
 	if from_block:
 		_pop_animation()
 		anim_sprite.play("item_box", 2)
@@ -41,8 +41,17 @@ func _on_body_entered(body: Node) -> void:
 	await get_tree().create_timer(0.88).timeout
 	queue_free()
 
-# Replace this coin with a brick
+# Replace this coin with a brick if it wasn't already a brick when p switch is on
 func _on_p_switch():
+	if collected or was_brick:
+		return
+	var brick = load("res://Scenes/Blocks/BrickBlock.tscn").instantiate()
+	brick.was_coin = true
+	brick.global_position = global_position
+	get_parent().call_deferred("add_child", brick)
+	queue_free()
+
+func _on_p_switch_expired():
 	if collected:
 		return
 	var brick = load("res://Scenes/Blocks/BrickBlock.tscn").instantiate()

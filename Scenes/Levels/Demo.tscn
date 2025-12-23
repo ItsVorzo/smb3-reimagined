@@ -217,3 +217,15 @@ position = Vector2(408, -128)
 
 [node name="Area2D18" parent="." instance=ExtResource("23_q42so")]
 position = Vector2(440, -128)
+
+[node name="BrickBlock4" parent="." instance=ExtResource("21_ruake")]
+position = Vector2(376, -128)
+
+[node name="BrickBlock5" parent="." instance=ExtResource("21_ruake")]
+position = Vector2(376, -112)
+
+[node name="BrickBlock6" parent="." instance=ExtResource("21_ruake")]
+position = Vector2(376, -96)
+
+[node name="BrickBlock7" parent="." instance=ExtResource("21_ruake")]
+position = Vector2(392, -80)
