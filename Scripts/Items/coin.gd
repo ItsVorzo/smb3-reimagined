@@ -3,7 +3,6 @@ extends Node2D
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coin_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
-const brick_scene := preload("res://Scenes/Blocks/BrickBlock.tscn")
 
 var was_brick := false
 var from_block := false
