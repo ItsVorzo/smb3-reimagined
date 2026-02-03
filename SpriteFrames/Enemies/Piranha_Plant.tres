@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://c13vlfydrqp7p"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://c13vlfydrqp7p"]
 
 [ext_resource type="Texture2D" uid="uid://bi3ex4ei5v3nf" path="res://Sprites/Enemies/GreenPiranhaPlant.png" id="1_ci2x8"]
 [ext_resource type="Texture2D" uid="uid://caeu2u4kqtl3s" path="res://Sprites/Enemies/PiranhaPlant.png" id="1_wgspo"]

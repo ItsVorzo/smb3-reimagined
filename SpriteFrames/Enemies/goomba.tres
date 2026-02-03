@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://mt824ajsxhjc"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://mt824ajsxhjc"]
 
 [ext_resource type="Texture2D" uid="uid://4edc0hcou80l" path="res://Sprites/Enemies/Goomba.png" id="1_2fpt1"]
 [ext_resource type="Texture2D" uid="uid://bqe0oyef34p3" path="res://Sprites/Enemies/RedGoomba.png" id="1_6aaao"]

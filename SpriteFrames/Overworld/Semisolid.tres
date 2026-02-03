@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://08ekcyit34ot"]
+[gd_resource type="TileSet" format=3 uid="uid://08ekcyit34ot"]
 
 [ext_resource type="Texture2D" uid="uid://cvocp2ahv4nqv" path="res://Sprites/Tilesets/Overworld/Semisolid.png" id="1_k7l3e"]
 
