@@ -1,9 +1,8 @@
-[gd_scene format=3 uid="uid://dejhtq47ffem4"]
+[gd_scene load_steps=6 format=3 uid="uid://dejhtq47ffem4"]
 
 [ext_resource type="Script" uid="uid://bvyw74jhrymyw" path="res://Scripts/Enemies/BigGoomba.gd" id="1_m0rws"]
 [ext_resource type="SpriteFrames" uid="uid://lobjog7nfli0" path="res://SpriteFrames/Enemies/BigGoomba.tres" id="2_grwuy"]
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="3_a8cbn"]
-[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_m4oea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sswme"]
 size = Vector2(14, 14)
@@ -11,7 +10,7 @@ size = Vector2(14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_057ka"]
 size = Vector2(20, 22)
 
-[node name="BigGoomba" type="CharacterBody2D" unique_id=661648835 node_paths=PackedStringArray("collision", "hitbox", "sprite") groups=["Enemies"]]
+[node name="BigGoomba" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hitbox", "sprite") groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 9
 floor_constant_speed = true
@@ -21,29 +20,25 @@ hitbox = NodePath("HitBox")
 sprite = NodePath("Sprite")
 can_die_from_slide = false
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2132573028]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 6)
 sprite_frames = ExtResource("2_grwuy")
 animation = &"walk"
 autoplay = "walk"
 offset = Vector2(0, -6)
 
-[node name="DropShadow" type="AnimatedSprite2D" parent="." unique_id=1844349129]
-position = Vector2(0, -16)
-script = ExtResource("3_m4oea")
-
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=1072192739]
+[node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_sswme")
 
-[node name="HitBox" type="Area2D" parent="." unique_id=760604291]
+[node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, 8)
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=144485935]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_057ka")
 
-[node name="StompSound" type="AudioStreamPlayer2D" parent="." unique_id=1518005200]
+[node name="StompSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_a8cbn")

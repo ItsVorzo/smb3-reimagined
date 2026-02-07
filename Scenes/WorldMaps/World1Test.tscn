@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://cjwh0661c6xtj"]
+[gd_scene load_steps=14 format=4 uid="uid://cjwh0661c6xtj"]
 
-[ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/WorldMap.gd" id="1_tpsxi"]
+[ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/world_1.gd" id="1_tpsxi"]
 [ext_resource type="Texture2D" uid="uid://cp38l5wwmcwat" path="res://Sprites/Tilesets/WorldMaps/Curtain.png" id="2_tpsxi"]
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="3_afa6d"]
 [ext_resource type="Texture2D" uid="uid://bx001a8qontap" path="res://Sprites/Tilesets/WorldMaps/Paths.png" id="4_m8f2r"]

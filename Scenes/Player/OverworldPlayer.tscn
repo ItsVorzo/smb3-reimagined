@@ -1,87 +1,72 @@
-[gd_scene format=3 uid="uid://bqtph6w8yxiqa"]
+[gd_scene load_steps=7 format=3 uid="uid://bqtph6w8yxiqa"]
 
 [ext_resource type="Script" uid="uid://dafy3wdeopgp6" path="res://Scripts/Player/OverworldPlayer.gd" id="1_w8f4d"]
-[ext_resource type="Texture2D" uid="uid://d1bhsfevsocq7" path="res://Sprites/Characters/Mario/MarioSmall.png" id="2_afd1n"]
 [ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/Jump.wav" id="3_ghqbo"]
 [ext_resource type="AudioStream" uid="uid://c4o8sr5idypgb" path="res://Audio/Sfx/MapMove.wav" id="4_64nex"]
 [ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/Player/PowerUps.gd" id="5_afd1n"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bej47"]
-atlas = ExtResource("2_afd1n")
-region = Rect2(512, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gb1ue"]
-atlas = ExtResource("2_afd1n")
-region = Rect2(544, 128, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_poiie"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bej47")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gb1ue")
-}],
+"frames": [],
 "loop": true,
-"name": &"map",
+"name": &"idle",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
 size = Vector2(10, 13)
 
-[node name="Player2" type="CharacterBody2D" unique_id=1530795097 node_paths=PackedStringArray("pwrup") groups=["Overworld"]]
+[node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("pwrup") groups=["Overworld"]]
 script = ExtResource("1_w8f4d")
 pwrup = NodePath("PowerUpStates/Small")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=737239700]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_poiie")
-animation = &"map"
-autoplay = "map"
+animation = &"idle"
+autoplay = "idle"
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=269747027]
+[node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_8erm5")
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1172036770]
+[node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -14)
 offset = Vector2(0, -46)
 zoom = Vector2(3, 3)
 drag_vertical_enabled = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1013361079]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ghqbo")
 bus = &"SFX"
 
-[node name="Timer" type="Timer" parent="." unique_id=1470667821]
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="MoveSound" type="AudioStreamPlayer2D" parent="." unique_id=1869126755]
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_64nex")
 
-[node name="PowerUpStates" type="Node" parent="." unique_id=1498592307]
+[node name="PowerUpStates" type="Node" parent="."]
 
-[node name="Small" type="Node" parent="PowerUpStates" unique_id=1461034000]
+[node name="Small" type="Node" parent="PowerUpStates"]
 script = ExtResource("5_afd1n")
 
-[node name="Big" type="Node" parent="PowerUpStates" unique_id=1401594785]
+[node name="Big" type="Node" parent="PowerUpStates"]
 script = ExtResource("5_afd1n")
 tier = 1
 
-[node name="Fire" type="Node" parent="PowerUpStates" unique_id=2130069162]
+[node name="Fire" type="Node" parent="PowerUpStates"]
 script = ExtResource("5_afd1n")
 tier = 2
 
-[node name="Raccoon" type="Node" parent="PowerUpStates" unique_id=1076391486]
+[node name="Raccoon" type="Node" parent="PowerUpStates"]
 script = ExtResource("5_afd1n")
 tier = 2
 
-[node name="Frog" type="Node" parent="PowerUpStates" unique_id=1789841011]
+[node name="Frog" type="Node" parent="PowerUpStates"]
 script = ExtResource("5_afd1n")
 tier = 2
 
-[node name="Tanooki" type="Node" parent="PowerUpStates" unique_id=1723422197]
+[node name="Tanooki" type="Node" parent="PowerUpStates"]
 script = ExtResource("5_afd1n")
 tier = 2

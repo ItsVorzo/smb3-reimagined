@@ -16,7 +16,6 @@ var input_device := -1
 @export var player_id := 0
 var character_index := 0
 var character = ["Mario", "Luigi", "Toad", "Toadette"]
-var goal_completed := false
 
 # === Physics values ===
 #region
@@ -133,10 +132,6 @@ func _ready() -> void:
 	SaveManager.start_runtime_from_save(0) # 1st step to getting the character index
 	character_index = player_id # 2nd step
 
-	# Load saved powerup state from save file
-	var saved_powerup = SaveManager.runtime_data.get("powerup_state", "Small")
-	set_power_state(saved_powerup)
-	
 	# Load the correct sprites
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 	
@@ -163,22 +158,6 @@ func _physics_process(delta: float) -> void:
 	# If you're dead or no input device is detected return
 	if is_dead or not input:
 		return
-
-	# === GOAL COMPLETION HANDLING ===
-	if goal_completed:
-		if not is_on_floor():
-			velocity.x = 0
-			velocity.y += high_gravity * delta
-			velocity.y = min(velocity.y, 258.75)
-			animated_sprite.animation = "jump"
-		else:
-			velocity.x = end_level_walk
-			animated_sprite.scale.x = 1
-			animated_sprite.animation = "walk"
-			animated_sprite.speed_scale = 2
-			animated_sprite.play()
-		move_and_slide()
-		return # Skip all other player logic
 
 	handle_powerups(delta)
 
@@ -233,7 +212,6 @@ func _physics_process(delta: float) -> void:
 	# Player dies when you fall in a pit
 	if not is_dead and is_instance_valid(bottom_pit):
 		if global_position.y > bottom_pit.global_position.y + 54: die()
-		SaveManager.runtime_data["powerup_state"] = "Small"
 
 	move_and_slide()
 

@@ -77,7 +77,7 @@ func handle_flying():
 			owner.animated_sprite.frame = 2
 
 func tail_attack():
-	SoundManager.play_sfx("TailAttack", owner.global_position)
+	SoundManager.play_sfx("Break", owner.global_position)
 	owner.tail_attacking = true
 	owner.tailbox.monitoring = true
 	owner.direction_allow = false

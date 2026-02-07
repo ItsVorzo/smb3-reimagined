@@ -1,10 +1,9 @@
-[gd_scene format=3 uid="uid://t3lmwf8gtcxe"]
+[gd_scene load_steps=15 format=3 uid="uid://t3lmwf8gtcxe"]
 
 [ext_resource type="Script" uid="uid://dx7tvpdhthj2l" path="res://Scripts/Items/coin.gd" id="1_jgi06"]
 [ext_resource type="Texture2D" uid="uid://2a0j5ujcs80w" path="res://Sprites/Effects/CoinCollect.png" id="2_s7ppx"]
 [ext_resource type="Texture2D" uid="uid://7hj1isu4k7fe" path="res://Sprites/Items/Coin.png" id="2_t1be0"]
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="3_g537i"]
-[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="4_8kqg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lai3r"]
 atlas = ExtResource("2_t1be0")
@@ -78,22 +77,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1be0"]
 size = Vector2(12, 14)
 
-[node name="Area2D" type="Area2D" unique_id=1254664629]
+[node name="Area2D" type="Area2D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_jgi06")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1207421692]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_81h6x")
 animation = &"collectable"
 autoplay = "collectable"
 
-[node name="DropShadow" type="AnimatedSprite2D" parent="." unique_id=293645803]
-position = Vector2(0, -16)
-script = ExtResource("4_8kqg7")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1523712319]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g537i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=475843915]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t1be0")

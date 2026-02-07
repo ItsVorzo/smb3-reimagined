@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://10y41hjhegda"]
+[gd_scene load_steps=6 format=3 uid="uid://10y41hjhegda"]
 
 [ext_resource type="Script" uid="uid://vip2brf5doho" path="res://Scripts/UI/disclaimer.gd" id="1_udgjn"]
 [ext_resource type="Texture2D" uid="uid://cnpenxqkyeo1q" path="res://Sprites/Gizmos/Door.png" id="2_hv6v3"]
@@ -6,15 +6,15 @@
 [ext_resource type="AudioStream" uid="uid://wtfevwtnjce" path="res://Audio/Sfx/Coin.wav" id="4_2q725"]
 [ext_resource type="AudioStream" uid="uid://lfisbsa8gxlh" path="res://Audio/Sfx/Hit.wav" id="5_ootmr"]
 
-[node name="Disclaimer" type="Node2D" unique_id=731406441]
+[node name="Disclaimer" type="Node2D"]
 script = ExtResource("1_udgjn")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1088894278]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1386, -414.2)
 scale = Vector2(87.135, 87.135)
 texture = ExtResource("2_hv6v3")
 
-[node name="DisclaimerWarning" type="Label" parent="." unique_id=211879993]
+[node name="DisclaimerWarning" type="Label" parent="."]
 offset_left = -44.0
 offset_top = -92.0
 offset_right = 44.0
@@ -24,7 +24,7 @@ theme_override_fonts/font = ExtResource("3_pnt3a")
 theme_override_font_sizes/font_size = 8
 text = "disclaimer!"
 
-[node name="DisclaimerText" type="Label" parent="." unique_id=1193679745]
+[node name="DisclaimerText" type="Label" parent="."]
 offset_left = -128.0
 offset_top = -60.0
 offset_right = 128.0
@@ -45,13 +45,13 @@ also, if you want to help with
 this game, please dm vorzo :)"
 horizontal_alignment = 1
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=314613724]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -11)
 
-[node name="DisclaimerWarningShow" type="AudioStreamPlayer" parent="." unique_id=503559259]
+[node name="DisclaimerWarningShow" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2q725")
 bus = &"SFX"
 
-[node name="DisclaimerTextShow" type="AudioStreamPlayer" parent="." unique_id=263365018]
+[node name="DisclaimerTextShow" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ootmr")
 bus = &"SFX"
