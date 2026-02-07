@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://htr458mvxcyt"]
+[gd_scene format=3 uid="uid://htr458mvxcyt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_yu3pj"]
+a = Vector2(0, -9.223372e+16)
 
-[node name="CameraGroundLimit" type="Area2D"]
+[node name="CameraGroundLimit" type="Area2D" unique_id=1516855420]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1582374177]
+position = Vector2(0, 24)
 rotation = 1.5707964
 shape = SubResource("SegmentShape2D_yu3pj")
 debug_color = Color(0.5647059, 0.39215687, 1, 0.5529412)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxkafas67lmod"]
+[gd_scene format=3 uid="uid://cxkafas67lmod"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_m0ecb"]
+a = Vector2(0, -9.223372e+18)
+b = Vector2(0, 9.223372e+16)
 
-[node name="CameraLimitRight" type="Area2D"]
+[node name="CameraLimitRight" type="Area2D" unique_id=1319258208]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=34994515]
 shape = SubResource("SegmentShape2D_m0ecb")
 debug_color = Color(0.8075598, 0.4004564, 0.33359015, 0.41960785)
