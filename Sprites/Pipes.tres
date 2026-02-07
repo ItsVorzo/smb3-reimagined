@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://di1rs7fq2b3x6"]
+[gd_resource type="TileSet" format=3 uid="uid://di1rs7fq2b3x6"]
 
 [ext_resource type="Texture2D" uid="uid://cr8vwguddqmia" path="res://Sprites/Gizmos/Variants/Snow/Pipes.png" id="2_4weoy"]
 

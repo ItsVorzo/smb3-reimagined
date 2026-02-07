@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dakosf25hvmeo"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dakosf25hvmeo"]
 
 [ext_resource type="Texture2D" uid="uid://bqnjjtvqejcyv" path="res://Sprites/Gizmos/Lava.png" id="1_dljwm"]
 

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://ded4vv7suf57g"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://ded4vv7suf57g"]
 
 [ext_resource type="Texture2D" uid="uid://brxjytb8l6qlc" path="res://Sprites/Enemies/Ptooie.png" id="1_7qivq"]
 
