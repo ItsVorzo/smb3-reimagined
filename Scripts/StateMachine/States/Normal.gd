@@ -94,7 +94,7 @@ func handle_animation():
 			if player.hovering:
 				owner.animated_sprite.play("hover")
 			elif player.p_meter < player.p_meter_max and not player.flying:
-				if player.velocity.y < 0:
+				if player.velocity.y < 0 or not player.is_super:
 					player.animated_sprite.play("jump")
 				elif player.is_super and not player.hovering:
 					player.animated_sprite.play("fall")

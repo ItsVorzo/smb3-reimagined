@@ -17,12 +17,11 @@ var bottom_margin: float = -40.0
 var frozen := false
 var frozen_position := Vector2.ZERO
 
-func _ready() -> void:
+func _process(_delta: float) -> void:
 	# Get the camera center
-	center_x = (get_viewport().get_visible_rect().size.x / 2) # i divided by 3 because this game resolution is too high, will change this in the future
+	center_x = (get_viewport().get_visible_rect().size.x / 2)
 	center_y = (get_viewport().get_visible_rect().size.y / 2)
 
-func _process(_delta: float) -> void:
 	if frozen:
 		# Keep camera completely locked
 		global_position = frozen_position

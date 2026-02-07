@@ -54,6 +54,8 @@ var final_grav_speed: float
 var direction_allow := true
 var facing_direction := 1.0
 var velocity_direction := 0.0
+var pipe_enter_dir := Vector2.ZERO
+var pipe_warping := false
 
 var p_meter = 0.0
 var p_meter_max = 70.0
@@ -77,6 +79,7 @@ var is_super := false
 var is_dead := false
 var has_star := false
 var can_take_damage := true
+var can_enter_pipe := true
 
 # === Input shit ===
 var input
@@ -178,7 +181,7 @@ func _physics_process(delta: float) -> void:
 		skidding = false
 
 	# === Gravity and Jumping ===
-	if not is_on_floor():
+	if not is_on_floor() and not pipe_warping:
 		if velocity.y < -120 and input.is_action_pressed("A"): final_grav_speed = low_gravity
 		else: final_grav_speed = high_gravity
 		velocity.y += final_grav_speed * delta
@@ -261,6 +264,7 @@ func handle_powerups(delta: float):
 	animated_sprite.sprite_frames = load("res://SpriteFrames/Characters/" + character[character_index] + "/" + pwrup.name + ".tres")
 	# Change collision shapes
 	is_super = pwrup.tier >= 1
+	if pipe_warping: return
 	if not is_super or crouching:
 		small_collision.disabled = false
 		hitbox_small.disabled = false
@@ -386,6 +390,61 @@ func i_frames() -> void:
 		await get_tree().create_timer(2.0 / 60.0988).timeout
 	can_take_damage = true
 	return
+
+# === Pipe animation ===
+func enter_pipe(pipe: PipeArea) -> void:
+	pipe_warping = true
+	direction_allow = false
+	z_index = -1
+	pipe_enter_dir = pipe.get_vector(pipe.entrance_direction)
+	PipeArea.exiting_pipe_id = pipe.pipe_id
+	if pipe_enter_dir.x != 0:
+		global_position.y -= 2 # Slight elevation
+	state_machine.change_state("Pipe")
+	if pipe_enter_dir.x != 0:
+		animated_sprite.play("walk", 2)
+	if pipe_enter_dir.y != 0:
+		animated_sprite.play("front_facing")
+	await get_tree().create_timer(0.65).timeout
+	hide()
+
+# Set the player when you're about to exit the pipe
+func go_to_exit_pipe(pipe: PipeArea) -> void:
+	pipe_warping = true
+	direction_allow = false
+	z_index = -1
+	state_machine.change_state("None") # In this state you aren't able to do ANYTHING
+	pipe_enter_dir = Vector2.ZERO
+	global_position = pipe.global_position
+	# Set the player's position offsets
+	if pipe.entrance_direction == 1:
+		global_position.y -= 18
+	if pipe.entrance_direction == 2:
+		global_position.y += 34
+	if pipe.get_vector(pipe.entrance_direction).x != 0:
+		global_position.y += 15
+		global_position.x += 27 * pipe.get_vector(pipe.entrance_direction).x
+	reset_physics_interpolation() # i'm not ENTIRELY sure about what this does
+
+# Pipe exit animation
+func exit_pipe(pipe: PipeArea) -> void:
+	show()
+	pipe_enter_dir = -pipe.get_vector(pipe.entrance_direction)
+	SoundManager.play_sfx("Pipe", global_position)
+	state_machine.change_state("Pipe")
+	if pipe_enter_dir.x != 0:
+		animated_sprite.play("walk", 2)
+	if pipe_enter_dir.y != 0:
+		animated_sprite.play("front_facing")
+	if pipe_enter_dir.y == 1:
+		state_machine.change_state("None")
+		velocity.y = 258.75
+	await get_tree().create_timer(0.65 if pipe_enter_dir.y != 1 else 0.2, false).timeout
+	pipe_warping = false
+	direction_allow = true
+	z_index = 0
+	state_machine.change_state("Normal")
+	pipe_enter_dir = Vector2.ZERO
 
 # === P meter ===
 func handle_p_meter():

@@ -8,10 +8,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func fade_to_scene(fade_speed := 1.0, r := 0, g := 0, b := 0, scene_path := ""):
+func fade_to_scene(fade_speed := 1.0, r := 0, g := 0, b := 0, scene_path := "", delay: int = 0):
+	if t.fading_to_scene:
+		return
 	fade_in(fade_speed, r, g, b)
 	t.fading_to_scene = true
 	t.scene_path = scene_path
+	t.fade_delay = delay
 
 func fade_in(fade_speed := 1.0, r := 0, g := 0, b := 0, delay: int = 0):
 	t.fade_type = 1

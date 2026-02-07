@@ -47,9 +47,9 @@ func process_update(delta: float) -> void:
 	player.move_and_slide()
 
 func exit() -> void:
+	player.velocity.y = 0.0
 	player.is_dead = false
 	player.process_mode = player.PROCESS_MODE_INHERIT
 	player.small_collision.disabled = false
 	player.big_collision.disabled = false
 	player.global_position = Vector2(randf_range(player.global_position.x - 64, player.global_position.x + 64), -48)
-	player.velocity.y = 0.0

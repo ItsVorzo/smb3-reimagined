@@ -19,6 +19,7 @@
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://dhxl7ppselfg8" path="res://Scenes/Items/SuperLeaf.tscn" id="20_nbrqo"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
+[ext_resource type="PackedScene" uid="uid://doas6kjos1513" path="res://Scenes/PipeArea.tscn" id="25_nbrqo"]
 [ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_da70h"]
 [ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="27_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://cqq5r4nvtqnpu" path="res://Scenes/Enemies/PipePiranhaPlant.tscn" id="30_x8ai0"]
@@ -86,7 +87,7 @@ tile_set = SubResource("TileSet_n5am2")
 collision_enabled = false
 
 [node name="PipeTileMap" type="TileMapLayer" parent="." unique_id=593110121]
-tile_map_data = PackedByteArray("AACdAO7/AAAAAAEAAACdAO//AAAAAAEAAACdAPD/AAAAAAEAAACdAPH/AAAAAAEAAACdAPL/AAAAAAEAAACdAPP/AAAAAAEAAACdAPT/AAAAAAEAAACdAPX/AAAAAAEAAACdAPb/AAAAAAEAAACdAPf/AAAAAAEAAACdAPj/AAAAAAEAAACdAP7/AAAAAAEAAACdAP//AAAAAAEAAAChAP//AAAAAAEAAACeAP7/AAABAAEAAACeAP//AAABAAEAAACeAPj/AAABAAEAAACeAPf/AAABAAEAAACeAPb/AAABAAEAAACeAPX/AAABAAEAAACeAPT/AAABAAEAAACeAPP/AAABAAEAAACeAPL/AAABAAEAAACeAPH/AAABAAEAAACeAPD/AAABAAEAAACeAO//AAABAAEAAACeAO7/AAABAAEAAACFAP7/AAABAAEAAACFAP//AAABAAEAAACBAP//AAABAAEAAACEAP//AAAAAAEAAACEAP7/AAAAAAEAAACAAP//AAAAAAEAAAChAP7/AAAAAAAAAACdAO3/AAAAAAAAAACEAP3/AAAAAAAAAACAAP7/AAAAAAAAAACBAP7/AAABAAAAAACFAP3/AAABAAAAAACiAP7/AAABAAAAAACeAO3/AAABAAAAAACiAP//AAABAAEAAAAnAP7/AAABAAEAAAAnAP//AAABAAEAAAAmAP7/AAAAAAEAAAAmAP//AAAAAAEAAAAnAP3/AAABAAAAAAAmAP3/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AACdAO7/AAAAAAEAAACdAO//AAAAAAEAAACdAPD/AAAAAAEAAACdAPH/AAAAAAEAAACdAPL/AAAAAAEAAACdAPP/AAAAAAEAAACdAPT/AAAAAAEAAACdAPX/AAAAAAEAAACdAPb/AAAAAAEAAACdAPf/AAAAAAEAAACdAPj/AAAAAAEAAACdAP7/AAAAAAEAAACdAP//AAAAAAEAAAChAP//AAAAAAEAAACeAP7/AAABAAEAAACeAP//AAABAAEAAACeAPj/AAABAAEAAACeAPf/AAABAAEAAACeAPb/AAABAAEAAACeAPX/AAABAAEAAACeAPT/AAABAAEAAACeAPP/AAABAAEAAACeAPL/AAABAAEAAACeAPH/AAABAAEAAACeAPD/AAABAAEAAACeAO//AAABAAEAAACeAO7/AAABAAEAAACFAP7/AAABAAEAAACFAP//AAABAAEAAACBAP//AAABAAEAAACEAP//AAAAAAEAAACEAP7/AAAAAAEAAACAAP//AAAAAAEAAAChAP7/AAAAAAAAAACdAO3/AAAAAAAAAACEAP3/AAAAAAAAAACAAP7/AAAAAAAAAACBAP7/AAABAAAAAACFAP3/AAABAAAAAACiAP7/AAABAAAAAACeAO3/AAABAAAAAACiAP//AAABAAEAAAAnAP7/AAABAAEAAAAnAP//AAABAAEAAAAmAP7/AAAAAAEAAAAmAP//AAAAAAEAAAAnAP3/AAABAAAAAAAmAP3/AAAAAAAAAAAQAP7/AAAAAAAAAAAQAP//AAAAAAEAAAARAP7/AAABAAAAAAARAP//AAABAAEAAAA=")
 tile_set = ExtResource("16_fxiy1")
 
 [node name="TerrainTileMap" type="TileMapLayer" parent="." unique_id=854035994]
@@ -139,7 +140,7 @@ position = Vector2(312, 0)
 player_id = 3
 
 [node name="Overworld" parent="." unique_id=1959125159 instance=ExtResource("8_28jxv")]
-position = Vector2(260, 149)
+position = Vector2(260, 118)
 
 [node name="HUD" parent="." unique_id=153628821 instance=ExtResource("14_noyq2")]
 
@@ -350,3 +351,8 @@ position = Vector2(2072, -312)
 
 [node name="Area2D23" parent="." unique_id=2089192260 instance=ExtResource("32_330ea")]
 position = Vector2(2104, -280)
+
+[node name="PipeArea" parent="." unique_id=630411098 instance=ExtResource("25_nbrqo")]
+position = Vector2(272, -32)
+entrance_direction = 2
+pipe_id = 1

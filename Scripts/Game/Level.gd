@@ -1,3 +1,4 @@
+class_name LevelScene
 extends Node2D
 
 @export_enum("Overworld", "Underground", "Desert", "Snow", "Athletic", "Castle") var theme: String = "Overworld"
