@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ctabbshmdl6s0" path="res://Sprites/SuperMarioBros3Map1-1.png" id="2_x8ai0"]
 [ext_resource type="TileSet" uid="uid://b01frtlkfgaka" path="res://SpriteFrames/Overworld/Overworld.tres" id="6_gw30q"]
 [ext_resource type="Texture2D" uid="uid://btu0wladbptrj" path="res://Sprites/Tilesets/BackgroundTiles.png" id="7_28jxv"]
-[ext_resource type="PackedScene" uid="uid://5iv6rg1q266m" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
 [ext_resource type="TileSet" uid="uid://08ekcyit34ot" path="res://SpriteFrames/Overworld/Semisolid.tres" id="7_gw30q"]
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
 [ext_resource type="Texture2D" uid="uid://c1n8cgqsfvhww" path="res://Sprites/Tilesets/EndTiles.png" id="8_xecmd"]
@@ -18,7 +18,6 @@
 [ext_resource type="TileSet" uid="uid://bbjhs4f7si634" path="res://SpriteFrames/Gizmos/Variants/Overworld/Pipes.tres" id="16_fxiy1"]
 [ext_resource type="PackedScene" uid="uid://dhxl7ppselfg8" path="res://Scenes/Items/SuperLeaf.tscn" id="20_nbrqo"]
 [ext_resource type="PackedScene" uid="uid://c688u7qw55eff" path="res://Scenes/Enemies/Goomba.tscn" id="22_x62f6"]
-[ext_resource type="PackedScene" uid="uid://doas6kjos1513" path="res://Scenes/PipeArea.tscn" id="25_nbrqo"]
 [ext_resource type="PackedScene" uid="uid://b3t1x117hl7aq" path="res://Scenes/Objects/GoalRoulette.tscn" id="25_nbrqo"]
 [ext_resource type="PackedScene" uid="uid://mpuy3cvca2ln" path="res://Scenes/Enemies/Koopa.tscn" id="26_da70h"]
 [ext_resource type="PackedScene" uid="uid://7642xvxlvd6r" path="res://Scenes/Blocks/QuestionBlock.tscn" id="27_fxiy1"]
@@ -351,8 +350,6 @@ position = Vector2(2104, -280)
 
 [node name="PipeArea" parent="." unique_id=630411098 instance=ExtResource("25_nbrqo")]
 position = Vector2(272, -32)
-entrance_direction = 2
-pipe_id = 1
 
 [node name="GoalRoulette" parent="." unique_id=882525322 instance=ExtResource("25_nbrqo")]
 position = Vector2(2952, -72)

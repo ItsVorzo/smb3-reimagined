@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b10jr4hfxtdpl"]
-[ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/WorldMap.gd" id="1_cig1c"
+
+[ext_resource type="Script" uid="uid://c062oiw6yvwmn" path="res://Scripts/WorldMaps/WorldMap.gd" id="1_cig1c"]
 [ext_resource type="Texture2D" uid="uid://b77deruo3mtxx" path="res://Sprites/Black.png" id="1_ha7v5"]
 [ext_resource type="Texture2D" uid="uid://bx001a8qontap" path="res://Sprites/Tilesets/WorldMaps/Paths.png" id="2_cig1c"]
 [ext_resource type="Texture2D" uid="uid://qvonhnepubv7" path="res://Sprites/Tilesets/WorldMaps/Decoration.png" id="3_ops3f"]
