@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://04bdqd23u1ya"]
+[gd_scene format=3 uid="uid://04bdqd23u1ya"]
 
-[ext_resource type="Script" path="res://Lava.gd" id="1_c0pnw"]
+[ext_resource type="Script" uid="uid://d3xafao12rhya" path="res://Lava.gd" id="1_c0pnw"]
 [ext_resource type="Texture2D" uid="uid://bqnjjtvqejcyv" path="res://Sprites/Gizmos/Lava.png" id="2_c0pnw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7g3ft"]
@@ -45,32 +45,32 @@ size = Vector2(16, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g185b"]
 size = Vector2(16, 32)
 
-[node name="Lava" type="CharacterBody2D" node_paths=PackedStringArray("collision", "hurtbox")]
+[node name="Lava" type="CharacterBody2D" unique_id=1874029959 node_paths=PackedStringArray("collision", "hitbox")]
 z_index = 1
 script = ExtResource("1_c0pnw")
 collision = NodePath("Area2D/Collision")
-hurtbox = NodePath("Area2D/HurtBox")
+hitbox = NodePath("Area2D")
 can_die_from_fire = false
 can_die_from_slide = false
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=247221071]
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Area2D"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=2107760167]
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_n6ynk")
 autoplay = "default"
 frame = 3
 frame_progress = 1.0
 
-[node name="Collision" type="CollisionShape2D" parent="Area2D"]
+[node name="Collision" type="CollisionShape2D" parent="Area2D" unique_id=1166771418]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_h7u5s")
 
-[node name="HurtBox" type="Area2D" parent="Area2D"]
+[node name="HurtBox" type="Area2D" parent="Area2D" unique_id=1894069768]
 position = Vector2(0, 26)
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/HurtBox" unique_id=1027458094]
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_g185b")

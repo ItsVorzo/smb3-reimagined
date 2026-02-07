@@ -464,7 +464,7 @@ func exit_pipe(pipe: PipeArea) -> void:
 	await get_tree().create_timer(0.65 if pipe_enter_dir.y != 1 else 0.2, false).timeout
 	pipe_warping = false
 	direction_allow = true
-	z_index = 0
+	z_index = 3
 	state_machine.change_state("Normal")
 	pipe_enter_dir = Vector2.ZERO
 
