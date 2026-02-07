@@ -3,6 +3,7 @@ extends Node2D
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coin_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var dropshadow: AnimatedSprite2D = $DropShadow
 
 var was_brick := false
 var from_block := false
@@ -34,6 +35,7 @@ func _on_body_entered(body: Node) -> void:
 
 	# Hide immediately (so player can't touch again)
 	anim_sprite.visible = false
+	dropshadow.visible = false
 	collision.set_deferred("monitoring", false)
 
 	# Remove once sound finishes (~0.88s)

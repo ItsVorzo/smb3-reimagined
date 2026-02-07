@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpt12tgpm70ys"]
+[gd_scene format=3 uid="uid://bpt12tgpm70ys"]
 
 [ext_resource type="Script" uid="uid://bh6akojg55un8" path="res://Scripts/Game/LevelEntrance.gd" id="1_cwbiw"]
 [ext_resource type="Texture2D" uid="uid://ce5dirnc4lclh" path="res://Sprites/Tilesets/WorldMaps/Levels.png" id="2_ik2j3"]
+[ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="3_ik2j3"]
 [ext_resource type="AudioStream" uid="uid://d8nt0fqqkekh" path="res://Audio/Sfx/MapStart.mp3" id="3_lo36p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fy40d"]
@@ -67,9 +68,33 @@ region = Rect2(208, 0, 16, 16)
 atlas = ExtResource("2_ik2j3")
 region = Rect2(176, 0, 16, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlfd2"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(192, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxgfs"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(224, 48, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ik2j3"]
 atlas = ExtResource("2_ik2j3")
 region = Rect2(224, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qms66"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5cqb"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eroc"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0pf5"]
+atlas = ExtResource("2_ik2j3")
+region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucptm"]
 atlas = ExtResource("2_ik2j3")
@@ -203,10 +228,43 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jlfd2")
+}],
+"loop": true,
+"name": &"pyramid",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxgfs")
+}],
+"loop": true,
+"name": &"rcastle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ik2j3")
 }],
 "loop": true,
 "name": &"rpipe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qms66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5cqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eroc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0pf5")
+}],
+"loop": true,
+"name": &"sand",
 "speed": 5.0
 }, {
 "frames": [{
@@ -226,17 +284,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="LevelEntrance" type="Area2D"]
+[node name="LevelEntrance" type="Area2D" unique_id=951747226]
 script = ExtResource("1_cwbiw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1003519645]
 shape = SubResource("RectangleShape2D_fy40d")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1883144748]
 sprite_frames = SubResource("SpriteFrames_2i11j")
-animation = &"3"
+animation = &"1"
 
-[node name="EnterLevelSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DropShadow" type="AnimatedSprite2D" parent="." unique_id=535696066]
+position = Vector2(0, -16)
+script = ExtResource("3_ik2j3")
+
+[node name="EnterLevelSound" type="AudioStreamPlayer2D" parent="." unique_id=257670270]
 stream = ExtResource("3_lo36p")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

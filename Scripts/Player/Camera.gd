@@ -26,6 +26,14 @@ func _process(_delta: float) -> void:
 	if frozen:
 		# Keep camera completely locked
 		global_position = frozen_position
+		# Still apply player clamping but allow goal-completed players to go off-screen
+		var players = get_tree().get_nodes_in_group("Player")
+		for p in players:
+			# Only clamp players who haven't completed the goal
+			if not p.goal_completed:
+				p.global_position.x = clamp(p.global_position.x, camlimit_left.global_position.x + 16, camlimit_right.global_position.x - 16)
+				if p.global_position.x <= camlimit_left.global_position.x + 16 and p.velocity.x < 0 or p.global_position.x >= camlimit_right.global_position.x - 16 and p.velocity.x > 0:
+					p.velocity.x = 0
 		return
 
 	# CameraMode handling from ConfigManager
@@ -77,17 +85,27 @@ func _process(_delta: float) -> void:
 			global_position.y = camera_y
 
 	for p in players:
-		# Don't let the players go offscreen
-		p.global_position.x = clamp(p.global_position.x, camlimit_left.global_position.x + 16, camlimit_right.global_position.x - 16)
-		if p.global_position.x <= camlimit_left.global_position.x + 16 and p.velocity.x < 0 or p.global_position.x >= camlimit_right.global_position.x - 16 and p.velocity.x > 0:
-			p.velocity.x = 0
+		# Don't let the players go offscreen (unless they've completed the goal)
+		if not p.goal_completed:
+			p.global_position.x = clamp(p.global_position.x, camlimit_left.global_position.x + 16, camlimit_right.global_position.x - 16)
+			if p.global_position.x <= camlimit_left.global_position.x + 16 and p.velocity.x < 0 or p.global_position.x >= camlimit_right.global_position.x - 16 and p.velocity.x > 0:
+				p.velocity.x = 0
+		
 		if p.player_id >= 1:
-			if not p.is_dead:
+			if not p.is_dead and not p.goal_completed:
 				# Drag the other players with the camera horizontally
 				p.global_position.x = clamp(p.global_position.x, global_position.x - center_x + 8, global_position.x + center_x - 8) 
 				if p.global_position.x <= global_position.x - center_x + 8 and p.velocity.x < 0 or p.global_position.x >= global_position.x + center_x - 8 and p.velocity.x > 0:
 					p.velocity.x = 0.0
 
 func freeze_here():
+	frozen = true
+	frozen_position = global_position
+
+func move_upward(duration: float, speed: float):
+	frozen = false
+	var tween = create_tween()
+	tween.tween_property(self, "global_position:y", global_position.y - (speed * duration), duration)
+	await tween.finished
 	frozen = true
 	frozen_position = global_position

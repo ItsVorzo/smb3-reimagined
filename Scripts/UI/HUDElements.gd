@@ -6,6 +6,9 @@ extends TextureRect
 @onready var coin_counter = $CoinCounter
 @onready var time = $Time
 @onready var life_counter = $LifeCounter
+@onready var card_slot1 = $CardSlot1
+@onready var card_slot2 = $CardSlot2
+@onready var card_slot3 = $CardSlot3
 var hud := preload("res://Sprites/HUD/HUD.png")
 var p_meter: float = 0.0
 var arrow_n = 6
@@ -30,21 +33,27 @@ func _draw():
 
 	# Change the HUD BG size and change the elements position
 	match aspect_ratio:
-		0:
+		0: # 4:3
 			player_icon.global_position = Vector2(24, 210.5)
 			world_number.global_position = Vector2(48, 197.5)
 			score.global_position = Vector2(64, 206)
 			coin_counter.global_position = Vector2(144, 198)
 			time.global_position = Vector2(136, 206)
 			life_counter.global_position = Vector2(40, 206)
+			card_slot1.global_position = Vector2(183, 206)
+			card_slot2.global_position = Vector2(208, 206)
+			card_slot3.global_position = Vector2(233, 206)
 			draw_texture_rect_region(hud, Rect2(Vector2(0, 190), Vector2(765, 50)), Rect2(Vector2(510, 0), Vector2(765, 50)))
-		1:
+		1: # Extended
 			player_icon.global_position = Vector2(24, 210.5)
 			world_number.global_position = Vector2(48, 197.5)
 			score.global_position = Vector2(64, 206)
 			coin_counter.global_position = Vector2(253, 198)
 			time.global_position = Vector2(245, 206)
 			life_counter.global_position = Vector2(40, 206)
+			card_slot1.global_position = Vector2(352, 206)
+			card_slot2.global_position = Vector2(377, 206)
+			card_slot3.global_position = Vector2(402, 206)
 			draw_texture_rect_region(hud, Rect2(Vector2(0, 190), Vector2(426, 50)), Rect2(Vector2(0, 0), Vector2(425, 50)))
 
 	p_meter_element()
