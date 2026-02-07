@@ -1,6 +1,7 @@
+
 [gd_scene format=3 uid="uid://k0u0lrwux6vn"]
 
-[ext_resource type="Script" uid="uid://ba4gb2nk3n70y" path="res://Scripts/Player/Player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://ba4gb2nk3n70y" path="res://Scripts/Player/Player.gd" id="1_cvnsp"
 [ext_resource type="Script" uid="uid://r2jyvocfl4bl" path="res://Scripts/StateMachine/States/Normal.gd" id="3_3smsa"]
 [ext_resource type="Script" uid="uid://bawyvb0qnj1tk" path="res://Scripts/StateMachine/StateMachine.gd" id="3_x3wgy"]
 [ext_resource type="Script" uid="uid://dvnwqitv57aee" path="res://Scripts/StateMachine/States/Die.gd" id="5_f1ek2"]
@@ -31,7 +32,7 @@ size = Vector2(10, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esmjy"]
 size = Vector2(10, 21)
 
-[node name="Player" type="CharacterBody2D" unique_id=419225583 node_paths=PackedStringArray("pwrup") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1634378529 node_paths=PackedStringArray("pwrup") groups=["Player"]]
 z_index = 3
 collision_layer = 2
 collision_priority = 10000000.0
@@ -78,66 +79,63 @@ tier = 2
 script = ExtResource("8_0u84n")
 tier = 2
 animation_type = 2
-
-[node name="Frog" type="Node" parent="PowerUpStates" unique_id=1576872525]
+[node name="Frog" type="Node" parent="PowerUpStates" unique_id=926165180
 script = ExtResource("6_yoq75")
 tier = 2
 animation_type = 2
 
-[node name="Tanooki" type="Node" parent="PowerUpStates" unique_id=1691795695]
+[node name="Tanooki" type="Node" parent="PowerUpStates" unique_id=1534307968]
 script = ExtResource("6_yoq75")
 tier = 2
 animation_type = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=630198475]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=13763539]
 position = Vector2(0, -16)
 sprite_frames = ExtResource("10_0u84n")
 animation = &"idle"
-autoplay = "idle"
-
-[node name="DropShadow" type="AnimatedSprite2D" parent="." unique_id=382135832]
+autoplay = "idle
+[node name="DropShadow" type="AnimatedSprite2D" parent="." unique_id=2125820363]
 position = Vector2(0, -16)
 script = ExtResource("8_oikmp")
 
-[node name="SmallCollision" type="CollisionShape2D" parent="." unique_id=1701889150]
+[node name="SmallCollision" type="CollisionShape2D" parent="." unique_id=143086682
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_8erm5")
 disabled = true
-
-[node name="BigCollision" type="CollisionShape2D" parent="." unique_id=127246789]
+[node name="BigCollision" type="CollisionShape2D" parent="." unique_id=1038468665
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_0u84n")
 disabled = true
 
-[node name="TailAttackBox" type="Area2D" parent="." unique_id=1686354963 groups=["Tail"]]
+[node name="TailAttackBox" type="Area2D" parent="." unique_id=243885794 groups=["Tail"]]
 collision_layer = 0
 collision_mask = 9
 monitoring = false
 script = ExtResource("11_epg6k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TailAttackBox" unique_id=935320666]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TailAttackBox" unique_id=120640214]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_i5acl")
 debug_color = Color(0.6488551, 0.5161254, 0.19738707, 0.41960785)
 
-[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1097960315]
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=625635991]
 process_mode = 3
 stream = ExtResource("5_fkybt")
 max_distance = 4096.0
 
-[node name="Skid" type="AudioStreamPlayer2D" parent="." unique_id=1497842862]
+[node name="Skid" type="AudioStreamPlayer2D" parent="." unique_id=1229252348]
 stream = ExtResource("13_miouo")
 
-[node name="HitBox" type="Area2D" parent="." unique_id=1319374328]
+[node name="HitBox" type="Area2D" parent="." unique_id=492758015]
 collision_layer = 2
 collision_mask = 66
 
-[node name="SmallCollision" type="CollisionShape2D" parent="HitBox" unique_id=213735738]
+[node name="SmallCollision" type="CollisionShape2D" parent="HitBox" unique_id=1309997344]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_epg6k")
 debug_color = Color(0.6892432, 0.31755483, 0.9565932, 0.41960785)
 
-[node name="BigCollision" type="CollisionShape2D" parent="HitBox" unique_id=905817655]
+[node name="BigCollision" type="CollisionShape2D" parent="HitBox" unique_id=82878295]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_esmjy")
 disabled = true

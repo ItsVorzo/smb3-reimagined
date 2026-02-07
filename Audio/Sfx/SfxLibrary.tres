@@ -23,12 +23,17 @@
 [ext_resource type="AudioStream" uid="uid://bl3nm5vewme82" path="res://Audio/Sfx/Stomp.wav" id="23_pdfdx"]
 [ext_resource type="AudioStream" uid="uid://dspdxwok0vq8o" path="res://Audio/Sfx/Jump.wav" id="23_tlm0s"]
 [ext_resource type="AudioStream" uid="uid://b5gghw0yl37mq" path="res://Audio/Sfx/Fireball.wav" id="24_4hfvl"]
+[ext_resource type="AudioStream" uid="uid://dox8it88t0qi8" path="res://Audio/Sfx/PowerUpSuit.wav" id="25_1me08"]
+[ext_resource type="AudioStream" uid="uid://y6a2rxp0hldn" path="res://Audio/Sfx/TailAttack.wav" id="25_pdfdx"]
+[ext_resource type="AudioStream" uid="uid://cvx5cg1av4fff" path="res://Audio/Sfx/Text.wav" id="26_pdfdx"]
+[ext_resource type="AudioStream" uid="uid://bn617nbmk6eoa" path="res://Audio/Sfx/CardMatch.wav" id="27_5jrbm"]
 
 [resource]
 script = ExtResource("1_o277h")
 sfx = {
 "1UP": ExtResource("2_susbn"),
 "Break": ExtResource("3_idaqn"),
+"CardMatch": ExtResource("27_5jrbm"),
 "Coin": ExtResource("4_gefsv"),
 "Die": ExtResource("5_b2u1n"),
 "DieShort": ExtResource("6_73ykr"),
@@ -47,6 +52,9 @@ sfx = {
 "Pause": ExtResource("18_tlm0s"),
 "Pipe": ExtResource("20_tlm0s"),
 "PowerUp": ExtResource("21_4hfvl"),
+"PowerUpSuit": ExtResource("25_1me08"),
 "Skid": ExtResource("22_1me08"),
-"Stomp": ExtResource("23_pdfdx")
+"Stomp": ExtResource("23_pdfdx"),
+"TailAttack": ExtResource("25_pdfdx"),
+"Text": ExtResource("26_pdfdx")
 }

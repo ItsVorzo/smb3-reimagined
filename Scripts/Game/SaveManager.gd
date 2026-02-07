@@ -78,10 +78,9 @@ func get_temp(key: String, default=null):
 func set_temp(key: String, value):
 	temp_level_data[key] = value
 
-# Save runtime_data to permanent save (never includes temp_level_data)
+# Save runtime_data to permanent save
 func commit_runtime_to_save(save_index: int) -> void:
 	var save_copy = runtime_data.duplicate(true)
-	# Remove temp-only keys if they exist (just in case)
 	save_copy.erase("time")
 	save_copy.erase("timer_paused")
 	save_game(save_index, save_copy)
