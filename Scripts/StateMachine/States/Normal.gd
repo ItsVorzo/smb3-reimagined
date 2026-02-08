@@ -1,8 +1,9 @@
 extends PlayerState
 
 
-func physics_process_update(_delta: float) -> void:
+func physics_process_update(delta: float) -> void:
 
+	player.apply_gravity(delta)
 	# Player animations
 	handle_animation()
 

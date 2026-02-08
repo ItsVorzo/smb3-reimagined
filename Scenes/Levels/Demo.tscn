@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ukxwymwh44b" path="res://Sprites/152106.png" id="3_noyq2"]
 [ext_resource type="TileSet" uid="uid://b01frtlkfgaka" path="res://SpriteFrames/Overworld/Overworld.tres" id="6_gw30q"]
 [ext_resource type="Texture2D" uid="uid://btu0wladbptrj" path="res://Sprites/Tilesets/BackgroundTiles.png" id="7_28jxv"]
-[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
+[ext_resource type="PackedScene" uid="uid://c2qwrkeo68yrg" path="res://Scenes/Player/player.tscn" id="7_ftxpn"]
 [ext_resource type="TileSet" uid="uid://08ekcyit34ot" path="res://SpriteFrames/Overworld/Semisolid.tres" id="7_gw30q"]
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
 [ext_resource type="Texture2D" uid="uid://c1n8cgqsfvhww" path="res://Sprites/Tilesets/EndTiles.png" id="8_xecmd"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://gkuetip4jrov" path="res://Scenes/Blocks/BrickBlock.tscn" id="21_ruake"]
 [ext_resource type="PackedScene" uid="uid://doas6kjos1513" path="res://Scenes/PipeArea.tscn" id="22_q42so"]
 [ext_resource type="PackedScene" uid="uid://e4embafexpde" path="res://Scenes/Items/Mushroom.tscn" id="22_ruake"]
+[ext_resource type="PackedScene" uid="uid://b3t1x117hl7aq" path="res://Scenes/Objects/GoalRoulette.tscn" id="23_q42so"]
 [ext_resource type="PackedScene" uid="uid://2j1cbp0qxdsy" path="res://Scenes/Enemies/KoopaShell.tscn" id="25_1i5or"]
 [ext_resource type="PackedScene" uid="uid://bwuk3bqvrnqav" path="res://Scenes/Items/FireFlower.tscn" id="27_xyty3"]
 
@@ -116,7 +117,7 @@ drag_bottom_margin = 0.0
 script = ExtResource("11_saxwf")
 
 [node name="Player" parent="." unique_id=300565520 instance=ExtResource("7_ftxpn")]
-position = Vector2(384, 0)
+position = Vector2(696, 0)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Player" unique_id=469276684]
 process_mode = 3
@@ -125,7 +126,7 @@ stream = ExtResource("10_x1pt7")
 autoplay = true
 
 [node name="Player2" parent="." unique_id=970656070 instance=ExtResource("7_ftxpn")]
-position = Vector2(360, 0)
+position = Vector2(656, 0)
 player_id = 1
 
 [node name="Player3" parent="." unique_id=1786077892 instance=ExtResource("7_ftxpn")]
@@ -145,7 +146,7 @@ position = Vector2(288, 0)
 position = Vector2(600, -8)
 
 [node name="BigGoomba" parent="." unique_id=1598245583 instance=ExtResource("21_eimin")]
-position = Vector2(696, -16)
+position = Vector2(392, -112)
 stomp_tolerance = 0
 
 [node name="BrickBlock2" parent="." unique_id=1763986505 instance=ExtResource("21_ruake")]
@@ -175,3 +176,6 @@ pipe_id = 2
 [node name="PipeArea4" parent="." unique_id=1881210699 instance=ExtResource("22_q42so")]
 position = Vector2(528, -16)
 pipe_id = 2
+
+[node name="GoalRoulette" parent="." unique_id=882525322 instance=ExtResource("23_q42so")]
+position = Vector2(776, -64)

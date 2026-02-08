@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://diwhxxchqktmj"]
+[gd_scene format=3 uid="uid://c2qwrkeo68yrg"]
 
-[ext_resource type="Script" uid="uid://ba4gb2nk3n70y" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://ba4gb2nk3n70y" path="res://Scripts/Player/Player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://r2jyvocfl4bl" path="res://Scripts/StateMachine/States/Normal.gd" id="3_3smsa"]
 [ext_resource type="Script" uid="uid://bawyvb0qnj1tk" path="res://Scripts/StateMachine/StateMachine.gd" id="3_x3wgy"]
 [ext_resource type="Script" uid="uid://dvnwqitv57aee" path="res://Scripts/StateMachine/States/Die.gd" id="5_f1ek2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bks401kakf8uy" path="res://Scripts/Player/PowerUps.gd" id="6_yoq75"]
 [ext_resource type="Script" uid="uid://cauxcx0g3y4kc" path="res://Scenes/Player/FirePower.gd" id="7_06tpx"]
 [ext_resource type="Script" uid="uid://0pg3i0isavmo" path="res://Scripts/StateMachine/PlayerStateClass.gd" id="7_esmjy"]
+[ext_resource type="Script" uid="uid://c3jlbatur88pg" path="res://Scripts/StateMachine/States/Victory.gd" id="7_r5xpd"]
 [ext_resource type="Script" uid="uid://d3qrlvqda5i6m" path="res://Scripts/Items/RaccoonPower.gd" id="8_0u84n"]
 [ext_resource type="Script" uid="uid://b2dle544er3kg" path="res://Scripts/Game/DropShadow.gd" id="8_oikmp"]
 [ext_resource type="SpriteFrames" uid="uid://b4y7uk0wcicdb" path="res://SpriteFrames/Characters/Mario/Small.tres" id="10_0u84n"]
@@ -56,6 +57,9 @@ script = ExtResource("6_tx1dd")
 
 [node name="Pipe" type="Node" parent="States" unique_id=580376798]
 script = ExtResource("6_0u84n")
+
+[node name="Victory" type="Node" parent="States" unique_id=89146626]
+script = ExtResource("7_r5xpd")
 
 [node name="None" type="Node" parent="States" unique_id=41757333]
 script = ExtResource("7_esmjy")

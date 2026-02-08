@@ -161,24 +161,9 @@ func _physics_process(delta: float) -> void:
 		update_input_device(player_id)
 
 	# If you're dead or no input device is detected return
-	if is_dead or not input:
-		return
-
-	# === GOAL COMPLETION HANDLING ===
-	if goal_completed:
-		if not is_on_floor():
-			velocity.x = 0
-			velocity.y += high_gravity * delta
-			velocity.y = min(velocity.y, 258.75)
-			animated_sprite.animation = "jump"
-		else:
-			velocity.x = end_level_walk
-			animated_sprite.scale.x = 1
-			animated_sprite.animation = "walk"
-			animated_sprite.speed_scale = 2
-			animated_sprite.play()
+	if is_dead or goal_completed or not input:
 		move_and_slide()
-		return # Skip all other player logic
+		return
 
 	handle_powerups(delta)
 
@@ -201,12 +186,6 @@ func _physics_process(delta: float) -> void:
 	if input_direction() == 0:
 		skidding = false
 
-	# === Gravity and Jumping ===
-	if not is_on_floor() and not pipe_warping:
-		if velocity.y < -120 and input.is_action_pressed("A"): final_grav_speed = low_gravity
-		else: final_grav_speed = high_gravity
-		velocity.y += final_grav_speed * delta
-		velocity.y = min(velocity.y, 258.75)
 	# Jumping
 	if input.is_action_just_pressed("A") and is_on_floor():
 		var final_jump_speed = floor(abs(velocity.x)/60)
@@ -236,6 +215,14 @@ func _physics_process(delta: float) -> void:
 		SaveManager.runtime_data["powerup_state"] = "Small"
 
 	move_and_slide()
+
+func apply_gravity(delta: float) -> void:
+	# === Gravity and Jumping ===
+	if not is_on_floor():
+		if velocity.y < -120 and input.is_action_pressed("A"): final_grav_speed = low_gravity
+		else: final_grav_speed = high_gravity
+		velocity.y += final_grav_speed * delta
+		velocity.y = min(velocity.y, 258.75)
 
 # === Get the input direction ===
 func input_direction() -> int:
