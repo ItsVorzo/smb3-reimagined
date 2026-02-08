@@ -75,7 +75,7 @@ func _add_coin_to_hud() -> void:
 	var coins = SaveManager.runtime_data.get("coins", 0)
 	coins += 1
 	SaveManager.runtime_data["coins"] = coins
-	SaveManager.set_temp("coins", coins)
+	GameManager.coins = coins
 
 	if SaveManager.hud:
 		SaveManager.hud.update_labels()

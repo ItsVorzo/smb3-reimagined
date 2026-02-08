@@ -4,6 +4,7 @@ var p_meter := [] # Access everyone's p meter globally
 var p_meter_max := 70
 var p_switch_timer := 0
 
+var coins := 0
 var time := 0 # The level's time
 var time_running := true
 var unlimited_time := false
