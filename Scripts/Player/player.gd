@@ -415,6 +415,9 @@ func enter_pipe(pipe: PipeArea) -> void:
 	if pipe_enter_dir.y != 0:
 		animated_sprite.play("front_facing")
 	await get_tree().create_timer(0.65).timeout
+	# Save powerup state
+	SaveManager.runtime_data["powerup_state"] = pwrup.name
+	SaveManager.commit_runtime_to_save(0)
 	hide()
 
 # Set the player when you're about to exit the pipe
