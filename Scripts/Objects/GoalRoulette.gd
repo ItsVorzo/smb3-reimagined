@@ -7,13 +7,17 @@ extends Node2D
 @onready var firework: AnimatedSprite2D = $Firework
 
 # Roulette cycling speed
-const CYCLE_SPEED := 8
+const CYCLE_SPEED := 7
 var cycle_timer := 0
 var current_item_index := 0
-var items := ["Mushroom", "FireFlower", "Star"]
+var items := ["FireFlower", "Star", "Mushroom"]
 var is_activated := false
+var is_onscreen := false
+var was_onscreen := false
 
 func _ready() -> void:
+	if SaveManager.runtime_data.get("goal_items").size() >= 3:
+		SaveManager.runtime_data.get("goal_items").clear()
 	detection_area.body_entered.connect(_on_body_entered)
 	item_roulette.animation = items[current_item_index]
 	item_roulette.play()
@@ -21,33 +25,43 @@ func _ready() -> void:
 	firework.visible = false
 
 func _physics_process(_delta: float) -> void:
+	is_onscreen = GameManager.is_on_screen(global_position, 0, 0)
+
+	# Reset when on screen
+	if is_onscreen and not was_onscreen:
+		cycle_timer = 0
+		current_item_index = 0
+		item_roulette.animation = items[0]
+
 	if is_activated:
 		return
 
-	cycle_timer += 1
-	if cycle_timer >= CYCLE_SPEED:
-		cycle_timer = 0
-		current_item_index = (current_item_index + 1) % items.size()
-		item_roulette.animation = items[current_item_index]
-		item_roulette.play()
+	if is_onscreen:
+		cycle_timer += 1
+		if cycle_timer >= CYCLE_SPEED:
+			cycle_timer = 0
+			current_item_index = (current_item_index + 1) % items.size()
+			item_roulette.animation = items[current_item_index]
 
+	was_onscreen = is_onscreen
+
+# Activate the goal
 func _on_body_entered(body: Node2D) -> void:
 	if is_activated:
 		return
-
 	if body is Player:
 		activate_goal(body)
 
+# Activate the goal x2
 func activate_goal(player: Player) -> void:
 	is_activated = true
 	var landed_item: String = items[current_item_index]
 
 	# Check if this will be a 3-card match
 	var cards = SaveManager.runtime_data.get("goal_items", [])
-	var will_be_three_cards = (cards.size() == 2)
 	var is_all_match = false
 
-	if will_be_three_cards:
+	if cards.size() == 2:
 		is_all_match = (cards[0] == cards[1] and cards[1] == landed_item)
 
 	# Award item first
@@ -58,16 +72,14 @@ func activate_goal(player: Player) -> void:
 		p.state_machine.change_state("Victory")
 	
 	var level = get_tree().current_scene
-
-	# Stop time counter
-	if level.has_node("HUD"):
-		level.get_node("HUD").pause_time()
-
 	# Stop current music
 	if level.has_node("Player/BGM"):
 		var bgm = level.get_node("Player/BGM")
 		if bgm.playing:
 			bgm.stop()
+
+	# Stop time counter
+	GameManager.time_running = false
 
 	# Choose music based on match type
 	var complete_music := AudioStreamPlayer2D.new()
@@ -226,7 +238,7 @@ func finish_level_sequence(player: Player, landed_item: String, level, is_all_ma
 	
 	if hud:
 		hud.stop_card_blink()
-		if cards.size() == 3:
+		if cards.size() >= 3:
 			SaveManager.runtime_data["goal_items"] = []
 			hud.update_card_slots()
 
@@ -245,11 +257,9 @@ func finish_level_sequence(player: Player, landed_item: String, level, is_all_ma
 func award_item_to_inventory(item: String) -> void:
 	if SaveManager.runtime_data.has("goal_items"):
 		SaveManager.runtime_data["goal_items"].append(item)
-	else:
-		SaveManager.runtime_data["goal_items"] = [item]
 
 func time_bonus_countdown(level) -> void:
-	var current_time = int(SaveManager.get_temp("time", 0))
+	var current_time = GameManager.time
 
 	while current_time > 0:
 		if not is_inside_tree():
@@ -257,11 +267,11 @@ func time_bonus_countdown(level) -> void:
 
 		if current_time >= 10:
 			current_time -= 10
-			SaveManager.set_temp("time", current_time)
+			GameManager.time = current_time
 			SaveManager.add_score(500)
 		else:
 			current_time -= 1
-			SaveManager.set_temp("time", current_time)
+			GameManager.time = current_time
 			SaveManager.add_score(50)
 
 		SoundManager.play_sfx("Text", global_position)

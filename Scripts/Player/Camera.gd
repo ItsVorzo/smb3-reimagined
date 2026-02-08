@@ -26,8 +26,7 @@ func _process(_delta: float) -> void:
 		# Keep camera completely locked
 		global_position = frozen_position
 		# Still apply player clamping but allow goal-completed players to go off-screen
-		var players = get_tree().get_nodes_in_group("Player")
-		for p in players:
+		for p in GameManager.get_players():
 			# Only clamp players who haven't completed the goal
 			if not p.goal_completed:
 				p.global_position.x = clamp(p.global_position.x, camlimit_left.global_position.x + 16, camlimit_right.global_position.x - 16)

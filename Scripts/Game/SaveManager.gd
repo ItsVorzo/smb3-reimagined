@@ -1,7 +1,6 @@
 extends Node
 
 var runtime_data: Dictionary = {}
-var temp_level_data: Dictionary = {}  # <-- NEW: temp save for current level
 var hud: Node = null  # Stores reference to HUD for fast access
 
 func _ready() -> void:
@@ -61,22 +60,10 @@ func start_runtime_from_save(save_index: int) -> void:
 			"coins": 0,
 			"lives": 3,
 			"time": 400,
+			"goal_items": [],
 			"powerup_state": "Small"
 		}
 	runtime_data = permanent.duplicate(true)
-	
-	# Initialize temp level save
-	temp_level_data = {
-		"time": runtime_data.get("time", 400),
-		"timer_paused": false
-	}
-
-# Accessors for temp level data
-func get_temp(key: String, default=null):
-	return temp_level_data.get(key, default)
-
-func set_temp(key: String, value):
-	temp_level_data[key] = value
 
 # Save runtime_data to permanent save
 func commit_runtime_to_save(save_index: int) -> void:
@@ -87,7 +74,6 @@ func commit_runtime_to_save(save_index: int) -> void:
 
 func clear_runtime() -> void:
 	runtime_data.clear()
-	temp_level_data.clear()
 
 func add_life(amount: int) -> void:
 	var lives = runtime_data.get("lives", 3) + amount

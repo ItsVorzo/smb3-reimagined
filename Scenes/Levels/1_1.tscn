@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ctabbshmdl6s0" path="res://Sprites/SuperMarioBros3Map1-1.png" id="2_x8ai0"]
 [ext_resource type="TileSet" uid="uid://b01frtlkfgaka" path="res://SpriteFrames/Overworld/Overworld.tres" id="6_gw30q"]
 [ext_resource type="Texture2D" uid="uid://btu0wladbptrj" path="res://Sprites/Tilesets/BackgroundTiles.png" id="7_28jxv"]
-[ext_resource type="PackedScene" uid="uid://diwhxxchqktmj" path="res://Scenes/Player/Player.tscn" id="7_ftxpn"]
+[ext_resource type="PackedScene" uid="uid://c2qwrkeo68yrg" path="res://Scenes/Player/Player.tscn" id="7_ftxpn"]
 [ext_resource type="TileSet" uid="uid://08ekcyit34ot" path="res://SpriteFrames/Overworld/Semisolid.tres" id="7_gw30q"]
 [ext_resource type="PackedScene" uid="uid://b68thgny22c8y" path="res://Scenes/Backgrounds/overworld.tscn" id="8_28jxv"]
 [ext_resource type="Texture2D" uid="uid://c1n8cgqsfvhww" path="res://Sprites/Tilesets/EndTiles.png" id="8_xecmd"]

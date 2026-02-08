@@ -304,7 +304,6 @@ texture = SubResource("AtlasTexture_7cqum")
 [node name="ItemRoulette" type="AnimatedSprite2D" parent="." unique_id=747106537]
 sprite_frames = SubResource("SpriteFrames_qenr7")
 animation = &"SpinFireFlower"
-frame_progress = 0.9086632
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=330537268]
 collision_mask = 3

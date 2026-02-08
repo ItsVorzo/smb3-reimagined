@@ -202,7 +202,7 @@ text = "00"
 [node name="CardSlot1" type="AnimatedSprite2D" parent="HUD_BG" unique_id=1286690176]
 position = Vector2(351.5, 206)
 sprite_frames = SubResource("SpriteFrames_k24i8")
-animation = &"Star"
+animation = &"Empty"
 
 [node name="CardSlot2" type="AnimatedSprite2D" parent="HUD_BG" unique_id=908041665]
 position = Vector2(376.5, 206)

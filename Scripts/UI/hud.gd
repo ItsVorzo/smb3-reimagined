@@ -18,22 +18,18 @@ extends CanvasLayer
 @onready var multiplier_label: Label = $MultiplierLabel
 # Markiplier
 
-enum ScreenMode { FOUR_THREE, EXTENDED }
-var screen_mode: ScreenMode
-
 var time_timer: Timer
-var time_running := true
 var card_blink_active := false
 
 func update_labels():
 	var save_data = SaveManager.runtime_data
-	var temp_data = SaveManager.temp_level_data
+	#var temp_data = SaveManager.temp_level_data
 	
 	player_icon.frame = int(save_data.get("character_index", 0))
 	world_label.text = str(int(save_data.get("world_number", 1)))
 	coins_label.text = str(int(save_data.get("coins", 0))).pad_zeros(2)
 	score_label.text = str(int(save_data.get("score", 0))).pad_zeros(7)
-	time_label.text = str(int(temp_data.get("time", 300))).pad_zeros(3)
+	time_label.text = str(GameManager.time)
 	lives_label.text = str(int(save_data.get("lives", 3))).pad_zeros(2)
 
 func _ready():
@@ -48,19 +44,12 @@ func _ready():
 	
 
 func _on_time_timer_timeout():
-	if not time_running:
+	if not GameManager.time_running:
 		return
-	var current_time = int(SaveManager.get_temp("time", 300))
+	var current_time = GameManager.time
 	if current_time > 0:
-		SaveManager.set_temp("time", current_time - 1)
+		GameManager.time -= 1
 		update_labels()
-
-# === Time Control ===
-func pause_time():
-	time_running = false
-
-func resume_time():
-	time_running = true
 
 # === Level Complete Messages ===
 func show_course_clear():
@@ -118,17 +107,20 @@ func show_finish_score(is_match: bool = false):
 	multiplier_label.visible = true
 
 func update_finish_score_from_time():
-	var level_time := int(SaveManager.get_temp("time", 0))
+	var level_time = GameManager.time
 	
 	finishtime_label.text = str(level_time).pad_zeros(3)
 	
-	var score := level_time * 50
+	var score = level_time * 50
 	finishscore_label.text = str(score).pad_zeros(5)
 	
 # === Card System ===
 func update_card_slots():
 	var cards = SaveManager.runtime_data.get("goal_items", [])
-	
+
+	if cards.size() >= 3:
+		cards.clear()
+
 	# Update each slot based on saved cards
 	if cards.size() >= 1:
 		card_slot_1.animation = cards[0]
@@ -155,7 +147,8 @@ func start_card_blink_infinite(slot_index: int, item: String):
 		0: slot = card_slot_1
 		1: slot = card_slot_2
 		2: slot = card_slot_3
-	
+		_: slot = card_slot_1
+
 	while card_blink_active:
 		slot.animation = "Empty"
 		await get_tree().create_timer(0.3).timeout

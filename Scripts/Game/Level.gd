@@ -4,6 +4,7 @@ extends Node2D
 @export_enum("Overworld", "Underground", "Desert", "Snow", "Athletic", "Castle") var theme: String = "Overworld"
 @export_enum("None", "Sliding", "Coming out of pipe") var entrance: String = "None"
 @export var time := 300
+static var was_time_set := false
 
 @onready var terrain_tilemap = $TerrainTileMap
 @onready var semisolid_tilemap = $SemisolidTileMap
@@ -20,6 +21,9 @@ const BLOCK_SIZE := 16
 func _ready() -> void:
 	TransitionManager.fade_out(6.0)
 	SaveManager.start_runtime_from_save(save_index)
+	if not was_time_set:
+		was_time_set = true
+		GameManager.time = time
 	SaveManager.hud = hud
 	SaveManager.hud.update_labels()
 	apply_theme()
