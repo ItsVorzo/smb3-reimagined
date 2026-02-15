@@ -47,7 +47,8 @@ func handle_timers():
 		if owner.tailbox.monitoring == true:
 			owner.tailbox.monitoring = false
 		owner.animation_override = ""
-		owner.direction_allow = true
+		if not owner.pipe_warping:
+			owner.direction_allow = true
 
 func handle_hovering():
 	owner.hovering = (not owner.tail_attacking and not owner.is_on_floor() and owner.velocity.y > 0 

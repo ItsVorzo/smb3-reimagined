@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	# Check wether the transition is done
-	if fade_type == -1 and fade_timer == 0 or fade_type == 1 and fade_timer == 512:
+	if fade_type == -1 and fade_timer == 0 or fade_type == 1 and fade_timer >= 255:
 		is_fading = false
 	if fade_type == 1 and fade_timer == 255 and fading_to_scene:
 		fading_to_scene = false
